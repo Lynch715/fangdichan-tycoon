@@ -311,7 +311,8 @@ document.addEventListener('click', (e) => {
   if(region && mapUnlocked(game.state,config,region.dataset.map!)){mapId=region.dataset.map!;selectedId=null;render();map.fit();return;}
   const speed = target.closest<HTMLElement>('[data-speed]');
   if (speed) return game.setSpeed(Number(speed.dataset.speed) as Speed);
-  const tab = target.closest<HTMLElement>('[data-tab]');
+  // 只认底部导航按钮：<body> 自身也带 data-tab（记录当前标签），不能被当成“再点当前标签”
+  const tab = target.closest<HTMLElement>('.tabs button[data-tab]');
   if (tab) return toggleTab(tab.dataset.tab!);
   const sel = target.closest<HTMLElement>('[data-select]');
   if (sel && !target.closest('details') && !(target instanceof HTMLInputElement)) {
