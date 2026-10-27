@@ -12,11 +12,12 @@ import { auctionsPanel, financePanel, headerDate, newsLine, projectsPanel, statu
 import { allMapProjects,activeProject, district, mapUnlocked, type Pace, type Tile } from './sim/index.ts';
 import type{BuildingProduct,BuildingVariant,ContractorId}from'./sim/types.ts';
 import{ReportController}from'./ui/reportController.ts';
+import{badgeText,inboxList,newsKey,unreadCount}from'./ui/inbox.ts';
 
 const PAUSE_TEXT: Record<string, string> = {
   startProject:'已暂停：拿地完成，请选择总包开工',
   settlement:'已暂停：项目清盘，查看结算',
-  risk: '已暂停：项目风险事件或监管处罚，请查看经营消息',
+  risk: '已暂停：项目风险事件或监管处罚，点此查看消息',
   auction: '已暂停：新一批土地挂牌',
   cashWarning: '已暂停：未来 3 个月到期款超过现金',
   regulation: '已暂停：监管政策变化',
@@ -39,15 +40,47 @@ const sessionController=new SessionController(game,$<HTMLDialogElement>('#setup-
  selectedId=null;mapId='city';bidDrafts.clear();amenityDrafts.clear();reportController.reset();setTab('map');render();map.fit();
 });
 
+// 已读标记只是界面偏好：存在浏览器本地，不进存档、不影响模拟。
+const SEEN_KEY='fdc-inbox-seen';
+let seenNews:string|null=(()=>{try{return localStorage.getItem(SEEN_KEY);}catch{return null;}})();
+const inboxOpen=()=>document.body.dataset.tab==='inbox'||document.body.dataset.inbox==='open';
+function markNewsSeen(){
+  const top=game.state.news[0];if(!top)return;
+  const key=newsKey(top);if(key===seenNews)return;
+  seenNews=key;try{localStorage.setItem(SEEN_KEY,key);}catch{/* 隐私模式等：只是不记住已读 */}
+}
+
 function setTab(tab: string) {
   document.body.dataset.tab = tab;
   document.querySelectorAll<HTMLButtonElement>('[data-tab]').forEach((b) => b.classList.toggle('on', b.dataset.tab === tab));
+  if(tab==='inbox'){markNewsSeen();paintInbox();}
 }
 
-function toast(text: string, kind: 'info' | 'error' = 'info') {
+/** 点击当前已打开的标签收起面板，回到地图。 */
+function toggleTab(tab:string){setTab(document.body.dataset.tab===tab&&tab!=='map'?'map':tab);}
+
+function closeSheet(){if(document.body.dataset.inbox==='open')toggleInbox(false);else setTab('map');}
+
+/** 桌面：消息弹层；手机：切到“消息”标签。 */
+function toggleInbox(open=!inboxOpen()){
+  if(matchMedia('(max-width: 820px)').matches){setTab(open?'inbox':'map');return;}
+  if(open)document.body.dataset.inbox='open';else delete document.body.dataset.inbox;
+  if(open){markNewsSeen();paintInbox();}
+}
+
+function paintInbox(){
+  if(inboxOpen())markNewsSeen();
+  const s=game.state,{total,warnings}=unreadCount(s.news,seenNews),text=badgeText(total);
+  document.querySelectorAll<HTMLElement>('#inbox-badge,#tab-badge').forEach(b=>{b.textContent=text;b.classList.toggle('warn',warnings>0);});
+  const list=$('#inbox-list');list.innerHTML=inboxList(config,s,inboxOpen()?null:seenNews);
+}
+
+/** linkInbox：游戏事件类提示可点按，直接打开消息。 */
+function toast(text: string, kind: 'info' | 'error' = 'info',linkInbox=false) {
   const el = $('#toast');
   el.textContent = text;
-  el.className = `toast show ${kind}`;
+  if(linkInbox)el.dataset.act='toast';else el.removeAttribute('data-act');
+  el.className = `toast show ${kind}${linkInbox?' link':''}`;
   window.clearTimeout((toast as unknown as { t?: number }).t);
   (toast as unknown as { t?: number }).t = window.setTimeout(() => (el.className = 'toast'), 3500);
 }
@@ -92,9 +125,9 @@ function render() {
   $('#news').innerHTML = `<b class="news-label">新闻</b>${newsLine(config, s)}`;
   $('#auction-count').textContent = `${s.auctions.filter(a=>district(config,a.districtId).mapId===mapId).length} 宗`;
   map.update(s, selectedId, mapId);
-  $('#activity').innerHTML = `<b>经营消息</b>${s.news.slice(0,12).map(n=>`<p class="small ${n.kind === 'warning' ? 'warn-text' : 'muted'}">${n.text}</p>`).join('')}`;
+  paintInbox();
   if (game.lastPause) {
-    toast(PAUSE_TEXT[game.lastPause] ?? '已暂停');
+    toast(PAUSE_TEXT[game.lastPause] ?? '已暂停','info',true);
     game.lastPause = null;
   }
   reportController.sync();
@@ -108,11 +141,21 @@ function onTap(tile: Tile) {
   selectedId = a?.id ?? p?.id ?? null;
   if (a) setTab('land');
   else if (p) setTab('projects');
+  else if (document.body.dataset.tab!=='map') setTab('map'); // 点地图空白处收起面板
   render();
   if (selectedId) document.querySelector(`[data-select="${selectedId}"]`)?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
 }
 
 const map = new IsoMap($('#map-canvas'), onTap);
+
+// 手机底部面板：按住标题栏下拉超过 70px 收起。
+document.querySelectorAll<HTMLElement>('.sheet-head').forEach(head=>{
+  let startY:number|null=null;const sheet=head.closest<HTMLElement>('.panel')!;
+  head.addEventListener('pointerdown',e=>{if((e.target as HTMLElement).closest('button'))return;startY=e.clientY;head.setPointerCapture(e.pointerId);sheet.style.transition='none';});
+  head.addEventListener('pointermove',e=>{if(startY===null)return;const dy=Math.max(0,e.clientY-startY);sheet.style.transform=dy?`translateY(${dy}px)`:'';});
+  const end=(e:PointerEvent)=>{if(startY===null)return;const dy=e.clientY-startY;startY=null;sheet.style.transition='';sheet.style.transform='';if(dy>70)closeSheet();};
+  head.addEventListener('pointerup',end);head.addEventListener('pointercancel',end);
+});
 
 const amountFrom = (id: string) => Number((document.getElementById(id) as HTMLInputElement | null)?.value ?? 0) * 10000;
 
@@ -189,6 +232,9 @@ document.addEventListener('click', (e) => {
       case 'restart':
         sessionController.open();
         break;
+      case 'close-sheet':closeSheet();break;
+      case 'inbox':toggleInbox();break;
+      case 'toast':toggleInbox(true);$('#toast').className='toast';break;
     }
     return;
   }
@@ -197,7 +243,7 @@ document.addEventListener('click', (e) => {
   const speed = target.closest<HTMLElement>('[data-speed]');
   if (speed) return game.setSpeed(Number(speed.dataset.speed) as Speed);
   const tab = target.closest<HTMLElement>('[data-tab]');
-  if (tab) return setTab(tab.dataset.tab!);
+  if (tab) return toggleTab(tab.dataset.tab!);
   const sel = target.closest<HTMLElement>('[data-select]');
   if (sel && !target.closest('details') && !(target instanceof HTMLInputElement)) {
     selectedId = sel.dataset.select!;
@@ -207,8 +253,15 @@ document.addEventListener('click', (e) => {
   }
 });
 
+// 桌面消息弹层：在弹层外按下即关闭（地图画布会吞掉 click，所以用 pointerdown）。
+document.addEventListener('pointerdown',e=>{
+  const t=e.target as HTMLElement;
+  if(document.body.dataset.inbox==='open'&&!t.closest('.panel.inbox,[data-act="inbox"]'))toggleInbox(false);
+},true);
+
 document.addEventListener('keydown', (e) => {
   if(document.querySelector('dialog[open]'))return;
+  if(e.key==='Escape'&&(document.body.dataset.tab!=='map'||document.body.dataset.inbox==='open')){closeSheet();return;}
   if (e.target instanceof HTMLInputElement || e.target instanceof HTMLSelectElement) return;
   if (e.code === 'Space') {
     e.preventDefault();

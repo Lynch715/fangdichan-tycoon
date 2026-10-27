@@ -25,11 +25,13 @@
       <div class="top-right">
         <span class="desktop-only muted small">市场情绪 <b id="sentiment" class="ok-text"></b></span>
         <span class="mobile-status"><b id="m-cash"></b><span id="m-lights" class="lights"></span><span id="m-tier"></span><b id="m-rating"></b></span>
+        <button class="inbox-btn desktop-only" data-act="inbox" aria-label="经营消息"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0-6 6v3.6L4.3 15.4A1 1 0 0 0 5.2 17h13.6a1 1 0 0 0 .9-1.6L18 12.6V9a6 6 0 0 0-6-6Zm-2.5 15a2.5 2.5 0 0 0 5 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span>消息</span><span class="badge" id="inbox-badge"></span></button>
         <button class="ghost desktop-only" data-act="restart">重新开始</button>
       </div>
     </header>
 
     <aside class="panel left" aria-label="财务">
+      <div class="sheet-head"><span class="sheet-grip" aria-hidden="true"></span><b class="sheet-title">财务</b><button class="sheet-close" data-act="close-sheet" aria-label="收起面板">收起</button></div>
       <div id="session"></div>
       <div id="finance"></div>
       <span id="storage-status" class="small muted" role="status"></span>
@@ -37,14 +39,13 @@
       <div class="row"><button class="ghost" data-act="export">导出存档</button><button class="ghost" data-act="import">导入存档</button></div>
       <button class="ghost" data-act="reports">经营报表与复盘</button>
       <input id="import-save" type="file" accept="application/json,.json" hidden>
-      <details><summary>经营消息</summary><div id="activity" class="stack"></div></details>
       <button class="ghost mobile-only" data-act="restart">重新开始</button>
     </aside>
 
     <main class="map">
       <div id="map-canvas"></div>
       <div class="region-switch" role="group" aria-label="地图区域"><button data-map="city" class="on">重庆主城</button><button data-map="outer">外围主城</button><button data-map="suburb">远郊区县</button></div>
-      <div id="toast" class="toast" role="status"></div>
+      <div id="toast" class="toast" role="status" data-act="toast"></div>
       <div class="map-controls">
         <button data-act="zoom-in" aria-label="放大">+</button>
         <button data-act="zoom-out" aria-label="缩小">−</button>
@@ -54,6 +55,7 @@
     </main>
 
     <aside class="panel right">
+      <div class="sheet-head"><span class="sheet-grip" aria-hidden="true"></span><b class="sheet-title"><span class="when-projects">项目</span><span class="when-land">拍地</span></b><button class="sheet-close" data-act="close-sheet" aria-label="收起面板">收起</button></div>
       <section class="projects-wrap">
         <div class="row between"><h2>项目看板</h2></div>
         <div id="projects" class="cards"></div>
@@ -65,13 +67,19 @@
       </section>
     </aside>
 
-    <footer id="news" class="news-bar"></footer>
+    <aside class="panel inbox" aria-label="经营消息">
+      <div class="sheet-head"><span class="sheet-grip" aria-hidden="true"></span><b class="sheet-title">经营消息</b><button class="sheet-close" data-act="close-sheet" aria-label="关闭消息">关闭</button></div>
+      <div id="inbox-list" class="msgs"></div>
+    </aside>
+
+    <footer id="news" class="news-bar" data-act="inbox" title="点击查看全部经营消息"></footer>
 
     <nav class="tabs" aria-label="主导航">
       <button data-tab="map">地图</button>
       <button data-tab="finance">财务</button>
       <button data-tab="projects">项目</button>
       <button data-tab="land">拍地</button>
+      <button data-tab="inbox">消息<span class="badge" id="tab-badge"></span></button>
     </nav>
   </div>
   <dialog id="acquisition-dialog" class="acquisition-dialog" aria-labelledby="acquisition-title"></dialog>
