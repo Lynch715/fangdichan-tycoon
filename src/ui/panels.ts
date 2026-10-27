@@ -10,6 +10,7 @@ import{rivalsPanel,industryStatus}from'./rivals.ts';
 import{appearanceOf,PRODUCT_NAMES}from'../appearance.ts';
 import{BUILDING_PRODUCTS,BUILDING_VARIANTS,CONTRACTORS}from'../sim/types.ts';
 import {estimateLand} from '../estimates/land.ts';
+import {estimateRunway} from '../estimates/runway.ts';
 import {bidAffordability} from './affordability.ts';
 import {outlookMarkup} from './outlook.ts';
 // 界面面板：根据模拟状态生成 HTML。按钮通过 data-act 属性交给 main.ts 统一处理。
@@ -87,6 +88,7 @@ export function financePanel(config: Config, s: GameState,capitalShare?:number):
     <span class="big ${s.cash < 0 ? 'danger-text' : ''}">${(s.cash / 10000).toFixed(2)} <small>亿</small></span>
     <span class="muted small">监管账户 ${yi(m.escrow)} · 净资产 ${yi(m.equity)}</span>
   </section>
+  ${runwayMarkup(config,s)}
   <section class="stack">
     <div class="row between"><b>未来 6 个月到期</b><span class="muted small">含商票与土地尾款</span></div>
     <div class="bars">${bars}</div>
@@ -242,4 +244,18 @@ export function newsLine(config: Config, s: GameState): string {
       return `<span class="news ${n.kind}">【${c.year}年${c.month}月】${esc(n.text)}</span>`;
     })
     .join('<span class="sep">|</span>');
+}
+
+/** 现金续航（估算）：不计未来销售回款，只看已承诺的刚性支出。 */
+export function runwayMarkup(config:Config,s:GameState):string{
+  const r=estimateRunway(config,s),n=r.next12;
+  const head=r.months===null?`<b class="ok-text">${r.horizon} 个月以上</b>`:r.months===0?'<b class="danger-text">不足 1 个月</b>':`<b class="${r.months<=3?'danger-text':r.months<=6?'warn-text':''}">约 ${r.months} 个月</b>`;
+  const row=(name:string,v:number)=>`<div class="row between small"><span class="muted">${name}</span><span>${yi(v)}</span></div>`;
+  return `<section class="stack runway">
+    <div class="row between"><b>现金续航 <span class="pill gray">估算</span></b>${head}</div>
+    <span class="small muted">假设从下月起一套房都不卖、监管账户也不释放，账上现金能付清以下支出的月数。</span>
+    ${row('土地尾款',n.land)}${row('债务到期本金（不展期、不续借）',n.principal)}${row('利息',n.interest)}${row('在建工程款（按当前节奏，全额现金）',n.construction)}
+    <div class="row between small"><b>未来 12 个月刚性支出</b><b>${yi(n.total)}</b></div>
+    <span class="small muted">未计入：销售回款及其营销费、税费；监管账户 ${yi(r.escrow)} 按工程进度释放；商票可延后的工程款；未开工项目的工程款。</span>
+  </section>`;
 }
