@@ -501,8 +501,11 @@ function settleProject(state: GameState, config: Config, p: Project) {
     const requestedPrice = marketPrice(config, state, p.districtId,p.attributes) * p.priceFactor;
     const price = priceRestricted(state,config) ? Math.min(requestedPrice,p.filedPrice!) : requestedPrice;
     const clearance = p.stage === 'delivered' && p.deliveredDay !== null && state.day - p.deliveredDay >= c.clearanceMonthsAfterDelivery * dpm;
-    const sold = clearance ? remaining : Math.min(remaining, remaining * salesRate(config, state, price / marketPrice(config,state,p.districtId,p.attributes),p.marketingRate,p.districtId) * event.demand);
-    const revenue = sold * price * (clearance ? 1 - c.clearanceDiscount : 1);
+    const market = marketPrice(config,state,p.districtId,p.attributes);
+    const sold = clearance ? remaining : Math.min(remaining, remaining * salesRate(config, state, price / market,p.marketingRate,p.districtId) * event.demand);
+    // 尾货清盘是批量处置：按“市场价与挂牌价取低”再打折，临时提价不能抬高整批成交价（审计 G01）
+    const unitPrice = clearance ? Math.min(price, market) * (1 - c.clearanceDiscount) : price;
+    const revenue = sold * unitPrice;
     p.soldArea += sold;
     p.salesIn += revenue;
     ledger(state,'saleBooked',0,p.id,revenue*owned);
