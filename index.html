@@ -33,6 +33,7 @@
     <aside class="panel left" aria-label="财务">
       <div class="sheet-head"><span class="sheet-grip" aria-hidden="true"></span><b class="sheet-title">财务</b><button class="sheet-close" data-act="close-sheet" aria-label="收起面板">收起</button></div>
       <div id="session"></div>
+      <div id="milestones"></div>
       <div id="finance"></div>
       <span id="storage-status" class="small muted" role="status"></span>
       <span id="offline-status" class="small muted" role="status">离线缓存准备中</span>
@@ -46,6 +47,8 @@
       <div id="map-canvas"></div>
       <div class="region-switch" role="group" aria-label="地图区域"><button data-map="city" class="on">重庆主城</button><button data-map="outer">外围主城</button><button data-map="suburb">远郊区县</button></div>
       <div id="toast" class="toast" role="status" data-act="toast"></div>
+      <div id="cheers" class="cheers" aria-live="polite"></div>
+      <button id="guide" class="guide" data-act="guide" hidden></button>
       <div class="map-controls">
         <button data-act="zoom-in" aria-label="放大">+</button>
         <button data-act="zoom-out" aria-label="缩小">−</button>
@@ -61,9 +64,9 @@
         <div id="projects" class="cards"></div>
       </section>
       <section class="auctions-wrap">
-        <div id="districts" class="cards"></div>
         <div class="row between"><h2>本季土地拍卖</h2><span id="auction-count" class="muted small"></span></div>
         <div id="auctions" class="cards"></div>
+        <div id="districts" class="cards"></div>
       </section>
     </aside>
 

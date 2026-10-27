@@ -13,13 +13,16 @@ import { allMapProjects,activeProject, district, mapUnlocked, type Pace, type Ti
 import type{BuildingProduct,BuildingVariant,ContractorId}from'./sim/types.ts';
 import{ReportController}from'./ui/reportController.ts';
 import{badgeText,inboxList,newsKey,unreadCount}from'./ui/inbox.ts';
+import{goalTitle,goals,milestonesPanel,companyTitle,totalSales}from'./ui/milestones.ts';
+import{yi}from'./ui/format.ts';
+import{guideStep}from'./ui/guide.ts';
 
 const PAUSE_TEXT: Record<string, string> = {
   startProject:'已暂停：拿地完成，请选择总包开工',
   settlement:'已暂停：项目清盘，查看结算',
   risk: '已暂停：项目风险事件或监管处罚，点此查看消息',
   auction: '已暂停：新一批土地挂牌',
-  cashWarning: '已暂停：未来 3 个月到期款超过现金',
+  cashWarning: '已暂停：未来 3 个月到期款超过现金，可去财务页融资，或给项目放缓工程',
   regulation: '已暂停：监管政策变化',
   gameOver: '公司已破产清算',
   challenge:'已暂停：挑战结果已记录，可在财务页查看',
@@ -37,12 +40,13 @@ const reportController=new ReportController(game,config,$<HTMLDialogElement>('#r
 const capitalController=new CapitalController(game,$<HTMLDialogElement>('#capital-dialog'),r=>report(r,'股权自救方案已执行'));
 const acquisitionController=new AcquisitionController(game,$<HTMLDialogElement>('#acquisition-dialog'),r=>report(r,'项目已收购，交付义务已承接'));
 const sessionController=new SessionController(game,$<HTMLDialogElement>('#setup-dialog'),()=>{
- selectedId=null;mapId='city';bidDrafts.clear();amenityDrafts.clear();reportController.reset();setTab('map');render();map.fit();
+ selectedId=null;mapId='city';bidDrafts.clear();amenityDrafts.clear();reportController.reset();resetCelebrations();setTab('map');render();map.fit();
 });
 
 // 已读标记只是界面偏好：存在浏览器本地，不进存档、不影响模拟。
 const SEEN_KEY='fdc-inbox-seen';
 let seenNews:string|null=(()=>{try{return localStorage.getItem(SEEN_KEY);}catch{return null;}})();
+let highlightFrom:string|null=null; // 本次打开消息前的已读位置，用来在列表里标出“新”
 const inboxOpen=()=>document.body.dataset.tab==='inbox'||document.body.dataset.inbox==='open';
 function markNewsSeen(){
   const top=game.state.news[0];if(!top)return;
@@ -53,7 +57,7 @@ function markNewsSeen(){
 function setTab(tab: string) {
   document.body.dataset.tab = tab;
   document.querySelectorAll<HTMLButtonElement>('[data-tab]').forEach((b) => b.classList.toggle('on', b.dataset.tab === tab));
-  if(tab==='inbox'){markNewsSeen();paintInbox();}
+  if(tab==='inbox'){highlightFrom=seenNews;markNewsSeen();paintInbox();}
 }
 
 /** 点击当前已打开的标签收起面板，回到地图。 */
@@ -65,14 +69,14 @@ function closeSheet(){if(document.body.dataset.inbox==='open')toggleInbox(false)
 function toggleInbox(open=!inboxOpen()){
   if(matchMedia('(max-width: 820px)').matches){setTab(open?'inbox':'map');return;}
   if(open)document.body.dataset.inbox='open';else delete document.body.dataset.inbox;
-  if(open){markNewsSeen();paintInbox();}
+  if(open){highlightFrom=seenNews;markNewsSeen();paintInbox();}
 }
 
 function paintInbox(){
   if(inboxOpen())markNewsSeen();
-  const s=game.state,{total,warnings}=unreadCount(s.news,seenNews),text=badgeText(total);
+  const s=game.state,{total,warnings}=unreadCount(s.news,seenNews,config.start.companyName),text=badgeText(total);
   document.querySelectorAll<HTMLElement>('#inbox-badge,#tab-badge').forEach(b=>{b.textContent=text;b.classList.toggle('warn',warnings>0);});
-  const list=$('#inbox-list');list.innerHTML=inboxList(config,s,inboxOpen()?null:seenNews);
+  const list=$('#inbox-list');list.innerHTML=inboxList(config,s,inboxOpen()?highlightFrom:seenNews);
 }
 
 /** linkInbox：游戏事件类提示可点按，直接打开消息。 */
@@ -83,6 +87,44 @@ function toast(text: string, kind: 'info' | 'error' = 'info',linkInbox=false) {
   el.className = `toast show ${kind}${linkInbox?' link':''}`;
   window.clearTimeout((toast as unknown as { t?: number }).t);
   (toast as unknown as { t?: number }).t = window.setTimeout(() => (el.className = 'toast'), 3500);
+}
+
+/** 庆祝条：开盘、售罄、交付、里程碑与每月销售。最多同时 3 条。 */
+function cheer(text:string,kind:'big'|'sales'='big'){
+  const host=$('#cheers'),el=document.createElement('div');
+  el.className=`cheer ${kind}`;el.textContent=text;host.prepend(el);
+  while(host.children.length>3)host.lastElementChild!.remove();
+  requestAnimationFrame(()=>el.classList.add('show'));
+  setTimeout(()=>{el.classList.remove('show');setTimeout(()=>el.remove(),300);},kind==='sales'?2600:4500);
+}
+
+type Snap={sold:boolean;out:boolean;del:boolean};
+let prevProjects:Map<string,Snap>|null=null,prevMonth=-1,prevTitle=-1;
+function resetCelebrations(){prevProjects=null;prevMonth=-1;prevTitle=-1;}
+function celebrate(){
+  const s=game.state,dpm=config.time.daysPerMonth;
+  const snap=new Map(s.projects.map(p=>[p.id,{sold:p.soldArea>0,out:p.saleableArea>0&&p.soldArea>=p.saleableArea*0.999,del:p.deliveredDay!==null} as Snap]));
+  if(prevProjects)for(const p of s.projects){
+    const a=prevProjects.get(p.id),b=snap.get(p.id)!;if(!a)continue;
+    if(!a.sold&&b.sold)cheer(`🎉 ${p.name} 开盘热销，首批回款到账`);
+    if(!a.out&&b.out)cheer(`🏆 ${p.name} 全部售罄！累计回款 ${yi(p.salesIn)}`);
+    if(!a.del&&b.del)cheer(`🔑 ${p.name} 交付入伙${p.quality!==null&&p.quality>=config.quality.complaintThreshold?'，业主满意，品牌提升':''}`);
+  }
+  prevProjects=snap;
+  const month=Math.floor(s.day/dpm),last=s.reports.months.at(-1);
+  if(prevMonth>=0&&month>prevMonth&&last){
+    let sales=0;for(const e of s.reports.journal.slice(last.fromEntry,last.toEntry))if(e.kind==='saleBooked')sales+=e.amount;
+    if(sales>0)cheer(`本月销售 +${yi(sales)}`,'sales');
+  }
+  prevMonth=month;
+  const title=companyTitle(totalSales(s));
+  if(prevTitle>0&&title.level>prevTitle)cheer(`⭐ 公司晋级「${title.name}」`);
+  prevTitle=title.level;
+  // 里程碑：首次见到这局时只记录，不补放庆祝
+  const key=`fdc-goals-${s.seed}`,done=goals(s).achieved;
+  let seen:string[]|null=null;try{seen=JSON.parse(localStorage.getItem(key)??'null');}catch{seen=null;}
+  if(seen){for(const id of done)if(!seen.includes(id))cheer(`✅ 达成目标：${goalTitle(id)}`);}
+  if(!seen||done.length!==seen.length){try{localStorage.setItem(key,JSON.stringify(done));}catch{/* 只是不记住 */}}
 }
 
 /** 输入框获得焦点时不重绘该面板，避免打字被打断。 */
@@ -98,6 +140,7 @@ function render() {
   const s = game.state;
   $('.company').textContent=config.start.companyName;
   paint($('#session'),sessionPanel(config,s));
+  paint($('#milestones'),milestonesPanel(config,s));
   $('#storage-status').textContent = game.storageStatus;
   const suburb = document.querySelector<HTMLButtonElement>('[data-map="suburb"]')!;
   suburb.disabled = !mapUnlocked(s,config,'suburb');
@@ -126,6 +169,10 @@ function render() {
   $('#auction-count').textContent = `${s.auctions.filter(a=>district(config,a.districtId).mapId===mapId).length} 宗`;
   map.update(s, selectedId, mapId);
   paintInbox();
+  celebrate();
+  const g=guideStep(s),guide=$<HTMLButtonElement>('#guide');
+  guide.hidden=!g||game.needsSetup;
+  if(g){guide.dataset.tab=g.tab;guide.innerHTML=`<span class="guide-step">${g.step}/${g.total}</span><span>${g.text}</span>${g.tab==='map'?'':'<span class="guide-go">›</span>'}`;}
   if (game.lastPause) {
     toast(PAUSE_TEXT[game.lastPause] ?? '已暂停','info',true);
     game.lastPause = null;
@@ -235,6 +282,7 @@ document.addEventListener('click', (e) => {
       case 'close-sheet':closeSheet();break;
       case 'inbox':toggleInbox();break;
       case 'toast':toggleInbox(true);$('#toast').className='toast';break;
+      case 'guide':if(act.dataset.tab&&act.dataset.tab!=='map')setTab(act.dataset.tab);break;
     }
     return;
   }
@@ -289,7 +337,7 @@ async function start() {
 $('#import-save').addEventListener('change',async(e)=>{
   const input=e.target as HTMLInputElement,file=input.files?.[0];if(!file)return;
   if(confirm('导入存档会替换当前进度，建议先导出备份。确定继续？')) {
-    selectedId=null;mapId='city';bidDrafts.clear();amenityDrafts.clear();reportController.suspended=true;report(game.importSave(await file.text()),'存档已导入');reportController.reset();reportController.suspended=false;
+    selectedId=null;mapId='city';bidDrafts.clear();amenityDrafts.clear();resetCelebrations();reportController.suspended=true;report(game.importSave(await file.text()),'存档已导入');reportController.reset();reportController.suspended=false;
   }
   input.value='';
 });

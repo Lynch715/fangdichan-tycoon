@@ -86,7 +86,8 @@ export function newGame(seed: number, config: Config = defaultConfig,opponentId?
   if(opening&&!opponentId)initSessionOpening(state,config,opening);
   initDistrictMarkets(state,config);initHousingPolicies(state,config);
   if(!opponentId)initCompliance(state,config);
-  if(!opponentId){spawnAuctions(state, config);state.rivals=createRivals(state,config);}
+  // 新手保底地块只给从开局设置进入的生涯模式；裸 newGame（测试、批量平衡）不受影响。
+  if(!opponentId){spawnAuctions(state, config,opening?.mode==='career');state.rivals=createRivals(state,config);}
   return state;
 }
 
@@ -270,10 +271,13 @@ function occupiedTiles(state: GameState, config: Config, mapId: string): Set<str
   return occ;
 }
 
-function spawnAuctions(state: GameState, config: Config) {
+function spawnAuctions(state: GameState, config: Config,starters=false) {
   const [lo, hi] = config.land.parcelsPerQuarter;
   const n = randomInt(state, lo, hi);
   const phase = config.cycle.phases[state.market.phaseIndex];
+  // 规模成长：公司净资产越大，挂牌地块越大（保留若干宗常规尺寸，小公司始终有地可拍）。
+  const sc=config.land.scale,equity=computeMetrics(state).equity;
+  const scale=sc?Math.min(sc.max,Math.max(1,Math.pow(Math.max(equity,0)/config.start.cash,sc.exponent))):1;
   let made = 0;
   for (let k = 0; k < n; k++) {
     // 每张地图独立占地，远郊第 3 年开放。
@@ -281,9 +285,10 @@ function spawnAuctions(state: GameState, config: Config) {
     if (withSites.length === 0) break;
     const chosen = withSites[Math.floor(nextRandom(state) * withSites.length)];
     const pick = { d: chosen.d, t: chosen.sites[Math.floor(nextRandom(state) * chosen.sites.length)] };
-    const siteArea = Math.round(randomRange(state, config.land.siteAreaRange[0], config.land.siteAreaRange[1]) / 1000) * 1000;
-    const buildArea = siteArea * pick.d.far;
+    let siteArea = Math.round(randomRange(state, config.land.siteAreaRange[0], config.land.siteAreaRange[1]) / 1000) * 1000;
     const floor = marketPrice(config, state, pick.d.id) * pick.d.landShare;
+    if(k>=(sc?.regularParcels??n))siteArea=Math.round(siteArea*scale/1000)*1000;
+    const buildArea = siteArea * pick.d.far;
     const startPrice = Math.round(buildArea * floor * config.land.startPriceFactor);
     const premium = randomRange(state, phase.aiPremium[0], phase.aiPremium[1]);
     const id = newId(state, 'L');
@@ -305,10 +310,36 @@ function spawnAuctions(state: GameState, config: Config) {
     state.auctions.push(parcel);
     made += 1;
   }
+  if(starters)made+=spawnStarterParcels(state,config);
   if (made > 0) {
     addNews(state, 'land', `本季度土地拍卖挂牌 ${made} 宗，${config.land.auctionDays} 天后开拍`);
     state.pauses.push('auction');
   }
+}
+
+/**
+ * 开局保底：额外挂出几宗“新手友好”的小地块，起拍价不超过开局现金的一定比例。
+ * 不消耗随机数（片区按楼面地价从低到高、选第一个空位、公开竞价、无配建与特殊属性），
+ * 原有地块与随机序列保持不变。
+ */
+function spawnStarterParcels(state:GameState,config:Config):number{
+  const count=config.land.starterParcels??0;if(count<=0)return 0;
+  const budget=config.start.cash*(config.land.starterMaxCashShare??1);
+  const ranked=config.districts.filter(d=>mapUnlocked(state,config,d.mapId))
+    .map(d=>({d,floor:marketPrice(config,state,d.id)*d.landShare}))
+    .sort((a,b)=>a.floor*a.d.far-b.floor*b.d.far||a.d.id.localeCompare(b.d.id));
+  let made=0;
+  for(const {d,floor} of ranked){
+    if(made>=count)break;
+    const sites=freeSites(d.id,occupiedTiles(state,config,d.mapId),d.mapId);if(!sites.length)continue;
+    const area=Math.min(config.land.siteAreaRange[1],Math.floor(budget/(d.far*floor*config.land.startPriceFactor)/1000)*1000);
+    if(area<5000)continue;
+    const startPrice=Math.round(area*d.far*floor*config.land.startPriceFactor),id=newId(state,'L');
+    state.auctions.push({id,name:`${d.name} ${id} · 新手地`,districtId:d.id,tiles:footprint(sites[0]),siteArea:area,far:d.far,startPrice,
+      endDay:state.day+config.land.auctionDays,aiMax:startPrice,playerBid:null,deposit:0});
+    made++;
+  }
+  return made;
 }
 
 function resolveAuction(state:GameState,config:Config,a:Parcel){resolveCompetitiveAuction(state,config,a,awardParcel);}

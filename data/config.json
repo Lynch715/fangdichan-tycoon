@@ -81,7 +81,14 @@
       30000
     ],
     "startPriceFactor": 0.9,
-    "landKingPremium": 0.5
+    "landKingPremium": 0.5,
+    "starterParcels": 2,
+    "starterMaxCashShare": 0.35,
+    "scale": {
+      "exponent": 0.5,
+      "max": 3,
+      "regularParcels": 1
+    }
   },
   "finance": {
     "channels": {

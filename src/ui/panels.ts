@@ -10,6 +10,8 @@ import{rivalsPanel,industryStatus}from'./rivals.ts';
 import{appearanceOf,PRODUCT_NAMES}from'../appearance.ts';
 import{BUILDING_PRODUCTS,BUILDING_VARIANTS,CONTRACTORS}from'../sim/types.ts';
 import {estimateLand} from '../estimates/land.ts';
+import {bidAffordability} from './affordability.ts';
+import {outlookMarkup} from './outlook.ts';
 // 界面面板：根据模拟状态生成 HTML。按钮通过 data-act 属性交给 main.ts 统一处理。
 import { activeProject, priceRestricted, transferQuote, borrowCapacity, calendar, computeMetrics, district, marketPrice,salesRate,salesEligible,industryTight,channelRate, type Config, type GameState, type Project,type Parcel } from '../sim/index.ts';
 import { esc, pct, ratio, yi } from './format.ts';
@@ -161,7 +163,7 @@ export function projectsPanel(config: Config, s: GameState, selectedId: string |
       return `<article class="card ${p.id === selectedId ? 'selected' : ''}" data-select="${p.id}">
         <div class="row between"><b>${esc(p.name)}${p.acquisition?' · 收购项目':''}</b><span class="pill ${color}">${label}</span></div>
         <div class="progress"><div style="width:${pct(p.stage === 'construction' ? p.progress : sold)}"></div></div>
-        <span class="muted small">${detail}</span>${projectAmenityMarkup(p)}${siteAttributesMarkup(p.attributes)}${housingPolicyMarkup(config,s,p.districtId)}${presaleMarkup(s,config,p)}
+        <span class="muted small">${detail}</span>${p.stage!=='closed'?outlookMarkup(config,s,p):''}${projectAmenityMarkup(p)}${siteAttributesMarkup(p.attributes)}${housingPolicyMarkup(config,s,p.districtId)}${presaleMarkup(s,config,p)}
         <span class="small ${p.quality!==null&&p.quality<config.quality.complaintThreshold?'danger-text':'muted'}">${config.construction.contractors[p.contractor??'standard'].name} · 质量 ${p.quality??'—'} 分 · 公司品牌 ${s.brand} 分</span>
         ${p.deliveredDay!==null&&p.quality!==null&&p.quality<config.quality.complaintThreshold?'<span class="small danger-text">交付质量未达标，已引发业主维权。</span>':''}
         ${p.fundingStoppedMonths>0?`<span class="danger-text small">停工 ${p.fundingStoppedMonths}/${config.construction.fundingStopMonthsToTakeover} 个月 · ${p.fundingGap>0?`上次月末工程款缺口 ${Math.ceil(p.fundingGap)} 万元；补足工程款后可在月末复工。`:'历史停工，资金补入后将在下次月末核验复工。'}</span>`:''}
@@ -200,6 +202,7 @@ export function auctionEstimateMarkup(config:Config,s:GameState,a:Parcel,offer:n
       <div><span>资金峰值</span><b>${yi(e.peakFunding)}</b></div>
       <div><span>自有资金回正</span><b>${e.paybackMonths===null?'无法回正':e.paybackMonths+'个月'}</b></div>
     </div>
+    ${(()=>{const f=bidAffordability(config,s,a,e.peakFunding);return `<p class="afford ${f.level}">${f.level==='ok'?'✓ ':f.level==='finance'?'⚠ ':'✕ '}${f.text}</p>`;})()}
     <details class="estimate-notes" data-key="estimate-${a.id}"><summary>自有资金口径与假设</summary>
       <p>可售面积 ${(e.saleableArea/10000).toFixed(2)} 万㎡，已扣挂牌配建${extra>0?`及额外配建 ${pct(extra,1)}（按转入竞配建并中标估算，未转入则不承担额外配建）`:""}；全部建面计建安成本。按输入报价成交、独资、标准总包正常施工，不新增借款。按当前品牌与默认营销比例 ${pct(config.sales.marketingRate,1)} 估算去化，整个估算期保持不变。拿地后立即选定开工，下一月末付首笔工程款。资金峰值含保证金抵首付、土地尾款、工程款及税费；回正月数指自有资金累计收支月末转正且此后不再转负，中标当月计第1个月。</p>
       <p>按当前售价 ${(e.salePrice*10000).toFixed(0)} 元/㎡、每月销售剩余面积的 ${pct(e.monthlyAbsorption,1)} 估算；房价、片区购房政策、去化和监管维持当前水平，限价时及时备案，尾货按现行折价清盘。利润未计融资利息、意外支出及其他项目资金占用。</p>
