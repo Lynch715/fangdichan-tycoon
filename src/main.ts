@@ -29,6 +29,10 @@ const PAUSE_TEXT: Record<string, string> = {
 };
 
 const game = new Game();
+// 自动暂停偏好：只存在浏览器本地
+const PAUSE_PREF='fdc-pause-auction';
+try{if(localStorage.getItem(PAUSE_PREF)==='off')game.ignoredPauses.add('auction');}catch{/* 无本地存储时保持默认 */}
+function syncPauseToggle(){const b=document.getElementById('auction-pause-toggle');if(b)b.textContent=`新地挂牌时自动暂停：${game.ignoredPauses.has('auction')?'关':'开'}`;}
 let config = game.config;
 let selectedId: string | null = null;
 let mapId = 'city';
@@ -282,6 +286,11 @@ document.addEventListener('click', (e) => {
       case 'close-sheet':closeSheet();break;
       case 'inbox':toggleInbox();break;
       case 'toast':toggleInbox(true);$('#toast').className='toast';break;
+      case 'toggle-auction-pause':{
+        const off=!game.ignoredPauses.has('auction');if(off)game.ignoredPauses.add('auction');else game.ignoredPauses.delete('auction');
+        try{localStorage.setItem(PAUSE_PREF,off?'off':'on');}catch{/* 只是不记住 */}
+        syncPauseToggle();toast(off?'新地挂牌时不再自动暂停，可在消息里查看':'新地挂牌时会自动暂停');break;
+      }
       case 'guide':if(act.dataset.tab&&act.dataset.tab!=='map')setTab(act.dataset.tab);break;
     }
     return;
@@ -321,7 +330,7 @@ async function start() {
   await game.init();
   reportController.reset();
   await map.init();
-  setTab('map');
+  setTab('map');syncPauseToggle();
   game.onChange(render);
   render();
   if(game.needsSetup)sessionController.open();

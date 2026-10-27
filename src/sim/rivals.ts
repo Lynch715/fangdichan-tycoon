@@ -45,6 +45,7 @@ export function actRivals(root:GameState,c:Config){
   for(const a of s.auctions)budget-=Math.max(0,(a.playerBid??0)*profile.landFundingRate-a.deposit);
   let count=s.projects.filter(activeProject).length+s.auctions.length;
   for(const a of [...root.auctions].sort((a,b)=>a.startPrice-b.startPrice)){
+   if(a.starter)continue; // 新手地只对玩家开放
    if(landBanUntil(s,a.districtId)>root.day||a.endDay<=root.day||count>=profile.maxActive||a.rivalBids?.some(b=>b.rivalId===rival.id))continue;
    const area=a.siteArea*a.far,d=c.districts.find(d=>d.id===a.districtId)!,terms=c.construction.contractors[profile.contractor as ContractorId];
    const build=area*c.buildCostPerSqm*d.buildCostFactor*terms.costFactor*siteCostFactor(a.attributes);

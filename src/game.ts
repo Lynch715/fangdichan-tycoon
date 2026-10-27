@@ -80,7 +80,9 @@ export class Game {
     }
     if(changed)this.emit();
   }
-  private consumePauses(){if(!this.state.pauses.length)return false;this.lastPause=this.state.pauses.at(-1)!;this.state.pauses=[];return true;}
+  /** 玩家关掉的自动暂停类型（界面偏好，不进存档、不影响模拟）。 */
+  ignoredPauses=new Set<PauseReason>();
+  private consumePauses(){if(!this.state.pauses.length)return false;const real=this.state.pauses.filter(p=>!this.ignoredPauses.has(p));this.state.pauses=[];if(!real.length)return false;this.lastPause=real.at(-1)!;return true;}
   restart(options?:SessionOptions):CommandResult {
     const next=freshState();
     if(options){const result=applyCommand(next,{type:'startGame',options});if(!result.ok)return result;}

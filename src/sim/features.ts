@@ -121,7 +121,8 @@ export function projectEvent(s: GameState,p: Project,c: Config): {cost:number; d
     s.cash -= loss; p.stoppedUntil = s.day + c.risk.accidentStopMonths * c.time.daysPerMonth;
     ledger(s,'accident',-loss,p.id);s.reports.decisions.push({day:s.day,kind:'risk',text:`${p.name} 安全事故，损失 ${(loss/10000).toFixed(2)}亿`});
     p.quality=Math.max(0,(p.quality??c.construction.contractors.standard.quality)-c.quality.accidentPenalty);
-    news(s,`${p.name} 发生安全事故，损失 ${(loss/10000).toFixed(2)} 亿，停工 ${c.risk.accidentStopMonths} 个月`,true); s.pauses.push('risk');
+    // 小额事故只记风险消息、不自动暂停（审计：每年多次打断，损失通常不足 0.1 亿）
+    news(s,`${p.name} 发生安全事故，损失 ${(loss/10000).toFixed(2)} 亿，停工 ${c.risk.accidentStopMonths} 个月`,true);
   }
   if(nextRandom(s) < c.risk.demandChance) {demand = c.risk.demandBoost;news(s,`${p.name} 周边配套落地，本月销售去化提升`);}
   return {cost,demand};

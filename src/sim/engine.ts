@@ -336,7 +336,7 @@ function spawnStarterParcels(state:GameState,config:Config):number{
     if(area<5000)continue;
     const startPrice=Math.round(area*d.far*floor*config.land.startPriceFactor),id=newId(state,'L');
     state.auctions.push({id,name:`${d.name} ${id} · 新手地`,districtId:d.id,tiles:footprint(sites[0]),siteArea:area,far:d.far,startPrice,
-      endDay:state.day+config.land.auctionDays,aiMax:startPrice,playerBid:null,deposit:0});
+      endDay:state.day+config.land.auctionDays,aiMax:startPrice,playerBid:null,deposit:0,starter:true});
     made++;
   }
   return made;

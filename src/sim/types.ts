@@ -67,6 +67,8 @@ export interface Project {
 
 export interface Parcel {
   attributes?:SiteAttributes;
+  /** 开局新手地：只对玩家开放，同行不参与竞拍。 */
+  starter?:true;
   auction?:AuctionTerms;
   playerAmenityRate?:number;
   id: string;
