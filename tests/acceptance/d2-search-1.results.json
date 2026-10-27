@@ -1,0 +1,152 @@
+[
+  {
+    "name": "baseline-conservative",
+    "type": "conservative",
+    "runs": 40,
+    "start": 1,
+    "years": 30,
+    "bankruptcyRate": 0,
+    "profitP10": 29.785927126347453,
+    "profitMedian": 37.034343202652764,
+    "profitP90": 49.77308695142566,
+    "equityMedian": 42.034343202652764,
+    "failedSeeds": []
+  },
+  {
+    "name": "land-50-build0",
+    "aggressive": {
+      "buildReserveRate": 0,
+      "hiddenUsage": 0.25,
+      "maxActive": 20
+    },
+    "type": "aggressive",
+    "runs": 40,
+    "start": 1,
+    "years": 30,
+    "bankruptcyRate": 0,
+    "profitP10": 63.849591593869434,
+    "profitMedian": 91.24982947468376,
+    "profitP90": 129.6147860275257,
+    "equityMedian": 96.24982947468376,
+    "failedSeeds": []
+  },
+  {
+    "name": "land-40-build0",
+    "aggressive": {
+      "landFundingRate": 0.4,
+      "buildReserveRate": 0,
+      "hiddenUsage": 0.25,
+      "maxActive": 20
+    },
+    "type": "aggressive",
+    "runs": 40,
+    "start": 1,
+    "years": 30,
+    "bankruptcyRate": 0,
+    "profitP10": 46.41698971582684,
+    "profitMedian": 84.61795418641006,
+    "profitP90": 120.07328680986699,
+    "equityMedian": 89.61795418641006,
+    "failedSeeds": []
+  },
+  {
+    "name": "land-30-build0",
+    "aggressive": {
+      "landFundingRate": 0.3,
+      "buildReserveRate": 0,
+      "hiddenUsage": 0.25,
+      "maxActive": 20
+    },
+    "type": "aggressive",
+    "runs": 40,
+    "start": 1,
+    "years": 30,
+    "bankruptcyRate": 0,
+    "profitP10": 59.5497810492126,
+    "profitMedian": 84.1519701929934,
+    "profitP90": 122.51581379291844,
+    "equityMedian": 89.1519701929934,
+    "failedSeeds": []
+  },
+  {
+    "name": "land-20-build0",
+    "aggressive": {
+      "landFundingRate": 0.2,
+      "buildReserveRate": 0,
+      "hiddenUsage": 0.25,
+      "maxActive": 20
+    },
+    "type": "aggressive",
+    "runs": 40,
+    "start": 1,
+    "years": 30,
+    "bankruptcyRate": 0.05,
+    "profitP10": -4.882736478171636,
+    "profitMedian": 88.34784568300317,
+    "profitP90": 119.15849653574101,
+    "equityMedian": 93.34784568300317,
+    "failedSeeds": [
+      16,
+      35
+    ]
+  },
+  {
+    "name": "land-50-cheaper",
+    "aggressive": {
+      "bidFactor": 1.2,
+      "buildReserveRate": 0,
+      "hiddenUsage": 0.25,
+      "maxActive": 20
+    },
+    "type": "aggressive",
+    "runs": 40,
+    "start": 1,
+    "years": 30,
+    "bankruptcyRate": 0,
+    "profitP10": 57.298007861372945,
+    "profitMedian": 84.3837129370023,
+    "profitP90": 117.58048142158646,
+    "equityMedian": 89.3837129370023,
+    "failedSeeds": []
+  },
+  {
+    "name": "land-40-cheaper",
+    "aggressive": {
+      "bidFactor": 1.2,
+      "landFundingRate": 0.4,
+      "buildReserveRate": 0,
+      "hiddenUsage": 0.25,
+      "maxActive": 20
+    },
+    "type": "aggressive",
+    "runs": 40,
+    "start": 1,
+    "years": 30,
+    "bankruptcyRate": 0,
+    "profitP10": 57.925121048284744,
+    "profitMedian": 80.6971574669558,
+    "profitP90": 113.06908757322806,
+    "equityMedian": 85.6971574669558,
+    "failedSeeds": []
+  },
+  {
+    "name": "land-30-cheaper",
+    "aggressive": {
+      "bidFactor": 1.2,
+      "landFundingRate": 0.3,
+      "buildReserveRate": 0,
+      "hiddenUsage": 0.25,
+      "maxActive": 20
+    },
+    "type": "aggressive",
+    "runs": 40,
+    "start": 1,
+    "years": 30,
+    "bankruptcyRate": 0,
+    "profitP10": 65.47388524356697,
+    "profitMedian": 100.96697745416327,
+    "profitP90": 149.5299571989888,
+    "equityMedian": 105.96697745416327,
+    "failedSeeds": []
+  }
+]

@@ -1,0 +1,52 @@
+{
+  "planned": 6,
+  "plannedStages": 0,
+  "plannedBuildings": 6,
+  "plannedTerrain": 0,
+  "plannedDecorations": 0,
+  "approved": 6,
+  "results": [
+    {
+      "id": "landmark_stilts_2x2_a",
+      "status": "approved",
+      "ratio": 1.9053376655771268,
+      "sideHeight": 0,
+      "sha256": "51fa1c501ecb8fb9203ca65887208027f534728acf9b48d1ede5df403ff5108c"
+    },
+    {
+      "id": "landmark_stilts_2x2_b",
+      "status": "approved",
+      "ratio": 1.9698957677565363,
+      "sideHeight": 0,
+      "sha256": "e11d468c1e36e4e2c008c8656512f1585b732b6d38383836d45fa718ca3a4cdd"
+    },
+    {
+      "id": "landmark_bridge_i_2x2_a",
+      "status": "approved",
+      "ratio": 1.9922794403420134,
+      "sideHeight": 0,
+      "sha256": "ca30220abc3c55ab750d8feff189a66643a099a05e24933e91c1225c918a3be6"
+    },
+    {
+      "id": "landmark_bridge_j_2x2_a",
+      "status": "approved",
+      "ratio": 2.018469768000962,
+      "sideHeight": 0,
+      "sha256": "e758ca497650f56b72700e6686b9c30497940a7c448b10172f860923d684d863"
+    },
+    {
+      "id": "landmark_cableway_2x2_a",
+      "status": "approved",
+      "ratio": 1.9139373255834622,
+      "sideHeight": 0,
+      "sha256": "577dd5fd28ecc51bdb3336d3556dfc33032298cbb85083a72266308d87f2d2cb"
+    },
+    {
+      "id": "landmark_trail_2x2_a",
+      "status": "approved",
+      "ratio": 1.9991022135758976,
+      "sideHeight": 0,
+      "sha256": "d226af9c644865cb4eadd173cc2fd7df1a40f6d04d4349b366426da15ad614c3"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "source": "b13-sales-7.json",
+  "day": 420,
+  "projectId": "P14",
+  "name": "南岸 L7",
+  "estimate": {
+    "current": {
+      "price": -2099.2017183465214,
+      "debt": 43560,
+      "net": -45659.20171834652
+    },
+    "inventory": 105572.5,
+    "escrow": 0,
+    "contracts": 107251.86137467722,
+    "landPayable": 0,
+    "afterDelivery": {
+      "price": 55400.139221810656,
+      "debt": 43560,
+      "net": 11840.139221810656,
+      "remainingBuild": 33275,
+      "landPayment": 0,
+      "escrowRelease": 0
+    }
+  }
+}

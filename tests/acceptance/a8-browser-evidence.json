@@ -1,0 +1,52 @@
+[
+  {
+    "mode": "1x",
+    "status": "DPR 1 / 请求@1x / 贴图 81",
+    "resources": "/art/atlas-manifest.json\n/art/atlas@1x-0.json"
+  },
+  {
+    "mode": "auto-dpr1",
+    "status": "DPR 1 / 请求@1x / 贴图 81",
+    "resources": "/art/atlas-manifest.json\n/art/atlas@1x-0.json"
+  },
+  {
+    "mode": "2x",
+    "status": "DPR 1 / 请求@2x / 贴图 81",
+    "resources": "/art/atlas-manifest.json\n/art/atlas@2x-1.json\n/art/atlas@2x-2.json\n/art/atlas@2x-0.json"
+  },
+  {
+    "mode": "none-city",
+    "status": "DPR 1 / 请求@1x / 贴图 0",
+    "resources": "/tests/acceptance/art-missing/atlas-manifest.json"
+  },
+  {
+    "mode": "json-0",
+    "status": "DPR 1 / 请求@2x / 贴图 72",
+    "resources": "/tests/acceptance/a8-json-0/atlas-manifest.json\n/art/atlas@2x-1.json\n/art/atlas@2x-2.json\n/tests/acceptance/a8-json-0/broken.json"
+  },
+  {
+    "mode": "json-1",
+    "status": "DPR 1 / 请求@2x / 贴图 67",
+    "resources": "/tests/acceptance/a8-json-1/atlas-manifest.json\n/tests/acceptance/a8-json-1/broken.json\n/art/atlas@2x-2.json\n/art/atlas@2x-0.json"
+  },
+  {
+    "mode": "json-2",
+    "status": "DPR 1 / 请求@2x / 贴图 23",
+    "resources": "/tests/acceptance/a8-json-2/atlas-manifest.json\n/art/atlas@2x-1.json\n/tests/acceptance/a8-json-2/broken.json\n/art/atlas@2x-0.json"
+  },
+  {
+    "mode": "png-0",
+    "status": "DPR 1 / 请求@2x / 贴图 72",
+    "resources": "/tests/acceptance/a8-png-0/atlas-manifest.json\n/art/atlas@2x-1.json\n/art/atlas@2x-2.json\n/tests/acceptance/a8-png-0/broken.json"
+  },
+  {
+    "mode": "png-1",
+    "status": "DPR 1 / 请求@2x / 贴图 67",
+    "resources": "/tests/acceptance/a8-png-1/atlas-manifest.json\n/tests/acceptance/a8-png-1/broken.json\n/art/atlas@2x-2.json\n/art/atlas@2x-0.json"
+  },
+  {
+    "mode": "png-2",
+    "status": "DPR 1 / 请求@2x / 贴图 23",
+    "resources": "/tests/acceptance/a8-png-2/atlas-manifest.json\n/art/atlas@2x-1.json\n/tests/acceptance/a8-png-2/broken.json\n/art/atlas@2x-0.json"
+  }
+]

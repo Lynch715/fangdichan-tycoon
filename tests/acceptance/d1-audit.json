@@ -1,0 +1,86 @@
+[
+  {
+    "name": "conservative",
+    "seed": 1,
+    "day": 3600,
+    "status": "playing",
+    "cash": 122403.89977720838,
+    "equity": 110657.37512200233,
+    "commands": 60
+  },
+  {
+    "name": "conservative",
+    "seed": 7,
+    "day": 3600,
+    "status": "playing",
+    "cash": 102516.02956419378,
+    "equity": 103233.908175823,
+    "commands": 65
+  },
+  {
+    "name": "conservative",
+    "seed": 32,
+    "day": 3600,
+    "status": "playing",
+    "cash": 108370.52543435869,
+    "equity": 123804.02735276207,
+    "commands": 61
+  },
+  {
+    "name": "conservative",
+    "counts": {
+      "bid": 58,
+      "startProject:brand": 37,
+      "borrow:devLoan": 39,
+      "startProject:standard": 1,
+      "filePrice": 25,
+      "setMarketing": 26
+    }
+  },
+  {
+    "name": "aggressive",
+    "seed": 1,
+    "day": 3600,
+    "status": "playing",
+    "cash": 308516.3045643845,
+    "equity": 195839.44460911793,
+    "commands": 340
+  },
+  {
+    "name": "aggressive",
+    "seed": 7,
+    "day": 3600,
+    "status": "playing",
+    "cash": 158583.26716310624,
+    "equity": 88736.8408927068,
+    "commands": 321
+  },
+  {
+    "name": "aggressive",
+    "seed": 32,
+    "day": 3600,
+    "status": "playing",
+    "cash": 271851.4905214482,
+    "equity": 131917.09639619186,
+    "commands": 377
+  },
+  {
+    "name": "aggressive",
+    "counts": {
+      "borrow:trust": 115,
+      "bid": 127,
+      "startProject:standard": 8,
+      "setPace": 177,
+      "borrow:devLoan": 140,
+      "borrow:hidden": 49,
+      "setMarketing": 156,
+      "startProject:budget": 26,
+      "setPaper": 67,
+      "cooperate": 5,
+      "startProject:brand": 88,
+      "filePrice": 74,
+      "extend": 4,
+      "sellProject": 2
+    }
+  }
+]

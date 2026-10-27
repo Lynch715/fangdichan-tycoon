@@ -1,0 +1,623 @@
+{
+  "_units": "金额单位：万元；面积：平方米；单价：万元/平方米；利率：年化小数",
+  "start": {
+    "cash": 50000,
+    "companyName": "山城置业"
+  },
+  "time": {
+    "daysPerMonth": 30,
+    "secondsPerMonthAt1x": 60,
+    "careerYears": 30
+  },
+  "construction": {
+    "months": 24,
+    "presaleProgress": 0.25,
+    "deliveryMonths": 2,
+    "clearanceMonthsAfterDelivery": 12,
+    "clearanceDiscount": 0.15,
+    "paces": {
+      "slow": {
+        "name": "放缓",
+        "speed": 0.6,
+        "costFactor": 1.0
+      },
+      "normal": {
+        "name": "正常",
+        "speed": 1.0,
+        "costFactor": 1.0
+      },
+      "fast": {
+        "name": "加速",
+        "speed": 1.25,
+        "costFactor": 1.08
+      }
+    },
+    "fundingStopMonthsToTakeover": 6,
+    "contractors": {
+      "budget": {
+        "name": "低价总包",
+        "costFactor": 0.9,
+        "durationFactor": 1.15,
+        "accidentFactor": 1.5,
+        "quality": 55
+      },
+      "standard": {
+        "name": "标准总包",
+        "costFactor": 1,
+        "durationFactor": 1,
+        "accidentFactor": 1,
+        "quality": 75
+      },
+      "brand": {
+        "name": "品牌总包",
+        "costFactor": 1.12,
+        "durationFactor": 0.9,
+        "accidentFactor": 0.6,
+        "quality": 90
+      }
+    }
+  },
+  "sales": {
+    "saleableRatio": 0.9,
+    "marketingRate": 0.03,
+    "taxRate": 0.08,
+    "baseMonthlyAbsorption": 0.08,
+    "maxMonthlyAbsorption": 0.35,
+    "priceElasticity": 3,
+    "minPriceFactor": 0.8,
+    "maxPriceFactor": 1.2
+  },
+  "land": {
+    "depositRate": 0.2,
+    "firstPaymentRate": 0.5,
+    "balanceDueMonths": 6,
+    "auctionDays": 30,
+    "parcelsPerQuarter": [
+      3,
+      5
+    ],
+    "siteAreaRange": [
+      10000,
+      30000
+    ],
+    "startPriceFactor": 0.9,
+    "landKingPremium": 0.5
+  },
+  "finance": {
+    "channels": {
+      "devLoan": {
+        "name": "开发贷",
+        "rate": 0.055,
+        "termMonths": 24,
+        "maxOfBuildCost": 0.6
+      },
+      "trust": {
+        "name": "信托",
+        "rate": 0.12,
+        "termMonths": 18,
+        "maxOfEquity": 0.8
+      },
+      "paper": {
+        "name": "商票",
+        "rate": 0,
+        "termMonths": 12,
+        "maxOfBuildCost": 0.5
+      },
+      "hidden": {
+        "name": "明股实债",
+        "rate": 0.15,
+        "termMonths": 24,
+        "maxOfEquity": 0.5
+      },
+      "bond": {
+        "name": "公司债",
+        "rate": 0.06,
+        "termMonths": 48,
+        "maxOfEquity": 0.6
+      }
+    },
+    "ratings": [
+      "AAA",
+      "AA",
+      "A",
+      "BBB",
+      "BB",
+      "B",
+      "C"
+    ],
+    "ratingSpread": [
+      -0.005,
+      0,
+      0.01,
+      0.02,
+      0.035,
+      0.05,
+      0
+    ],
+    "distressMonthsToBankrupt": 6,
+    "extension": {
+      "months": 6,
+      "feeRate": 0.02,
+      "rateBump": 0.02,
+      "maxTimes": 1,
+      "windowMonths": 6
+    },
+    "bond": {
+      "maxIssueRating": 1,
+      "rates": [
+        0.04,
+        0.06,
+        0.065,
+        0.07,
+        0.075,
+        0.08,
+        0.08
+      ],
+      "minRate": 0.04,
+      "maxRate": 0.08,
+      "termsMonths": [
+        36,
+        48,
+        60
+      ]
+    },
+    "covenants": {
+      "belowRating": 5,
+      "fraction": 0.25,
+      "noticeMonths": 1,
+      "distressMonthsForC": 2
+    }
+  },
+  "regulation": {
+    "startYear": 5,
+    "announceMonthsBefore": 6,
+    "thresholds": {
+      "liabilityRatio": 0.7,
+      "netGearing": 1.0,
+      "cashToShortDebt": 1.0
+    },
+    "tiers": [
+      "绿档",
+      "黄档",
+      "橙档",
+      "红档"
+    ],
+    "growthCaps": [
+      0.15,
+      0.1,
+      0.05,
+      0
+    ],
+    "escrowReleaseLoose": 0.5,
+    "takeoverAttentionIncrease": 20
+  },
+  "cycle": {
+    "startPhase": 0,
+    "phases": [
+      {
+        "id": "recovery",
+        "name": "复苏",
+        "months": [
+          12,
+          24
+        ],
+        "priceDrift": 0.003,
+        "sentiment": 55,
+        "absorption": 0.8,
+        "aiPremium": [
+          0.0,
+          0.12
+        ],
+        "news": "按揭利率下调，看房人数回升"
+      },
+      {
+        "id": "boom",
+        "name": "繁荣",
+        "months": [
+          18,
+          36
+        ],
+        "priceDrift": 0.008,
+        "sentiment": 78,
+        "absorption": 1.2,
+        "aiPremium": [
+          0.1,
+          0.35
+        ],
+        "news": "新房成交量创新高，土拍溢价率走高"
+      },
+      {
+        "id": "overheat",
+        "name": "过热",
+        "months": [
+          12,
+          18
+        ],
+        "priceDrift": 0.012,
+        "sentiment": 92,
+        "absorption": 1.5,
+        "aiPremium": [
+          0.3,
+          0.7
+        ],
+        "news": "热点城市出现排队摇号，调控风声渐起"
+      },
+      {
+        "id": "tightening",
+        "name": "调控",
+        "months": [
+          12,
+          24
+        ],
+        "priceDrift": 0.0,
+        "sentiment": 55,
+        "absorption": 0.7,
+        "aiPremium": [
+          0.0,
+          0.15
+        ],
+        "news": "监管出台限购与融资收紧政策"
+      },
+      {
+        "id": "downturn",
+        "name": "下行",
+        "months": [
+          18,
+          36
+        ],
+        "priceDrift": -0.01,
+        "sentiment": 28,
+        "absorption": 0.4,
+        "aiPremium": [
+          0.0,
+          0.05
+        ],
+        "news": "多家同行商票逾期，市场观望情绪浓厚"
+      },
+      {
+        "id": "rescue",
+        "name": "救市",
+        "months": [
+          12,
+          18
+        ],
+        "priceDrift": -0.002,
+        "sentiment": 40,
+        "absorption": 0.6,
+        "aiPremium": [
+          0.0,
+          0.05
+        ],
+        "news": "多地取消限购、下调首付比例"
+      }
+    ]
+  },
+  "districts": [
+    {
+      "id": "yuzhong",
+      "name": "渝中半岛",
+      "basePrice": 2.0,
+      "landShare": 0.55,
+      "far": 4.0,
+      "buildCostFactor": 1.3,
+      "mapId": "city"
+    },
+    {
+      "id": "jiangbei",
+      "name": "两江新区",
+      "basePrice": 1.5,
+      "landShare": 0.45,
+      "far": 3.0,
+      "buildCostFactor": 1.0,
+      "mapId": "city"
+    },
+    {
+      "id": "nanan",
+      "name": "南岸",
+      "basePrice": 1.1,
+      "landShare": 0.3,
+      "far": 2.5,
+      "buildCostFactor": 1.1,
+      "mapId": "city"
+    },
+    {
+      "id": "bishan",
+      "name": "璧山",
+      "basePrice": 0.8,
+      "landShare": 0.23,
+      "far": 2.2,
+      "buildCostFactor": 0.9,
+      "mapId": "suburb"
+    },
+    {
+      "id": "jiangjin",
+      "name": "江津",
+      "basePrice": 0.7,
+      "landShare": 0.2,
+      "far": 2.0,
+      "buildCostFactor": 0.85,
+      "mapId": "suburb"
+    },
+    {
+      "id": "outer",
+      "name": "外围主城",
+      "basePrice": 0.9,
+      "landShare": 0.25,
+      "far": 2.3,
+      "buildCostFactor": 1.05,
+      "mapId": "outer"
+    }
+  ],
+  "buildCostPerSqm": 0.3,
+  "cooperation": {
+    "partnerShare": 0.3
+  },
+  "risk": {
+    "inspectionBase": 0.04,
+    "inspectionAttentionFactor": 0.003,
+    "diversionLimit": 0.25,
+    "diversionAttention": 25,
+    "fineRate": 0.1,
+    "hiddenAttention": 15,
+    "hiddenFineRate": 0.03,
+    "freezeMonths": 3,
+    "materialChance": 0.04,
+    "materialCostFactor": 1.15,
+    "accidentChance": 0.015,
+    "fastAccidentMultiplier": 3,
+    "accidentCostOfBuild": 0.02,
+    "accidentStopMonths": 2,
+    "demandChance": 0.04,
+    "demandBoost": 1.25
+  },
+  "filing": {
+    "restrictedPhases": [
+      "tightening",
+      "downturn"
+    ],
+    "maxMarketFactor": 0.95,
+    "approvalMonths": 1
+  },
+  "rescue": {
+    "saleBookDiscount": 0.8
+  },
+  "maps": {
+    "suburbUnlockYear": 3
+  },
+  "quality": {
+    "complaintThreshold": 60,
+    "accidentPenalty": 10,
+    "complaintBrandPenalty": 10,
+    "complaintAttentionIncrease": 15,
+    "initialBrand": 50,
+    "deliveryBrandGain": 2
+  },
+  "marketing": {
+    "maxRate": 0.12,
+    "neutralBrand": 50,
+    "brandSensitivity": 0.006,
+    "spendSensitivity": 4
+  },
+  "rivals": {
+    "bidStepRate": 0.02,
+    "minimumLoan": 1000,
+    "companies": [
+      {
+        "id": "qinglan",
+        "name": "青岚置业",
+        "risk": "稳健",
+        "seedOffset": 101,
+        "cash": 60000,
+        "cashReserve": 0.3,
+        "landFundingRate": 1,
+        "buildReserveRate": 0.5,
+        "trustUsage": 0,
+        "devLoanUsage": 0.5,
+        "minMargin": 0.15,
+        "premiumFactor": 0.5,
+        "maxActive": 3,
+        "contractor": "brand",
+        "pace": "normal",
+        "priceFactor": 1,
+        "downturnPriceFactor": 0.9,
+        "marketingRate": 0.03
+      },
+      {
+        "id": "jiangzhou",
+        "name": "江舟地产",
+        "risk": "均衡",
+        "seedOffset": 211,
+        "cash": 60000,
+        "cashReserve": 0.15,
+        "landFundingRate": 0.75,
+        "buildReserveRate": 0.3,
+        "trustUsage": 0.4,
+        "devLoanUsage": 0.8,
+        "minMargin": 0.1,
+        "premiumFactor": 0.85,
+        "maxActive": 5,
+        "contractor": "standard",
+        "pace": "normal",
+        "priceFactor": 1,
+        "downturnPriceFactor": 0.9,
+        "marketingRate": 0.04
+      },
+      {
+        "id": "yuefeng",
+        "name": "跃峰发展",
+        "risk": "激进",
+        "seedOffset": 307,
+        "cash": 50000,
+        "cashReserve": 0.05,
+        "landFundingRate": 0.5,
+        "buildReserveRate": 0.1,
+        "trustUsage": 1,
+        "devLoanUsage": 1,
+        "minMargin": 0.03,
+        "premiumFactor": 1.2,
+        "maxActive": 8,
+        "contractor": "budget",
+        "pace": "fast",
+        "priceFactor": 1.03,
+        "downturnPriceFactor": 0.85,
+        "marketingRate": 0.06
+      }
+    ],
+    "default": {
+      "sentimentDrop": 10,
+      "tighteningMonths": 6,
+      "rateSpread": 0.02,
+      "capacityFactor": 0.5,
+      "projectDiscount": 0.6
+    }
+  },
+  "auctions": {
+    "formats": {
+      "ascending": 0.4,
+      "lottery": 0.3,
+      "amenity": 0.3
+    },
+    "capPremium": 0.2,
+    "maxAdditionalAmenityRate": 0.15,
+    "baseAmenities": {
+      "none": {
+        "weight": 0.4,
+        "rate": 0
+      },
+      "school": {
+        "weight": 0.3,
+        "rate": 0.05
+      },
+      "affordable": {
+        "weight": 0.3,
+        "rate": 0.1
+      }
+    },
+    "rivalAmenityRates": {
+      "qinglan": 0.03,
+      "jiangzhou": 0.06,
+      "yuefeng": 0.1
+    }
+  },
+  "siteAttributes": {
+    "enabled": true,
+    "slopes": {
+      "flat": {
+        "weight": 0.45,
+        "costFactor": 1,
+        "durationFactor": 1
+      },
+      "gentle": {
+        "weight": 0.4,
+        "costFactor": 1.1,
+        "durationFactor": 1.1
+      },
+      "steep": {
+        "weight": 0.15,
+        "costFactor": 1.25,
+        "durationFactor": 1.2
+      }
+    },
+    "scenery": {
+      "none": 1,
+      "river": 1.08,
+      "mountain": 1.05,
+      "both": 1.12
+    },
+    "riverDistance": 1,
+    "mountainDistance": 2
+  },
+  "regions": {
+    "enabled": true,
+    "rollingSalesMonths": 3,
+    "inflowNoise": 0.15,
+    "cycleSensitivity": 0.6,
+    "initial": {
+      "yuzhong": {
+        "population": 300000,
+        "monthlyInflow": 200
+      },
+      "jiangbei": {
+        "population": 600000,
+        "monthlyInflow": 900
+      },
+      "nanan": {
+        "population": 450000,
+        "monthlyInflow": 400
+      },
+      "bishan": {
+        "population": 200000,
+        "monthlyInflow": 500
+      },
+      "jiangjin": {
+        "population": 250000,
+        "monthlyInflow": -80
+      },
+      "outer": {
+        "population": 800000,
+        "monthlyInflow": 600
+      }
+    }
+  },
+  "compliance": {
+    "enabled": true,
+    "borrowedLand": {
+      "restrictedPhases": [
+        "tightening",
+        "downturn"
+      ],
+      "fineRate": 0.1,
+      "banMonths": 12
+    },
+    "hoarding": {
+      "priceFactor": 1.15,
+      "maxMonthlySoldRatio": 0.01,
+      "months": 6,
+      "fineRate": 0.01,
+      "reapplyMonths": 3,
+      "rectifiedPriceFactor": 1.05
+    }
+  },
+  "housingPolicy": {
+    "enabled": true,
+    "initialLevel": 1,
+    "priceWindowMonths": 3,
+    "minHoldMonths": 3,
+    "hotPriceGrowth": 0.025,
+    "weakPriceGrowth": -0.015,
+    "inventoryPriceCeiling": 0.005,
+    "hotAbsorptionMonths": 8,
+    "weakAbsorptionMonths": 30,
+    "levels": [
+      {
+        "name": "宽松",
+        "purchaseLimit": null,
+        "downPayment": 0.2,
+        "mortgageRate": 0.032,
+        "eligibleDemand": 1
+      },
+      {
+        "name": "常态",
+        "purchaseLimit": null,
+        "downPayment": 0.3,
+        "mortgageRate": 0.042,
+        "eligibleDemand": 1
+      },
+      {
+        "name": "收紧",
+        "purchaseLimit": 1,
+        "downPayment": 0.5,
+        "mortgageRate": 0.052,
+        "eligibleDemand": 0.7
+      }
+    ],
+    "demand": {
+      "referenceDownPayment": 0.3,
+      "referenceMortgageRate": 0.042,
+      "downPaymentSensitivity": 0.6,
+      "mortgageRateSensitivity": 8,
+      "minFactor": 0.25,
+      "maxFactor": 1.6
+    }
+  }
+}

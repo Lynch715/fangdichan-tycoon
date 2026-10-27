@@ -1,0 +1,222 @@
+{
+  "assets": [
+    {
+      "id": "building_tower_2x2_a",
+      "file": "building_tower_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "existing approved finished tower",
+      "group": "product"
+    },
+    {
+      "id": "building_garden_2x2_a",
+      "file": "building_garden_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "existing approved finished garden",
+      "group": "product"
+    },
+    {
+      "id": "building_tower_2x2_b",
+      "file": "building_tower_2x2_b.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "one modern residential high-rise with a stepped crown, warm grey vertical fins, blue-grey glazing and staggered recessed balconies; clearly different facade from reference3",
+      "group": "product",
+      "reference": "building_tower_2x2_a"
+    },
+    {
+      "id": "building_tower_2x2_c",
+      "file": "building_tower_2x2_c.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "one contemporary residential high-rise with a broad flat crown, cream stone and darker grey central panels, continuous corner balconies; distinct stepped silhouette",
+      "group": "product",
+      "reference": "building_tower_2x2_a"
+    },
+    {
+      "id": "building_garden_2x2_b",
+      "file": "building_garden_2x2_b.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "one six-storey garden apartment with warm-grey brick, cream balcony frames and a stepped planted roof; distinct massing and facade",
+      "group": "product",
+      "reference": "building_garden_2x2_a"
+    },
+    {
+      "id": "building_garden_2x2_c",
+      "file": "building_garden_2x2_c.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "one seven-storey garden apartment with pale beige horizontal bands, blue-grey glass balconies, a recessed centre and flat planted terraces; distinct from reference3",
+      "group": "product",
+      "reference": "building_garden_2x2_a"
+    },
+    {
+      "id": "building_villa_2x2_a",
+      "file": "building_villa_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "one two-storey detached riverside villa, pale stone walls, dark grey tiled pitched roof, broad balconies and a small garden inside square plot",
+      "group": "product",
+      "reference": "building_garden_2x2_a"
+    },
+    {
+      "id": "building_villa_2x2_b",
+      "file": "building_villa_2x2_b.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "one three-storey modern cuboid villa, warm-white concrete, blue-grey glass, stepped flat roofs, rooftop terrace and small courtyard garden",
+      "group": "product",
+      "reference": "building_garden_2x2_a"
+    },
+    {
+      "id": "building_villa_2x2_c",
+      "file": "building_villa_2x2_c.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "one two-storey courtyard villa, warm beige walls, dark-grey low hipped roofs, a small internal green courtyard, compact contemporary Chinese-inspired design",
+      "group": "product",
+      "reference": "building_garden_2x2_a"
+    },
+    {
+      "id": "building_commercial_2x2_a",
+      "file": "building_commercial_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "one three-storey commercial podium, warm-grey stone, continuous blue-grey shop glazing, broad canopy, planted flat roof; blank fascia without lettering",
+      "group": "product",
+      "reference": "building_garden_2x2_a"
+    },
+    {
+      "id": "building_commercial_2x2_b",
+      "file": "building_commercial_2x2_b.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "one four-storey commercial podium with curved corner terraces, cream stone vertical screens, recessed blue-grey storefronts and rooftop greenery; no signage lettering",
+      "group": "product",
+      "reference": "building_garden_2x2_a"
+    },
+    {
+      "id": "building_commercial_2x2_c",
+      "file": "building_commercial_2x2_c.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "one two-storey neighbourhood commercial plaza building, stepped rectangular massing, grey stone and warm beige brick, blue-grey shop glass and covered walkways; no lettering",
+      "group": "product",
+      "reference": "building_garden_2x2_a"
+    },
+    {
+      "id": "background_walkup_1x1_a",
+      "file": "background_walkup_1x1_a.png",
+      "cells": 1,
+      "kind": "building",
+      "description": "one compact six-storey old Chinese walk-up apartment, weathered beige concrete, small blue-grey windows, exterior air-conditioning units, flat roof",
+      "group": "background"
+    },
+    {
+      "id": "background_walkup_1x1_b",
+      "file": "background_walkup_1x1_b.png",
+      "cells": 1,
+      "kind": "building",
+      "description": "one five-storey old red-brown brick apartment, simple rectangular massing, grey window frames, small balconies and roof water tank",
+      "group": "background"
+    },
+    {
+      "id": "background_walkup_1x1_c",
+      "file": "background_walkup_1x1_c.png",
+      "cells": 1,
+      "kind": "building",
+      "description": "one six-storey older grey apartment block, muted pale facade, enclosed balconies, aged exterior, compact corner stairwell",
+      "group": "background"
+    },
+    {
+      "id": "background_office_1x1_a",
+      "file": "background_office_1x1_a.png",
+      "cells": 1,
+      "kind": "building",
+      "description": "one compact twelve-storey office tower, blue-grey glass curtain wall, warm grey stone base and plain flat rooftop; compressed storeys",
+      "group": "background"
+    },
+    {
+      "id": "background_office_1x1_b",
+      "file": "background_office_1x1_b.png",
+      "cells": 1,
+      "kind": "building",
+      "description": "one compact nine-storey office block, cream vertical fins and dark blue-grey glass, stepped crown; compressed storeys",
+      "group": "background"
+    },
+    {
+      "id": "background_school_1x1_a",
+      "file": "background_school_1x1_a.png",
+      "cells": 1,
+      "kind": "building",
+      "description": "one compact three-storey school building, cream walls, red-brown roof edge, regular classroom windows and small front schoolyard; no text",
+      "group": "background"
+    },
+    {
+      "id": "background_school_1x1_b",
+      "file": "background_school_1x1_b.png",
+      "cells": 1,
+      "kind": "building",
+      "description": "one compact school teaching block, three storeys, warm grey and muted beige walls, U-shaped entry courtyard and flat roof; no text",
+      "group": "background"
+    },
+    {
+      "id": "background_metro_1x1_a",
+      "file": "background_metro_1x1_a.png",
+      "cells": 1,
+      "kind": "building",
+      "description": "one compact elevated light-rail station module, warm-grey concrete supports, blue-grey glass waiting hall, curved grey metal canopy and short twin rail tracks, no train",
+      "group": "background"
+    },
+    {
+      "id": "background_metro_1x1_b",
+      "file": "background_metro_1x1_b.png",
+      "cells": 1,
+      "kind": "building",
+      "description": "one compact ground-level light-rail station building, grey concrete platform, angular cream canopy, blue-grey glazed ticket hall and short rail section, no train",
+      "group": "background"
+    },
+    {
+      "id": "background_shop_1x1_a",
+      "file": "background_shop_1x1_a.png",
+      "cells": 1,
+      "kind": "building",
+      "description": "one compact two-storey old neighbourhood shop-house, beige plaster and grey brick, deep ground-floor storefronts, small awnings and simple apartment windows above; blank fascia",
+      "group": "background"
+    },
+    {
+      "id": "parcel_auction_2x2_a",
+      "file": "parcel_auction_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "one flat cleared development parcel, beige compacted earth and a small blank safety-orange auction sign board with no lettering, minimal scattered gravel, no construction or building",
+      "group": "parcel"
+    },
+    {
+      "id": "parcel_fenced_2x2_a",
+      "file": "parcel_fenced_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "one acquired but unstarted flat development parcel, compacted beige earth enclosed by a low continuous safety-orange hoarding with one gate, no construction, crane or building",
+      "group": "parcel"
+    },
+    {
+      "id": "parcel_auction_3x3_a",
+      "file": "parcel_auction_3x3_a.png",
+      "cells": 3,
+      "kind": "building",
+      "description": "one flat cleared development parcel, beige compacted earth and a small blank safety-orange auction sign board with no lettering, minimal scattered gravel, no construction or building",
+      "group": "parcel"
+    },
+    {
+      "id": "parcel_fenced_3x3_a",
+      "file": "parcel_fenced_3x3_a.png",
+      "cells": 3,
+      "kind": "building",
+      "description": "one acquired but unstarted flat development parcel, compacted beige earth enclosed by a low continuous safety-orange hoarding with one gate, no construction, crane or building",
+      "group": "parcel"
+    }
+  ]
+}

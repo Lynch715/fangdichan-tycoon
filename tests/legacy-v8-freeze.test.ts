@@ -1,0 +1,7 @@
+import {preB9Config} from './helpers/pre-b9.ts';
+import{readFileSync}from'node:fs';import{createHash}from'node:crypto';import{describe,it,expect}from'vitest';import{restore as frozen,validateSave as oldValidate}from'../src/legacy-v8/restore.ts';import{restore,validateSave}from'../src/save.ts';import{defaultConfig}from'../src/sim/config.ts';import fixtures from'./acceptance/b7-v8-golden.json';
+function oldShape(current:unknown,old:unknown):unknown {if(Array.isArray(old)){expect((current as unknown[]).length).toBe(old.length);return old.map((v,i)=>oldShape((current as unknown[])[i],v));}if(old&&typeof old==='object')return Object.fromEntries(Object.entries(old).map(([k,v])=>[k,k==='version'?v:oldShape((current as Record<string,unknown>)[k],v)]));return current;}
+describe('B7a B6完工v8全部历史冻结',()=>{
+ it('15个冻结文件保持哈希，原配置逐项保持',()=>{const root=new URL('../src/legacy-v8/',import.meta.url),hashes=JSON.parse(readFileSync(new URL('frozen-sha256.json',root),'utf8'));expect(Object.keys(hashes)).toHaveLength(15);for(const[f,h]of Object.entries(hashes))expect(createHash('sha256').update(readFileSync(new URL(f,root))).digest('hex'),f).toBe(h);const old=JSON.parse(readFileSync(new URL('config.json',root),'utf8'));expect(preB9Config(defaultConfig)).toMatchObject(old);});
+ for(const fixture of fixtures)it(fixture.name,()=>{const old=frozen(oldValidate(fixture.save)!);expect(createHash('sha256').update(JSON.stringify(old)).digest('hex')).toBe(fixture.sha256);expect(oldShape(restore(validateSave(fixture.save)!),old)).toEqual(old);});
+});

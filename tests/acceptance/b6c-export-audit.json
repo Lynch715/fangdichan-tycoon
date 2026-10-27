@@ -1,0 +1,102 @@
+[
+  {
+    "file": "b6c-negative-acquired.json",
+    "day": 570,
+    "cash": 50000,
+    "equity": 50000,
+    "defaults": 2,
+    "result": {
+      "id": "P26",
+      "name": "两江新区 L1",
+      "complete": true,
+      "revenue": 73604.04634397592,
+      "profit": 0,
+      "margin": 0,
+      "annualIRR": null,
+      "irrReason": "仍有非现金资产，IRR未结清",
+      "paybackMonths": null,
+      "flows": [
+        -73604.04634397592
+      ],
+      "terminal": 0,
+      "remainingAssets": 73604.04634397592,
+      "remainingObligations": 73604.04634397592
+    }
+  },
+  {
+    "file": "b6c-negative-cleared.json",
+    "day": 1170,
+    "cash": 92271.64905305285,
+    "equity": 92271.64905305285,
+    "defaults": 2,
+    "result": {
+      "id": "P26",
+      "name": "两江新区 L1",
+      "complete": true,
+      "revenue": 129544.05029848631,
+      "profit": 42271.649053052846,
+      "margin": 0.326311003520837,
+      "annualIRR": null,
+      "irrReason": "没有正负两类跨月现金流",
+      "paybackMonths": 1,
+      "flows": [
+        3208.0587707585537,
+        2951.050393790208,
+        2800.9815257450937,
+        2582.3248805115813,
+        2310.584007199273,
+        3118.2724425769156,
+        2902.026232892553,
+        2488.759765396995,
+        2209.7669729186155,
+        1972.6592965127224,
+        1775.3159830589834,
+        1584.4675553687468,
+        1436.8819095200897,
+        1296.4909504031998,
+        1158.681282872864,
+        1039.0285845302697,
+        917.3048348241389,
+        829.2133137101338,
+        933.4031525258749,
+        4756.377197936029
+      ],
+      "terminal": 0,
+      "remainingAssets": 0,
+      "remainingObligations": 0
+    }
+  },
+  {
+    "file": "b6c-paid-acquired.json",
+    "day": 1560,
+    "cash": 48923.36416884633,
+    "equity": 50000,
+    "defaults": 1,
+    "result": {
+      "id": "P71",
+      "name": "两江新区 L20",
+      "complete": true,
+      "revenue": 0,
+      "profit": 0,
+      "margin": null,
+      "annualIRR": null,
+      "irrReason": "仍有非现金资产，IRR未结清",
+      "paybackMonths": null,
+      "flows": [
+        -1076.6358311536683
+      ],
+      "terminal": 1076.6358311536683,
+      "remainingAssets": 1076.6358311536683,
+      "remainingObligations": 0
+    }
+  },
+  {
+    "file": "b6c-main-after.json",
+    "day": 750,
+    "cash": 59215.56733594119,
+    "rng": -1877023606,
+    "legacyV7Until": 750,
+    "legacyV7LogCount": 4,
+    "allOldFieldsIdentical": true
+  }
+]

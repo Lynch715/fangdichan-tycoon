@@ -1,0 +1,4 @@
+[
+ {"name":"baseline-conservative","values":{"rescue.saleBookDiscount":0.6}},
+ {"name":"candidate-60-land25","aggressive":{"landFundingRate":0.25,"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20},"values":{"rescue.saleBookDiscount":0.6}}
+]

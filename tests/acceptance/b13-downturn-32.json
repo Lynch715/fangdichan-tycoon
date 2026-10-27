@@ -1,0 +1,47 @@
+{
+  "version": 15,
+  "seed": 32,
+  "day": 750,
+  "log": [
+    {
+      "day": 0,
+      "command": {
+        "type": "startGame",
+        "options": {
+          "mode": "challenge",
+          "difficulty": "standard",
+          "challenge": "downturn"
+        }
+      }
+    },
+    {
+      "day": 0,
+      "command": {
+        "type": "filePrice",
+        "projectId": "P1"
+      }
+    },
+    {
+      "day": 0,
+      "command": {
+        "type": "filePrice",
+        "projectId": "P2"
+      }
+    },
+    {
+      "day": 0,
+      "command": {
+        "type": "filePrice",
+        "projectId": "P3"
+      }
+    },
+    {
+      "day": 1,
+      "command": {
+        "type": "strategicInvestment",
+        "share": 0.4
+      }
+    }
+  ],
+  "revision": 1
+}

@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "seed": 7,
+  "day": 1500,
+  "log": [
+    {
+      "day": 0,
+      "command": {
+        "type": "bid",
+        "parcelId": "L1",
+        "amount": 31146
+      }
+    },
+    {
+      "day": 720,
+      "command": {
+        "type": "bid",
+        "parcelId": "L35",
+        "amount": 7763
+      }
+    },
+    {
+      "day": 720,
+      "command": {
+        "type": "bid",
+        "parcelId": "L38",
+        "amount": 13651
+      }
+    }
+  ],
+  "revision": 0
+}

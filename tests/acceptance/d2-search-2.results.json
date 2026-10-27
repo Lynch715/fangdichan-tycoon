@@ -1,0 +1,184 @@
+[
+  {
+    "name": "horizon1-land20",
+    "common": {
+      "liquidityMonths": 1
+    },
+    "aggressive": {
+      "landFundingRate": 0.2,
+      "buildReserveRate": 0,
+      "hiddenUsage": 0.25,
+      "maxActive": 20
+    },
+    "type": "aggressive",
+    "runs": 20,
+    "start": 1,
+    "years": 30,
+    "bankruptcyRate": 0,
+    "profitP10": 64.9914977627681,
+    "profitMedian": 90.54036529904715,
+    "profitP90": 121.44493297800611,
+    "equityMedian": 95.54036529904715,
+    "failedSeeds": []
+  },
+  {
+    "name": "horizon1-land25",
+    "common": {
+      "liquidityMonths": 1
+    },
+    "aggressive": {
+      "landFundingRate": 0.25,
+      "buildReserveRate": 0,
+      "hiddenUsage": 0.25,
+      "maxActive": 20
+    },
+    "type": "aggressive",
+    "runs": 20,
+    "start": 1,
+    "years": 30,
+    "bankruptcyRate": 0,
+    "profitP10": 66.42372188413033,
+    "profitMedian": 87.74710203674044,
+    "profitP90": 118.41882619327794,
+    "equityMedian": 92.74710203674044,
+    "failedSeeds": []
+  },
+  {
+    "name": "horizon1-hidden50",
+    "common": {
+      "liquidityMonths": 1
+    },
+    "aggressive": {
+      "landFundingRate": 0.2,
+      "buildReserveRate": 0,
+      "hiddenUsage": 0.5,
+      "maxActive": 20
+    },
+    "type": "aggressive",
+    "runs": 20,
+    "start": 1,
+    "years": 30,
+    "bankruptcyRate": 0,
+    "profitP10": 45.81300583066231,
+    "profitMedian": 82.82614676147855,
+    "profitP90": 114.65809290041078,
+    "equityMedian": 87.82614676147855,
+    "failedSeeds": []
+  },
+  {
+    "name": "horizon1-hidden100",
+    "common": {
+      "liquidityMonths": 1
+    },
+    "aggressive": {
+      "landFundingRate": 0.2,
+      "buildReserveRate": 0,
+      "hiddenUsage": 1,
+      "maxActive": 20
+    },
+    "type": "aggressive",
+    "runs": 20,
+    "start": 1,
+    "years": 30,
+    "bankruptcyRate": 0.05,
+    "profitP10": 47.61936509096072,
+    "profitMedian": 82.23654628888394,
+    "profitP90": 107.13469884584116,
+    "equityMedian": 87.23654628888394,
+    "failedSeeds": [
+      12
+    ]
+  },
+  {
+    "name": "horizon0-land20",
+    "common": {
+      "liquidityMonths": 0
+    },
+    "aggressive": {
+      "landFundingRate": 0.2,
+      "buildReserveRate": 0,
+      "hiddenUsage": 0.25,
+      "maxActive": 20
+    },
+    "type": "aggressive",
+    "runs": 20,
+    "start": 1,
+    "years": 30,
+    "bankruptcyRate": 0.35,
+    "profitP10": -16.84717978679137,
+    "profitMedian": 76.95840390862548,
+    "profitP90": 133.0279592309007,
+    "equityMedian": 81.95840390862548,
+    "failedSeeds": [
+      7,
+      10,
+      12,
+      13,
+      14,
+      16,
+      19
+    ]
+  },
+  {
+    "name": "horizon1-nobuffer",
+    "common": {
+      "liquidityMonths": 1
+    },
+    "aggressive": {
+      "landFundingRate": 0.2,
+      "buildReserveRate": 0,
+      "cashReserve": 0,
+      "hiddenUsage": 0.25,
+      "maxActive": 20
+    },
+    "type": "aggressive",
+    "runs": 20,
+    "start": 1,
+    "years": 30,
+    "bankruptcyRate": 0,
+    "profitP10": 62.2498857626676,
+    "profitMedian": 87.33851723704294,
+    "profitP90": 129.1365208066542,
+    "equityMedian": 92.33851723704294,
+    "failedSeeds": []
+  },
+  {
+    "name": "horizon1-lowprice",
+    "common": {
+      "liquidityMonths": 1
+    },
+    "aggressive": {
+      "landFundingRate": 0.2,
+      "bidFactor": 1.25,
+      "buildReserveRate": 0,
+      "hiddenUsage": 0.25,
+      "maxActive": 20
+    },
+    "type": "aggressive",
+    "runs": 20,
+    "start": 1,
+    "years": 30,
+    "bankruptcyRate": 0,
+    "profitP10": 69.46471157565699,
+    "profitMedian": 90.50115310925595,
+    "profitP90": 121.66645913414324,
+    "equityMedian": 95.50115310925595,
+    "failedSeeds": []
+  },
+  {
+    "name": "baseline-conservative",
+    "common": {
+      "liquidityMonths": 1
+    },
+    "type": "conservative",
+    "runs": 20,
+    "start": 1,
+    "years": 30,
+    "bankruptcyRate": 0,
+    "profitP10": 32.292960320255844,
+    "profitMedian": 37.41597960513628,
+    "profitP90": 52.55168146457777,
+    "equityMedian": 42.41597960513628,
+    "failedSeeds": []
+  }
+]

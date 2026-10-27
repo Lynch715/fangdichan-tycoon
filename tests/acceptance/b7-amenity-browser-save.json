@@ -1,0 +1,17 @@
+{
+  "version": 9,
+  "seed": 1,
+  "day": 840,
+  "log": [
+    {
+      "day": 811,
+      "command": {
+        "type": "bid",
+        "parcelId": "L37",
+        "amount": 6013,
+        "amenityRate": 0.12
+      }
+    }
+  ],
+  "revision": 6
+}

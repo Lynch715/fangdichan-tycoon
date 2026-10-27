@@ -1,0 +1,8 @@
+[
+ {"name":"rescue60-land20","aggressive":{"landFundingRate":0.2,"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20},"values":{"rescue.saleBookDiscount":0.6}},
+ {"name":"rescue50-land20","aggressive":{"landFundingRate":0.2,"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20},"values":{"rescue.saleBookDiscount":0.5}},
+ {"name":"rescue60-land25","aggressive":{"landFundingRate":0.25,"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20},"values":{"rescue.saleBookDiscount":0.6}},
+ {"name":"rescue50-land25","aggressive":{"landFundingRate":0.25,"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20},"values":{"rescue.saleBookDiscount":0.5}},
+ {"name":"rescue40-land30","aggressive":{"landFundingRate":0.3,"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20},"values":{"rescue.saleBookDiscount":0.4}},
+ {"name":"rescue40-land40","aggressive":{"landFundingRate":0.4,"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20},"values":{"rescue.saleBookDiscount":0.4}}
+]

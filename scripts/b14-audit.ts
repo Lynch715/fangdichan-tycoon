@@ -1,0 +1,12 @@
+import{readFileSync,writeFileSync}from'node:fs';import{createHash}from'node:crypto';import assert from'node:assert/strict';
+import{restore,validateSave}from'../src/save.ts';import{transferQuote,defaultConfig}from'../src/sim/index.ts';
+const load=(name:string)=>{const save=validateSave(JSON.parse(readFileSync('tests/acceptance/'+name,'utf8')));assert(save);return{save,state:restore(save)};};
+const before=load('b14-negative-save.json'),after=load('b14-sold-browser-save.json'),meta=JSON.parse(readFileSync('tests/acceptance/b14-fixture.json','utf8'));
+const p=before.state.projects.find(p=>p.id===meta.projectId)!;const q=transferQuote(before.state,p,before.state.rules??defaultConfig);
+assert(Math.abs(after.state.cash-before.state.cash-q.net)<1e-7);assert.equal(after.state.projects.find(p=>p.id===meta.projectId)!.stage,'sold');
+assert.equal(after.state.debts.filter(d=>d.projectId===p.id).length,0);assert.equal(after.save.log.length,before.save.log.length+1);
+assert.deepEqual(after.save.log.at(-1)!.command,{type:'sellProject',projectId:p.id});assert.deepEqual(restore(after.save),after.state);
+const journal=after.state.reports.journal.slice(before.state.reports.journal.length);
+assert(Math.abs(journal.reduce((n,e)=>n+e.cash,0)-q.net)<1e-7);
+const result={day:before.state.day,projectId:p.id,quote:q,cashBefore:before.state.cash,cashAfter:after.state.cash,journal,sha256:createHash('sha256').update(JSON.stringify(after.state)).digest('hex')};
+writeFileSync('tests/acceptance/b14-audit.json',JSON.stringify(result,null,2)+'\n');console.log(result);

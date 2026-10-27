@@ -1,0 +1,57 @@
+{
+  "building_garden_2x2_a": {
+    "sha256": "5e24e3d84f29e7c26acf0471bf3be744902e93209cb68573ad201bcdccde232f",
+    "visual": "pass",
+    "note": "已查看成品：七层洋房，米色墙面与蓝灰窗、阳台/植栽，单栋正方地块；底座1.9337:1，512×437合规。"
+  },
+  "stage_tower_pit_2x2_a": {
+    "sha256": "10c0fc3c146aa13c8eb4fab11e18734287b0d459a931bd4e8aa096324da6ec82",
+    "visual": "pass",
+    "note": "已逐张查看重生成结果：基坑无多层楼，洋房基础格局不同于高层；正负零柱/低核心与风化半高烂尾框架对应，透明底。几何另检。"
+  },
+  "stage_tower_ground_2x2_a": {
+    "sha256": "8aa2f9f2323d6341df14b481d390f7786d242fed10878aab335513eaaf3c523b",
+    "visual": "pass",
+    "note": "已查看投影修正版：对应施工阶段，半高烂尾与风化围挡可辨，透明背景；精确几何和高度另由管线检查。"
+  },
+  "stage_tower_frame_2x2_a": {
+    "sha256": "a16fa8fce59350ccbdef491282048befff9cfb33342c30577d4ab7aa656b00b8",
+    "visual": "pass",
+    "note": "已查看投影修正版：对应施工阶段，半高烂尾与风化围挡可辨，透明背景；精确几何和高度另由管线检查。"
+  },
+  "stage_tower_topped_2x2_a": {
+    "sha256": "45d6e5dac2476d937e46df776bee710fc627d5c46cf55a402025d3ff0386ef07",
+    "visual": "pass",
+    "note": "已查看投影修正版：对应施工阶段，半高烂尾与风化围挡可辨，透明背景；精确几何和高度另由管线检查。"
+  },
+  "stage_tower_abandoned_2x2_a": {
+    "sha256": "b20c050a30dbee2920a09c7c9258650e8fcc02813d19880d5c9979f7fd3b45f2",
+    "visual": "pass",
+    "note": "已逐张查看重生成结果：基坑无多层楼，洋房基础格局不同于高层；正负零柱/低核心与风化半高烂尾框架对应，透明底。几何另检。"
+  },
+  "stage_garden_pit_2x2_a": {
+    "sha256": "d4a477b00ab6cb06cf744da3abf52bb890e6c818617923279e53a0811447b61f",
+    "visual": "pass",
+    "note": "已查看：完整土方基坑，低条形基础与三隔核心，未出现上层建筑或塔吊，透明底；几何另检。"
+  },
+  "stage_garden_ground_2x2_a": {
+    "sha256": "a58ce96e15161915cdd823a80500a069d44ff324689e045d0b5ee05c9cd8bcda",
+    "visual": "pass",
+    "note": "已查看：地面楼板、缩短柱头和低核心墙，橙色围挡，无上层建筑或塔吊，透明底。"
+  },
+  "stage_garden_frame_2x2_a": {
+    "sha256": "3867e2b75973780e2f87232b22cc9558b29c6b4c2a86bb2e03cb52347778e45c",
+    "visual": "pass",
+    "note": "已查看投影修正版：对应施工阶段，半高烂尾与风化围挡可辨，透明背景；精确几何和高度另由管线检查。"
+  },
+  "stage_garden_topped_2x2_a": {
+    "sha256": "890bf9b4da572d8be204aa03b1745d83f8a1d96f47edb92e777af29fe49d84b0",
+    "visual": "pass",
+    "note": "已查看投影修正版：对应施工阶段，半高烂尾与风化围挡可辨，透明背景；精确几何和高度另由管线检查。"
+  },
+  "stage_garden_abandoned_2x2_a": {
+    "sha256": "6d1a1aaa865244a02b6766439a67788a30b6d92bfc5eb2ca3f3d22bdaa97df61",
+    "visual": "pass",
+    "note": "已查看投影修正版：对应施工阶段，半高烂尾与风化围挡可辨，透明背景；精确几何和高度另由管线检查。"
+  }
+}

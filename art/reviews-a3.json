@@ -1,0 +1,197 @@
+{
+  "terrain_grass_1x1_a": {
+    "sha256": "42d82a8d4176ec0eb3dc7f3285e48329a7333b1973e30902959fafe4d56a05e0",
+    "visual": "pass",
+    "note": "已逐张查看：单个素材、透明背景、对应材质与方向/坡度，底座及锚点另由管线检查。"
+  },
+  "terrain_earth_1x1_a": {
+    "sha256": "a522d1be5da11c84e0f5bb9cfc051cf9b4f7db678be3787390af140b6460fc34",
+    "visual": "pass",
+    "note": "已逐张查看：单个素材、透明背景、对应材质与方向/坡度，底座及锚点另由管线检查。"
+  },
+  "terrain_paved_1x1_a": {
+    "sha256": "fafdba52e2791ae1f54a3116852351a782b8dbd7a5b90497b060caf9ad4bc263",
+    "visual": "pass",
+    "note": "已逐张查看：单个素材、透明背景、对应材质与方向/坡度，底座及锚点另由管线检查。"
+  },
+  "terrain_slope_ne_gentle_1x1_a": {
+    "sha256": "3fe3553bcc0d27b60f136e1b63453137740e6d4110bf9e310e3a04768d9549fa",
+    "visual": "pass",
+    "note": "已逐张查看：单个素材、透明背景、对应材质与方向/坡度，底座及锚点另由管线检查。"
+  },
+  "terrain_slope_ne_steep_1x1_a": {
+    "sha256": "928c976effd013e973282b3204043f08d149f9087a16a8bd3098e451cd11a233",
+    "visual": "pass",
+    "note": "已查看：单个草坡，坡体和土侧面可辨，纯透明底；几何检测单独执行。"
+  },
+  "terrain_slope_nw_gentle_1x1_a": {
+    "sha256": "0ca11e5b3bad5bbdea1cde2d6b93e8afd5fe1726abf290b66867a114eae0f704",
+    "visual": "pass",
+    "note": "已逐张查看：单个素材、透明背景、对应材质与方向/坡度，底座及锚点另由管线检查。"
+  },
+  "terrain_slope_nw_steep_1x1_a": {
+    "sha256": "5e69c7e26ca3ae06808bf7b4265904669ea4525f243f23a9315c584d9e75aecc",
+    "visual": "pass",
+    "note": "已逐张查看：单个素材、透明背景、对应材质与方向/坡度，底座及锚点另由管线检查。"
+  },
+  "terrain_slope_se_gentle_1x1_a": {
+    "sha256": "a266621f4ad543bfde13ac58d49d709ae4d05f4f566fe6049633d7b202fb329a",
+    "visual": "pass",
+    "note": "已查看投影修正版：内容与方向保持，底座更平、更对称，江岸完整、路口出口连边中点；精确比例另由检测器判定。"
+  },
+  "terrain_slope_se_steep_1x1_a": {
+    "sha256": "bb37a4a41a9bdabfad4e112e97ddf0e36c33b57ffd291b45b7772310b964118b",
+    "visual": "pass",
+    "note": "已逐张查看：单个素材、透明背景、对应材质与方向/坡度，底座及锚点另由管线检查。"
+  },
+  "terrain_slope_sw_gentle_1x1_a": {
+    "sha256": "6556bab1b5800c57dc8a3e19f135ad9efd358a51701d78f943bb3447b630c50f",
+    "visual": "pass",
+    "note": "已逐张查看：单个素材、透明背景、对应材质与方向/坡度，底座及锚点另由管线检查。"
+  },
+  "terrain_slope_sw_steep_1x1_a": {
+    "sha256": "20a5f0534e0720b1d4eb59c623399c859e65dda0e0dfe248d3b8762a7bc79e01",
+    "visual": "pass",
+    "note": "已逐张查看：单个素材、透明背景、对应材质与方向/坡度，底座及锚点另由管线检查。"
+  },
+  "terrain_mountain_grass_1x1_a": {
+    "sha256": "b05b8afdb98184079c6c98867e2c7500ff1c5b67ff616f554f6d4d24fd347b96",
+    "visual": "pass",
+    "note": "已逐张查看：单个素材、透明背景、对应材质与方向/坡度，底座及锚点另由管线检查。"
+  },
+  "terrain_mountain_rock_1x1_a": {
+    "sha256": "df1349471fee3e085a2410bc603aa5fabf249d5f638454111f5b0886205d214d",
+    "visual": "pass",
+    "note": "已逐张查看：单个素材、透明背景、对应材质与方向/坡度，底座及锚点另由管线检查。"
+  },
+  "terrain_water_calm_1x1_a": {
+    "sha256": "a8a1393c48b9083db493f87028b4f9641f2c0490d1608b5a41e7699b79e1f5d5",
+    "visual": "pass",
+    "note": "已逐张查看：单个素材、透明背景、对应材质与方向/坡度，底座及锚点另由管线检查。"
+  },
+  "terrain_water_ripple_1x1_a": {
+    "sha256": "99c8278e99c1646e7f310d0bba3d4d788e646becf9312587263d9ea89adc5e7b",
+    "visual": "pass",
+    "note": "已逐张查看：单个素材、透明背景、对应材质与方向/坡度，底座及锚点另由管线检查。"
+  },
+  "terrain_shore_n_1x1_a": {
+    "sha256": "43dc16adac5e3b5e3f56f851cb9c9c89b5944b461fbe8b7b4d10d5aa23ee66a0",
+    "visual": "pass",
+    "note": "已逐张查看：单个素材、透明背景、对应材质与方向/坡度，底座及锚点另由管线检查。"
+  },
+  "terrain_shore_e_1x1_a": {
+    "sha256": "5a78d20fcfeba9c00b20f8f8e77746e84e0e31f8d40b8dee1627ba425dd768f8",
+    "visual": "pass",
+    "note": "已逐张查看：单个素材、透明背景、对应材质与方向/坡度，底座及锚点另由管线检查。"
+  },
+  "terrain_shore_s_1x1_a": {
+    "sha256": "4e1f1aab851bb6e8346345fb1df9551f8a9a4f6e33515e09e12a44de24c8ec37",
+    "visual": "pass",
+    "note": "已查看投影修正版：内容与方向保持，底座更平、更对称，江岸完整、路口出口连边中点；精确比例另由检测器判定。"
+  },
+  "terrain_shore_w_1x1_a": {
+    "sha256": "2dc485c69df6d85083f659a74cabc05181508b3b2f1fd92db658a0eb7321c5c5",
+    "visual": "pass",
+    "note": "已逐张查看：单个素材、透明背景、对应材质与方向/坡度，底座及锚点另由管线检查。"
+  },
+  "terrain_shore_corner_ne_1x1_a": {
+    "sha256": "b91b8c7d1bed1f574aebfdfbe7a512e4e0998a0ec7d16d802fb87c12000633ba",
+    "visual": "pass",
+    "note": "已逐张查看：单个素材、透明背景、对应材质与方向/坡度，底座及锚点另由管线检查。"
+  },
+  "terrain_shore_corner_nw_1x1_a": {
+    "sha256": "f0b3b39421a6cfff623125c6f6f5de35b3d4c25c70eef60e9fb01f1478724d4f",
+    "visual": "pass",
+    "note": "已查看新生成结果：单素材、透明底；江岸完整连接对应顶点，道路到对应边中点，方向匹配。几何单独检查。"
+  },
+  "terrain_shore_corner_se_1x1_a": {
+    "sha256": "15ea3cc075701d33f71dab0fca82e3e56029be99a332d04fb04e474754a920a3",
+    "visual": "pass",
+    "note": "已逐张查看：单个素材、透明背景、对应材质与方向/坡度，底座及锚点另由管线检查。"
+  },
+  "terrain_shore_corner_sw_1x1_a": {
+    "sha256": "7a6b05040dd3f60b8bb8a6061d0b603c89686a412be82b5b34b63c0c6a598f28",
+    "visual": "pass",
+    "note": "已查看新生成结果：单素材、透明底；江岸完整连接对应顶点，道路到对应边中点，方向匹配。几何单独检查。"
+  },
+  "decor_trees_1x1_a": {
+    "sha256": "3c5751483c5bae97d19746bd64c6e8658fc4deb9728347b6468481daf0cee6b0",
+    "visual": "pass",
+    "note": "已逐张查看：对应单个装饰物/同组树石，透明背景，无地形底瓦、人物或文字；足点与游戏内尺寸在图集画廊继续复核。"
+  },
+  "decor_tree_tall_1x1_a": {
+    "sha256": "87e5554c491431e0acd16148b4f4eaa306d956b65c2e7579c6facc3de1af7791",
+    "visual": "pass",
+    "note": "已逐张查看：对应单个装饰物/同组树石，透明背景，无地形底瓦、人物或文字；足点与游戏内尺寸在图集画廊继续复核。"
+  },
+  "decor_rocks_1x1_a": {
+    "sha256": "8d0ee858aa5a4a3ffd4f8783adedc238833f308008031e00a6d8530cd91b8087",
+    "visual": "pass",
+    "note": "已逐张查看：对应单个装饰物/同组树石，透明背景，无地形底瓦、人物或文字；足点与游戏内尺寸在图集画廊继续复核。"
+  },
+  "decor_boulder_1x1_a": {
+    "sha256": "295268151aedae15feead13826d6aa60dc0813d80754cbd7d549fa7f611b5555",
+    "visual": "pass",
+    "note": "已逐张查看：对应单个装饰物/同组树石，透明背景，无地形底瓦、人物或文字；足点与游戏内尺寸在图集画廊继续复核。"
+  },
+  "decor_lamp_1x1_a": {
+    "sha256": "87be4017d674bccdc66a6b1f0f842f178eada0dfed3637ffa4b1ad987b668cac",
+    "visual": "pass",
+    "note": "已逐张查看：对应单个装饰物/同组树石，透明背景，无地形底瓦、人物或文字；足点与游戏内尺寸在图集画廊继续复核。"
+  },
+  "decor_bench_1x1_a": {
+    "sha256": "21f1d4e9bc7c71b108f07807dbb1f1fb39261efedb3fa15c974d1dff00d648fa",
+    "visual": "pass",
+    "note": "已逐张查看：对应单个装饰物/同组树石，透明背景，无地形底瓦、人物或文字；足点与游戏内尺寸在图集画廊继续复核。"
+  },
+  "decor_shrubs_1x1_a": {
+    "sha256": "861d225c737d1aaf49f6eed11252f00f9c6377976cdbbbb37f81d92adf9e56cd",
+    "visual": "pass",
+    "note": "已逐张查看：对应单个装饰物/同组树石，透明背景，无地形底瓦、人物或文字；足点与游戏内尺寸在图集画廊继续复核。"
+  },
+  "decor_flowers_1x1_a": {
+    "sha256": "e982aacf7e58fae4b2198235dcb24d02431817dd50749e541657e8af5db766a6",
+    "visual": "pass",
+    "note": "已逐张查看：对应单个装饰物/同组树石，透明背景，无地形底瓦、人物或文字；足点与游戏内尺寸在图集画廊继续复核。"
+  },
+  "terrain_road_straight_ne_sw_1x1_a": {
+    "sha256": "b4455fe1604dd198f3b86c0e14651410db29445bc54ceaf06d6b63cdad75ba08",
+    "visual": "pass",
+    "note": "逐张检查道路/桥面连接正确边中点，方向匹配映射；无多余出口，透明底。"
+  },
+  "terrain_road_straight_nw_se_1x1_a": {
+    "sha256": "cfe83bb2ec91001c8b48ae20b91ec54fe176d677a0b7369ad9783da568196baf",
+    "visual": "pass",
+    "note": "逐张检查道路/桥面连接正确边中点，方向匹配映射；无多余出口，透明底。"
+  },
+  "terrain_road_curve_1x1_a": {
+    "sha256": "836ed9088b619afbfc0913de537dfe22f2a25e3d2a81e9ab86d059d40cbf528f",
+    "visual": "pass",
+    "note": "逐张检查道路/桥面连接正确边中点，方向匹配映射；无多余出口，透明底。"
+  },
+  "terrain_road_tee_1x1_a": {
+    "sha256": "292bd81cd6b28c714c72764fd0a7f65049653aa6d780818f1ee1285b7844506f",
+    "visual": "pass",
+    "note": "逐张检查道路/桥面连接正确边中点，方向匹配映射；无多余出口，透明底。"
+  },
+  "terrain_bridge_ne_sw_1x1_a": {
+    "sha256": "5aa4f97c23a07a596ec6e4cad20caebe638db14a411878058099fca5eea942ce",
+    "visual": "pass",
+    "note": "逐张检查道路/桥面连接正确边中点，方向匹配映射；无多余出口，透明底。"
+  },
+  "terrain_bridge_nw_se_1x1_a": {
+    "sha256": "e5edc9d524958f1f81cb1a80d978c18a31d84921d28b8600a26aa7d57b7641aa",
+    "visual": "pass",
+    "note": "逐张检查道路/桥面连接正确边中点，方向匹配映射；无多余出口，透明底。"
+  },
+  "terrain_road_cross_1x1_a": {
+    "sha256": "ab6497a5d7f644c31e9f796b91de46743ca6297c3f91f77ef365e4aaa769b88a",
+    "visual": "pass",
+    "note": "已查看投影修正版：内容与方向保持，底座更平、更对称，江岸完整、路口出口连边中点；精确比例另由检测器判定。"
+  },
+  "terrain_road_tee_alt_1x1_a": {
+    "sha256": "9c0a608d0e3919aed55afac4f7b4e2eb12ffff879ed76f4fd51e6a4600db3587",
+    "visual": "pass",
+    "note": "已检查：坡体侧面和下降方向可辨；丁字路口三出口正确。透明底，几何另检。"
+  }
+}

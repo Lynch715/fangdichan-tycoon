@@ -1,0 +1,33 @@
+{
+  "version": 15,
+  "seed": 1,
+  "day": 630,
+  "log": [
+    {
+      "day": 0,
+      "command": {
+        "type": "startGame",
+        "options": {
+          "mode": "challenge",
+          "difficulty": "standard",
+          "challenge": "delivery"
+        }
+      }
+    },
+    {
+      "day": 181,
+      "command": {
+        "type": "strategicInvestment",
+        "share": 0.4
+      }
+    },
+    {
+      "day": 541,
+      "command": {
+        "type": "strategicInvestment",
+        "share": 0.4
+      }
+    }
+  ],
+  "revision": 1
+}

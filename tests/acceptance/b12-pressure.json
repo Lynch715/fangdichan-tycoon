@@ -1,0 +1,329 @@
+{
+  "version": 14,
+  "seed": 1,
+  "day": 390,
+  "log": [
+    {
+      "day": 1,
+      "command": {
+        "type": "borrow",
+        "channel": "trust",
+        "amount": 40000
+      }
+    },
+    {
+      "day": 1,
+      "command": {
+        "type": "bid",
+        "parcelId": "L1",
+        "amount": 25840
+      }
+    },
+    {
+      "day": 1,
+      "command": {
+        "type": "bid",
+        "parcelId": "L2",
+        "amount": 11178
+      }
+    },
+    {
+      "day": 1,
+      "command": {
+        "type": "bid",
+        "parcelId": "L3",
+        "amount": 47567
+      }
+    },
+    {
+      "day": 30,
+      "command": {
+        "type": "startProject",
+        "projectId": "P5",
+        "contractor": "standard"
+      }
+    },
+    {
+      "day": 30,
+      "command": {
+        "type": "startProject",
+        "projectId": "P6",
+        "contractor": "standard"
+      }
+    },
+    {
+      "day": 30,
+      "command": {
+        "type": "startProject",
+        "projectId": "P7",
+        "contractor": "standard"
+      }
+    },
+    {
+      "day": 31,
+      "command": {
+        "type": "setPace",
+        "projectId": "P5",
+        "pace": "fast"
+      }
+    },
+    {
+      "day": 31,
+      "command": {
+        "type": "borrow",
+        "channel": "devLoan",
+        "amount": 14355.000000000002,
+        "projectId": "P5"
+      }
+    },
+    {
+      "day": 31,
+      "command": {
+        "type": "setPace",
+        "projectId": "P6",
+        "pace": "fast"
+      }
+    },
+    {
+      "day": 31,
+      "command": {
+        "type": "borrow",
+        "channel": "devLoan",
+        "amount": 8694,
+        "projectId": "P6"
+      }
+    },
+    {
+      "day": 31,
+      "command": {
+        "type": "setPace",
+        "projectId": "P7",
+        "pace": "fast"
+      }
+    },
+    {
+      "day": 31,
+      "command": {
+        "type": "borrow",
+        "channel": "devLoan",
+        "amount": 9720,
+        "projectId": "P7"
+      }
+    },
+    {
+      "day": 91,
+      "command": {
+        "type": "bid",
+        "parcelId": "L12",
+        "amount": 34707
+      }
+    },
+    {
+      "day": 120,
+      "command": {
+        "type": "startProject",
+        "projectId": "P14",
+        "contractor": "standard"
+      }
+    },
+    {
+      "day": 121,
+      "command": {
+        "type": "setPace",
+        "projectId": "P14",
+        "pace": "fast"
+      }
+    },
+    {
+      "day": 121,
+      "command": {
+        "type": "borrow",
+        "channel": "devLoan",
+        "amount": 7722.000000000001,
+        "projectId": "P14"
+      }
+    },
+    {
+      "day": 181,
+      "command": {
+        "type": "bid",
+        "parcelId": "L16",
+        "amount": 11952
+      }
+    },
+    {
+      "day": 181,
+      "command": {
+        "type": "bid",
+        "parcelId": "L17",
+        "amount": 28250
+      }
+    },
+    {
+      "day": 210,
+      "command": {
+        "type": "startProject",
+        "projectId": "P19",
+        "contractor": "standard"
+      }
+    },
+    {
+      "day": 210,
+      "command": {
+        "type": "startProject",
+        "projectId": "P20",
+        "contractor": "standard"
+      }
+    },
+    {
+      "day": 211,
+      "command": {
+        "type": "setPace",
+        "projectId": "P19",
+        "pace": "fast"
+      }
+    },
+    {
+      "day": 211,
+      "command": {
+        "type": "borrow",
+        "channel": "devLoan",
+        "amount": 5445,
+        "projectId": "P19"
+      }
+    },
+    {
+      "day": 211,
+      "command": {
+        "type": "setPace",
+        "projectId": "P20",
+        "pace": "fast"
+      }
+    },
+    {
+      "day": 211,
+      "command": {
+        "type": "borrow",
+        "channel": "devLoan",
+        "amount": 16087.5,
+        "projectId": "P20"
+      }
+    },
+    {
+      "day": 271,
+      "command": {
+        "type": "bid",
+        "parcelId": "L24",
+        "amount": 15988
+      }
+    },
+    {
+      "day": 271,
+      "command": {
+        "type": "bid",
+        "parcelId": "L25",
+        "amount": 5753
+      }
+    },
+    {
+      "day": 271,
+      "command": {
+        "type": "bid",
+        "parcelId": "L26",
+        "amount": 10427
+      }
+    },
+    {
+      "day": 300,
+      "command": {
+        "type": "startProject",
+        "projectId": "P28",
+        "contractor": "standard"
+      }
+    },
+    {
+      "day": 300,
+      "command": {
+        "type": "startProject",
+        "projectId": "P29",
+        "contractor": "standard"
+      }
+    },
+    {
+      "day": 300,
+      "command": {
+        "type": "startProject",
+        "projectId": "P30",
+        "contractor": "standard"
+      }
+    },
+    {
+      "day": 301,
+      "command": {
+        "type": "setPace",
+        "projectId": "P28",
+        "pace": "fast"
+      }
+    },
+    {
+      "day": 301,
+      "command": {
+        "type": "borrow",
+        "channel": "devLoan",
+        "amount": 5498.954999999999,
+        "projectId": "P28"
+      }
+    },
+    {
+      "day": 301,
+      "command": {
+        "type": "setPace",
+        "projectId": "P29",
+        "pace": "fast"
+      }
+    },
+    {
+      "day": 301,
+      "command": {
+        "type": "borrow",
+        "channel": "devLoan",
+        "amount": 2173.5,
+        "projectId": "P29"
+      }
+    },
+    {
+      "day": 301,
+      "command": {
+        "type": "setPace",
+        "projectId": "P30",
+        "pace": "fast"
+      }
+    },
+    {
+      "day": 301,
+      "command": {
+        "type": "borrow",
+        "channel": "devLoan",
+        "amount": 3260.25,
+        "projectId": "P30"
+      }
+    },
+    {
+      "day": 361,
+      "command": {
+        "type": "bid",
+        "parcelId": "L34",
+        "amount": 14037
+      }
+    },
+    {
+      "day": 361,
+      "command": {
+        "type": "bid",
+        "parcelId": "L35",
+        "amount": 21055
+      }
+    }
+  ],
+  "revision": 0
+}

@@ -1,0 +1,100 @@
+[
+  {
+    "name": "native-projects",
+    "save": {
+      "version": 7,
+      "seed": 7,
+      "day": 60,
+      "log": [],
+      "revision": 0
+    },
+    "sha256": "e7b04ab7c31a0456dc85c031376ab10cd9460351e48dee6ee6a9e34393b2d75c"
+  },
+  {
+    "name": "native-defaulted-rival",
+    "save": {
+      "version": 7,
+      "seed": 7,
+      "day": 1710,
+      "log": [],
+      "revision": 0
+    },
+    "sha256": "50c4aa4588bfe1658f8e811369204b30847ac0f8f49c1fcfb1b99ba84e7f66c9"
+  },
+  {
+    "name": "old-v6-boundary",
+    "save": {
+      "version": 7,
+      "seed": 7,
+      "day": 750,
+      "log": [
+        {
+          "day": 0,
+          "command": {
+            "type": "bid",
+            "parcelId": "L1",
+            "amount": 31146
+          }
+        },
+        {
+          "day": 750,
+          "command": {
+            "type": "setAppearance",
+            "projectId": "P4",
+            "product": "villa",
+            "variant": "b"
+          }
+        },
+        {
+          "day": 750,
+          "command": {
+            "type": "setAppearance",
+            "projectId": "P4",
+            "product": "commercial",
+            "variant": "c"
+          }
+        },
+        {
+          "day": 750,
+          "command": {
+            "type": "setMarketing",
+            "projectId": "P4",
+            "rate": 0.06
+          }
+        }
+      ],
+      "legacyV2Until": 750,
+      "legacyV2LogCount": 3,
+      "legacyV3Until": 750,
+      "legacyV3LogCount": 3,
+      "legacyV4Until": 750,
+      "legacyV4LogCount": 3,
+      "legacyV5Until": 750,
+      "legacyV5LogCount": 4,
+      "legacyV6Until": 750,
+      "legacyV6LogCount": 4,
+      "revision": 280
+    },
+    "sha256": "840061930c70aae097fd8889ab122441f48b900f0b252a86f33d7728ecf8b6b7"
+  },
+  {
+    "name": "native-player-financing",
+    "save": {
+      "version": 7,
+      "seed": 23,
+      "day": 900,
+      "log": [
+        {
+          "day": 0,
+          "command": {
+            "type": "borrow",
+            "channel": "trust",
+            "amount": 1000
+          }
+        }
+      ],
+      "revision": 0
+    },
+    "sha256": "ee9d870f1adbd59a7aa27b55c07b357b2805b60df509824c0244e6bc9273e26a"
+  }
+]

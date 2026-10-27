@@ -1,0 +1,124 @@
+{
+  "version": 10,
+  "seed": 1,
+  "day": 240,
+  "log": [
+    {
+      "day": 0,
+      "command": {
+        "type": "borrow",
+        "channel": "bond",
+        "amount": 30000,
+        "termMonths": 60
+      }
+    },
+    {
+      "day": 1,
+      "command": {
+        "type": "borrow",
+        "channel": "trust",
+        "amount": 40000
+      }
+    },
+    {
+      "day": 1,
+      "command": {
+        "type": "bid",
+        "parcelId": "L1",
+        "amount": 63424
+      }
+    },
+    {
+      "day": 1,
+      "command": {
+        "type": "bid",
+        "parcelId": "L2",
+        "amount": 50211
+      }
+    },
+    {
+      "day": 1,
+      "command": {
+        "type": "bid",
+        "parcelId": "L3",
+        "amount": 114840
+      }
+    },
+    {
+      "day": 30,
+      "command": {
+        "type": "startProject",
+        "projectId": "P6",
+        "contractor": "standard"
+      }
+    },
+    {
+      "day": 30,
+      "command": {
+        "type": "startProject",
+        "projectId": "P7",
+        "contractor": "standard"
+      }
+    },
+    {
+      "day": 30,
+      "command": {
+        "type": "startProject",
+        "projectId": "P8",
+        "contractor": "standard"
+      }
+    },
+    {
+      "day": 31,
+      "command": {
+        "type": "setPace",
+        "projectId": "P6",
+        "pace": "fast"
+      }
+    },
+    {
+      "day": 31,
+      "command": {
+        "type": "borrow",
+        "channel": "devLoan",
+        "amount": 15660,
+        "projectId": "P6"
+      }
+    },
+    {
+      "day": 31,
+      "command": {
+        "type": "setPace",
+        "projectId": "P7",
+        "pace": "fast"
+      }
+    },
+    {
+      "day": 31,
+      "command": {
+        "type": "borrow",
+        "channel": "devLoan",
+        "amount": 10260,
+        "projectId": "P7"
+      }
+    },
+    {
+      "day": 31,
+      "command": {
+        "type": "setPace",
+        "projectId": "P8",
+        "pace": "fast"
+      }
+    },
+    {
+      "day": 31,
+      "command": {
+        "type": "borrow",
+        "channel": "devLoan",
+        "amount": 18720,
+        "projectId": "P8"
+      }
+    }
+  ],
+  "revision": 0
+}

@@ -1,0 +1,46 @@
+{
+  "assets": [
+    {
+      "id": "landmark_stilts_2x2_a",
+      "description": "江边吊脚楼群·木廊",
+      "cells": 2,
+      "file": "landmark_stilts_2x2_a.png",
+      "kind": "building"
+    },
+    {
+      "id": "landmark_stilts_2x2_b",
+      "description": "江边吊脚楼群·错层",
+      "cells": 2,
+      "file": "landmark_stilts_2x2_b.png",
+      "kind": "building"
+    },
+    {
+      "id": "landmark_bridge_i_2x2_a",
+      "description": "跨江大桥·屏幕左上至右下",
+      "cells": 2,
+      "file": "landmark_bridge_i_2x2_a.png",
+      "kind": "building"
+    },
+    {
+      "id": "landmark_bridge_j_2x2_a",
+      "description": "跨江大桥·屏幕右上至左下",
+      "cells": 2,
+      "file": "landmark_bridge_j_2x2_a.png",
+      "kind": "building"
+    },
+    {
+      "id": "landmark_cableway_2x2_a",
+      "description": "过江索道",
+      "cells": 2,
+      "file": "landmark_cableway_2x2_a.png",
+      "kind": "building"
+    },
+    {
+      "id": "landmark_trail_2x2_a",
+      "description": "山城步道",
+      "cells": 2,
+      "file": "landmark_trail_2x2_a.png",
+      "kind": "building"
+    }
+  ]
+}

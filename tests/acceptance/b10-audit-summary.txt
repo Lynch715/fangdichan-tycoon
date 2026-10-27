@@ -1,0 +1,56 @@
+{
+  "runs": 15,
+  "revoked": {
+    "day": 1890,
+    "cash": 36134.870095319326,
+    "sold": 4005.753251053986,
+    "fine": 288.73059759965565,
+    "sha256": "87061aa8cb57c86b67006be4d11522f306276754a1a3df688ffac3ee24dedc00"
+  },
+  "restored": {
+    "day": 2010,
+    "cash": 37002.75644611046,
+    "sold": 6290.266638865043,
+    "sha256": "194844630d7e394826aad242f73812b2bccaa0f9498207b4eb5c89b7884ee3a3"
+  },
+  "banned": {
+    "day": 2250,
+    "cash": 115710.91649426658,
+    "bans": {
+      "outer": 2580,
+      "jiangbei": 2580
+    },
+    "auctions": [
+      {
+        "id": "L250",
+        "district": "jiangbei"
+      },
+      {
+        "id": "L251",
+        "district": "bishan"
+      },
+      {
+        "id": "L252",
+        "district": "yuzhong"
+      }
+    ],
+    "sha256": "2399268cf3c57506da2900f176b3115de6d2836ef961b1b3896dc8f4c91d9243"
+  },
+  "browser": [
+    {
+      "name": "b10-restored-browser-save.json",
+      "day": 2010,
+      "sha256": "194844630d7e394826aad242f73812b2bccaa0f9498207b4eb5c89b7884ee3a3"
+    },
+    {
+      "name": "b10-ban-browser-save.json",
+      "day": 2250,
+      "sha256": "2399268cf3c57506da2900f176b3115de6d2836ef961b1b3896dc8f4c91d9243"
+    },
+    {
+      "name": "b10-old-browser-save.json",
+      "day": 330,
+      "sha256": "1a5e163800c4fe01956dff3512a4613b97a32e40c582d00d39e9256d1d69bfe1"
+    }
+  ]
+}

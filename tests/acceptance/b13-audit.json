@@ -1,0 +1,268 @@
+[
+  {
+    "file": "b13-sales-1.json",
+    "day": 1320,
+    "commands": 268,
+    "options": {
+      "mode": "challenge",
+      "difficulty": "standard",
+      "challenge": "sales"
+    },
+    "result": "won",
+    "sales": 10103608.16311762,
+    "cash": 1672418.0435870602,
+    "equity": 1500564.696106676,
+    "sha256": "26d87188af8637fb30d3564c605f415ceea07e4e245598662e78d390f6f0b0f6"
+  },
+  {
+    "file": "b13-sales-7.json",
+    "day": 1230,
+    "commands": 253,
+    "options": {
+      "mode": "challenge",
+      "difficulty": "standard",
+      "challenge": "sales"
+    },
+    "result": "won",
+    "sales": 10408347.909412103,
+    "cash": 2341709.378932336,
+    "equity": 1169644.014225999,
+    "sha256": "ba0c99a51282e9e5668aa275f4324be624772dad7d777934866c5ab820e03bb7"
+  },
+  {
+    "file": "b13-sales-32.json",
+    "day": 1320,
+    "commands": 263,
+    "options": {
+      "mode": "challenge",
+      "difficulty": "standard",
+      "challenge": "sales"
+    },
+    "result": "won",
+    "sales": 10404789.68304671,
+    "cash": 1697220.9792168925,
+    "equity": 1387571.3764063464,
+    "sha256": "94a1b69ba912f1a2b4c93003d88c4163054e9032b0f89d017f07f9bcea0f8b80"
+  },
+  {
+    "file": "b13-downturn-1.json",
+    "day": 870,
+    "commands": 5,
+    "options": {
+      "mode": "challenge",
+      "difficulty": "standard",
+      "challenge": "downturn"
+    },
+    "result": "won",
+    "sales": 190498.1032386893,
+    "cash": 140154.77021576697,
+    "equity": 154.77021576697007,
+    "sha256": "993207cffabf04ba25eeeaf2b348dbb68531b7e0f50932257c1058019f460f84"
+  },
+  {
+    "file": "b13-downturn-7.json",
+    "day": 540,
+    "commands": 5,
+    "options": {
+      "mode": "challenge",
+      "difficulty": "standard",
+      "challenge": "downturn"
+    },
+    "result": "won",
+    "sales": 104176.97888668803,
+    "cash": 70387.30287581902,
+    "equity": 51072.07300136541,
+    "sha256": "578b00a78bde485ef3aa7939e18d2ea23dcdc1ee1de4ff95eb09b1451574ef52"
+  },
+  {
+    "file": "b13-downturn-32.json",
+    "day": 750,
+    "commands": 5,
+    "options": {
+      "mode": "challenge",
+      "difficulty": "standard",
+      "challenge": "downturn"
+    },
+    "result": "won",
+    "sales": 123135.3974804318,
+    "cash": 82138.62875758432,
+    "equity": 39160.657160018774,
+    "sha256": "c58d608ace0d0e52c4f20cba00a30c0c444779cf57922f70fd5c4ad69ec6b365"
+  },
+  {
+    "file": "b13-delivery-1.json",
+    "day": 630,
+    "commands": 3,
+    "options": {
+      "mode": "challenge",
+      "difficulty": "standard",
+      "challenge": "delivery"
+    },
+    "result": "won",
+    "sales": 23486.773256242777,
+    "cash": 27986.88050148365,
+    "equity": 48687.21393413551,
+    "sha256": "5238584a74fa5d93b5c29c19a5f073056960337596cf57a511175927f9db5c53"
+  },
+  {
+    "file": "b13-delivery-7.json",
+    "day": 570,
+    "commands": 3,
+    "options": {
+      "mode": "challenge",
+      "difficulty": "standard",
+      "challenge": "delivery"
+    },
+    "result": "won",
+    "sales": 23085.35734652415,
+    "cash": 27921.95661889783,
+    "equity": 49154.3747528033,
+    "sha256": "a79b786fd75ea09e8b500821a7512169815e2c00636012476e50d3fea1d41600"
+  },
+  {
+    "file": "b13-delivery-32.json",
+    "day": 510,
+    "commands": 2,
+    "options": {
+      "mode": "challenge",
+      "difficulty": "standard",
+      "challenge": "delivery"
+    },
+    "result": "won",
+    "sales": 20369.06908706651,
+    "cash": 30309.43383119721,
+    "equity": 34202.443007013906,
+    "sha256": "da8eb26f1af2a78e919d3ad100ee16a1b7790464f3283b4769d5cebdc3cb40c1"
+  },
+  {
+    "file": "b13-old-browser-save.json",
+    "day": 450,
+    "commands": 12,
+    "options": {
+      "mode": "career",
+      "difficulty": "standard"
+    },
+    "result": "running",
+    "sales": 0,
+    "cash": 69030.49853208702,
+    "equity": 41993.6769701195,
+    "sha256": "81348ee6c76580f70fbeb4304a1a8bd8d825543e6ae955fb0d6e4df5d9aceaa4"
+  },
+  {
+    "file": "b13-cancel-browser-save.json",
+    "day": 450,
+    "commands": 12,
+    "options": {
+      "mode": "career",
+      "difficulty": "standard"
+    },
+    "result": "running",
+    "sales": 0,
+    "cash": 69030.49853208702,
+    "equity": 41993.6769701195,
+    "sha256": "81348ee6c76580f70fbeb4304a1a8bd8d825543e6ae955fb0d6e4df5d9aceaa4"
+  },
+  {
+    "file": "b13-delivery-opening-browser-save.json",
+    "day": 0,
+    "commands": 1,
+    "options": {
+      "mode": "challenge",
+      "difficulty": "standard",
+      "challenge": "delivery"
+    },
+    "result": "running",
+    "sales": 0,
+    "cash": 40000,
+    "equity": 17924.5,
+    "sha256": "7275a8ad95332d965cfd6ef37a242d425f452daef9736d056fa314c9169377e3"
+  },
+  {
+    "file": "b13-sandbox-browser-save.json",
+    "day": 0,
+    "commands": 2,
+    "options": {
+      "mode": "sandbox",
+      "difficulty": "easy"
+    },
+    "result": "running",
+    "sales": 0,
+    "cash": 2100000,
+    "equity": 2100000,
+    "sha256": "4812c29e5496ffc4fef5e342cd1c1c736de6f574ac465e365dedb628df01b547"
+  },
+  {
+    "file": "b13-sales-win-browser-save.json",
+    "day": 1230,
+    "commands": 251,
+    "options": {
+      "mode": "challenge",
+      "difficulty": "standard",
+      "challenge": "sales"
+    },
+    "result": "won",
+    "sales": 10408347.909412103,
+    "cash": 2201260.6859323364,
+    "equity": 1170408.9212259986,
+    "sha256": "846e31a2de3028836096e98c330e85632e8bb2cf19e92021db5f73bb0c37e136"
+  },
+  {
+    "file": "b13-downturn-win-browser-save.json",
+    "day": 540,
+    "commands": 5,
+    "options": {
+      "mode": "challenge",
+      "difficulty": "standard",
+      "challenge": "downturn"
+    },
+    "result": "won",
+    "sales": 104176.97888668803,
+    "cash": 70387.30287581902,
+    "equity": 51072.07300136541,
+    "sha256": "578b00a78bde485ef3aa7939e18d2ea23dcdc1ee1de4ff95eb09b1451574ef52"
+  },
+  {
+    "file": "b13-delivery-win-browser-save.json",
+    "day": 570,
+    "commands": 2,
+    "options": {
+      "mode": "challenge",
+      "difficulty": "standard",
+      "challenge": "delivery"
+    },
+    "result": "won",
+    "sales": 23085.35734652415,
+    "cash": 12405.78675737744,
+    "equity": 33638.204891282905,
+    "sha256": "4a36fe34aeecd0279ce3d367360fb6ec8d6a2fecf38934d6040954e36e68d76a"
+  },
+  {
+    "file": "b13-delivery-failed-browser-save.json",
+    "day": 0,
+    "commands": 2,
+    "options": {
+      "mode": "challenge",
+      "difficulty": "standard",
+      "challenge": "delivery"
+    },
+    "result": "lost",
+    "sales": 0,
+    "cash": 50243.6,
+    "equity": 15363.600000000006,
+    "sha256": "f33604d7690cbfe13e0b6310b0d7368bd4200bbf0a99feadd7d03835b3ffd05e"
+  },
+  {
+    "file": "b13-career-browser-save.json",
+    "day": 0,
+    "commands": 1,
+    "options": {
+      "mode": "career",
+      "difficulty": "hard"
+    },
+    "result": "running",
+    "sales": 0,
+    "cash": 30000,
+    "equity": 30000,
+    "sha256": "3bb3f41fc8823a6b89b5848be1fb16d68d9026d788294369a46bdd776a521d5b"
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "name": "fangdichan-tycoon",
+  "private": true,
+  "version": "0.2.0",
+  "description": "房地产大亨：以现金流为核心的房地产开发模拟经营游戏（开源，内部交流）",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "tsc --noEmit && vite build && node scripts/offline.ts",
+    "preview": "vite preview --host",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "balance": "node scripts/balance.ts",
+    "art": "node scripts/art-pipeline.ts",
+    "art:check": "node scripts/art-status.ts",
+    "art:gallery": "node scripts/art-gallery.ts",
+    "art:acceptance": "node scripts/art-acceptance.ts"
+  },
+  "dependencies": {
+    "pixi.js": "^8.22.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "sharp": "^0.35.5",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
+  }
+}

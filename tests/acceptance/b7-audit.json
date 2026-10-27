@@ -1,0 +1,150 @@
+{
+  "results": [
+    {
+      "seed": 1,
+      "strategy": "idle",
+      "day": 3600,
+      "commands": 0,
+      "sha256": "13032595a4a53b7a09b12ebd85af9672c1eb416cc63a0684877eb2e81520a543"
+    },
+    {
+      "seed": 1,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 58,
+      "sha256": "d0b8f09261c3c9dfab32f2eaa607967bd3390de9d65376087f358dcc632d110b"
+    },
+    {
+      "seed": 1,
+      "strategy": "aggressive",
+      "day": 3600,
+      "commands": 475,
+      "sha256": "7f53fad2fc10b442fb1e8dd5d2907d8a502449a57cfac3e8f13d4c6c3c5ecb0c"
+    },
+    {
+      "seed": 2,
+      "strategy": "idle",
+      "day": 3600,
+      "commands": 0,
+      "sha256": "89063ee588d2f0f09a8773c27bfcc163a8e58c0a1581da420c8c5c1ba0847480"
+    },
+    {
+      "seed": 2,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 59,
+      "sha256": "883b98ed4143ab98d7be8d47d40e7c761ebd95c5a74afea791a1fbd5c09bfbae"
+    },
+    {
+      "seed": 2,
+      "strategy": "aggressive",
+      "day": 3600,
+      "commands": 375,
+      "sha256": "11b71341e3df500f04c79cd0889a385083fbafa2edea062120e9f503a9fea958"
+    },
+    {
+      "seed": 7,
+      "strategy": "idle",
+      "day": 3600,
+      "commands": 0,
+      "sha256": "774226c421979247b2c56b6617a5986106f8e3de85fb96ff25b9ab2a351fc7e5"
+    },
+    {
+      "seed": 7,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 60,
+      "sha256": "ba93b96150f1596945a016178755a749e6eea1560e1d0eaf88b7b5307659ecfb"
+    },
+    {
+      "seed": 7,
+      "strategy": "aggressive",
+      "day": 360,
+      "commands": 13,
+      "sha256": "658a4746835b6a3effcb6144b696a825869073dbd250eb9b36c9f0ee5db801cc"
+    },
+    {
+      "seed": 13,
+      "strategy": "idle",
+      "day": 3600,
+      "commands": 0,
+      "sha256": "4817cabe50c23f34294b3b1c2da764dd15173dfc41844fdcfed4c08f5a9406a9"
+    },
+    {
+      "seed": 13,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 59,
+      "sha256": "00d2291273b17abf6a41ba1ed138d7bffd985271455cbdc8b6280d04ced98259"
+    },
+    {
+      "seed": 13,
+      "strategy": "aggressive",
+      "day": 3600,
+      "commands": 432,
+      "sha256": "2bf406fbad87f0b2352250f6e841023116c5ff7d63182280907a6178b73fac29"
+    },
+    {
+      "seed": 32,
+      "strategy": "idle",
+      "day": 3600,
+      "commands": 0,
+      "sha256": "d303b9442551968bcd745d9aa70b612e92e8ae844bb8b39f007b73a9786647a5"
+    },
+    {
+      "seed": 32,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 50,
+      "sha256": "4fe45ff470df800a0aa17effb70a372c80ac6d4db0077016fc72ae03fdc81512"
+    },
+    {
+      "seed": 32,
+      "strategy": "aggressive",
+      "day": 1710,
+      "commands": 164,
+      "sha256": "5d579af9cfa9fae72c4d7fe6405e11b7b767ebcd5dd5514b43bbf6f40e9c8ecb"
+    }
+  ],
+  "browser": [
+    {
+      "name": "amenity",
+      "seed": 1,
+      "day": 840,
+      "commands": [
+        {
+          "day": 811,
+          "command": {
+            "type": "bid",
+            "parcelId": "L37",
+            "amount": 6013,
+            "amenityRate": 0.12
+          }
+        }
+      ],
+      "owner": "player",
+      "saleableArea": 26280,
+      "landCost": 6013,
+      "sha256": "41f0eb95c9cf42765ba5a7759523d043942774a691a87ea82314494f1e23b0ba"
+    },
+    {
+      "name": "lottery",
+      "seed": 2,
+      "day": 1290,
+      "commands": [
+        {
+          "day": 1261,
+          "command": {
+            "type": "bid",
+            "parcelId": "L62",
+            "amount": 9374
+          }
+        }
+      ],
+      "owner": "yuefeng",
+      "saleableArea": 29920,
+      "landCost": 9374,
+      "sha256": "3f874fe4abd0f6bc18cd79cff5dcfaad96362d649484bfbec0ef9451e9fbef2f"
+    }
+  ]
+}

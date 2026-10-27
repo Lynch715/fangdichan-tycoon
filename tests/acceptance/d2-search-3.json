@@ -1,0 +1,8 @@
+[
+ {"name":"rescue60","aggressive":{"landFundingRate":0.5,"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20},"values":{"rescue.saleBookDiscount":0.6}},
+ {"name":"rescue40","aggressive":{"landFundingRate":0.5,"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20},"values":{"rescue.saleBookDiscount":0.4}},
+ {"name":"rescue20","aggressive":{"landFundingRate":0.5,"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20},"values":{"rescue.saleBookDiscount":0.2}},
+ {"name":"hiddenFine30","aggressive":{"landFundingRate":0.5,"buildReserveRate":0,"hiddenUsage":0.5,"maxActive":20},"values":{"risk.hiddenFineRate":0.3}},
+ {"name":"hiddenFine50","aggressive":{"landFundingRate":0.5,"buildReserveRate":0,"hiddenUsage":0.5,"maxActive":20},"values":{"risk.hiddenFineRate":0.5}},
+ {"name":"long-freeze","aggressive":{"landFundingRate":0.5,"buildReserveRate":0,"hiddenUsage":0.5,"maxActive":20},"values":{"risk.freezeMonths":12}}
+]

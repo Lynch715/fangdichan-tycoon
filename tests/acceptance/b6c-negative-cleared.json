@@ -1,0 +1,16 @@
+{
+  "version": 8,
+  "seed": 1,
+  "day": 1170,
+  "log": [
+    {
+      "day": 570,
+      "command": {
+        "type": "acquireProject",
+        "rivalId": "yuefeng",
+        "projectId": "yuefeng-P2"
+      }
+    }
+  ],
+  "revision": 24
+}

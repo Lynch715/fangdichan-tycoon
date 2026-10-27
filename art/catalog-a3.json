@@ -1,0 +1,324 @@
+{
+  "assets": [
+    {
+      "id": "terrain_grass_1x1_a",
+      "file": "terrain_grass_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a flat clean grass tile, fine muted green turf with no plants, trees or rocks; brown earth on both front side faces",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_earth_1x1_a",
+      "file": "terrain_earth_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a flat cleared earth tile, warm beige compacted soil with subtle fine gravel; brown earth on both front side faces",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_paved_1x1_a",
+      "file": "terrain_paved_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a flat city paving tile, warm grey concrete pavement with subtle square joints; matching concrete on both front side faces",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_slope_ne_gentle_1x1_a",
+      "file": "terrain_slope_ne_gentle_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a clean grassy hillside tile sloping down towards the NE corner, gentle slope, no vegetation or rocks, exposed earth side faces; keep the bottom contact diamond exact and fully visible",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_slope_ne_steep_1x1_a",
+      "file": "terrain_slope_ne_steep_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a clean grassy hillside tile sloping down towards the NE corner, steep slope, no vegetation or rocks, exposed earth side faces; keep the bottom contact diamond exact and fully visible",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_slope_nw_gentle_1x1_a",
+      "file": "terrain_slope_nw_gentle_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a clean grassy hillside tile sloping down towards the NW corner, gentle slope, no vegetation or rocks, exposed earth side faces; keep the bottom contact diamond exact and fully visible",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_slope_nw_steep_1x1_a",
+      "file": "terrain_slope_nw_steep_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a clean grassy hillside tile sloping down towards the NW corner, steep slope, no vegetation or rocks, exposed earth side faces; keep the bottom contact diamond exact and fully visible",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_slope_se_gentle_1x1_a",
+      "file": "terrain_slope_se_gentle_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a clean grassy hillside tile sloping down towards the SE corner, gentle slope, no vegetation or rocks, exposed earth side faces; keep the bottom contact diamond exact and fully visible",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_slope_se_steep_1x1_a",
+      "file": "terrain_slope_se_steep_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a clean grassy hillside tile sloping down towards the SE corner, steep slope, no vegetation or rocks, exposed earth side faces; keep the bottom contact diamond exact and fully visible",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_slope_sw_gentle_1x1_a",
+      "file": "terrain_slope_sw_gentle_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a clean grassy hillside tile sloping down towards the SW corner, gentle slope, no vegetation or rocks, exposed earth side faces; keep the bottom contact diamond exact and fully visible",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_slope_sw_steep_1x1_a",
+      "file": "terrain_slope_sw_steep_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a clean grassy hillside tile sloping down towards the SW corner, steep slope, no vegetation or rocks, exposed earth side faces; keep the bottom contact diamond exact and fully visible",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_mountain_grass_1x1_a",
+      "file": "terrain_mountain_grass_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a rounded dark-green grass-covered hill rising above the tile, no trees or rocks, earthy side walls; exact flat diamond contact base",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_mountain_rock_1x1_a",
+      "file": "terrain_mountain_rock_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a small rocky grey mountain mound rising above the tile with dark green moss, no trees; exact flat diamond contact base",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_water_calm_1x1_a",
+      "file": "terrain_water_calm_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a muted teal river water tile, calm clean water with very subtle ripples, continuous top surface, dark teal front side faces, no banks, borders, rocks or boats",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_water_ripple_1x1_a",
+      "file": "terrain_water_ripple_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a muted teal river water tile, small gentle parallel ripples, continuous top surface, dark teal front side faces, no banks, borders, rocks or boats",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_shore_n_1x1_a",
+      "file": "terrain_shore_n_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a straight river shore tile with a narrow beige stone embankment along the N edge, muted teal water inside the tile; no trees or rocks",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_shore_e_1x1_a",
+      "file": "terrain_shore_e_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a straight river shore tile with a narrow beige stone embankment along the E edge, muted teal water inside the tile; no trees or rocks",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_shore_s_1x1_a",
+      "file": "terrain_shore_s_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a straight river shore tile with a narrow beige stone embankment along the S edge, muted teal water inside the tile; no trees or rocks",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_shore_w_1x1_a",
+      "file": "terrain_shore_w_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a straight river shore tile with a narrow beige stone embankment along the W edge, muted teal water inside the tile; no trees or rocks",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_shore_corner_ne_1x1_a",
+      "file": "terrain_shore_corner_ne_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a corner river shore tile, beige stone embankment turns around the NE corner, muted teal water inside; no trees or rocks",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_shore_corner_nw_1x1_a",
+      "file": "terrain_shore_corner_nw_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a corner river shore tile, beige stone embankment turns around the NW corner, muted teal water inside; no trees or rocks",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_shore_corner_se_1x1_a",
+      "file": "terrain_shore_corner_se_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a corner river shore tile, beige stone embankment turns around the SE corner, muted teal water inside; no trees or rocks",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_shore_corner_sw_1x1_a",
+      "file": "terrain_shore_corner_sw_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a corner river shore tile, beige stone embankment turns around the SW corner, muted teal water inside; no trees or rocks",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_road_straight_ne_sw_1x1_a",
+      "file": "terrain_road_straight_ne_sw_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a straight two-lane dark-grey city road across the diamond on the NE_SW grid axis, subtle cream lane markings and narrow grey sidewalks, no cars, signs or lamps",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_road_straight_nw_se_1x1_a",
+      "file": "terrain_road_straight_nw_se_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a straight two-lane dark-grey city road across the diamond on the NW_SE grid axis, subtle cream lane markings and narrow grey sidewalks, no cars, signs or lamps",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_road_curve_1x1_a",
+      "file": "terrain_road_curve_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a two-lane dark-grey city road with a right-angle turn from the north-east grid edge to the south-east grid edge, narrow grey sidewalks, no cars or lamps",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_road_tee_1x1_a",
+      "file": "terrain_road_tee_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a T-junction of two-lane dark-grey city roads, narrow grey sidewalks, no cars or lamps",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_road_tee_alt_1x1_a",
+      "file": "terrain_road_tee_alt_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a T-junction with the opposite branch orientation, for connecting the other road axis; same dark-grey asphalt and grey sidewalks",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_road_cross_1x1_a",
+      "file": "terrain_road_cross_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a four-way crossroads of two-lane dark-grey city roads, narrow grey sidewalks, subtle white crossings, no cars or lamps",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_bridge_ne_sw_1x1_a",
+      "file": "terrain_bridge_ne_sw_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a short grey bridge road deck segment running along the NE_SW grid axis, subtle stone railings, muted teal water below, no cars or people",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_bridge_nw_se_1x1_a",
+      "file": "terrain_bridge_nw_se_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "description": "a short grey bridge road deck segment running along the NW_SE grid axis, subtle stone railings, muted teal water below, no cars or people",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "decor_trees_1x1_a",
+      "file": "decor_trees_1x1_a.png",
+      "cells": 1,
+      "kind": "decoration",
+      "description": "a small cluster of three dark-green leafy trees with slender trunks; object only, no terrain tile, no ground, no base plate or cast shadow; position its contact at the centre of the footprint guide, keep it within the diamond",
+      "groundCoverage": 0.7,
+      "maxHeightRatio": 0.8
+    },
+    {
+      "id": "decor_tree_tall_1x1_a",
+      "file": "decor_tree_tall_1x1_a.png",
+      "cells": 1,
+      "kind": "decoration",
+      "description": "one tall leafy shade tree with a deep green canopy; object only, no terrain tile, no ground, no base plate or cast shadow; position its contact at the centre of the footprint guide, keep it within the diamond",
+      "groundCoverage": 0.6,
+      "maxHeightRatio": 1
+    },
+    {
+      "id": "decor_rocks_1x1_a",
+      "file": "decor_rocks_1x1_a.png",
+      "cells": 1,
+      "kind": "decoration",
+      "description": "a small cluster of three weathered warm grey rocks; object only, no terrain tile, no ground, no base plate or cast shadow; position its contact at the centre of the footprint guide, keep it within the diamond",
+      "groundCoverage": 0.6,
+      "maxHeightRatio": 0.3
+    },
+    {
+      "id": "decor_boulder_1x1_a",
+      "file": "decor_boulder_1x1_a.png",
+      "cells": 1,
+      "kind": "decoration",
+      "description": "one large rounded weathered grey boulder; object only, no terrain tile, no ground, no base plate or cast shadow; position its contact at the centre of the footprint guide, keep it within the diamond",
+      "groundCoverage": 0.6,
+      "maxHeightRatio": 0.45
+    },
+    {
+      "id": "decor_lamp_1x1_a",
+      "file": "decor_lamp_1x1_a.png",
+      "cells": 1,
+      "kind": "decoration",
+      "description": "one simple warm-grey streetlamp with a single light head; object only, no terrain tile, no ground, no base plate or cast shadow; position its contact at the centre of the footprint guide, keep it within the diamond",
+      "groundCoverage": 0.2,
+      "maxHeightRatio": 0.5
+    },
+    {
+      "id": "decor_bench_1x1_a",
+      "file": "decor_bench_1x1_a.png",
+      "cells": 1,
+      "kind": "decoration",
+      "description": "one wood-and-grey-metal park bench; object only, no terrain tile, no ground, no base plate or cast shadow; position its contact at the centre of the footprint guide, keep it within the diamond",
+      "groundCoverage": 0.45,
+      "maxHeightRatio": 0.2
+    },
+    {
+      "id": "decor_shrubs_1x1_a",
+      "file": "decor_shrubs_1x1_a.png",
+      "cells": 1,
+      "kind": "decoration",
+      "description": "a compact cluster of neatly trimmed dark-green shrubs; object only, no terrain tile, no ground, no base plate or cast shadow; position its contact at the centre of the footprint guide, keep it within the diamond",
+      "groundCoverage": 0.55,
+      "maxHeightRatio": 0.3
+    },
+    {
+      "id": "decor_flowers_1x1_a",
+      "file": "decor_flowers_1x1_a.png",
+      "cells": 1,
+      "kind": "decoration",
+      "description": "a low small rectangular beige stone planter with muted yellow and white flowers; object only, no terrain tile, no ground, no base plate or cast shadow; position its contact at the centre of the footprint guide, keep it within the diamond",
+      "groundCoverage": 0.5,
+      "maxHeightRatio": 0.2
+    }
+  ]
+}

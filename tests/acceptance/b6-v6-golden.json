@@ -1,0 +1,190 @@
+[
+  {
+    "name": "b5-cleared.json",
+    "save": {
+      "version": 6,
+      "seed": 7,
+      "day": 1170,
+      "log": [
+        {
+          "day": 0,
+          "command": {
+            "type": "bid",
+            "parcelId": "L1",
+            "amount": 31146
+          }
+        },
+        {
+          "day": 30,
+          "command": {
+            "type": "startProject",
+            "projectId": "P4",
+            "contractor": "standard"
+          }
+        }
+      ],
+      "revision": 0
+    },
+    "sha256": "ab8c8d4353f12a98b93a63facbac04ffae858dc702838c16655624a8dce63f8e",
+    "day": 1170,
+    "cash": 65000.847050370554,
+    "rng": 1259425844,
+    "months": 39
+  },
+  {
+    "name": "b5-bankrupt.json",
+    "save": {
+      "version": 6,
+      "seed": 8,
+      "day": 360,
+      "log": [
+        {
+          "day": 0,
+          "command": {
+            "type": "bid",
+            "parcelId": "L4",
+            "amount": 192156
+          }
+        },
+        {
+          "day": 30,
+          "command": {
+            "type": "startProject",
+            "projectId": "P5",
+            "contractor": "standard"
+          }
+        }
+      ],
+      "revision": 0
+    },
+    "sha256": "33df66b30be39beb3562e66655fdc5106ddd6e0832e1a8e8fb15224a9e929c9d",
+    "day": 360,
+    "cash": -47978.8,
+    "rng": 2064601709,
+    "months": 12
+  },
+  {
+    "name": "b5-old.json",
+    "save": {
+      "version": 6,
+      "seed": 7,
+      "day": 750,
+      "log": [
+        {
+          "day": 0,
+          "command": {
+            "type": "bid",
+            "parcelId": "L1",
+            "amount": 31146
+          }
+        },
+        {
+          "day": 750,
+          "command": {
+            "type": "setAppearance",
+            "projectId": "P4",
+            "product": "villa",
+            "variant": "b"
+          }
+        },
+        {
+          "day": 750,
+          "command": {
+            "type": "setAppearance",
+            "projectId": "P4",
+            "product": "commercial",
+            "variant": "c"
+          }
+        },
+        {
+          "day": 750,
+          "command": {
+            "type": "setMarketing",
+            "projectId": "P4",
+            "rate": 0.06
+          }
+        }
+      ],
+      "legacyV2Until": 750,
+      "legacyV2LogCount": 3,
+      "legacyV3Until": 750,
+      "legacyV3LogCount": 3,
+      "legacyV4Until": 750,
+      "legacyV4LogCount": 3,
+      "revision": 189,
+      "legacyV5Until": 750,
+      "legacyV5LogCount": 4
+    },
+    "sha256": "3ebfd5a15716619139f34d2487d29a1a66ac43ad8a3ac749a4eb67c2ed1eaf54",
+    "day": 750,
+    "cash": 59215.56733594119,
+    "rng": -1877023606,
+    "months": 25
+  },
+  {
+    "name": "v5-boundary-v6-tail",
+    "save": {
+      "version": 6,
+      "seed": 7,
+      "day": 780,
+      "log": [
+        {
+          "day": 0,
+          "command": {
+            "type": "bid",
+            "parcelId": "L1",
+            "amount": 31146
+          }
+        },
+        {
+          "day": 750,
+          "command": {
+            "type": "setAppearance",
+            "projectId": "P4",
+            "product": "villa",
+            "variant": "b"
+          }
+        },
+        {
+          "day": 750,
+          "command": {
+            "type": "setAppearance",
+            "projectId": "P4",
+            "product": "commercial",
+            "variant": "c"
+          }
+        },
+        {
+          "day": 750,
+          "command": {
+            "type": "setMarketing",
+            "projectId": "P4",
+            "rate": 0.06
+          }
+        },
+        {
+          "day": 750,
+          "command": {
+            "type": "setMarketing",
+            "projectId": "P4",
+            "rate": 0.06
+          }
+        }
+      ],
+      "legacyV2Until": 750,
+      "legacyV2LogCount": 3,
+      "legacyV3Until": 750,
+      "legacyV3LogCount": 3,
+      "legacyV4Until": 750,
+      "legacyV4LogCount": 3,
+      "revision": 189,
+      "legacyV5Until": 750,
+      "legacyV5LogCount": 4
+    },
+    "sha256": "a5d3a28c05a61f81a9fe07877671a8cb615b2ca4dba68f4982db4bbf97a18885",
+    "day": 780,
+    "cash": 60092.46899230266,
+    "rng": -109398990,
+    "months": 26
+  }
+]

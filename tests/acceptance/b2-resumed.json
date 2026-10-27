@@ -1,0 +1,25 @@
+{
+  "version": 3,
+  "seed": 8,
+  "day": 180,
+  "log": [
+    {
+      "day": 0,
+      "command": {
+        "type": "bid",
+        "parcelId": "L4",
+        "amount": 192156
+      }
+    },
+    {
+      "day": 150,
+      "command": {
+        "type": "borrow",
+        "channel": "devLoan",
+        "projectId": "P5",
+        "amount": 10000
+      }
+    }
+  ],
+  "revision": 0
+}

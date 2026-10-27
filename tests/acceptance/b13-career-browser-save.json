@@ -1,0 +1,18 @@
+{
+  "version": 15,
+  "seed": 1134166129,
+  "day": 0,
+  "log": [
+    {
+      "day": 0,
+      "command": {
+        "type": "startGame",
+        "options": {
+          "mode": "career",
+          "difficulty": "hard"
+        }
+      }
+    }
+  ],
+  "revision": 2
+}

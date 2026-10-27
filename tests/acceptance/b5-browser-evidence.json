@@ -1,0 +1,23 @@
+{
+  "settlement": {
+    "dialog": 350,
+    "dialogScroll": 350,
+    "metrics": "本公司项目利润\n1.50 亿\n销售净利率\n28.2%\n年化IRR\n78.7%\n自有资金回正\n16个月",
+    "page": 390,
+    "status": "第 4 年 · 4 月 1 日 · playing · 现金 6.5001亿 · 完结月报 39 · 流水 187 · 项目 closed · 速度 0",
+    "title": "项目结算",
+    "width": 390
+  },
+  "mainBeforeSpace": {
+    "coverage": "旧档历史保留；报表从 第3年2月1日 续玩起记录，迁移前流水未追溯，旧项目完整收益可能无法核实。",
+    "date": "第 3 年 · 2 月 1 日",
+    "open": true,
+    "speed": "0"
+  },
+  "mainAfterSpace": {
+    "coverage": "旧档历史保留；报表从 第3年2月1日 续玩起记录，迁移前流水未追溯，旧项目完整收益可能无法核实。",
+    "date": "第 3 年 · 2 月 1 日",
+    "open": true,
+    "speed": "0"
+  }
+}

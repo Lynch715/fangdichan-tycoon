@@ -1,0 +1,177 @@
+{
+  "runs": [
+    {
+      "seed": 1,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 59,
+      "cases": 0,
+      "sha256": "3909ac27d5b70cf55e279141b00724df5aa6700688cfd19454d78c2648354b41"
+    },
+    {
+      "seed": 1,
+      "strategy": "aggressive",
+      "day": 3600,
+      "commands": 523,
+      "cases": 6,
+      "sha256": "d20243204d4ba9d087a475b340bbea433a52f249230b4d2ef279128040b06e30"
+    },
+    {
+      "seed": 1,
+      "strategy": "bond",
+      "day": 2610,
+      "commands": 353,
+      "cases": 3,
+      "sha256": "c33c3af10aff3780c232226d38bebe142b1fc90e63409c702901f26aebc24730"
+    },
+    {
+      "seed": 2,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 61,
+      "cases": 0,
+      "sha256": "39649fda5dddef09efa3f62353129eee511f145326cacccc8414ff7487400f92"
+    },
+    {
+      "seed": 2,
+      "strategy": "aggressive",
+      "day": 360,
+      "commands": 13,
+      "cases": 0,
+      "sha256": "77247d1051aa9487e3491b732a75c3b5d98da8d3bbcf4519d46452ee4108327a"
+    },
+    {
+      "seed": 2,
+      "strategy": "bond",
+      "day": 3600,
+      "commands": 478,
+      "cases": 8,
+      "sha256": "8a81623edb1aced0ba9733670f6bec58d8df3a2818bc0d7b0117f3627781e349"
+    },
+    {
+      "seed": 7,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 56,
+      "cases": 0,
+      "sha256": "d2a25beb48aa95f52565e68b192b6a6af246accdb51e2c0cdbbf7374ba54ec4b"
+    },
+    {
+      "seed": 7,
+      "strategy": "aggressive",
+      "day": 1710,
+      "commands": 225,
+      "cases": 4,
+      "sha256": "c919d603ebc8a60364e49eef55552a20e14e55053e3f5e408d0982eb874902c8"
+    },
+    {
+      "seed": 7,
+      "strategy": "bond",
+      "day": 3600,
+      "commands": 534,
+      "cases": 10,
+      "sha256": "96ca977229423f905765d60a38222f5b57b06ef6fd1a5d9443159772c8e3fbde"
+    },
+    {
+      "seed": 13,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 57,
+      "cases": 0,
+      "sha256": "4b973549773fc122624f115ff93804c317c977e5ec2058658b54eb12cfdceedc"
+    },
+    {
+      "seed": 13,
+      "strategy": "aggressive",
+      "day": 3600,
+      "commands": 580,
+      "cases": 5,
+      "sha256": "6bfeb260ee189cdfa10065093d4862745953bfd8bf23ceafd28bb64d9fa0cd1f"
+    },
+    {
+      "seed": 13,
+      "strategy": "bond",
+      "day": 3600,
+      "commands": 468,
+      "cases": 6,
+      "sha256": "797e5fa2c0ad41fb112539a807aa60e85e9b5302fac757da6a34ff12c14e9895"
+    },
+    {
+      "seed": 32,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 63,
+      "cases": 0,
+      "sha256": "af92674402783d2c99e12e147fee2744fd8aa10b50ff5dfb6724eedb8f9e16ef"
+    },
+    {
+      "seed": 32,
+      "strategy": "aggressive",
+      "day": 2970,
+      "commands": 381,
+      "cases": 5,
+      "sha256": "10e34eb64528154bdf99b3ed4cea064ec7ceb424670721ea45a9b29584e09e27"
+    },
+    {
+      "seed": 32,
+      "strategy": "bond",
+      "day": 3600,
+      "commands": 555,
+      "cases": 4,
+      "sha256": "9947f5430b282cb066c5c68f71bd3c79364f719d846594ce9458bdc2ff6dba38"
+    }
+  ],
+  "revoked": {
+    "day": 1890,
+    "cash": 36134.870095319326,
+    "sold": 4005.753251053986,
+    "fine": 288.73059759965565,
+    "sha256": "87061aa8cb57c86b67006be4d11522f306276754a1a3df688ffac3ee24dedc00"
+  },
+  "restored": {
+    "day": 2010,
+    "cash": 37002.75644611046,
+    "sold": 6290.266638865043,
+    "sha256": "194844630d7e394826aad242f73812b2bccaa0f9498207b4eb5c89b7884ee3a3"
+  },
+  "banned": {
+    "day": 2250,
+    "cash": 115710.91649426658,
+    "bans": {
+      "outer": 2580,
+      "jiangbei": 2580
+    },
+    "auctions": [
+      {
+        "id": "L250",
+        "district": "jiangbei"
+      },
+      {
+        "id": "L251",
+        "district": "bishan"
+      },
+      {
+        "id": "L252",
+        "district": "yuzhong"
+      }
+    ],
+    "sha256": "2399268cf3c57506da2900f176b3115de6d2836ef961b1b3896dc8f4c91d9243"
+  },
+  "browser": [
+    {
+      "name": "b10-restored-browser-save.json",
+      "day": 2010,
+      "sha256": "194844630d7e394826aad242f73812b2bccaa0f9498207b4eb5c89b7884ee3a3"
+    },
+    {
+      "name": "b10-ban-browser-save.json",
+      "day": 2250,
+      "sha256": "2399268cf3c57506da2900f176b3115de6d2836ef961b1b3896dc8f4c91d9243"
+    },
+    {
+      "name": "b10-old-browser-save.json",
+      "day": 330,
+      "sha256": "1a5e163800c4fe01956dff3512a4613b97a32e40c582d00d39e9256d1d69bfe1"
+    }
+  ]
+}

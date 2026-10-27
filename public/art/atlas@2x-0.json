@@ -1,0 +1,276 @@
+{
+  "frames": {
+    "stage_tower_topped_2x2_a": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 512,
+        "h": 653
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 653
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 653
+      },
+      "anchor": {
+        "x": 0.512673966500794,
+        "y": 0.9979320809614232
+      },
+      "footprint": {
+        "cells": 2,
+        "width": 256,
+        "height": 128
+      }
+    },
+    "building_tower_2x2_b": {
+      "frame": {
+        "x": 518,
+        "y": 2,
+        "w": 513,
+        "h": 652
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 513,
+        "h": 652
+      },
+      "sourceSize": {
+        "w": 513,
+        "h": 652
+      },
+      "anchor": {
+        "x": 0.5003121254122094,
+        "y": 0.9986773039498357
+      },
+      "footprint": {
+        "cells": 2,
+        "width": 256,
+        "height": 128
+      }
+    },
+    "building_tower_2x2_a": {
+      "frame": {
+        "x": 1035,
+        "y": 2,
+        "w": 513,
+        "h": 613
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 513,
+        "h": 613
+      },
+      "sourceSize": {
+        "w": 513,
+        "h": 613
+      },
+      "anchor": {
+        "x": 0.49962148985795524,
+        "y": 0.9998664076103727
+      },
+      "footprint": {
+        "cells": 2,
+        "width": 256,
+        "height": 128
+      }
+    },
+    "building_tower_2x2_c": {
+      "frame": {
+        "x": 2,
+        "y": 659,
+        "w": 513,
+        "h": 565
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 513,
+        "h": 565
+      },
+      "sourceSize": {
+        "w": 513,
+        "h": 565
+      },
+      "anchor": {
+        "x": 0.5201427161725548,
+        "y": 0.9986752214713515
+      },
+      "footprint": {
+        "cells": 2,
+        "width": 256,
+        "height": 128
+      }
+    },
+    "stage_tower_frame_2x2_a": {
+      "frame": {
+        "x": 519,
+        "y": 659,
+        "w": 554,
+        "h": 553
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 554,
+        "h": 553
+      },
+      "sourceSize": {
+        "w": 554,
+        "h": 553
+      },
+      "anchor": {
+        "x": 0.47044802150121917,
+        "y": 0.9980660914557778
+      },
+      "footprint": {
+        "cells": 2,
+        "width": 256,
+        "height": 128
+      }
+    },
+    "stage_tower_abandoned_2x2_a": {
+      "frame": {
+        "x": 1077,
+        "y": 659,
+        "w": 570,
+        "h": 525
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 570,
+        "h": 525
+      },
+      "sourceSize": {
+        "w": 570,
+        "h": 525
+      },
+      "anchor": {
+        "x": 0.44738140601293447,
+        "y": 0.9982883523449358
+      },
+      "footprint": {
+        "cells": 2,
+        "width": 256,
+        "height": 128
+      }
+    },
+    "building_garden_2x2_b": {
+      "frame": {
+        "x": 2,
+        "y": 1228,
+        "w": 512,
+        "h": 444
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 444
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 444
+      },
+      "anchor": {
+        "x": 0.49293927472116095,
+        "y": 0.9991790051905343
+      },
+      "footprint": {
+        "cells": 2,
+        "width": 256,
+        "height": 128
+      }
+    },
+    "building_garden_2x2_c": {
+      "frame": {
+        "x": 518,
+        "y": 1228,
+        "w": 512,
+        "h": 439
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 439
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 439
+      },
+      "anchor": {
+        "x": 0.5093881460438708,
+        "y": 0.9991422970026236
+      },
+      "footprint": {
+        "cells": 2,
+        "width": 256,
+        "height": 128
+      }
+    },
+    "building_garden_2x2_a": {
+      "frame": {
+        "x": 1034,
+        "y": 1228,
+        "w": 512,
+        "h": 437
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 437
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 437
+      },
+      "anchor": {
+        "x": 0.4925549497009673,
+        "y": 0.9988490255949047
+      },
+      "footprint": {
+        "cells": 2,
+        "width": 256,
+        "height": 128
+      }
+    }
+  },
+  "meta": {
+    "app": "房地产大亨 art-pipeline",
+    "version": "1",
+    "image": "atlas@2x-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1649,
+      "h": 1678
+    },
+    "scale": "2"
+  }
+}

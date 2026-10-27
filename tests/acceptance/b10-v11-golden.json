@@ -1,0 +1,394 @@
+[
+  {
+    "name": "b9-project-browser-save.json",
+    "save": {
+      "version": 11,
+      "seed": 10,
+      "day": 330,
+      "log": [
+        {
+          "day": 0,
+          "command": {
+            "type": "bid",
+            "parcelId": "L2",
+            "amount": 15000
+          }
+        },
+        {
+          "day": 30,
+          "command": {
+            "type": "startProject",
+            "projectId": "P6",
+            "contractor": "standard"
+          }
+        }
+      ],
+      "revision": 17
+    },
+    "sha256": "f9f52626e8aefb8073be48f96dd08416e859c84bc6ab87aa1a11664fb9d64d1a",
+    "cash": 42930.82997412782,
+    "day": 330,
+    "rng": -1045788042
+  },
+  {
+    "name": "b9-old-browser-save.json",
+    "save": {
+      "version": 11,
+      "seed": 1,
+      "day": 240,
+      "log": [
+        {
+          "day": 0,
+          "command": {
+            "type": "borrow",
+            "channel": "bond",
+            "amount": 30000,
+            "termMonths": 60
+          }
+        },
+        {
+          "day": 1,
+          "command": {
+            "type": "borrow",
+            "channel": "trust",
+            "amount": 40000
+          }
+        },
+        {
+          "day": 1,
+          "command": {
+            "type": "bid",
+            "parcelId": "L1",
+            "amount": 63424
+          }
+        },
+        {
+          "day": 1,
+          "command": {
+            "type": "bid",
+            "parcelId": "L2",
+            "amount": 50211
+          }
+        },
+        {
+          "day": 1,
+          "command": {
+            "type": "bid",
+            "parcelId": "L3",
+            "amount": 114840
+          }
+        },
+        {
+          "day": 30,
+          "command": {
+            "type": "startProject",
+            "projectId": "P6",
+            "contractor": "standard"
+          }
+        },
+        {
+          "day": 30,
+          "command": {
+            "type": "startProject",
+            "projectId": "P7",
+            "contractor": "standard"
+          }
+        },
+        {
+          "day": 30,
+          "command": {
+            "type": "startProject",
+            "projectId": "P8",
+            "contractor": "standard"
+          }
+        },
+        {
+          "day": 31,
+          "command": {
+            "type": "setPace",
+            "projectId": "P6",
+            "pace": "fast"
+          }
+        },
+        {
+          "day": 31,
+          "command": {
+            "type": "borrow",
+            "channel": "devLoan",
+            "amount": 15660,
+            "projectId": "P6"
+          }
+        },
+        {
+          "day": 31,
+          "command": {
+            "type": "setPace",
+            "projectId": "P7",
+            "pace": "fast"
+          }
+        },
+        {
+          "day": 31,
+          "command": {
+            "type": "borrow",
+            "channel": "devLoan",
+            "amount": 10260,
+            "projectId": "P7"
+          }
+        },
+        {
+          "day": 31,
+          "command": {
+            "type": "setPace",
+            "projectId": "P8",
+            "pace": "fast"
+          }
+        },
+        {
+          "day": 31,
+          "command": {
+            "type": "borrow",
+            "channel": "devLoan",
+            "amount": 18720,
+            "projectId": "P8"
+          }
+        }
+      ],
+      "legacyV10Until": 240,
+      "legacyV10LogCount": 14,
+      "revision": 4
+    },
+    "sha256": "d60696b0d6d60ab3ba0fe65aa3ca0ebe2c0b3630024628be59aeacb52457e276",
+    "cash": -11688.526829524164,
+    "day": 240,
+    "rng": -1030635451
+  },
+  {
+    "name": "b8-paid-browser-save.json",
+    "save": {
+      "version": 11,
+      "seed": 1,
+      "day": 270,
+      "log": [
+        {
+          "day": 0,
+          "command": {
+            "type": "borrow",
+            "channel": "bond",
+            "amount": 30000,
+            "termMonths": 60
+          }
+        },
+        {
+          "day": 1,
+          "command": {
+            "type": "borrow",
+            "channel": "trust",
+            "amount": 40000
+          }
+        },
+        {
+          "day": 1,
+          "command": {
+            "type": "bid",
+            "parcelId": "L1",
+            "amount": 63424
+          }
+        },
+        {
+          "day": 1,
+          "command": {
+            "type": "bid",
+            "parcelId": "L2",
+            "amount": 50211
+          }
+        },
+        {
+          "day": 1,
+          "command": {
+            "type": "bid",
+            "parcelId": "L3",
+            "amount": 114840
+          }
+        },
+        {
+          "day": 30,
+          "command": {
+            "type": "startProject",
+            "projectId": "P6",
+            "contractor": "standard"
+          }
+        },
+        {
+          "day": 30,
+          "command": {
+            "type": "startProject",
+            "projectId": "P7",
+            "contractor": "standard"
+          }
+        },
+        {
+          "day": 30,
+          "command": {
+            "type": "startProject",
+            "projectId": "P8",
+            "contractor": "standard"
+          }
+        },
+        {
+          "day": 31,
+          "command": {
+            "type": "setPace",
+            "projectId": "P6",
+            "pace": "fast"
+          }
+        },
+        {
+          "day": 31,
+          "command": {
+            "type": "borrow",
+            "channel": "devLoan",
+            "amount": 15660,
+            "projectId": "P6"
+          }
+        },
+        {
+          "day": 31,
+          "command": {
+            "type": "setPace",
+            "projectId": "P7",
+            "pace": "fast"
+          }
+        },
+        {
+          "day": 31,
+          "command": {
+            "type": "borrow",
+            "channel": "devLoan",
+            "amount": 10260,
+            "projectId": "P7"
+          }
+        },
+        {
+          "day": 31,
+          "command": {
+            "type": "setPace",
+            "projectId": "P8",
+            "pace": "fast"
+          }
+        },
+        {
+          "day": 31,
+          "command": {
+            "type": "borrow",
+            "channel": "devLoan",
+            "amount": 18720,
+            "projectId": "P8"
+          }
+        }
+      ],
+      "revision": 6,
+      "legacyV10Until": 270,
+      "legacyV10LogCount": 14
+    },
+    "sha256": "b5b9c96b05e64667e19b4812f7d5c3c3005b40441f6f616ff3ce2f7993619b74",
+    "cash": -34283.31574775426,
+    "day": 270,
+    "rng": -1350341436
+  },
+  {
+    "name": "b7-amenity-browser-save.json",
+    "save": {
+      "version": 11,
+      "seed": 1,
+      "day": 840,
+      "log": [
+        {
+          "day": 811,
+          "command": {
+            "type": "bid",
+            "parcelId": "L37",
+            "amount": 6013,
+            "amenityRate": 0.12
+          }
+        }
+      ],
+      "revision": 6,
+      "legacyV9Until": 840,
+      "legacyV9LogCount": 1,
+      "legacyV10Until": 840,
+      "legacyV10LogCount": 1
+    },
+    "sha256": "a41835440051ec4da18728782d6eb9ff872ba70cabb26e6cda69bb1ee496431d",
+    "cash": 46993.5,
+    "day": 840,
+    "rng": -869117060
+  },
+  {
+    "name": "b6d-main-after.json",
+    "save": {
+      "version": 11,
+      "seed": 7,
+      "day": 750,
+      "log": [
+        {
+          "day": 0,
+          "command": {
+            "type": "bid",
+            "parcelId": "L1",
+            "amount": 31146
+          }
+        },
+        {
+          "day": 750,
+          "command": {
+            "type": "setAppearance",
+            "projectId": "P4",
+            "product": "villa",
+            "variant": "b"
+          }
+        },
+        {
+          "day": 750,
+          "command": {
+            "type": "setAppearance",
+            "projectId": "P4",
+            "product": "commercial",
+            "variant": "c"
+          }
+        },
+        {
+          "day": 750,
+          "command": {
+            "type": "setMarketing",
+            "projectId": "P4",
+            "rate": 0.06
+          }
+        }
+      ],
+      "legacyV2Until": 750,
+      "legacyV2LogCount": 3,
+      "legacyV3Until": 750,
+      "legacyV3LogCount": 3,
+      "legacyV4Until": 750,
+      "legacyV4LogCount": 3,
+      "legacyV5Until": 750,
+      "legacyV5LogCount": 4,
+      "legacyV6Until": 750,
+      "legacyV6LogCount": 4,
+      "legacyV7Until": 750,
+      "legacyV7LogCount": 4,
+      "revision": 314,
+      "legacyV8Until": 750,
+      "legacyV8LogCount": 4,
+      "legacyV9Until": 750,
+      "legacyV9LogCount": 4,
+      "legacyV10Until": 750,
+      "legacyV10LogCount": 4
+    },
+    "sha256": "f1bb3aa9ff027f6647663fcd8aa796c338c4fd7bad91fb5814be7578cd277caf",
+    "cash": 59215.56733594119,
+    "day": 750,
+    "rng": -1877023606
+  }
+]

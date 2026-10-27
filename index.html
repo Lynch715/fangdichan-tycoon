@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0F1419">
+  <title>房地产大亨</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <div class="brand"><span class="logo">房地产大亨</span><span class="muted small company">山城置业</span></div>
+      <div class="clock">
+        <span id="date"></span>
+        <div class="speed" role="group" aria-label="游戏速度">
+          <button data-speed="0" aria-label="暂停"><svg width="12" height="12" viewBox="0 0 14 14" aria-hidden="true"><rect x="2" y="1" width="3.5" height="12" rx="1" fill="currentColor"/><rect x="8.5" y="1" width="3.5" height="12" rx="1" fill="currentColor"/></svg></button>
+          <button data-speed="1">1×</button>
+          <button data-speed="2">2×</button>
+          <button data-speed="4">4×</button>
+        </div>
+      </div>
+      <div class="top-right">
+        <span class="desktop-only muted small">市场情绪 <b id="sentiment" class="ok-text"></b></span>
+        <span class="mobile-status"><b id="m-cash"></b><span id="m-lights" class="lights"></span><span id="m-tier"></span><b id="m-rating"></b></span>
+        <button class="ghost desktop-only" data-act="restart">重新开始</button>
+      </div>
+    </header>
+
+    <aside class="panel left" aria-label="财务">
+      <div id="session"></div>
+      <div id="finance"></div>
+      <span id="storage-status" class="small muted" role="status"></span>
+      <span id="offline-status" class="small muted" role="status">离线缓存准备中</span>
+      <div class="row"><button class="ghost" data-act="export">导出存档</button><button class="ghost" data-act="import">导入存档</button></div>
+      <button class="ghost" data-act="reports">经营报表与复盘</button>
+      <input id="import-save" type="file" accept="application/json,.json" hidden>
+      <details><summary>经营消息</summary><div id="activity" class="stack"></div></details>
+      <button class="ghost mobile-only" data-act="restart">重新开始</button>
+    </aside>
+
+    <main class="map">
+      <div id="map-canvas"></div>
+      <div class="region-switch" role="group" aria-label="地图区域"><button data-map="city" class="on">重庆主城</button><button data-map="outer">外围主城</button><button data-map="suburb">远郊区县</button></div>
+      <div id="toast" class="toast" role="status"></div>
+      <div class="map-controls">
+        <button data-act="zoom-in" aria-label="放大">+</button>
+        <button data-act="zoom-out" aria-label="缩小">−</button>
+        <button data-act="fit" aria-label="重置视角">⟲</button>
+      </div>
+      <div class="legend"><span><i class="sw mine"></i>我的项目</span><span><i class="sw parcel"></i>待拍地块</span><span class="muted">示意地图</span></div>
+    </main>
+
+    <aside class="panel right">
+      <section class="projects-wrap">
+        <div class="row between"><h2>项目看板</h2></div>
+        <div id="projects" class="cards"></div>
+      </section>
+      <section class="auctions-wrap">
+        <div id="districts" class="cards"></div>
+        <div class="row between"><h2>本季土地拍卖</h2><span id="auction-count" class="muted small"></span></div>
+        <div id="auctions" class="cards"></div>
+      </section>
+    </aside>
+
+    <footer id="news" class="news-bar"></footer>
+
+    <nav class="tabs" aria-label="主导航">
+      <button data-tab="map">地图</button>
+      <button data-tab="finance">财务</button>
+      <button data-tab="projects">项目</button>
+      <button data-tab="land">拍地</button>
+    </nav>
+  </div>
+  <dialog id="acquisition-dialog" class="acquisition-dialog" aria-labelledby="acquisition-title"></dialog>
+  <dialog id="capital-dialog" class="acquisition-dialog" aria-labelledby="capital-title"></dialog>
+  <dialog id="setup-dialog" class="acquisition-dialog setup-dialog" aria-labelledby="setup-title"></dialog>
+  <dialog id="reports-dialog" aria-labelledby="report-title"></dialog>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

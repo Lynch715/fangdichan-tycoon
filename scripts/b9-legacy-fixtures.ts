@@ -1,0 +1,3 @@
+import{readFileSync,writeFileSync}from'node:fs';import{createHash}from'node:crypto';import{restore,validateSave}from'../src/legacy-v10/restore.ts';
+const input=['b8-issue-browser-save.json','b8-day-240.json','b8-paid-browser-save.json','b7-amenity-browser-save.json','b6d-main-after.json'];
+const out=input.map(name=>{const save=validateSave(JSON.parse(readFileSync('tests/acceptance/'+name,'utf8')))!,s=restore(save);return{name,save,sha256:createHash('sha256').update(JSON.stringify(s)).digest('hex'),cash:s.cash,day:s.day,rng:s.rng};});writeFileSync('tests/acceptance/b9-v10-golden.json',JSON.stringify(out,null,2)+'\n');console.log(out.map(x=>({name:x.name,day:x.day})));

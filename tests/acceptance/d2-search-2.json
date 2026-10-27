@@ -1,0 +1,10 @@
+[
+ {"name":"horizon1-land20","common":{"liquidityMonths":1},"aggressive":{"landFundingRate":0.2,"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20}},
+ {"name":"horizon1-land25","common":{"liquidityMonths":1},"aggressive":{"landFundingRate":0.25,"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20}},
+ {"name":"horizon1-hidden50","common":{"liquidityMonths":1},"aggressive":{"landFundingRate":0.2,"buildReserveRate":0,"hiddenUsage":0.5,"maxActive":20}},
+ {"name":"horizon1-hidden100","common":{"liquidityMonths":1},"aggressive":{"landFundingRate":0.2,"buildReserveRate":0,"hiddenUsage":1,"maxActive":20}},
+ {"name":"horizon0-land20","common":{"liquidityMonths":0},"aggressive":{"landFundingRate":0.2,"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20}},
+ {"name":"horizon1-nobuffer","common":{"liquidityMonths":1},"aggressive":{"landFundingRate":0.2,"buildReserveRate":0,"cashReserve":0,"hiddenUsage":0.25,"maxActive":20}},
+ {"name":"horizon1-lowprice","common":{"liquidityMonths":1},"aggressive":{"landFundingRate":0.2,"bidFactor":1.25,"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20}},
+ {"name":"baseline-conservative","common":{"liquidityMonths":1}}
+]

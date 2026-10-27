@@ -1,0 +1,19 @@
+{
+  "version": 15,
+  "seed": 21277843,
+  "day": 0,
+  "log": [
+    {
+      "day": 0,
+      "command": {
+        "type": "startGame",
+        "options": {
+          "mode": "challenge",
+          "difficulty": "standard",
+          "challenge": "delivery"
+        }
+      }
+    }
+  ],
+  "revision": 9
+}

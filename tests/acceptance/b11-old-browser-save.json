@@ -1,0 +1,66 @@
+{
+  "version": 13,
+  "seed": 1,
+  "day": 2010,
+  "log": [
+    {
+      "day": 1350,
+      "command": {
+        "type": "bid",
+        "parcelId": "L62",
+        "amount": 12086,
+        "amenityRate": 0
+      }
+    },
+    {
+      "day": 1380,
+      "command": {
+        "type": "startProject",
+        "projectId": "P65",
+        "contractor": "standard"
+      }
+    },
+    {
+      "day": 1380,
+      "command": {
+        "type": "setPrice",
+        "projectId": "P65",
+        "priceFactor": 1.2
+      }
+    },
+    {
+      "day": 1890,
+      "command": {
+        "type": "setPrice",
+        "projectId": "P65",
+        "priceFactor": 1.15
+      }
+    },
+    {
+      "day": 1890,
+      "command": {
+        "type": "setPrice",
+        "projectId": "P65",
+        "priceFactor": 1.0999999999999999
+      }
+    },
+    {
+      "day": 1890,
+      "command": {
+        "type": "setPrice",
+        "projectId": "P65",
+        "priceFactor": 1.0499999999999998
+      }
+    },
+    {
+      "day": 1980,
+      "command": {
+        "type": "filePrice",
+        "projectId": "P65"
+      }
+    }
+  ],
+  "legacyV12Until": 2010,
+  "legacyV12LogCount": 7,
+  "revision": 4
+}

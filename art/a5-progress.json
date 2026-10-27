@@ -1,0 +1,192 @@
+{
+  "planned": 26,
+  "plannedStages": 0,
+  "plannedBuildings": 26,
+  "plannedTerrain": 0,
+  "plannedDecorations": 0,
+  "approved": 26,
+  "results": [
+    {
+      "id": "building_tower_2x2_a",
+      "status": "approved",
+      "ratio": 1.9721062545650252,
+      "sideHeight": 0,
+      "sha256": "46715db752a76da44779052e10c74288e1f299cb3a2cd4d8e4e65988c904a496"
+    },
+    {
+      "id": "building_garden_2x2_a",
+      "status": "approved",
+      "ratio": 1.9336641466086075,
+      "sideHeight": 0,
+      "sha256": "5e24e3d84f29e7c26acf0471bf3be744902e93209cb68573ad201bcdccde232f"
+    },
+    {
+      "id": "building_tower_2x2_b",
+      "status": "approved",
+      "ratio": 1.9648613481307629,
+      "sideHeight": 0,
+      "sha256": "0c87264659abceab14b191f6547b52ac4f6332e03d7cffc3d6163f1015aaf42b"
+    },
+    {
+      "id": "building_tower_2x2_c",
+      "status": "approved",
+      "ratio": 1.9863645869640987,
+      "sideHeight": 0,
+      "sha256": "0d053f8d9f78315abfd95e33babacd94767aae12fb0cbb418a42302036111887"
+    },
+    {
+      "id": "building_garden_2x2_b",
+      "status": "approved",
+      "ratio": 2.0146663562140303,
+      "sideHeight": 0,
+      "sha256": "3531c55f3f82b22bb37815307b357aa26e23e2c892edb7736c5522067a86adc9"
+    },
+    {
+      "id": "building_garden_2x2_c",
+      "status": "approved",
+      "ratio": 1.9915610181608308,
+      "sideHeight": 0,
+      "sha256": "f7a50bec29a48652436dc886f7413c0f79b22ab1812095ba05169d66d09193da"
+    },
+    {
+      "id": "building_villa_2x2_a",
+      "status": "approved",
+      "ratio": 1.9562069440617247,
+      "sideHeight": 0,
+      "sha256": "a53ec006e370046bbe52aa32a604cf71399a0948db1a188e1c3dad92560ff727"
+    },
+    {
+      "id": "building_villa_2x2_b",
+      "status": "approved",
+      "ratio": 1.9784670081050173,
+      "sideHeight": 0,
+      "sha256": "f34c8ac8de710820732fa907b0841f6ca860055c75314d9b11339fdae1775a1b"
+    },
+    {
+      "id": "building_villa_2x2_c",
+      "status": "approved",
+      "ratio": 1.9329967790034623,
+      "sideHeight": 0,
+      "sha256": "1618db5775101995622104cf8b609742b9c7ce3548ff8cfffbe1ca884c7e8ee6"
+    },
+    {
+      "id": "building_commercial_2x2_a",
+      "status": "approved",
+      "ratio": 2.099742829072836,
+      "sideHeight": 0,
+      "sha256": "c386550a5a377fdb08bf1599c7da4db515ee14c5663a0abe918bee7b281d0903"
+    },
+    {
+      "id": "building_commercial_2x2_b",
+      "status": "approved",
+      "ratio": 1.9737636242934677,
+      "sideHeight": 0,
+      "sha256": "baa883a47872f6fac64f8e5d70231912f570838edf0c0d241e9663fb769f43f3"
+    },
+    {
+      "id": "building_commercial_2x2_c",
+      "status": "approved",
+      "ratio": 2.049635233187865,
+      "sideHeight": 0,
+      "sha256": "1c165912ccae040a5ceaceaad92225691e6a5ff49ccbf89f493d845695c93b85"
+    },
+    {
+      "id": "background_walkup_1x1_a",
+      "status": "approved",
+      "ratio": 2.0444536293497073,
+      "sideHeight": 0,
+      "sha256": "30fa3ddfa5b131222876dee977d28b349ce9867f48cc5cc4df2509139ffd881f"
+    },
+    {
+      "id": "background_walkup_1x1_b",
+      "status": "approved",
+      "ratio": 1.9822235522968732,
+      "sideHeight": 0,
+      "sha256": "0682dedb3cd322eed2995dfd6fb2420ed756e0321ee345e0b6395622c46ca1e2"
+    },
+    {
+      "id": "background_walkup_1x1_c",
+      "status": "approved",
+      "ratio": 2.063219662615636,
+      "sideHeight": 0,
+      "sha256": "05ec9a8ddcad095827f1c13bbaa590f983bc8d9e39986ec4be02617373807c56"
+    },
+    {
+      "id": "background_office_1x1_a",
+      "status": "approved",
+      "ratio": 2.0729456361236194,
+      "sideHeight": 0,
+      "sha256": "7c2f529755dd0256c501d4acde0443427d0c0689a5e9cbc1deed601c597f3836"
+    },
+    {
+      "id": "background_office_1x1_b",
+      "status": "approved",
+      "ratio": 1.953696534161699,
+      "sideHeight": 0,
+      "sha256": "1bee0e211d87b56c3ccb1bd984e3d38ee5fe3e04d40facda3f1d31ac3f6832a3"
+    },
+    {
+      "id": "background_school_1x1_a",
+      "status": "approved",
+      "ratio": 1.988969715568456,
+      "sideHeight": 0,
+      "sha256": "d844aff364ade3c4fdc0bfa71a67aa03166e6bc7d4fe611025ee9114e505c0e3"
+    },
+    {
+      "id": "background_school_1x1_b",
+      "status": "approved",
+      "ratio": 1.9627453206144316,
+      "sideHeight": 0,
+      "sha256": "d00ce6fbe100c9fb2b0e598ee32bd77e983d0abce3d2dab052f671c5e776e8b1"
+    },
+    {
+      "id": "background_metro_1x1_a",
+      "status": "approved",
+      "ratio": 1.9083532530313552,
+      "sideHeight": 0,
+      "sha256": "6ed6ec4603a4fa8ce77a1ee3fa14520f11179bb18f94939fa47aef0e16d8e3d1"
+    },
+    {
+      "id": "background_metro_1x1_b",
+      "status": "approved",
+      "ratio": 1.9513697221590833,
+      "sideHeight": 0,
+      "sha256": "9853120ed5ecd14e3df9e91678d24c05987d73c35b3218d24173d67b98f419ab"
+    },
+    {
+      "id": "background_shop_1x1_a",
+      "status": "approved",
+      "ratio": 1.9012982066298512,
+      "sideHeight": 0,
+      "sha256": "72d8a0eb1e41c8de3a16297abf2672deeb2e3a78c264fd2326666c6e6c9dbb20"
+    },
+    {
+      "id": "parcel_auction_2x2_a",
+      "status": "approved",
+      "ratio": 1.9994098463573504,
+      "sideHeight": 0,
+      "sha256": "ef4e10b7af8decbb895b63590269b361d36d6c5d154ddd3d05710dd9b036fa1c"
+    },
+    {
+      "id": "parcel_fenced_2x2_a",
+      "status": "approved",
+      "ratio": 1.9330922316642942,
+      "sideHeight": 0,
+      "sha256": "d3dc8f0f80f04c563378792d9a6f0d4a5839d87acd0610ca7948702faf612f49"
+    },
+    {
+      "id": "parcel_auction_3x3_a",
+      "status": "approved",
+      "ratio": 2.0055267858652224,
+      "sideHeight": 0,
+      "sha256": "cc6effeeb16c8ac963295ee5317516537564912a2a4b67a48bafb9eb800bd9c7"
+    },
+    {
+      "id": "parcel_fenced_3x3_a",
+      "status": "approved",
+      "ratio": 2.013193837661503,
+      "sideHeight": 0,
+      "sha256": "abb612558306c55c2655c5366b94116dab00825135066d0b2e6ef594dd5cbf9d"
+    }
+  ]
+}

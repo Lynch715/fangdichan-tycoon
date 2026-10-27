@@ -1,0 +1,42 @@
+{
+  "summary": [
+    {
+      "name": "保守策略",
+      "runs": 200,
+      "failed": 0,
+      "exactD2Distributions": true,
+      "reasons": {
+        "principal": 0,
+        "finance": 0,
+        "land": 0,
+        "construction": 0,
+        "risk": 0,
+        "transfer": 0,
+        "operations": 0,
+        "other": 0,
+        "unknown": 0
+      },
+      "downturnCoverage": 200
+    },
+    {
+      "name": "激进策略",
+      "runs": 200,
+      "failed": 62,
+      "exactD2Distributions": true,
+      "reasons": {
+        "principal": 52,
+        "finance": 2,
+        "land": 7,
+        "construction": 0,
+        "risk": 0,
+        "transfer": 0,
+        "operations": 1,
+        "other": 0,
+        "unknown": 0
+      },
+      "downturnCoverage": 155
+    }
+  ],
+  "noDownturnCase": "passed",
+  "configSha256": "61f449422e9761843225a257ba07ce6f4068d0aa9c3d0a9e32e1909e1240e90d"
+}

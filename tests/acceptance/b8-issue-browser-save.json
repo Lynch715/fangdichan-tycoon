@@ -1,0 +1,17 @@
+{
+  "version": 10,
+  "seed": 1,
+  "day": 0,
+  "log": [
+    {
+      "day": 0,
+      "command": {
+        "type": "borrow",
+        "channel": "bond",
+        "amount": 10000,
+        "termMonths": 60
+      }
+    }
+  ],
+  "revision": 5
+}

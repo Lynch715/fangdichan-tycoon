@@ -1,0 +1,24 @@
+pressure {
+  seed: 1,
+  day: 390,
+  cash: 28109.335514300557,
+  principal: 40000,
+  investment: 15857.074190852622,
+  commands: 39,
+  debts: [
+    {
+      id: 'D4',
+      channel: 'trust',
+      principal: 40000,
+      rate: 0.12,
+      oldDay: 541,
+      newDay: 901
+    }
+  ]
+}
+deficit {
+  seed: 1,
+  day: 1680,
+  cash: -147.71266003323035,
+  amount: 78772.70013565161
+}

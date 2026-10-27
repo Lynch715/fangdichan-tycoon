@@ -1,0 +1,10 @@
+[
+ {"name":"baseline-conservative"},
+ {"name":"land-50-build0","aggressive":{"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20}},
+ {"name":"land-40-build0","aggressive":{"landFundingRate":0.4,"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20}},
+ {"name":"land-30-build0","aggressive":{"landFundingRate":0.3,"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20}},
+ {"name":"land-20-build0","aggressive":{"landFundingRate":0.2,"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20}},
+ {"name":"land-50-cheaper","aggressive":{"bidFactor":1.2,"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20}},
+ {"name":"land-40-cheaper","aggressive":{"bidFactor":1.2,"landFundingRate":0.4,"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20}},
+ {"name":"land-30-cheaper","aggressive":{"bidFactor":1.2,"landFundingRate":0.3,"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20}}
+]

@@ -1,0 +1,593 @@
+{
+  "assets": [
+    {
+      "id": "terrain_grass_1x1_a",
+      "file": "terrain_grass_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_earth_1x1_a",
+      "file": "terrain_earth_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_paved_1x1_a",
+      "file": "terrain_paved_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_slope_ne_gentle_1x1_a",
+      "file": "terrain_slope_ne_gentle_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_slope_ne_steep_1x1_a",
+      "file": "terrain_slope_ne_steep_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_slope_nw_gentle_1x1_a",
+      "file": "terrain_slope_nw_gentle_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_slope_nw_steep_1x1_a",
+      "file": "terrain_slope_nw_steep_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_slope_se_gentle_1x1_a",
+      "file": "terrain_slope_se_gentle_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_slope_se_steep_1x1_a",
+      "file": "terrain_slope_se_steep_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_slope_sw_gentle_1x1_a",
+      "file": "terrain_slope_sw_gentle_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_slope_sw_steep_1x1_a",
+      "file": "terrain_slope_sw_steep_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_mountain_grass_1x1_a",
+      "file": "terrain_mountain_grass_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_mountain_rock_1x1_a",
+      "file": "terrain_mountain_rock_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_water_calm_1x1_a",
+      "file": "terrain_water_calm_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_water_ripple_1x1_a",
+      "file": "terrain_water_ripple_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_shore_n_1x1_a",
+      "file": "terrain_shore_n_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_shore_e_1x1_a",
+      "file": "terrain_shore_e_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_shore_s_1x1_a",
+      "file": "terrain_shore_s_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_shore_w_1x1_a",
+      "file": "terrain_shore_w_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_shore_corner_ne_1x1_a",
+      "file": "terrain_shore_corner_ne_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_shore_corner_nw_1x1_a",
+      "file": "terrain_shore_corner_nw_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_shore_corner_se_1x1_a",
+      "file": "terrain_shore_corner_se_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_shore_corner_sw_1x1_a",
+      "file": "terrain_shore_corner_sw_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_road_straight_ne_sw_1x1_a",
+      "file": "terrain_road_straight_ne_sw_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_road_straight_nw_se_1x1_a",
+      "file": "terrain_road_straight_nw_se_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_road_curve_1x1_a",
+      "file": "terrain_road_curve_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_road_tee_1x1_a",
+      "file": "terrain_road_tee_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_road_tee_alt_1x1_a",
+      "file": "terrain_road_tee_alt_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_road_cross_1x1_a",
+      "file": "terrain_road_cross_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_bridge_ne_sw_1x1_a",
+      "file": "terrain_bridge_ne_sw_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "terrain_bridge_nw_se_1x1_a",
+      "file": "terrain_bridge_nw_se_1x1_a.png",
+      "cells": 1,
+      "kind": "terrain",
+      "sideHeightRatio": 0.125
+    },
+    {
+      "id": "decor_trees_1x1_a",
+      "file": "decor_trees_1x1_a.png",
+      "cells": 1,
+      "kind": "decoration",
+      "groundCoverage": 0.7,
+      "maxHeightRatio": 0.8
+    },
+    {
+      "id": "decor_tree_tall_1x1_a",
+      "file": "decor_tree_tall_1x1_a.png",
+      "cells": 1,
+      "kind": "decoration",
+      "groundCoverage": 0.6,
+      "maxHeightRatio": 1
+    },
+    {
+      "id": "decor_rocks_1x1_a",
+      "file": "decor_rocks_1x1_a.png",
+      "cells": 1,
+      "kind": "decoration",
+      "groundCoverage": 0.6,
+      "maxHeightRatio": 0.3
+    },
+    {
+      "id": "decor_boulder_1x1_a",
+      "file": "decor_boulder_1x1_a.png",
+      "cells": 1,
+      "kind": "decoration",
+      "groundCoverage": 0.6,
+      "maxHeightRatio": 0.45
+    },
+    {
+      "id": "decor_lamp_1x1_a",
+      "file": "decor_lamp_1x1_a.png",
+      "cells": 1,
+      "kind": "decoration",
+      "groundCoverage": 0.2,
+      "maxHeightRatio": 0.5
+    },
+    {
+      "id": "decor_bench_1x1_a",
+      "file": "decor_bench_1x1_a.png",
+      "cells": 1,
+      "kind": "decoration",
+      "groundCoverage": 0.45,
+      "maxHeightRatio": 0.2
+    },
+    {
+      "id": "decor_shrubs_1x1_a",
+      "file": "decor_shrubs_1x1_a.png",
+      "cells": 1,
+      "kind": "decoration",
+      "groundCoverage": 0.55,
+      "maxHeightRatio": 0.3
+    },
+    {
+      "id": "decor_flowers_1x1_a",
+      "file": "decor_flowers_1x1_a.png",
+      "cells": 1,
+      "kind": "decoration",
+      "groundCoverage": 0.5,
+      "maxHeightRatio": 0.2
+    },
+    {
+      "id": "stage_tower_pit_2x2_a",
+      "file": "stage_tower_pit_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "productLine": "tower",
+      "stage": "pit"
+    },
+    {
+      "id": "stage_tower_ground_2x2_a",
+      "file": "stage_tower_ground_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "productLine": "tower",
+      "stage": "ground"
+    },
+    {
+      "id": "stage_tower_frame_2x2_a",
+      "file": "stage_tower_frame_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "productLine": "tower",
+      "stage": "frame"
+    },
+    {
+      "id": "stage_tower_topped_2x2_a",
+      "file": "stage_tower_topped_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "productLine": "tower",
+      "stage": "topped"
+    },
+    {
+      "id": "stage_tower_abandoned_2x2_a",
+      "file": "stage_tower_abandoned_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "productLine": "tower",
+      "stage": "abandoned"
+    },
+    {
+      "id": "stage_garden_pit_2x2_a",
+      "file": "stage_garden_pit_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "productLine": "garden",
+      "stage": "pit"
+    },
+    {
+      "id": "stage_garden_ground_2x2_a",
+      "file": "stage_garden_ground_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "productLine": "garden",
+      "stage": "ground"
+    },
+    {
+      "id": "stage_garden_frame_2x2_a",
+      "file": "stage_garden_frame_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "productLine": "garden",
+      "stage": "frame"
+    },
+    {
+      "id": "stage_garden_topped_2x2_a",
+      "file": "stage_garden_topped_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "productLine": "garden",
+      "stage": "topped"
+    },
+    {
+      "id": "stage_garden_abandoned_2x2_a",
+      "file": "stage_garden_abandoned_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "productLine": "garden",
+      "stage": "abandoned"
+    },
+    {
+      "id": "building_tower_2x2_a",
+      "file": "building_tower_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "group": "product"
+    },
+    {
+      "id": "building_garden_2x2_a",
+      "file": "building_garden_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "group": "product"
+    },
+    {
+      "id": "building_tower_2x2_b",
+      "file": "building_tower_2x2_b.png",
+      "cells": 2,
+      "kind": "building",
+      "group": "product",
+      "reference": "building_tower_2x2_a"
+    },
+    {
+      "id": "building_tower_2x2_c",
+      "file": "building_tower_2x2_c.png",
+      "cells": 2,
+      "kind": "building",
+      "group": "product",
+      "reference": "building_tower_2x2_a"
+    },
+    {
+      "id": "building_garden_2x2_b",
+      "file": "building_garden_2x2_b.png",
+      "cells": 2,
+      "kind": "building",
+      "group": "product",
+      "reference": "building_garden_2x2_a"
+    },
+    {
+      "id": "building_garden_2x2_c",
+      "file": "building_garden_2x2_c.png",
+      "cells": 2,
+      "kind": "building",
+      "group": "product",
+      "reference": "building_garden_2x2_a"
+    },
+    {
+      "id": "building_villa_2x2_a",
+      "file": "building_villa_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "group": "product",
+      "reference": "building_garden_2x2_a"
+    },
+    {
+      "id": "building_villa_2x2_b",
+      "file": "building_villa_2x2_b.png",
+      "cells": 2,
+      "kind": "building",
+      "group": "product",
+      "reference": "building_garden_2x2_a"
+    },
+    {
+      "id": "building_villa_2x2_c",
+      "file": "building_villa_2x2_c.png",
+      "cells": 2,
+      "kind": "building",
+      "group": "product",
+      "reference": "building_garden_2x2_a"
+    },
+    {
+      "id": "building_commercial_2x2_a",
+      "file": "building_commercial_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "group": "product",
+      "reference": "building_garden_2x2_a"
+    },
+    {
+      "id": "building_commercial_2x2_b",
+      "file": "building_commercial_2x2_b.png",
+      "cells": 2,
+      "kind": "building",
+      "group": "product",
+      "reference": "building_garden_2x2_a"
+    },
+    {
+      "id": "building_commercial_2x2_c",
+      "file": "building_commercial_2x2_c.png",
+      "cells": 2,
+      "kind": "building",
+      "group": "product",
+      "reference": "building_garden_2x2_a"
+    },
+    {
+      "id": "background_walkup_1x1_a",
+      "file": "background_walkup_1x1_a.png",
+      "cells": 1,
+      "kind": "building",
+      "group": "background"
+    },
+    {
+      "id": "background_walkup_1x1_b",
+      "file": "background_walkup_1x1_b.png",
+      "cells": 1,
+      "kind": "building",
+      "group": "background"
+    },
+    {
+      "id": "background_walkup_1x1_c",
+      "file": "background_walkup_1x1_c.png",
+      "cells": 1,
+      "kind": "building",
+      "group": "background"
+    },
+    {
+      "id": "background_office_1x1_a",
+      "file": "background_office_1x1_a.png",
+      "cells": 1,
+      "kind": "building",
+      "group": "background"
+    },
+    {
+      "id": "background_office_1x1_b",
+      "file": "background_office_1x1_b.png",
+      "cells": 1,
+      "kind": "building",
+      "group": "background"
+    },
+    {
+      "id": "background_school_1x1_a",
+      "file": "background_school_1x1_a.png",
+      "cells": 1,
+      "kind": "building",
+      "group": "background"
+    },
+    {
+      "id": "background_school_1x1_b",
+      "file": "background_school_1x1_b.png",
+      "cells": 1,
+      "kind": "building",
+      "group": "background"
+    },
+    {
+      "id": "background_metro_1x1_a",
+      "file": "background_metro_1x1_a.png",
+      "cells": 1,
+      "kind": "building",
+      "group": "background"
+    },
+    {
+      "id": "background_metro_1x1_b",
+      "file": "background_metro_1x1_b.png",
+      "cells": 1,
+      "kind": "building",
+      "group": "background"
+    },
+    {
+      "id": "background_shop_1x1_a",
+      "file": "background_shop_1x1_a.png",
+      "cells": 1,
+      "kind": "building",
+      "group": "background"
+    },
+    {
+      "id": "parcel_auction_2x2_a",
+      "file": "parcel_auction_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "group": "parcel"
+    },
+    {
+      "id": "parcel_fenced_2x2_a",
+      "file": "parcel_fenced_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "group": "parcel"
+    },
+    {
+      "id": "parcel_auction_3x3_a",
+      "file": "parcel_auction_3x3_a.png",
+      "cells": 3,
+      "kind": "building",
+      "group": "parcel"
+    },
+    {
+      "id": "parcel_fenced_3x3_a",
+      "file": "parcel_fenced_3x3_a.png",
+      "cells": 3,
+      "kind": "building",
+      "group": "parcel"
+    },
+    {
+      "id": "landmark_stilts_2x2_a",
+      "cells": 2,
+      "file": "landmark_stilts_2x2_a.png",
+      "kind": "building"
+    },
+    {
+      "id": "landmark_stilts_2x2_b",
+      "cells": 2,
+      "file": "landmark_stilts_2x2_b.png",
+      "kind": "building"
+    },
+    {
+      "id": "landmark_bridge_i_2x2_a",
+      "cells": 2,
+      "file": "landmark_bridge_i_2x2_a.png",
+      "kind": "building"
+    },
+    {
+      "id": "landmark_bridge_j_2x2_a",
+      "cells": 2,
+      "file": "landmark_bridge_j_2x2_a.png",
+      "kind": "building"
+    },
+    {
+      "id": "landmark_cableway_2x2_a",
+      "cells": 2,
+      "file": "landmark_cableway_2x2_a.png",
+      "kind": "building"
+    },
+    {
+      "id": "landmark_trail_2x2_a",
+      "cells": 2,
+      "file": "landmark_trail_2x2_a.png",
+      "kind": "building"
+    }
+  ]
+}

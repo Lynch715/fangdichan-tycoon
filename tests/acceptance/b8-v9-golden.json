@@ -1,0 +1,126 @@
+[
+  {
+    "name": "amenity-browser",
+    "save": {
+      "version": 9,
+      "seed": 1,
+      "day": 840,
+      "log": [
+        {
+          "day": 811,
+          "command": {
+            "type": "bid",
+            "parcelId": "L37",
+            "amount": 6013,
+            "amenityRate": 0.12
+          }
+        }
+      ],
+      "revision": 6
+    },
+    "sha256": "41f0eb95c9cf42765ba5a7759523d043942774a691a87ea82314494f1e23b0ba",
+    "cash": 46993.5,
+    "day": 840,
+    "rng": -869117060
+  },
+  {
+    "name": "lottery-browser",
+    "save": {
+      "version": 9,
+      "seed": 2,
+      "day": 1290,
+      "log": [
+        {
+          "day": 1261,
+          "command": {
+            "type": "bid",
+            "parcelId": "L62",
+            "amount": 9374
+          }
+        }
+      ],
+      "revision": 4
+    },
+    "sha256": "3f874fe4abd0f6bc18cd79cff5dcfaad96362d649484bfbec0ef9451e9fbef2f",
+    "cash": 50000,
+    "day": 1290,
+    "rng": -1403375535
+  },
+  {
+    "name": "native-default",
+    "save": {
+      "version": 9,
+      "seed": 1,
+      "day": 1800,
+      "log": [],
+      "revision": 0
+    },
+    "sha256": "ba2d274f1740920964098003c3d5ebe4ea0b8be640ced4b53c2d47e5ea339f93",
+    "cash": 50000,
+    "day": 1800,
+    "rng": -354256687
+  },
+  {
+    "name": "old-v8",
+    "save": {
+      "version": 9,
+      "seed": 7,
+      "day": 750,
+      "log": [
+        {
+          "day": 0,
+          "command": {
+            "type": "bid",
+            "parcelId": "L1",
+            "amount": 31146
+          }
+        },
+        {
+          "day": 750,
+          "command": {
+            "type": "setAppearance",
+            "projectId": "P4",
+            "product": "villa",
+            "variant": "b"
+          }
+        },
+        {
+          "day": 750,
+          "command": {
+            "type": "setAppearance",
+            "projectId": "P4",
+            "product": "commercial",
+            "variant": "c"
+          }
+        },
+        {
+          "day": 750,
+          "command": {
+            "type": "setMarketing",
+            "projectId": "P4",
+            "rate": 0.06
+          }
+        }
+      ],
+      "legacyV2Until": 750,
+      "legacyV2LogCount": 3,
+      "legacyV3Until": 750,
+      "legacyV3LogCount": 3,
+      "legacyV4Until": 750,
+      "legacyV4LogCount": 3,
+      "legacyV5Until": 750,
+      "legacyV5LogCount": 4,
+      "legacyV6Until": 750,
+      "legacyV6LogCount": 4,
+      "legacyV7Until": 750,
+      "legacyV7LogCount": 4,
+      "revision": 314,
+      "legacyV8Until": 750,
+      "legacyV8LogCount": 4
+    },
+    "sha256": "a9e829073a51daf40504d3c7df39611fb25fd86392e7136dc159664569fd57e6",
+    "cash": 59215.56733594119,
+    "day": 750,
+    "rng": -1877023606
+  }
+]

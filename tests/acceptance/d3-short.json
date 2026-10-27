@@ -1,0 +1,70 @@
+{
+  "runs": 1,
+  "years": 1,
+  "startSeed": 401,
+  "configSha256": "61f449422e9761843225a257ba07ce6f4068d0aa9c3d0a9e32e1909e1240e90d",
+  "target": {
+    "bankruptcy": false,
+    "medianRatio": null,
+    "median": false,
+    "lowerP10": true
+  },
+  "strategies": [
+    {
+      "name": "保守策略",
+      "bankruptcyRate": 0,
+      "reasons": {
+        "principal": 0,
+        "finance": 0,
+        "land": 0,
+        "construction": 0,
+        "risk": 0,
+        "transfer": 0,
+        "operations": 0,
+        "other": 0,
+        "unknown": 0
+      },
+      "runs": [
+        {
+          "seed": 401,
+          "day": 360,
+          "status": "playing",
+          "cash": 53296.737301287,
+          "equity": 47170.41157933025,
+          "profit": -2829.588420669752,
+          "landWon": 2,
+          "trigger": null,
+          "drawdown": null
+        }
+      ]
+    },
+    {
+      "name": "激进策略",
+      "bankruptcyRate": 0,
+      "reasons": {
+        "principal": 0,
+        "finance": 0,
+        "land": 0,
+        "construction": 0,
+        "risk": 0,
+        "transfer": 0,
+        "operations": 0,
+        "other": 0,
+        "unknown": 0
+      },
+      "runs": [
+        {
+          "seed": 401,
+          "day": 360,
+          "status": "playing",
+          "cash": 34829.46447048107,
+          "equity": 3503.668462917616,
+          "profit": -46496.331537082384,
+          "landWon": 10,
+          "trigger": null,
+          "drawdown": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "version": 12,
+  "seed": 1,
+  "day": 1890,
+  "log": [
+    {
+      "day": 1350,
+      "command": {
+        "type": "bid",
+        "parcelId": "L62",
+        "amount": 12086,
+        "amenityRate": 0
+      }
+    },
+    {
+      "day": 1380,
+      "command": {
+        "type": "startProject",
+        "projectId": "P65",
+        "contractor": "standard"
+      }
+    },
+    {
+      "day": 1380,
+      "command": {
+        "type": "setPrice",
+        "projectId": "P65",
+        "priceFactor": 1.2
+      }
+    }
+  ],
+  "revision": 0
+}

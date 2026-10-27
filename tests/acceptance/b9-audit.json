@@ -1,0 +1,228 @@
+{
+  "runs": [
+    {
+      "seed": 1,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 59,
+      "equity": 188516.40900356782,
+      "sha256": "77924b64b48a6065599030d68a03a8c2c0b1517073494c6fe24fb57069abecd9"
+    },
+    {
+      "seed": 1,
+      "strategy": "aggressive",
+      "day": 3600,
+      "commands": 542,
+      "equity": 559742.7585099643,
+      "sha256": "887e64725ee19d43cfaa7f62e0bb7cb058d1fa8c0c4c437558b7379c17883080"
+    },
+    {
+      "seed": 1,
+      "strategy": "bond",
+      "day": 2610,
+      "commands": 353,
+      "equity": 643512.7374638921,
+      "sha256": "ca1376320bccb1060f5ce23a788538454574c5dca3aa8a4ab8423484abde1398"
+    },
+    {
+      "seed": 2,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 61,
+      "equity": 236299.90337964328,
+      "sha256": "505c0e8fa173af157876c78394e934d477b8a40ab3c1c270a40fedf3634d7fcc"
+    },
+    {
+      "seed": 2,
+      "strategy": "aggressive",
+      "day": 360,
+      "commands": 13,
+      "equity": -48718.27441015658,
+      "sha256": "f245b100e28d65b4d824f2f6814ba4d50ebe720bc92757d15b51dc930ff11ce6"
+    },
+    {
+      "seed": 2,
+      "strategy": "bond",
+      "day": 3600,
+      "commands": 526,
+      "equity": 289690.93836112996,
+      "sha256": "5e7807617f7443d6b8acabd06071a4b7caa16eae95d29b04ac683981ee697ce5"
+    },
+    {
+      "seed": 7,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 56,
+      "equity": 145125.33393479686,
+      "sha256": "128cd8cc4b5f0c4de461bdb183b6eaeb1d2beddea594c5945df180a9291b30d3"
+    },
+    {
+      "seed": 7,
+      "strategy": "aggressive",
+      "day": 1710,
+      "commands": 225,
+      "equity": -156197.43278518866,
+      "sha256": "b4919a5e2b650612055d77dd77060f62ae8e396cc2f1174ef478c067c7de1560"
+    },
+    {
+      "seed": 7,
+      "strategy": "bond",
+      "day": 2760,
+      "commands": 391,
+      "equity": 753366.868965348,
+      "sha256": "40d94624c7981f6154d812c64188dd9d3adf6fc62a99820d523728771b84b2ef"
+    },
+    {
+      "seed": 13,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 57,
+      "equity": 211350.0031207789,
+      "sha256": "37cb0b315fb7ab7ec31696bfd1a7a2ea765f7a10da215ca034bda87986c71337"
+    },
+    {
+      "seed": 13,
+      "strategy": "aggressive",
+      "day": 3600,
+      "commands": 573,
+      "equity": 798460.881483159,
+      "sha256": "f5ee0b5a3a1f21e734dc43e5c03ce7ac417359a10ec5764e5d4f9ef073cd59c9"
+    },
+    {
+      "seed": 13,
+      "strategy": "bond",
+      "day": 3600,
+      "commands": 519,
+      "equity": 676619.9295629854,
+      "sha256": "47361c064fb21d7b7c802c848f89ff31d9468b358671d62e5b1f8a9a8f091746"
+    },
+    {
+      "seed": 32,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 63,
+      "equity": 213561.16665821816,
+      "sha256": "0a73c34b63798b89f01136e15afe5c9e9a9aaa11b49917f8eada963fbc18a0e4"
+    },
+    {
+      "seed": 32,
+      "strategy": "aggressive",
+      "day": 2970,
+      "commands": 409,
+      "equity": 665591.0861894717,
+      "sha256": "e5021bb84ead1212db000a28e2a7e2d4e8b3d591af757eaa746567a9d5e7650b"
+    },
+    {
+      "seed": 32,
+      "strategy": "bond",
+      "day": 3600,
+      "commands": 534,
+      "equity": 904276.1884946929,
+      "sha256": "61f9a80bdabf026c2f99d4f5341d04893449a3fd2c4960a6c49b2d31f12ab88c"
+    }
+  ],
+  "project": {
+    "day": 330,
+    "project": {
+      "attributes": {
+        "slope": "steep",
+        "scenery": "mountain",
+        "costFactor": 1.25,
+        "durationFactor": 1.2,
+        "priceFactor": 1.05
+      },
+      "marketingRate": 0.03,
+      "contractor": "standard",
+      "quality": 75,
+      "fundingStoppedMonths": 0,
+      "fundingGap": 0,
+      "takeover": null,
+      "id": "P6",
+      "name": "外围主城 L2",
+      "districtId": "outer",
+      "tiles": [
+        [
+          11,
+          5
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          11,
+          6
+        ],
+        [
+          12,
+          6
+        ]
+      ],
+      "buildArea": 29899.999999999996,
+      "saleableArea": 25414.999999999996,
+      "auction": {
+        "kind": "ascending",
+        "priceCap": null,
+        "required": [
+          {
+            "kind": "school",
+            "rate": 0.05
+          }
+        ],
+        "extraAmenityRate": 0
+      },
+      "landCost": 6611.1,
+      "landPaid": 6611.1,
+      "landDueDay": 210,
+      "buildCost": 11773.124999999998,
+      "buildSpent": 4087.8906249999995,
+      "progress": 0.34722222222222215,
+      "pace": "normal",
+      "stage": "construction",
+      "priceFactor": 1,
+      "soldArea": 5026.335217749947,
+      "salesIn": 4923.645123157566,
+      "escrowReleased": 4171.421562675159,
+      "completedDay": null,
+      "deliveredDay": null,
+      "closedDay": null,
+      "paperRatio": 0,
+      "partnerShare": 0,
+      "diverted": 0,
+      "stoppedUntil": 0,
+      "filedPrice": null,
+      "filingPrice": null,
+      "filingDueDay": null
+    },
+    "cash": 42930.82997412782,
+    "market": {
+      "population": 805980,
+      "netInflow": 571,
+      "stockArea": 54815.594075269284,
+      "salesHistory": [
+        1792.1605437184098,
+        1679.1737709742647,
+        3928.071610038045
+      ],
+      "absorptionMonths": 22.224322317036883,
+      "sinceDay": 0
+    },
+    "sha256": "f9f52626e8aefb8073be48f96dd08416e859c84bc6ab87aa1a11664fb9d64d1a"
+  },
+  "acquisition": {
+    "day": 1950,
+    "sha256": "975b7ac59c7cbdcf2b05703f1c1330c799ef14e8de6e26061ed7a644d72d7a7c"
+  },
+  "browser": [
+    {
+      "name": "b9-project-browser-save.json",
+      "day": 330,
+      "sha256": "f9f52626e8aefb8073be48f96dd08416e859c84bc6ab87aa1a11664fb9d64d1a"
+    },
+    {
+      "name": "b9-old-browser-save.json",
+      "day": 240,
+      "sha256": "d60696b0d6d60ab3ba0fe65aa3ca0ebe2c0b3630024628be59aeacb52457e276"
+    }
+  ]
+}

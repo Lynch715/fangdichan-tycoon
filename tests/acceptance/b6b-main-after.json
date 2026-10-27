@@ -1,0 +1,52 @@
+{
+  "version": 7,
+  "seed": 7,
+  "day": 750,
+  "log": [
+    {
+      "day": 0,
+      "command": {
+        "type": "bid",
+        "parcelId": "L1",
+        "amount": 31146
+      }
+    },
+    {
+      "day": 750,
+      "command": {
+        "type": "setAppearance",
+        "projectId": "P4",
+        "product": "villa",
+        "variant": "b"
+      }
+    },
+    {
+      "day": 750,
+      "command": {
+        "type": "setAppearance",
+        "projectId": "P4",
+        "product": "commercial",
+        "variant": "c"
+      }
+    },
+    {
+      "day": 750,
+      "command": {
+        "type": "setMarketing",
+        "projectId": "P4",
+        "rate": 0.06
+      }
+    }
+  ],
+  "legacyV2Until": 750,
+  "legacyV2LogCount": 3,
+  "legacyV3Until": 750,
+  "legacyV3LogCount": 3,
+  "legacyV4Until": 750,
+  "legacyV4LogCount": 3,
+  "legacyV5Until": 750,
+  "legacyV5LogCount": 4,
+  "legacyV6Until": 750,
+  "legacyV6LogCount": 4,
+  "revision": 280
+}

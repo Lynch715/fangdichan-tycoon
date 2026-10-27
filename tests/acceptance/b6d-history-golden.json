@@ -1,0 +1,104 @@
+[
+  {
+    "name": "native-default",
+    "save": {
+      "version": 8,
+      "seed": 7,
+      "day": 2160,
+      "log": [],
+      "revision": 0
+    },
+    "sha256": "50a7aa52d7089bc96cfd57d897f1101a983f2d978c7d440069de4c3d4307aa39"
+  },
+  {
+    "name": "native-acquisition",
+    "save": {
+      "version": 8,
+      "seed": 1,
+      "day": 1170,
+      "log": [
+        {
+          "day": 570,
+          "command": {
+            "type": "acquireProject",
+            "rivalId": "yuefeng",
+            "projectId": "yuefeng-P2"
+          }
+        }
+      ],
+      "revision": 24
+    },
+    "sha256": "c9567648e9cf24a24d0efe77eb538b3246b5378d03845dfd90257dc430237f70"
+  },
+  {
+    "name": "v7-history",
+    "save": {
+      "version": 8,
+      "seed": 7,
+      "day": 2160,
+      "log": [],
+      "revision": 0,
+      "legacyV7Until": 2160,
+      "legacyV7LogCount": 0
+    },
+    "sha256": "ff1392eba5e28076e3f662e86a3e0db376956acbbdc66ee1bc4a869a9d4335db"
+  },
+  {
+    "name": "main-history",
+    "save": {
+      "version": 8,
+      "seed": 7,
+      "day": 750,
+      "log": [
+        {
+          "day": 0,
+          "command": {
+            "type": "bid",
+            "parcelId": "L1",
+            "amount": 31146
+          }
+        },
+        {
+          "day": 750,
+          "command": {
+            "type": "setAppearance",
+            "projectId": "P4",
+            "product": "villa",
+            "variant": "b"
+          }
+        },
+        {
+          "day": 750,
+          "command": {
+            "type": "setAppearance",
+            "projectId": "P4",
+            "product": "commercial",
+            "variant": "c"
+          }
+        },
+        {
+          "day": 750,
+          "command": {
+            "type": "setMarketing",
+            "projectId": "P4",
+            "rate": 0.06
+          }
+        }
+      ],
+      "legacyV2Until": 750,
+      "legacyV2LogCount": 3,
+      "legacyV3Until": 750,
+      "legacyV3LogCount": 3,
+      "legacyV4Until": 750,
+      "legacyV4LogCount": 3,
+      "legacyV5Until": 750,
+      "legacyV5LogCount": 4,
+      "legacyV6Until": 750,
+      "legacyV6LogCount": 4,
+      "legacyV7Until": 750,
+      "legacyV7LogCount": 4,
+      "revision": 300
+    },
+    "sha256": "810de3ad0191a5708d1bc8ea8e7ddf23e613c9d5d9f97ac13b51cae5a8c9aacd"
+  }
+]

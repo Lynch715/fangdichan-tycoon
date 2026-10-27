@@ -1,0 +1,101 @@
+{
+  "assets": [
+    {
+      "id": "building_garden_2x2_a",
+      "file": "building_garden_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "finished seven-storey garden apartment reference"
+    },
+    {
+      "id": "stage_tower_pit_2x2_a",
+      "file": "stage_tower_pit_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "excavated foundation pit with stepped earth walls, retaining piles and foundation footings. No above-ground building, no finished landscaping.",
+      "productLine": "tower",
+      "stage": "pit"
+    },
+    {
+      "id": "stage_tower_ground_2x2_a",
+      "file": "stage_tower_ground_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "ground-zero foundation: full reinforced concrete ground slab with rebar starters and short column stubs, low orange site fence. No upper floors.",
+      "productLine": "tower",
+      "stage": "ground"
+    },
+    {
+      "id": "stage_tower_frame_2x2_a",
+      "file": "stage_tower_frame_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "structural frame at HALF the final building height, exposed concrete slabs and columns, incomplete walls, one safety-orange tower crane, unfinished worksite. Compress crane height so whole sprite height is at most 1.3 times plot width.",
+      "productLine": "tower",
+      "stage": "frame"
+    },
+    {
+      "id": "stage_tower_topped_2x2_a",
+      "file": "stage_tower_topped_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "fully topped-out shell at final height, full grey concrete structure covered in scaffolding and green safety netting, no finished facade or windows, orange site fence. No crane needed.",
+      "productLine": "tower",
+      "stage": "topped"
+    },
+    {
+      "id": "stage_tower_abandoned_2x2_a",
+      "file": "stage_tower_abandoned_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "abandoned unfinished HALF-height concrete shell, weather stains, rusted exposed rebar, one idle rusty-orange tower crane, faded orange site fence, some sparse weeds. No completed facade or windows. Total height including crane at most 1.3 times plot width.",
+      "productLine": "tower",
+      "stage": "abandoned"
+    },
+    {
+      "id": "stage_garden_pit_2x2_a",
+      "file": "stage_garden_pit_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "excavated foundation pit with stepped earth walls, retaining piles and foundation footings. No above-ground building, no finished landscaping.",
+      "productLine": "garden",
+      "stage": "pit"
+    },
+    {
+      "id": "stage_garden_ground_2x2_a",
+      "file": "stage_garden_ground_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "ground-zero foundation: full reinforced concrete ground slab with rebar starters and short column stubs, low orange site fence. No upper floors.",
+      "productLine": "garden",
+      "stage": "ground"
+    },
+    {
+      "id": "stage_garden_frame_2x2_a",
+      "file": "stage_garden_frame_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "structural frame at HALF the final building height, exposed concrete slabs and columns, incomplete walls, one safety-orange tower crane, unfinished worksite. Compress crane height so whole sprite height is at most 1.3 times plot width.",
+      "productLine": "garden",
+      "stage": "frame"
+    },
+    {
+      "id": "stage_garden_topped_2x2_a",
+      "file": "stage_garden_topped_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "fully topped-out shell at final height, full grey concrete structure covered in scaffolding and green safety netting, no finished facade or windows, orange site fence. No crane needed.",
+      "productLine": "garden",
+      "stage": "topped"
+    },
+    {
+      "id": "stage_garden_abandoned_2x2_a",
+      "file": "stage_garden_abandoned_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "abandoned unfinished HALF-height concrete shell, weather stains, rusted exposed rebar, one idle rusty-orange tower crane, faded orange site fence, some sparse weeds. No completed facade or windows. Total height including crane at most 1.3 times plot width.",
+      "productLine": "garden",
+      "stage": "abandoned"
+    }
+  ]
+}

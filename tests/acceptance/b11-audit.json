@@ -1,0 +1,556 @@
+{
+  "runs": [
+    {
+      "seed": 1,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 54,
+      "sha256": "12fb2faa8d4df885b73d75802bdc49404d60c9be4e81d9e32ac316604cc0acf0"
+    },
+    {
+      "seed": 1,
+      "strategy": "aggressive",
+      "day": 2700,
+      "commands": 280,
+      "sha256": "5a46bf712b0a4f4d4633a1669fcae765d37eedebe114e6a9b40ce35274f4f22a"
+    },
+    {
+      "seed": 1,
+      "strategy": "bond",
+      "day": 3600,
+      "commands": 533,
+      "sha256": "d5caf7221d9c4e488250876b662ec37fd0424fc3e8ee68c2cbec5d86b1611fbf"
+    },
+    {
+      "seed": 2,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 58,
+      "sha256": "e54c3a8b93c04c8670692582b6c79e1b5a20ea9fe1d4aaed1f21b594b33a7410"
+    },
+    {
+      "seed": 2,
+      "strategy": "aggressive",
+      "day": 360,
+      "commands": 13,
+      "sha256": "2affd293aed42ed0c77f411d955f3f74e85589c64520103c1ecfbded95ef0c30"
+    },
+    {
+      "seed": 2,
+      "strategy": "bond",
+      "day": 3600,
+      "commands": 462,
+      "sha256": "9f057b6a472c801979891202e31336d0671bba5ebc6665c251a11c168078c6f2"
+    },
+    {
+      "seed": 7,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 50,
+      "sha256": "2e49ca988d4fcfcf2a89ccb3452b3ac7d197ec3d191a567a7217108b5554ef09"
+    },
+    {
+      "seed": 7,
+      "strategy": "aggressive",
+      "day": 3600,
+      "commands": 449,
+      "sha256": "09d38b1d0656d7787eec5b874776c859dfb6fd010cdfaa65febc487833bc69fa"
+    },
+    {
+      "seed": 7,
+      "strategy": "bond",
+      "day": 3600,
+      "commands": 462,
+      "sha256": "6871fae267fff20b788cb9b709524049db12c6e23d00e1e65437a481976c420b"
+    },
+    {
+      "seed": 13,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 54,
+      "sha256": "7a445332f5f13c431433d3924452ae8d5b5b04b7832eefa9100ddd548e633e69"
+    },
+    {
+      "seed": 13,
+      "strategy": "aggressive",
+      "day": 3600,
+      "commands": 488,
+      "sha256": "9334f7ab4b9b6f1cf69041af434cba78329a7cf5016573dcb0d9389221c09001"
+    },
+    {
+      "seed": 13,
+      "strategy": "bond",
+      "day": 3600,
+      "commands": 455,
+      "sha256": "0acc8edd489ec248dc3fc27f8f64d5b6fa801961ea071e24041b4a783f93047d"
+    },
+    {
+      "seed": 32,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 51,
+      "sha256": "f42fc59989ecfdb902d4397265d6210a3526bc07c78fea8a210fee4bb8c964ac"
+    },
+    {
+      "seed": 32,
+      "strategy": "aggressive",
+      "day": 3600,
+      "commands": 449,
+      "sha256": "3219e39af9acdc8cc5b7adde71d95996828675b8d1fea0679ba1515f223daeb7"
+    },
+    {
+      "seed": 32,
+      "strategy": "bond",
+      "day": 930,
+      "commands": 63,
+      "sha256": "1ddc8f07788eb6f37f6d4939f01289ba04d8475590022af5cc7518cd3e7517d6"
+    }
+  ],
+  "scenes": {
+    "tight": {
+      "day": 420,
+      "cash": 67002.71791569155,
+      "levels": {
+        "yuzhong": 2,
+        "jiangbei": 1,
+        "nanan": 2,
+        "bishan": 2,
+        "jiangjin": 1,
+        "outer": 2
+      },
+      "projects": [
+        {
+          "id": "P4",
+          "district": "outer",
+          "sold": 19287.875543694747
+        },
+        {
+          "id": "P5",
+          "district": "nanan",
+          "sold": 14680.778500062788
+        },
+        {
+          "id": "P11",
+          "district": "outer",
+          "sold": 16248.88981710705
+        }
+      ],
+      "commands": 12,
+      "sha256": "2a64c01042e95c67f8e170b84bad4f2a5cb04baacd0fc1feb6b72a05d9c23f99"
+    },
+    "loose": {
+      "day": 2190,
+      "cash": 142974.39457757628,
+      "levels": {
+        "yuzhong": 2,
+        "jiangbei": 1,
+        "nanan": 1,
+        "bishan": 1,
+        "jiangjin": 1,
+        "outer": 0
+      },
+      "projects": [
+        {
+          "id": "P4",
+          "district": "outer",
+          "sold": 41400
+        },
+        {
+          "id": "P5",
+          "district": "nanan",
+          "sold": 29250
+        },
+        {
+          "id": "P11",
+          "district": "outer",
+          "sold": 44964.99999999999
+        },
+        {
+          "id": "P20",
+          "district": "outer",
+          "sold": 23459.999999999996
+        },
+        {
+          "id": "P59",
+          "district": "nanan",
+          "sold": 19658.308402662486
+        },
+        {
+          "id": "P60",
+          "district": "jiangjin",
+          "sold": 24046.39280091892
+        },
+        {
+          "id": "P71",
+          "district": "bishan",
+          "sold": 29135.92115114022
+        },
+        {
+          "id": "P72",
+          "district": "bishan",
+          "sold": 38833.92388591319
+        }
+      ],
+      "commands": 30,
+      "sha256": "cbc9a9cdf949a6972adcf4cf1b213233289461356b71007e1577a3e3aff04230"
+    }
+  },
+  "timeline": [
+    {
+      "day": 420,
+      "district": "yuzhong",
+      "from": 1,
+      "to": 2,
+      "reason": "片区房价涨幅偏高"
+    },
+    {
+      "day": 420,
+      "district": "nanan",
+      "from": 1,
+      "to": 2,
+      "reason": "片区房价涨幅偏高"
+    },
+    {
+      "day": 420,
+      "district": "bishan",
+      "from": 1,
+      "to": 2,
+      "reason": "片区房价涨幅偏高"
+    },
+    {
+      "day": 420,
+      "district": "outer",
+      "from": 1,
+      "to": 2,
+      "reason": "片区库存去化偏快且房价上涨"
+    },
+    {
+      "day": 480,
+      "district": "jiangbei",
+      "from": 1,
+      "to": 2,
+      "reason": "片区库存去化偏快且房价上涨"
+    },
+    {
+      "day": 540,
+      "district": "jiangjin",
+      "from": 1,
+      "to": 2,
+      "reason": "片区房价涨幅偏高"
+    },
+    {
+      "day": 1800,
+      "district": "nanan",
+      "from": 2,
+      "to": 1,
+      "reason": "片区库存去化偏慢且房价低迷"
+    },
+    {
+      "day": 1800,
+      "district": "bishan",
+      "from": 2,
+      "to": 1,
+      "reason": "片区库存去化偏慢且房价低迷"
+    },
+    {
+      "day": 1800,
+      "district": "jiangjin",
+      "from": 2,
+      "to": 1,
+      "reason": "片区库存去化偏慢且房价低迷"
+    },
+    {
+      "day": 1800,
+      "district": "outer",
+      "from": 2,
+      "to": 1,
+      "reason": "片区库存去化偏慢且房价低迷"
+    },
+    {
+      "day": 1920,
+      "district": "jiangbei",
+      "from": 2,
+      "to": 1,
+      "reason": "片区库存去化偏慢且房价低迷"
+    },
+    {
+      "day": 2190,
+      "district": "outer",
+      "from": 1,
+      "to": 0,
+      "reason": "片区库存去化偏慢且房价低迷"
+    },
+    {
+      "day": 2340,
+      "district": "yuzhong",
+      "from": 2,
+      "to": 1,
+      "reason": "片区房价持续下行"
+    },
+    {
+      "day": 2340,
+      "district": "jiangbei",
+      "from": 1,
+      "to": 0,
+      "reason": "片区房价持续下行"
+    },
+    {
+      "day": 2340,
+      "district": "nanan",
+      "from": 1,
+      "to": 0,
+      "reason": "片区房价持续下行"
+    },
+    {
+      "day": 2340,
+      "district": "bishan",
+      "from": 1,
+      "to": 0,
+      "reason": "片区房价持续下行"
+    },
+    {
+      "day": 2340,
+      "district": "jiangjin",
+      "from": 1,
+      "to": 0,
+      "reason": "片区房价持续下行"
+    },
+    {
+      "day": 2430,
+      "district": "yuzhong",
+      "from": 1,
+      "to": 0,
+      "reason": "片区房价持续下行"
+    }
+  ],
+  "browser": [
+    {
+      "name": "b11-tight-browser-save.json",
+      "day": 450,
+      "cash": 69030.49853208702,
+      "commands": 12,
+      "sha256": "d6b5442a0808f0d03ed039e27880a65b528f441db833caa3ee24949a8dd2a5de",
+      "policies": {
+        "yuzhong": {
+          "name": "收紧",
+          "purchaseLimit": 1,
+          "downPayment": 0.5,
+          "mortgageRate": 0.052,
+          "eligibleDemand": 0.7,
+          "factor": 0.47560370777644534
+        },
+        "jiangbei": {
+          "name": "常态",
+          "purchaseLimit": null,
+          "downPayment": 0.3,
+          "mortgageRate": 0.042,
+          "eligibleDemand": 1,
+          "factor": 1
+        },
+        "nanan": {
+          "name": "收紧",
+          "purchaseLimit": 1,
+          "downPayment": 0.5,
+          "mortgageRate": 0.052,
+          "eligibleDemand": 0.7,
+          "factor": 0.47560370777644534
+        },
+        "bishan": {
+          "name": "收紧",
+          "purchaseLimit": 1,
+          "downPayment": 0.5,
+          "mortgageRate": 0.052,
+          "eligibleDemand": 0.7,
+          "factor": 0.47560370777644534
+        },
+        "jiangjin": {
+          "name": "常态",
+          "purchaseLimit": null,
+          "downPayment": 0.3,
+          "mortgageRate": 0.042,
+          "eligibleDemand": 1,
+          "factor": 1
+        },
+        "outer": {
+          "name": "收紧",
+          "purchaseLimit": 1,
+          "downPayment": 0.5,
+          "mortgageRate": 0.052,
+          "eligibleDemand": 0.7,
+          "factor": 0.47560370777644534
+        }
+      }
+    },
+    {
+      "name": "b11-loose-browser-save.json",
+      "day": 2220,
+      "cash": 144907.32648108556,
+      "commands": 30,
+      "sha256": "ff34922eec77b74227146706341ca3da5a2df64e90d2a5415aaf73d48306eb25",
+      "policies": {
+        "yuzhong": {
+          "name": "收紧",
+          "purchaseLimit": 1,
+          "downPayment": 0.5,
+          "mortgageRate": 0.052,
+          "eligibleDemand": 0.7,
+          "factor": 0.47560370777644534
+        },
+        "jiangbei": {
+          "name": "常态",
+          "purchaseLimit": null,
+          "downPayment": 0.3,
+          "mortgageRate": 0.042,
+          "eligibleDemand": 1,
+          "factor": 1
+        },
+        "nanan": {
+          "name": "常态",
+          "purchaseLimit": null,
+          "downPayment": 0.3,
+          "mortgageRate": 0.042,
+          "eligibleDemand": 1,
+          "factor": 1
+        },
+        "bishan": {
+          "name": "常态",
+          "purchaseLimit": null,
+          "downPayment": 0.3,
+          "mortgageRate": 0.042,
+          "eligibleDemand": 1,
+          "factor": 1
+        },
+        "jiangjin": {
+          "name": "常态",
+          "purchaseLimit": null,
+          "downPayment": 0.3,
+          "mortgageRate": 0.042,
+          "eligibleDemand": 1,
+          "factor": 1
+        },
+        "outer": {
+          "name": "宽松",
+          "purchaseLimit": null,
+          "downPayment": 0.2,
+          "mortgageRate": 0.032,
+          "eligibleDemand": 1,
+          "factor": 1.3816508673237113
+        }
+      }
+    },
+    {
+      "name": "b11-old-browser-save.json",
+      "day": 2010,
+      "cash": 37002.75644611046,
+      "commands": 7,
+      "sha256": "8d2aa79a2d23a6a4715d9744d67ebd39ac238bbd53dd400a113c95fbec1c978f",
+      "policies": {
+        "yuzhong": {
+          "name": "常态",
+          "purchaseLimit": null,
+          "downPayment": 0.3,
+          "mortgageRate": 0.042,
+          "eligibleDemand": 1,
+          "factor": 1
+        },
+        "jiangbei": {
+          "name": "常态",
+          "purchaseLimit": null,
+          "downPayment": 0.3,
+          "mortgageRate": 0.042,
+          "eligibleDemand": 1,
+          "factor": 1
+        },
+        "nanan": {
+          "name": "常态",
+          "purchaseLimit": null,
+          "downPayment": 0.3,
+          "mortgageRate": 0.042,
+          "eligibleDemand": 1,
+          "factor": 1
+        },
+        "bishan": {
+          "name": "常态",
+          "purchaseLimit": null,
+          "downPayment": 0.3,
+          "mortgageRate": 0.042,
+          "eligibleDemand": 1,
+          "factor": 1
+        },
+        "jiangjin": {
+          "name": "常态",
+          "purchaseLimit": null,
+          "downPayment": 0.3,
+          "mortgageRate": 0.042,
+          "eligibleDemand": 1,
+          "factor": 1
+        },
+        "outer": {
+          "name": "常态",
+          "purchaseLimit": null,
+          "downPayment": 0.3,
+          "mortgageRate": 0.042,
+          "eligibleDemand": 1,
+          "factor": 1
+        }
+      }
+    },
+    {
+      "name": "b11-main-recovered-save.json",
+      "day": 750,
+      "cash": 59215.56733594119,
+      "commands": 4,
+      "sha256": "2b10350c697525fa3e0109d3b7f77f8d9d638892eab65136643702fea6d1231a",
+      "policies": {
+        "yuzhong": {
+          "name": "常态",
+          "purchaseLimit": null,
+          "downPayment": 0.3,
+          "mortgageRate": 0.042,
+          "eligibleDemand": 1,
+          "factor": 1
+        },
+        "jiangbei": {
+          "name": "常态",
+          "purchaseLimit": null,
+          "downPayment": 0.3,
+          "mortgageRate": 0.042,
+          "eligibleDemand": 1,
+          "factor": 1
+        },
+        "nanan": {
+          "name": "常态",
+          "purchaseLimit": null,
+          "downPayment": 0.3,
+          "mortgageRate": 0.042,
+          "eligibleDemand": 1,
+          "factor": 1
+        },
+        "bishan": {
+          "name": "常态",
+          "purchaseLimit": null,
+          "downPayment": 0.3,
+          "mortgageRate": 0.042,
+          "eligibleDemand": 1,
+          "factor": 1
+        },
+        "jiangjin": {
+          "name": "常态",
+          "purchaseLimit": null,
+          "downPayment": 0.3,
+          "mortgageRate": 0.042,
+          "eligibleDemand": 1,
+          "factor": 1
+        },
+        "outer": {
+          "name": "常态",
+          "purchaseLimit": null,
+          "downPayment": 0.3,
+          "mortgageRate": 0.042,
+          "eligibleDemand": 1,
+          "factor": 1
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+[
+ {"name":"accident8","aggressive":{"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20},"values":{"risk.accidentCostOfBuild":0.08}},
+ {"name":"accident16","aggressive":{"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20},"values":{"risk.accidentCostOfBuild":0.16}},
+ {"name":"accident30","aggressive":{"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20},"values":{"risk.accidentCostOfBuild":0.3}},
+ {"name":"downturn2","aggressive":{"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20},"values":{"cycle.phases.4.priceDrift":-0.02}},
+ {"name":"downturn3","aggressive":{"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20},"values":{"cycle.phases.4.priceDrift":-0.03}},
+ {"name":"rescue40-land20","aggressive":{"landFundingRate":0.2,"buildReserveRate":0,"hiddenUsage":0.25,"maxActive":20},"values":{"rescue.saleBookDiscount":0.4}}
+]

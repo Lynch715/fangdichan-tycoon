@@ -1,0 +1,28 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>B13 模式与挑战验收</title><link rel="stylesheet" href="/src/style.css">
+<style>body{height:auto;min-height:100dvh;overflow:auto;padding:14px;box-sizing:border-box}header{display:flex;flex-wrap:wrap;gap:8px;align-items:center}h1{font-size:20px}main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:12px}#status,#notice{margin-top:12px}#evidence{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px}#finance{display:flex;flex-direction:column;gap:12px}#projects{display:flex;flex-direction:column;gap:12px}select{max-width:100%}@media(max-width:650px){main{grid-template-columns:minmax(0,1fr)}header select{width:100%}}</style>
+<body><header><h1>B13 模式与挑战验收</h1><label for="scene">场景</label><select id="scene"><option value="sales">千亿目标前一月</option><option value="downturn">走出下行前一月</option><option value="delivery">全部交付前一月</option><option value="delivery-start">保交楼开局</option><option value="fresh">全新开局</option></select><button id="month">推进一月</button><button id="new">选择新开局</button><button id="sell">转让第二目标项目</button><button id="grant">注入沙盒资金</button><button id="reload">重载测试档</button><button id="export">导出测试档</button></header><div id="status"></div><div id="notice" role="status"></div><main><section><div id="session"></div><div id="projects"></div></section><section><div id="finance"></div><details><summary>本期报表</summary><div id="reports"></div></details></section></main><pre id="evidence"></pre><dialog id="setup-dialog" class="acquisition-dialog setup-dialog" aria-labelledby="setup-title"></dialog>
+<script type="module">
+import{Game}from'/src/game.ts';import{SessionController,sessionPanel}from'/src/ui/session.ts';import{financePanel,projectsPanel}from'/src/ui/panels.ts';import{reportsPanel}from'/src/ui/reports.ts';import{computeMetrics}from'/src/sim/index.ts';
+if(location.hostname!=='127.0.0.1'||location.port!=='5182')throw Error('仅供5182独立测试源使用');
+const $=s=>document.querySelector(s),scene=new URLSearchParams(location.search).get('scene')??'sales',game=new Game();
+if(!['sales','downturn','delivery','delivery-start','fresh'].includes(scene))throw Error('未知场景');
+$('#scene').value=scene;$('#scene').onchange=()=>location.search=new URLSearchParams({scene:$('#scene').value});
+if(scene!=='fresh'){
+ const fixture=await fetch(`./b13-${scene==='delivery-start'?'delivery':scene}-7.json`).then(r=>r.json());
+ fixture.day=scene==='delivery-start'?0:fixture.day-30;fixture.log=fixture.log.filter(x=>x.day<=fixture.day);
+ const result=game.importSave(JSON.stringify(fixture));if(!result.ok)throw Error(result.error);
+}
+const report=r=>$('#notice').textContent=r.ok?'操作完成':r.error;
+function show(){const s=game.state,c=game.config,x=s.session;$('#status').textContent=`第${s.day}日 · v${s.version} · ${s.status} · 指令${game.log.length}条 · 现金${s.cash.toFixed(6)}万元`;
+ $('#session').innerHTML=sessionPanel(c,s);$('#finance').innerHTML=financePanel(c,s);$('#projects').innerHTML=projectsPanel(c,s,null);$('#reports').innerHTML=reportsPanel(c,s,'month');
+ $('#evidence').textContent=JSON.stringify({session:x,metrics:computeMetrics(s),debts:s.debts,projects:s.projects.map(p=>({id:p.id,stage:p.stage,progress:p.progress,salesIn:p.salesIn,deliveredDay:p.deliveredDay,fundingStoppedMonths:p.fundingStoppedMonths})),capitalIn:s.reports.journal.filter(e=>e.kind==='equityInvestment').reduce((n,e)=>n+e.amount,0)},null,2);
+}
+const controller=new SessionController(game,$('#setup-dialog'),show);
+$('#new').onclick=()=>controller.open();$('#month').onclick=()=>{const target=game.state.day+30;let frames=0;while(game.state.day<target&&game.state.status!=='bankrupt'&&frames++<1000){game.setSpeed(4);game.frame(250);}game.setSpeed(0);show();};
+$('#sell').onclick=()=>{report(game.issue({type:'sellProject',projectId:game.state.session?.requiredProjectIds[1]??''}));show();};
+$('#grant').onclick=()=>{report(game.issue({type:'sandboxGrant'}));show();};
+$('#session').onclick=e=>{if(e.target.closest('[data-act="sandbox-grant"]')){report(game.issue({type:'sandboxGrant'}));show();}};
+$('#reload').onclick=()=>{report(game.importSave(game.exportSave()));show();};
+$('#export').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([game.exportSave()],{type:'application/json'}));a.download='b13-'+scene+'-browser.json';a.click();URL.revokeObjectURL(a.href);};
+show();if(game.needsSetup)controller.open();
+</script></body></html>

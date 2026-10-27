@@ -1,0 +1,22 @@
+{
+  "sameHistoricalLog": true,
+  "newCommand": {
+    "day": 750,
+    "command": {
+      "type": "setMarketing",
+      "projectId": "P4",
+      "rate": 0.06
+    }
+  },
+  "stateOnlyMarketingChanged": true,
+  "seed": 7,
+  "day": 750,
+  "version": 5,
+  "revisionBefore": 184,
+  "revisionAfter": 189,
+  "legacyV2Until": 750,
+  "legacyV3Until": 750,
+  "legacyV4Until": 750,
+  "cash": 59215.56733594119,
+  "rng": -1877023606
+}

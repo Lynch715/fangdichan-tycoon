@@ -1,0 +1,45 @@
+{
+  "runs": 15,
+  "project": {
+    "day": 330,
+    "cash": 42930.82997412782,
+    "buildCost": 11773.124999999998,
+    "progress": 0.34722222222222215,
+    "soldArea": 5026.335217749947,
+    "attributes": {
+      "slope": "steep",
+      "scenery": "mountain",
+      "costFactor": 1.25,
+      "durationFactor": 1.2,
+      "priceFactor": 1.05
+    },
+    "market": {
+      "population": 805980,
+      "netInflow": 571,
+      "stockArea": 54815.594075269284,
+      "salesHistory": [
+        1792.1605437184098,
+        1679.1737709742647,
+        3928.071610038045
+      ],
+      "absorptionMonths": 22.224322317036883,
+      "sinceDay": 0
+    }
+  },
+  "acquisition": {
+    "day": 1950,
+    "sha256": "975b7ac59c7cbdcf2b05703f1c1330c799ef14e8de6e26061ed7a644d72d7a7c"
+  },
+  "browser": [
+    {
+      "name": "b9-project-browser-save.json",
+      "day": 330,
+      "sha256": "f9f52626e8aefb8073be48f96dd08416e859c84bc6ab87aa1a11664fb9d64d1a"
+    },
+    {
+      "name": "b9-old-browser-save.json",
+      "day": 240,
+      "sha256": "d60696b0d6d60ab3ba0fe65aa3ca0ebe2c0b3630024628be59aeacb52457e276"
+    }
+  ]
+}

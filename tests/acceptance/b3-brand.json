@@ -1,0 +1,24 @@
+{
+  "version": 4,
+  "seed": 7,
+  "day": 60,
+  "log": [
+    {
+      "day": 0,
+      "command": {
+        "type": "bid",
+        "parcelId": "L1",
+        "amount": 31146
+      }
+    },
+    {
+      "day": 30,
+      "command": {
+        "type": "startProject",
+        "projectId": "P4",
+        "contractor": "brand"
+      }
+    }
+  ],
+  "revision": 0
+}

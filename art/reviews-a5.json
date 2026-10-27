@@ -1,0 +1,132 @@
+{
+  "building_tower_2x2_a": {
+    "sha256": "46715db752a76da44779052e10c74288e1f299cb3a2cd4d8e4e65988c904a496",
+    "visual": "pass",
+    "note": "沿用A2/A4已验收的成品原图，未改动。"
+  },
+  "building_garden_2x2_a": {
+    "sha256": "5e24e3d84f29e7c26acf0471bf3be744902e93209cb68573ad201bcdccde232f",
+    "visual": "pass",
+    "note": "沿用A2/A4已验收的成品原图，未改动。"
+  },
+  "building_tower_2x2_b": {
+    "sha256": "0c87264659abceab14b191f6547b52ac4f6332e03d7cffc3d6163f1015aaf42b",
+    "visual": "pass",
+    "note": "已逐张查看：高层/洋房/别墅/商业裙楼与变体轮廓可辨，单个完整建筑和地块，透明底；底座和高度单独检查。"
+  },
+  "building_tower_2x2_c": {
+    "sha256": "0d053f8d9f78315abfd95e33babacd94767aae12fb0cbb418a42302036111887",
+    "visual": "pass",
+    "note": "已查看投影修正版：对应成品/办公室/学校/待拍空地，内容保留、无文字/人物、透明底；精确底座与高度另检。"
+  },
+  "building_garden_2x2_b": {
+    "sha256": "3531c55f3f82b22bb37815307b357aa26e23e2c892edb7736c5522067a86adc9",
+    "visual": "pass",
+    "note": "已逐张查看：高层/洋房/别墅/商业裙楼与变体轮廓可辨，单个完整建筑和地块，透明底；底座和高度单独检查。"
+  },
+  "building_garden_2x2_c": {
+    "sha256": "f7a50bec29a48652436dc886f7413c0f79b22ab1812095ba05169d66d09193da",
+    "visual": "pass",
+    "note": "已逐张查看：高层/洋房/别墅/商业裙楼与变体轮廓可辨，单个完整建筑和地块，透明底；底座和高度单独检查。"
+  },
+  "building_villa_2x2_a": {
+    "sha256": "a53ec006e370046bbe52aa32a604cf71399a0948db1a188e1c3dad92560ff727",
+    "visual": "pass",
+    "note": "已逐张查看：高层/洋房/别墅/商业裙楼与变体轮廓可辨，单个完整建筑和地块，透明底；底座和高度单独检查。"
+  },
+  "building_villa_2x2_b": {
+    "sha256": "f34c8ac8de710820732fa907b0841f6ca860055c75314d9b11339fdae1775a1b",
+    "visual": "pass",
+    "note": "已逐张查看：高层/洋房/别墅/商业裙楼与变体轮廓可辨，单个完整建筑和地块，透明底；底座和高度单独检查。"
+  },
+  "building_villa_2x2_c": {
+    "sha256": "1618db5775101995622104cf8b609742b9c7ce3548ff8cfffbe1ca884c7e8ee6",
+    "visual": "pass",
+    "note": "已逐张查看：高层/洋房/别墅/商业裙楼与变体轮廓可辨，单个完整建筑和地块，透明底；底座和高度单独检查。"
+  },
+  "building_commercial_2x2_a": {
+    "sha256": "c386550a5a377fdb08bf1599c7da4db515ee14c5663a0abe918bee7b281d0903",
+    "visual": "pass",
+    "note": "已逐张查看：高层/洋房/别墅/商业裙楼与变体轮廓可辨，单个完整建筑和地块，透明底；底座和高度单独检查。"
+  },
+  "building_commercial_2x2_b": {
+    "sha256": "baa883a47872f6fac64f8e5d70231912f570838edf0c0d241e9663fb769f43f3",
+    "visual": "pass",
+    "note": "已逐张查看：高层/洋房/别墅/商业裙楼与变体轮廓可辨，单个完整建筑和地块，透明底；底座和高度单独检查。"
+  },
+  "building_commercial_2x2_c": {
+    "sha256": "1c165912ccae040a5ceaceaad92225691e6a5ff49ccbf89f493d845695c93b85",
+    "visual": "pass",
+    "note": "已查看投影修正版：对应成品/办公室/学校/待拍空地，内容保留、无文字/人物、透明底；精确底座与高度另检。"
+  },
+  "background_walkup_1x1_a": {
+    "sha256": "30fa3ddfa5b131222876dee977d28b349ce9867f48cc5cc4df2509139ffd881f",
+    "visual": "pass",
+    "note": "已逐张查看：老楼/写字楼/学校/轻轨站/街边商铺轮廓与材质可辨，单栋背景建筑、无文字/人物、透明底；底座/高度另检。"
+  },
+  "background_walkup_1x1_b": {
+    "sha256": "0682dedb3cd322eed2995dfd6fb2420ed756e0321ee345e0b6395622c46ca1e2",
+    "visual": "pass",
+    "note": "已逐张查看：老楼/写字楼/学校/轻轨站/街边商铺轮廓与材质可辨，单栋背景建筑、无文字/人物、透明底；底座/高度另检。"
+  },
+  "background_walkup_1x1_c": {
+    "sha256": "05ec9a8ddcad095827f1c13bbaa590f983bc8d9e39986ec4be02617373807c56",
+    "visual": "pass",
+    "note": "已逐张查看：老楼/写字楼/学校/轻轨站/街边商铺轮廓与材质可辨，单栋背景建筑、无文字/人物、透明底；底座/高度另检。"
+  },
+  "background_office_1x1_a": {
+    "sha256": "7c2f529755dd0256c501d4acde0443427d0c0689a5e9cbc1deed601c597f3836",
+    "visual": "pass",
+    "note": "已查看投影修正版：对应成品/办公室/学校/待拍空地，内容保留、无文字/人物、透明底；精确底座与高度另检。"
+  },
+  "background_office_1x1_b": {
+    "sha256": "1bee0e211d87b56c3ccb1bd984e3d38ee5fe3e04d40facda3f1d31ac3f6832a3",
+    "visual": "pass",
+    "note": "已逐张查看：老楼/写字楼/学校/轻轨站/街边商铺轮廓与材质可辨，单栋背景建筑、无文字/人物、透明底；底座/高度另检。"
+  },
+  "background_school_1x1_a": {
+    "sha256": "d844aff364ade3c4fdc0bfa71a67aa03166e6bc7d4fe611025ee9114e505c0e3",
+    "visual": "pass",
+    "note": "已查看最终学校修正版：三层教学楼、屋顶和庭院细节完整，无文字人物，透明背景；几何由脚本独立检查。"
+  },
+  "background_school_1x1_b": {
+    "sha256": "d00ce6fbe100c9fb2b0e598ee32bd77e983d0abce3d2dab052f671c5e776e8b1",
+    "visual": "pass",
+    "note": "已查看最终学校修正版：三层教学楼、屋顶和庭院细节完整，无文字人物，透明背景；几何由脚本独立检查。"
+  },
+  "background_metro_1x1_a": {
+    "sha256": "6ed6ec4603a4fa8ce77a1ee3fa14520f11179bb18f94939fa47aef0e16d8e3d1",
+    "visual": "pass",
+    "note": "已逐张查看：老楼/写字楼/学校/轻轨站/街边商铺轮廓与材质可辨，单栋背景建筑、无文字/人物、透明底；底座/高度另检。"
+  },
+  "background_metro_1x1_b": {
+    "sha256": "9853120ed5ecd14e3df9e91678d24c05987d73c35b3218d24173d67b98f419ab",
+    "visual": "pass",
+    "note": "已逐张查看：老楼/写字楼/学校/轻轨站/街边商铺轮廓与材质可辨，单栋背景建筑、无文字/人物、透明底；底座/高度另检。"
+  },
+  "background_shop_1x1_a": {
+    "sha256": "72d8a0eb1e41c8de3a16297abf2672deeb2e3a78c264fd2326666c6e6c9dbb20",
+    "visual": "pass",
+    "note": "已逐张查看：老楼/写字楼/学校/轻轨站/街边商铺轮廓与材质可辨，单栋背景建筑、无文字/人物、透明底；底座/高度另检。"
+  },
+  "parcel_auction_2x2_a": {
+    "sha256": "ef4e10b7af8decbb895b63590269b361d36d6c5d154ddd3d05710dd9b036fa1c",
+    "visual": "pass",
+    "note": "已逐张查看：两种低层学校轮廓保持，空地牌位于前右；无文字/人物，透明底，几何另检。"
+  },
+  "parcel_fenced_2x2_a": {
+    "sha256": "d3dc8f0f80f04c563378792d9a6f0d4a5839d87acd0610ca7948702faf612f49",
+    "visual": "pass",
+    "note": "已逐张查看：平整空地+空白拍卖牌，或连续橙色围挡及一扇门；无楼/塔吊/文字/人物，透明背景。占地与锚点另检。"
+  },
+  "parcel_auction_3x3_a": {
+    "sha256": "cc6effeeb16c8ac963295ee5317516537564912a2a4b67a48bafb9eb800bd9c7",
+    "visual": "pass",
+    "note": "已查看投影修正版：对应成品/办公室/学校/待拍空地，内容保留、无文字/人物、透明底；精确底座与高度另检。"
+  },
+  "parcel_fenced_3x3_a": {
+    "sha256": "abb612558306c55c2655c5366b94116dab00825135066d0b2e6ef594dd5cbf9d",
+    "visual": "pass",
+    "note": "已逐张查看：平整空地+空白拍卖牌，或连续橙色围挡及一扇门；无楼/塔吊/文字/人物，透明背景。占地与锚点另检。"
+  }
+}

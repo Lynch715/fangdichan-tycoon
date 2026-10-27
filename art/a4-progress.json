@@ -1,0 +1,87 @@
+{
+  "planned": 11,
+  "plannedStages": 10,
+  "plannedBuildings": 11,
+  "plannedTerrain": 0,
+  "plannedDecorations": 0,
+  "approved": 11,
+  "results": [
+    {
+      "id": "building_garden_2x2_a",
+      "status": "approved",
+      "ratio": 1.9336641466086075,
+      "sideHeight": 0,
+      "sha256": "5e24e3d84f29e7c26acf0471bf3be744902e93209cb68573ad201bcdccde232f"
+    },
+    {
+      "id": "stage_tower_pit_2x2_a",
+      "status": "approved",
+      "ratio": 1.9108408937444792,
+      "sideHeight": 0,
+      "sha256": "10c0fc3c146aa13c8eb4fab11e18734287b0d459a931bd4e8aa096324da6ec82"
+    },
+    {
+      "id": "stage_tower_ground_2x2_a",
+      "status": "approved",
+      "ratio": 1.9363767751665202,
+      "sideHeight": 0,
+      "sha256": "8aa2f9f2323d6341df14b481d390f7786d242fed10878aab335513eaaf3c523b"
+    },
+    {
+      "id": "stage_tower_frame_2x2_a",
+      "status": "approved",
+      "ratio": 1.9328042979002622,
+      "sideHeight": 0,
+      "sha256": "a16fa8fce59350ccbdef491282048befff9cfb33342c30577d4ab7aa656b00b8"
+    },
+    {
+      "id": "stage_tower_topped_2x2_a",
+      "status": "approved",
+      "ratio": 2.0322111915330954,
+      "sideHeight": 0,
+      "sha256": "45d6e5dac2476d937e46df776bee710fc627d5c46cf55a402025d3ff0386ef07"
+    },
+    {
+      "id": "stage_tower_abandoned_2x2_a",
+      "status": "approved",
+      "ratio": 2.039479342496584,
+      "sideHeight": 0,
+      "sha256": "b20c050a30dbee2920a09c7c9258650e8fcc02813d19880d5c9979f7fd3b45f2"
+    },
+    {
+      "id": "stage_garden_pit_2x2_a",
+      "status": "approved",
+      "ratio": 1.90687353192398,
+      "sideHeight": 0,
+      "sha256": "d4a477b00ab6cb06cf744da3abf52bb890e6c818617923279e53a0811447b61f"
+    },
+    {
+      "id": "stage_garden_ground_2x2_a",
+      "status": "approved",
+      "ratio": 1.9299817426731207,
+      "sideHeight": 0,
+      "sha256": "a58ce96e15161915cdd823a80500a069d44ff324689e045d0b5ee05c9cd8bcda"
+    },
+    {
+      "id": "stage_garden_frame_2x2_a",
+      "status": "approved",
+      "ratio": 2.03635863246808,
+      "sideHeight": 0,
+      "sha256": "3867e2b75973780e2f87232b22cc9558b29c6b4c2a86bb2e03cb52347778e45c"
+    },
+    {
+      "id": "stage_garden_topped_2x2_a",
+      "status": "approved",
+      "ratio": 1.9754668071556116,
+      "sideHeight": 0,
+      "sha256": "890bf9b4da572d8be204aa03b1745d83f8a1d96f47edb92e777af29fe49d84b0"
+    },
+    {
+      "id": "stage_garden_abandoned_2x2_a",
+      "status": "approved",
+      "ratio": 1.919610058508847,
+      "sideHeight": 0,
+      "sha256": "6d1a1aaa865244a02b6766439a67788a30b6d92bfc5eb2ca3f3d22bdaa97df61"
+    }
+  ]
+}

@@ -1,0 +1,6316 @@
+{
+  "nativeCases": 15,
+  "legacy7Cases": 5,
+  "yearEndsVerified": 200,
+  "replayIdentical": true,
+  "pastRankingsStable": true,
+  "rows": [
+    {
+      "seed": 7,
+      "strategy": "conservative",
+      "day": 3600,
+      "yearsVerified": 10,
+      "acquired": 0,
+      "rankings": [
+        {
+          "day": 360,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 54895.44680732263,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 46010.83712238404,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 35789.74270910391,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 720,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 55758.132232001975,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 38745.698454648256,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 30265.8347873459,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 1513.1680686796317,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1080,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 73467.94482791841,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 51603.90011049688,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 51376.99174348079,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 50013.091046246525,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1440,
+          "ranks": [
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 147272.55432433888,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 94924.54148655501,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 68380.63524131893,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 63177.446242189355,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1800,
+          "ranks": [
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 147742.72429353447,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 138940.91493768903,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 108705.43324108547,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 85984.04021853302,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2160,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 185083.51396582244,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 146263.332010485,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 126739.88974431186,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 107625.06553447386,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2520,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 191146.09188517136,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 149207.0690382304,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 148007.66884858246,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 115728.7957629182,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2880,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 181490.52720072214,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 161170.3483568874,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 160925.7109448767,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 113477.58158269824,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3240,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 183846.52206395642,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 149007.13830098964,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 146151.7784126723,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 123206.44631133601,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3600,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 224781.34080056747,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 147341.71716019834,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 127718.09119385062,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 121479.97088250855,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 7,
+      "strategy": "aggressive",
+      "day": 3600,
+      "yearsVerified": 10,
+      "acquired": 0,
+      "rankings": [
+        {
+          "day": 360,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 54901.263807322626,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 38557.11912540192,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 32816.29163742467,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 720,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 30759.22683907603,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 10525.573280886689,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": -1006.8191669867374,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1080,
+          "ranks": [
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 87075.28287416344,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 57342.16861238744,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 54353.77127971087,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1440,
+          "ranks": [
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 116803.38848517218,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 104361.13682832624,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 50156.853650321136,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1800,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 112014.16903861356,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 89971.45058314705,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 83278.520721776,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2160,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 229853.0787290741,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 190300.58313725737,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 74840.01226121865,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2520,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 369342.20729440957,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 228881.12780622946,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 117370.70312267309,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2880,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 384099.61058913113,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 202702.711393053,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 131899.39941610047,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3240,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 432267.35121785826,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 171479.61848851212,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 117515.31210964135,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3600,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 519123.9361439118,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 123249.2633863665,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": -1414.8501489201444,
+                "status": "bankrupt"
+              },
+              "rank": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 7,
+      "strategy": "acquisition",
+      "day": 3600,
+      "yearsVerified": 10,
+      "acquired": 1,
+      "rankings": [
+        {
+          "day": 360,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 54895.44680732263,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 44665.99848912115,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 29204.780394453715,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 720,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 30215.82099671825,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 26506.573544932355,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 363.74088710249634,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1080,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 90750.9808558288,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 59786.948673003295,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 58387.8100238941,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 34225.014277490205,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1440,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 136796.02808706998,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 128007.4902620946,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 77909.29096315501,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 51115.3633365024,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1800,
+          "ranks": [
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 130638.23746206595,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 127755.83322815163,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 113651.6082057331,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 91661.28375271101,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2160,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 233354.2208700269,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 141349.16106247233,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 127332.43034776318,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 92506.31422610645,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2520,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 236095.80047507922,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 149097.08597635396,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 130537.75145840523,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 88450.91774134099,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2880,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 224775.38888593414,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 163933.19815334835,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 141804.36572664493,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 94410.5270112297,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3240,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 231800.43215379928,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 161477.74705395914,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 157721.94100222545,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 116375.53780161172,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3600,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 290255.1658048748,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 158122.74857090804,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 153730.59178561482,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 116889.96963955557,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 23,
+      "strategy": "conservative",
+      "day": 3600,
+      "yearsVerified": 10,
+      "acquired": 0,
+      "rankings": [
+        {
+          "day": 360,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 53135.982296364586,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 47753.32534605652,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 33930.291415246174,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 720,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 40450.48739869238,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 29663.126559454773,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 4.1064483868540265,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1080,
+          "ranks": [
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 70948.54663105254,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 65445.35746258694,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 59794.64115555557,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 55534.318679188145,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1440,
+          "ranks": [
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 94025.27008827345,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 76185.33818072785,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 57192.11290225643,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 51460.76345401285,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1800,
+          "ranks": [
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 135939.58449292084,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 125512.30424175144,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 90546.23203583126,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 76150.69370194775,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2160,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 139786.61768735352,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 137243.96626905145,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 113686.12063482875,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 91588.47014726637,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2520,
+          "ranks": [
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 145693.41749593685,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 138989.30089502077,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 131888.71884113175,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 88122.03814093852,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2880,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 171717.05244813825,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 165572.50993954766,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 152484.00033888913,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 81748.46094032054,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3240,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 202580.3355359673,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 149439.19182729954,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 143981.8220090373,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 111616.78437362335,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3600,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 202899.34130371618,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 147107.11137906552,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 132340.447909876,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 111403.21711131195,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 23,
+      "strategy": "aggressive",
+      "day": 3600,
+      "yearsVerified": 10,
+      "acquired": 0,
+      "rankings": [
+        {
+          "day": 360,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 59620.48916666666,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 54928.63880732257,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 40057.93666475653,
+                "status": "distress"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 34216.85165086016,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 720,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 54334.06351606131,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 36741.572880122025,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 19735.42663040827,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 1516.2058146747295,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1080,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 78503.71753840604,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 58380.67190544566,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 35464.602746413206,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": -3597.566029848298,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1440,
+          "ranks": [
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 100954.36567579894,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 91254.04667029786,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 81307.45088327432,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 80553.9675529654,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1800,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 261961.17616921698,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 135483.38729692582,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 93707.81475214091,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 80468.95955296542,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2160,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 354040.25687327294,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 126459.97556296125,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 83558.18597430075,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 79142.84208101241,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2520,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 368142.74081588787,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 121800.68803210833,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 83410.01768605245,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 83241.4588771561,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2880,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 315416.9550365065,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 94877.0019892189,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 83051.54630372196,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 71058.11842894522,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3240,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 294503.37111840746,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 83051.54630372196,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 71900.45440531813,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 63462.62287927588,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3600,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 284623.8628354394,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 83051.54630372196,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 61503.711511941074,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 51275.93189396833,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 23,
+      "strategy": "acquisition",
+      "day": 3600,
+      "yearsVerified": 10,
+      "acquired": 0,
+      "rankings": [
+        {
+          "day": 360,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 53135.982296364586,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 47753.32534605652,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 33930.291415246174,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 720,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 40450.48739869238,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 29663.126559454773,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 4.1064483868540265,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1080,
+          "ranks": [
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 70948.54663105254,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 65445.35746258694,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 59794.64115555557,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 55534.318679188145,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1440,
+          "ranks": [
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 94025.27008827345,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 76185.33818072785,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 57192.11290225643,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 51460.76345401285,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1800,
+          "ranks": [
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 135939.58449292084,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 125512.30424175144,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 90546.23203583126,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 76150.69370194775,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2160,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 139786.61768735352,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 137243.96626905145,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 113686.12063482875,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 91588.47014726637,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2520,
+          "ranks": [
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 145693.41749593685,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 138989.30089502077,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 131888.71884113175,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 88122.03814093852,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2880,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 171717.05244813825,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 165572.50993954766,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 152484.00033888913,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 81748.46094032054,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3240,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 202580.3355359673,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 149439.19182729954,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 143981.8220090373,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 111616.78437362335,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3600,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 202899.34130371618,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 147107.11137906552,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 132340.447909876,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 111403.21711131195,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "strategy": "conservative",
+      "day": 3600,
+      "yearsVerified": 10,
+      "acquired": 0,
+      "rankings": [
+        {
+          "day": 360,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 50667.61539615443,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 48207.506886879404,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 35909.64575986043,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 720,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 38915.96614554257,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 34050.996875020996,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 7379.554500301776,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1080,
+          "ranks": [
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 71234.38619818262,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 66288.52039714382,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 59902.05599999999,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 24824.913548751036,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1440,
+          "ranks": [
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 87560.17033598985,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 79780.59063252804,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 65496.42982205452,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 50134.08910147885,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1800,
+          "ranks": [
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 156476.51945854153,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 112256.58572964155,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 90690.60110919506,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 90524.43937316081,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2160,
+          "ranks": [
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 166735.64789187384,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 157986.1034323919,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 149297.38284029556,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 101535.65734468924,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2520,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 213994.4226721571,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 174872.97000759692,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 143438.68020376778,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 100337.82164840511,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2880,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 214774.2567158161,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 177480.80556985943,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 140012.42318417004,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 95966.03920188284,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3240,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 236277.8160376039,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 181852.9026941247,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 145844.17145353428,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 114051.67964206153,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3600,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 235624.36164104554,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 178943.67893637758,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 147973.2409131705,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 116042.790821469,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "strategy": "aggressive",
+      "day": 3600,
+      "yearsVerified": 10,
+      "acquired": 0,
+      "rankings": [
+        {
+          "day": 360,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 49848.55638577722,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 35746.76670736495,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 33429.52397436733,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 720,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 27818.874694371363,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 17173.339606836642,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 9057.226769219851,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1080,
+          "ranks": [
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 94624.0795299777,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 48826.69171480858,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 48507.017481250514,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1440,
+          "ranks": [
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 121924.38098461814,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 47586.09985525417,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 37034.41010168719,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1800,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 148593.42104218947,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 115406.52523140803,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 84440.15541282622,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2160,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 302596.6146014198,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 105881.12328584847,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 88402.61056406025,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2520,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 557500.9643772698,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 165525.46559007763,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 151925.58956121834,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2880,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 718254.2168719512,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 225657.14723899745,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 159721.29447400948,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3240,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 906671.747102497,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 205424.8491811802,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 149262.0620804663,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3600,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 941385.9681626556,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 172890.33879296167,
+                "status": "distress"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 133288.8852686917,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "strategy": "acquisition",
+      "day": 3600,
+      "yearsVerified": 10,
+      "acquired": 2,
+      "rankings": [
+        {
+          "day": 360,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 50667.61539615443,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 48207.506886879404,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 35909.64575986043,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 720,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 34034.2751548613,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 29903.929915047425,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 3173.3267065323016,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1080,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 82261.28059523998,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 68978.84224790527,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 59712.919111111114,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": -12242.420626019622,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1440,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 161686.22322267178,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 87443.02896325832,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 50791.697259062086,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": -816.0504515796492,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1800,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 142582.66910749592,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 115083.96500327872,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 89118.35426549576,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 4290.412182876491,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2160,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 241369.31876369822,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 129351.22334529978,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 89025.44777701405,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 83992.27583850047,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2520,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 291353.2358880271,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 138860.07534084888,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 131359.89966469829,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 104223.15891553176,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2880,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 289077.78555058263,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 142493.7320563696,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 138490.2658496962,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 101784.23269923413,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3240,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 305938.2928823519,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 140543.70550126824,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 124391.12944264236,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 116980.4302644504,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3600,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 297752.28822372196,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 137758.22018847172,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 128302.89166907809,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 122457.47393705344,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 91,
+      "strategy": "conservative",
+      "day": 3600,
+      "yearsVerified": 10,
+      "acquired": 0,
+      "rankings": [
+        {
+          "day": 360,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 59965.471333333335,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 54778.56680732261,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 44374.753389158504,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 41278.450449665645,
+                "status": "distress"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 720,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 55258.89282260269,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 34491.868242916535,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 33369.53793743512,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 14658.23593683992,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1080,
+          "ranks": [
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 87781.75635513142,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 75013.45961767806,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 74111.16416307382,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 53811.04789373212,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1440,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 112715.11455336171,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 70634.74712376404,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 67226.21530038575,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 52342.065806560626,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1800,
+          "ranks": [
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 146401.23081001441,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 125955.5180069691,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 109134.07435756421,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 92930.88669890555,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2160,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 170243.76822021726,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 163324.51872573374,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 111594.75904175555,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 109138.26758656853,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2520,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 241401.76580975915,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 162760.82424556525,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 141938.55898555066,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 116231.69026524668,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2880,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 250947.43983265347,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 159934.96631636808,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 126118.56282577035,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 114417.0748258582,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3240,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 244583.97716964124,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 155853.8461657256,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 144382.4939868931,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 124571.86091503683,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3600,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 235305.60487092004,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 148050.4090333566,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 141954.699642254,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 124186.11730446876,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 91,
+      "strategy": "aggressive",
+      "day": 3600,
+      "yearsVerified": 10,
+      "acquired": 0,
+      "rankings": [
+        {
+          "day": 360,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 55034.09480732263,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 40222.32295122731,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 34243.40764276552,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 720,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 43354.9289758456,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 22847.770092810824,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 19834.95021351491,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1080,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 56228.44172518351,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 54630.78869517881,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 47811.13235568695,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1440,
+          "ranks": [
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 73341.87530711261,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 49502.55141066061,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 33150.93535469426,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1800,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 212003.6675805254,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 69701.56166755583,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 53739.764036443434,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2160,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 421450.0192614191,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 89497.80574217142,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 56802.337736402114,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2520,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 577483.4165030732,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 178298.26860220754,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 74401.03915749144,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2880,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 689513.026339317,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 160960.31033015874,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 64750.91790361102,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3240,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 681343.6739088423,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 105837.73420807591,
+                "status": "bankrupt"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 56692.77076177686,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3600,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 720024.5656291035,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 105837.73420807591,
+                "status": "bankrupt"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 58780.79421518225,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 91,
+      "strategy": "acquisition",
+      "day": 3600,
+      "yearsVerified": 10,
+      "acquired": 5,
+      "rankings": [
+        {
+          "day": 360,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 59965.471333333335,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 54778.56680732261,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 44374.753389158504,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 41278.450449665645,
+                "status": "distress"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 720,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 55360.44379081816,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 34044.33037236074,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 22689.50548715575,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": -651.2840667197306,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1080,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 132551.0317781891,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 82640.28575964061,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 72739.72899517116,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": -11252.43182573196,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1440,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 225644.32463382368,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 103883.32276959985,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 67443.94552736077,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": -11929.133999645002,
+                "status": "bankrupt"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1800,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 222963.87327601635,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 120883.58838359584,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 107074.86775398743,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": -11929.133999645002,
+                "status": "bankrupt"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2160,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 205978.1998242535,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 108503.40825247645,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 106109.77550158999,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": -11929.133999645002,
+                "status": "bankrupt"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2520,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 253508.31274183042,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 128182.34067303519,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 116526.46718718397,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": -11929.133999645002,
+                "status": "bankrupt"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2880,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 333442.1423327029,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 153986.69829905638,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 127614.8779669023,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": -11929.133999645002,
+                "status": "bankrupt"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3240,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 328346.00102866546,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 149878.77998012007,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 141199.98156497828,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": -11929.133999645002,
+                "status": "bankrupt"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3600,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 347390.8659811053,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 159287.149734459,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 145151.8625458668,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": -11929.133999645002,
+                "status": "bankrupt"
+              },
+              "rank": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 2026,
+      "strategy": "conservative",
+      "day": 3600,
+      "yearsVerified": 10,
+      "acquired": 0,
+      "rankings": [
+        {
+          "day": 360,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 59959.808333333334,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 50791.76253692662,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 47026.843255541506,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 35733.25702576745,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 720,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 55681.38625472372,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 41559.09521823788,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 26952.876177444356,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 5281.228225426923,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1080,
+          "ranks": [
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 82331.91959829492,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 72360.81200490205,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 69645.04772064192,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 32447.857747696864,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1440,
+          "ranks": [
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 133570.77759963853,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 88358.61305062799,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 65336.417680857194,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 61181.02018721911,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1800,
+          "ranks": [
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 142355.8497901615,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 112497.63421034205,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 102771.7374248493,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 85170.88413394021,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2160,
+          "ranks": [
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 146713.81555916398,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 127748.16207593991,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 123179.33927483589,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 98742.22912374504,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2520,
+          "ranks": [
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 150799.59572566237,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 142098.61968084774,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 140248.7312148045,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 117429.4533133783,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2880,
+          "ranks": [
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 205398.74810618907,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 161630.6797975616,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 137230.4644470479,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 122794.0968961604,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3240,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 201016.64445812115,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 196750.3004186367,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 190132.40591130083,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 163483.98291405963,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3600,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 204673.9324288377,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 199180.04762673072,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 175899.8125605287,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 168930.197776447,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 2026,
+      "strategy": "aggressive",
+      "day": 3600,
+      "yearsVerified": 10,
+      "acquired": 0,
+      "rankings": [
+        {
+          "day": 360,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 60000,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 54784.1438073226,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 40790.55144070246,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 33822.41302190727,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 720,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 55551.411833398925,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 44290.18538913864,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 33245.66126476691,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 14535.393936245324,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1080,
+          "ranks": [
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 73387.94469330825,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 72181.02116668495,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 51300.91449415129,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 47496.86413885065,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1440,
+          "ranks": [
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 110577.81255502466,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 93271.50952383757,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 78696.05014605304,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 40199.19092267472,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1800,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 131802.17320300615,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 79280.39183998787,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 72877.64949130587,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 58556.79754219373,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2160,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 298620.5778749003,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 79280.39183998787,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 72104.58218698174,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 49241.70314481051,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2520,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 530204.4647038064,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 207988.79870281075,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 155941.61182822488,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 79280.39183998787,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2880,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 688738.2620921483,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 221866.38138182915,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 145317.09216837067,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 79280.39183998787,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3240,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 752160.3525233249,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 196781.44530714786,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 151974.34561863056,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 79280.39183998787,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3600,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 738929.0542836396,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 176728.53713636508,
+                "status": "bankrupt"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 141587.9747302354,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 79280.39183998787,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 2026,
+      "strategy": "acquisition",
+      "day": 3600,
+      "yearsVerified": 10,
+      "acquired": 0,
+      "rankings": [
+        {
+          "day": 360,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 59959.808333333334,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 50791.76253692662,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 47026.843255541506,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 35733.25702576745,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 720,
+          "ranks": [
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 55681.38625472372,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 41559.09521823788,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 26952.876177444356,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 5281.228225426923,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1080,
+          "ranks": [
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 82331.91959829492,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 72360.81200490205,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 69645.04772064192,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 32447.857747696864,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1440,
+          "ranks": [
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 133570.77759963853,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 88358.61305062799,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 65336.417680857194,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 61181.02018721911,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 1800,
+          "ranks": [
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 142355.8497901615,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 112497.63421034205,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 102771.7374248493,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 85170.88413394021,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2160,
+          "ranks": [
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 146713.81555916398,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 127748.16207593991,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 123179.33927483589,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 98742.22912374504,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2520,
+          "ranks": [
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 150799.59572566237,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 142098.61968084774,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 140248.7312148045,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 117429.4533133783,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 2880,
+          "ranks": [
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 205398.74810618907,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 161630.6797975616,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 137230.4644470479,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 122794.0968961604,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3240,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 201016.64445812115,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 196750.3004186367,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 190132.40591130083,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 163483.98291405963,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        },
+        {
+          "day": 3600,
+          "ranks": [
+            {
+              "row": {
+                "id": "player",
+                "name": "山城置业",
+                "equity": 204673.9324288377,
+                "status": "playing"
+              },
+              "rank": 1
+            },
+            {
+              "row": {
+                "id": "jiangzhou",
+                "name": "江舟地产",
+                "equity": 199180.04762673072,
+                "status": "playing"
+              },
+              "rank": 2
+            },
+            {
+              "row": {
+                "id": "yuefeng",
+                "name": "跃峰发展",
+                "equity": 175899.8125605287,
+                "status": "playing"
+              },
+              "rank": 3
+            },
+            {
+              "row": {
+                "id": "qinglan",
+                "name": "青岚置业",
+                "equity": 168930.197776447,
+                "status": "playing"
+              },
+              "rank": 4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "legacy": [
+    {
+      "seed": 7,
+      "yearsVerified": 10
+    },
+    {
+      "seed": 23,
+      "yearsVerified": 10
+    },
+    {
+      "seed": 42,
+      "yearsVerified": 10
+    },
+    {
+      "seed": 91,
+      "yearsVerified": 10
+    },
+    {
+      "seed": 2026,
+      "yearsVerified": 10
+    }
+  ]
+}

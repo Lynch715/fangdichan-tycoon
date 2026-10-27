@@ -1,0 +1,8 @@
+import type{Config,GameState,Project}from'../sim/index.ts';import{presaleBlocked,landBanUntil,rectificationError,calendar}from'../sim/index.ts';import{pct,yi}from'./format.ts';
+export function landBanMarkup(s:GameState,c:Config,districtId:string){const until=landBanUntil(s,districtId);if(until<=s.day)return '';const date=calendar(c,until);return `<span class="small danger-text">借款拿地处罚：本公司在该片区暂停拿地，至第${date.year}年${date.month}月${date.day}日恢复。已报名未结拍地块将撤回并退押。</span>`;}
+export function presaleMarkup(s:GameState,c:Config,p:Project){
+ if(presaleBlocked(p)){const date=calendar(c,p.presale!.reapplyDay!);return `<div class="tile stack danger-text"><b>预售证已撤销 · 暂停预售</b><span class="small">捂盘惜售被查。第${date.year}年${date.month}月${date.day}日起可整改复审；先将报价降至市场价${pct(c.compliance.hoarding.rectifiedPriceFactor)}以内，再申请备案。审批完成前不恢复预售，交付后的现房销售不受预售证限制。</span><span class="small">${p.filingDueDay!==null?'整改审批中':rectificationError(s,c,p)??'已达到复审条件，可申请备案'}</span></div>`;}
+ if(p.presale?.hoardingMonths)return `<span class="small warn-text">高价低成交连续${p.presale.hoardingMonths}个月；达到${c.compliance.hoarding.months}个月可能被抽查撤证及罚款。</span>`;
+ return '';
+}
+export function complianceRules(s:GameState,c:Config){if(!s.compliance)return '';const h=c.compliance.hoarding;return `<details data-key="compliance-rules"><summary>借款用途与预售监管</summary><p class="small muted">当前现金中尚未使用的借款 ${yi(s.compliance.borrowedCash)}。现金支出优先使用自有资金；信托、开发贷、明股实债和公司债到账均跟踪用途。调控/下行期实际用于拿地的借款被抽查后，按违规金额${pct(c.compliance.borrowedLand.fineRate)}罚款，该片区禁拍${c.compliance.borrowedLand.banMonths}个月；落拍退押不罚。</p><p class="small muted">未交付项目报价达到市场价${pct(h.priceFactor)}，且连续${h.months}个月月成交不足期初未售面积${pct(h.maxMonthlySoldRatio)}，可能被抽查撤销预售证，并按剩余货值的权益份额${pct(h.fineRate)}罚款。正常备案等待、未达预售进度及工程停工不累计。</p></details>`;}

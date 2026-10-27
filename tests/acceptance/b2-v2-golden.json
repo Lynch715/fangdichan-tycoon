@@ -1,0 +1,591 @@
+[
+  {
+    "name": "positive-project",
+    "save": {
+      "version": 2,
+      "seed": 7,
+      "day": 720,
+      "log": [
+        {
+          "day": 0,
+          "command": {
+            "type": "bid",
+            "parcelId": "L1",
+            "amount": 31146
+          }
+        }
+      ],
+      "revision": 0
+    },
+    "state": {
+      "version": 2,
+      "financeFrozenUntil": 0,
+      "seed": 7,
+      "rng": 650319074,
+      "day": 720,
+      "status": "playing",
+      "distressMonths": 0,
+      "cash": 58324.42080246784,
+      "debts": [],
+      "projects": [
+        {
+          "id": "P4",
+          "name": "南岸 L1",
+          "districtId": "nanan",
+          "tiles": [
+            [
+              7,
+              14
+            ],
+            [
+              8,
+              14
+            ],
+            [
+              7,
+              15
+            ],
+            [
+              8,
+              15
+            ]
+          ],
+          "buildArea": 50000,
+          "saleableArea": 45000,
+          "landCost": 15870,
+          "landPaid": 15870,
+          "landDueDay": 210,
+          "buildCost": 16500,
+          "buildSpent": 16706.25,
+          "progress": 1,
+          "pace": "normal",
+          "stage": "completed",
+          "priceFactor": 1,
+          "soldArea": 38708.304080830276,
+          "salesIn": 45955.809890413315,
+          "escrowReleased": 45955.809890413315,
+          "completedDay": 720,
+          "deliveredDay": null,
+          "closedDay": null,
+          "paperRatio": 0,
+          "partnerShare": 0,
+          "diverted": 0,
+          "stoppedUntil": 0,
+          "filedPrice": null,
+          "filingPrice": null,
+          "filingDueDay": null
+        }
+      ],
+      "auctions": [
+        {
+          "id": "L35",
+          "name": "江津 L35",
+          "districtId": "jiangjin",
+          "tiles": [
+            [
+              3,
+              10
+            ],
+            [
+              4,
+              10
+            ],
+            [
+              3,
+              11
+            ],
+            [
+              4,
+              11
+            ]
+          ],
+          "siteArea": 21000,
+          "far": 2,
+          "startPrice": 6094,
+          "endDay": 750,
+          "aiMax": 7762,
+          "playerBid": null,
+          "deposit": 0
+        },
+        {
+          "id": "L36",
+          "name": "两江新区 L36",
+          "districtId": "jiangbei",
+          "tiles": [
+            [
+              9,
+              4
+            ],
+            [
+              10,
+              4
+            ],
+            [
+              9,
+              5
+            ],
+            [
+              10,
+              5
+            ]
+          ],
+          "siteArea": 23000,
+          "far": 3,
+          "startPrice": 48321,
+          "endDay": 750,
+          "aiMax": 54591,
+          "playerBid": null,
+          "deposit": 0
+        },
+        {
+          "id": "L37",
+          "name": "南岸 L37",
+          "districtId": "nanan",
+          "tiles": [
+            [
+              4,
+              13
+            ],
+            [
+              5,
+              13
+            ],
+            [
+              4,
+              14
+            ],
+            [
+              5,
+              14
+            ]
+          ],
+          "siteArea": 23000,
+          "far": 2.5,
+          "startPrice": 19932,
+          "endDay": 750,
+          "aiMax": 26006,
+          "playerBid": null,
+          "deposit": 0
+        },
+        {
+          "id": "L38",
+          "name": "璧山 L38",
+          "districtId": "bishan",
+          "tiles": [
+            [
+              8,
+              3
+            ],
+            [
+              9,
+              3
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              9,
+              4
+            ]
+          ],
+          "siteArea": 26000,
+          "far": 2.2,
+          "startPrice": 11082,
+          "endDay": 750,
+          "aiMax": 13650,
+          "playerBid": null,
+          "deposit": 0
+        }
+      ],
+      "market": {
+        "phaseIndex": 1,
+        "phaseEndMonth": 45,
+        "sentiment": 76.76947081562002,
+        "priceIndex": {
+          "yuzhong": 1.1476285274944942,
+          "jiangbei": 1.1527595375505382,
+          "nanan": 1.1671592860046298,
+          "bishan": 1.1699686991676568,
+          "jiangjin": 1.151564697625559
+        }
+      },
+      "regulation": {
+        "active": false,
+        "announced": false,
+        "tier": 0,
+        "debtBaseline": 0,
+        "breaches": {
+          "liabilityRatio": false,
+          "netGearing": false,
+          "cashToShortDebt": false
+        }
+      },
+      "rating": 0,
+      "attention": 0,
+      "news": [
+        {
+          "day": 720,
+          "kind": "land",
+          "text": "本季度土地拍卖挂牌 4 宗，30 天后开拍"
+        },
+        {
+          "day": 720,
+          "kind": "company",
+          "text": "南岸 L1 竣工验收"
+        },
+        {
+          "day": 720,
+          "kind": "warning",
+          "text": "南岸 L1 遇建材涨价，本月工程支出上浮 15%"
+        },
+        {
+          "day": 630,
+          "kind": "land",
+          "text": "本季度土地拍卖挂牌 5 宗，30 天后开拍"
+        },
+        {
+          "day": 540,
+          "kind": "land",
+          "text": "本季度土地拍卖挂牌 5 宗，30 天后开拍"
+        },
+        {
+          "day": 450,
+          "kind": "land",
+          "text": "本季度土地拍卖挂牌 4 宗，30 天后开拍"
+        },
+        {
+          "day": 360,
+          "kind": "land",
+          "text": "本季度土地拍卖挂牌 5 宗，30 天后开拍"
+        },
+        {
+          "day": 360,
+          "kind": "market",
+          "text": "新房成交量创新高，土拍溢价率走高"
+        },
+        {
+          "day": 270,
+          "kind": "land",
+          "text": "本季度土地拍卖挂牌 4 宗，30 天后开拍"
+        },
+        {
+          "day": 180,
+          "kind": "land",
+          "text": "本季度土地拍卖挂牌 3 宗，30 天后开拍"
+        },
+        {
+          "day": 150,
+          "kind": "warning",
+          "text": "南岸 L1 遇建材涨价，本月工程支出上浮 15%"
+        },
+        {
+          "day": 90,
+          "kind": "land",
+          "text": "本季度土地拍卖挂牌 4 宗，30 天后开拍"
+        },
+        {
+          "day": 30,
+          "kind": "land",
+          "text": "拿地成功：南岸 L1，成交 1.59 亿，溢价率 7%"
+        },
+        {
+          "day": 0,
+          "kind": "land",
+          "text": "本季度土地拍卖挂牌 3 宗，30 天后开拍"
+        },
+        {
+          "day": 0,
+          "kind": "company",
+          "text": "山城置业成立，注册资本 5.0 亿"
+        }
+      ],
+      "pauses": [],
+      "nextId": 38,
+      "lastWarnMonth": -99,
+      "stats": {
+        "landWon": 1,
+        "projectsClosed": 0,
+        "peakEquity": 50000
+      }
+    }
+  },
+  {
+    "name": "negative-cash-history",
+    "save": {
+      "version": 2,
+      "seed": 2,
+      "day": 30,
+      "log": [
+        {
+          "day": 0,
+          "command": {
+            "type": "borrow",
+            "channel": "trust",
+            "amount": 40000
+          }
+        },
+        {
+          "day": 0,
+          "command": {
+            "type": "bid",
+            "parcelId": "L1",
+            "amount": 238548
+          }
+        },
+        {
+          "day": 0,
+          "command": {
+            "type": "bid",
+            "parcelId": "L2",
+            "amount": 96066
+          }
+        },
+        {
+          "day": 0,
+          "command": {
+            "type": "bid",
+            "parcelId": "L3",
+            "amount": 29408
+          }
+        }
+      ],
+      "revision": 0
+    },
+    "state": {
+      "version": 2,
+      "financeFrozenUntil": 0,
+      "seed": 2,
+      "rng": -887600456,
+      "day": 30,
+      "status": "distress",
+      "distressMonths": 1,
+      "cash": -6028.550000000001,
+      "debts": [
+        {
+          "id": "D4",
+          "channel": "trust",
+          "principal": 40000,
+          "rate": 0.12,
+          "startDay": 0,
+          "maturityDay": 540,
+          "projectId": null
+        }
+      ],
+      "projects": [
+        {
+          "id": "P5",
+          "name": "渝中半岛 L1",
+          "districtId": "yuzhong",
+          "tiles": [
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              3
+            ]
+          ],
+          "buildArea": 112000,
+          "saleableArea": 100800,
+          "landCost": 121491.6,
+          "landPaid": 60745.8,
+          "landDueDay": 210,
+          "buildCost": 43680,
+          "buildSpent": 1820,
+          "progress": 0.041666666666666664,
+          "pace": "normal",
+          "stage": "construction",
+          "priceFactor": 1,
+          "soldArea": 0,
+          "salesIn": 0,
+          "escrowReleased": 0,
+          "completedDay": null,
+          "deliveredDay": null,
+          "closedDay": null,
+          "paperRatio": 0,
+          "partnerShare": 0,
+          "diverted": 0,
+          "stoppedUntil": 0,
+          "filedPrice": null,
+          "filingPrice": null,
+          "filingDueDay": null
+        },
+        {
+          "id": "P6",
+          "name": "两江新区 L2",
+          "districtId": "jiangbei",
+          "tiles": [
+            [
+              10,
+              6
+            ],
+            [
+              11,
+              6
+            ],
+            [
+              10,
+              7
+            ],
+            [
+              11,
+              7
+            ]
+          ],
+          "buildArea": 78000,
+          "saleableArea": 70200,
+          "landCost": 48980.7,
+          "landPaid": 24490.35,
+          "landDueDay": 210,
+          "buildCost": 23400,
+          "buildSpent": 0,
+          "progress": 0,
+          "pace": "normal",
+          "stage": "construction",
+          "priceFactor": 1,
+          "soldArea": 0,
+          "salesIn": 0,
+          "escrowReleased": 0,
+          "completedDay": null,
+          "deliveredDay": null,
+          "closedDay": null,
+          "paperRatio": 0,
+          "partnerShare": 0,
+          "diverted": 0,
+          "stoppedUntil": 90,
+          "filedPrice": null,
+          "filingPrice": null,
+          "filingDueDay": null
+        },
+        {
+          "id": "P7",
+          "name": "南岸 L3",
+          "districtId": "nanan",
+          "tiles": [
+            [
+              3,
+              14
+            ],
+            [
+              4,
+              14
+            ],
+            [
+              3,
+              15
+            ],
+            [
+              4,
+              15
+            ]
+          ],
+          "buildArea": 45000,
+          "saleableArea": 40500,
+          "landCost": 14971.3,
+          "landPaid": 7485.65,
+          "landDueDay": 210,
+          "buildCost": 14850.000000000002,
+          "buildSpent": 618.75,
+          "progress": 0.041666666666666664,
+          "pace": "normal",
+          "stage": "construction",
+          "priceFactor": 1,
+          "soldArea": 0,
+          "salesIn": 0,
+          "escrowReleased": 0,
+          "completedDay": null,
+          "deliveredDay": null,
+          "closedDay": null,
+          "paperRatio": 0,
+          "partnerShare": 0,
+          "diverted": 0,
+          "stoppedUntil": 0,
+          "filedPrice": null,
+          "filingPrice": null,
+          "filingDueDay": null
+        }
+      ],
+      "auctions": [],
+      "market": {
+        "phaseIndex": 0,
+        "phaseEndMonth": 21,
+        "sentiment": 53.156804512254894,
+        "priceIndex": {
+          "yuzhong": 1.0034879224565811,
+          "jiangbei": 1.0008460401929913,
+          "nanan": 1.00403336337395,
+          "bishan": 1.0022001896128057,
+          "jiangjin": 1.005829680688679
+        }
+      },
+      "regulation": {
+        "active": false,
+        "announced": false,
+        "tier": 0,
+        "debtBaseline": 0,
+        "breaches": {
+          "liabilityRatio": false,
+          "netGearing": false,
+          "cashToShortDebt": false
+        }
+      },
+      "rating": 5,
+      "attention": 10,
+      "news": [
+        {
+          "day": 30,
+          "kind": "warning",
+          "text": "资金链断裂：账上缺口 0.60 亿，自救窗口还剩 5 个月"
+        },
+        {
+          "day": 30,
+          "kind": "warning",
+          "text": "两江新区 L2 发生安全事故，损失 0.05 亿，停工 2 个月"
+        },
+        {
+          "day": 30,
+          "kind": "land",
+          "text": "拿地成功：南岸 L3，成交 1.50 亿，溢价率 12%"
+        },
+        {
+          "day": 30,
+          "kind": "land",
+          "text": "拿地成功：两江新区 L2，成交 4.90 亿，溢价率 3%"
+        },
+        {
+          "day": 30,
+          "kind": "land",
+          "text": "拿地成功：渝中半岛 L1，成交 12.15 亿，溢价率 10%"
+        },
+        {
+          "day": 0,
+          "kind": "land",
+          "text": "本季度土地拍卖挂牌 3 宗，30 天后开拍"
+        },
+        {
+          "day": 0,
+          "kind": "company",
+          "text": "山城置业成立，注册资本 5.0 亿"
+        }
+      ],
+      "pauses": [],
+      "nextId": 7,
+      "lastWarnMonth": -99,
+      "stats": {
+        "landWon": 3,
+        "projectsClosed": 0,
+        "peakEquity": 50000
+      }
+    }
+  }
+]

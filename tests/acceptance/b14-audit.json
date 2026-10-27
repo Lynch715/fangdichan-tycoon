@@ -1,0 +1,32 @@
+{
+  "day": 420,
+  "projectId": "P14",
+  "quote": {
+    "price": -2099.2017183465214,
+    "debt": 43560,
+    "net": -45659.20171834652
+  },
+  "cashBefore": 1322832.7363996638,
+  "cashAfter": 1277173.5346813174,
+  "journal": [
+    {
+      "day": 420,
+      "period": 15,
+      "kind": "transfer",
+      "cash": -2099.2017183465214,
+      "projectCash": -2099.2017183465214,
+      "amount": 2099.2017183465214,
+      "projectId": "P14"
+    },
+    {
+      "day": 420,
+      "period": 15,
+      "kind": "repay",
+      "cash": -43560,
+      "projectCash": -43560,
+      "amount": 43560,
+      "projectId": "P14"
+    }
+  ],
+  "sha256": "d50c572ba4f64b0b1b59c5723dc33654037ab7810db30d9f6d68938024ce7e67"
+}

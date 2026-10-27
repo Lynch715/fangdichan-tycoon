@@ -1,0 +1,308 @@
+## 2026-10-26 · Codex · D3 风险统计完成并核对全施工单
+
+- **做了什么**：balance新增最终危机首月现金转负的支出分布、下行期相对历史峰值的月末最大回撤、收益分位及目标对照；可输出含种子/流水索引/回撤端点的逐局JSON。明确无破产、未到下行和非正峰值的不适用口径。A–D施工单全项完成，整理最终证据索引。
+- **改了哪些文件**：`scripts/balance.ts`、`src/analysis/balance.ts`、`tests/balance-analysis.test.ts`、`scripts/d3-audit.ts`、D3/FINAL验收记录、README和AGENTS/CLAUDE。
+- **数值变化**：无；模拟规则、存档v16和D2五个参数均不改。
+- **验证**：374项回归、类型检查、构建通过；10项统计专项复验通过。两策略各200局×30年，失败种子与收益分位与D2一致。激进62例破产触发：本金52、利息/展期2、土地7、营销/税费1；下行回撤比例中位保守5.09%、激进63.02%，覆盖200/200和155/200局。无下行小样本与非法参数检查通过；81素材/提示词齐全，@2x共3288512字节，art检查通过。
+- **没做完 / 已知问题**：施工单无未完成项；回撤为月末采样、触发归因不等于完整因果。原有大分块提示保留。未做实体手机及系统PWA安装、未初始化Git或发布；远程工作流待用户建仓后实际运行。
+
+## 2026-10-26 · Codex · D2 达成风险收益目标并冻结 v15 历史
+
+- **做了什么**：按用户确认目标调参，两组独立200局30年均达标；新v16冻结旧v15经济历史与同日指令边界，旧成交/挑战/沙盒记录保留。
+- **改了哪些文件**：`data/config.json`、`src/legacy-v15/`、`src/save.ts`、`src/game.ts`、`src/sim/engine.ts`及类型、迁移回归、调参/浏览器证据、D2-REPORT与文档。
+- **数值变化**：转让折价0.8→0.6；激进土地储备0.5→0.25、工程储备0.15→0、明股实债使用0.5→0.25、并行12→20；仅5个键改变。
+- **验证**：364项测试、类型检查与构建通过；24冻结文件哈希和11份完整历史状态通过。正式200局30年保守破产0→0%、净资产分位33.5/43.2/55.9亿不变；激进0→31%、32.4/46.0/65.7→-3.9/73.7/132.8亿。两独立组激进破产31.0%/29.5%，收益中位倍数1.7992/1.6765，P10均低于保守。IAB实际旧档/负报价/转让/重载及390视口通过。
+- **没做完 / 已知问题**：D2无；D3待完成。随机样本达标不保证每组种子达标。保留大分块提示，未做实体手机测试，未发布。
+
+## 2026-10-26 · Codex · D1 机器人接入全部新增经营工具
+
+- **做了什么**：批量策略按资金压力选择总包、施工与营销，使用合作、商票、展期、正净回笼项目转让；激进策略可用明股实债，保守保留不用该渠道的风险偏好。逐条真实命令规划防止重复预支额度，纸票不可展期，保交楼目标受保护；拍地考虑承诺付款与并行项目数。
+- **改了哪些文件**：`src/sim/bots.ts`、`data/config.json:bots`、`tests/bots.test.ts`、旧配置比较辅助函数、D1审计/对照证据和AGENTS/CLAUDE。
+- **数值变化**：新增bots策略初值，全部原经济参数不变；压力窗口3个月，总包选择6个月；保守/激进现金储备30%/5%、工程储备50%/15%、并行4/12，明股实债额度使用0/50%，详细值见D1-REPORT。
+- **验证**：347项测试和构建（含类型检查）通过；6局10年完整日志重放和现金核对；七项工具均有真实成功指令。200局30年：保守破产0%→0%，净资产P10/中位/P90 64.9/84.3/104.3→33.5/43.2/55.9亿；激进53.5%→0%，-6.7/43.6/328.6→32.4/46.0/65.7亿。
+- **没做完 / 已知问题**：D1无；目前策略结果尚未达到D2目标。用户已确认采用施工单25–35%破产率、1.5–2倍收益中位数及更低P10，下一步调参并补D3统计。存档仍v15，未发布。
+
+## 2026-10-26 · Codex · C2 发布与手机 PWA 安装说明完成
+
+- **做了什么**：README补齐用户初始化game仓库、Pages设置、main推送、Actions检查及上线核验步骤；分别写iPhone Safari、Android Chrome主屏幕安装和离线验证，说明存档迁移与缓存更新。修正Node最低版本说明，补B14玩法说明。
+- **改了哪些文件**：`README.md`、AGENTS/CLAUDE。
+- **数值变化**：无。
+- **验证**：逐项核对工作流、构建命令、相对base、manifest/start_url/scope/icon和SW注册路径；菜单与发布说明按Apple、Google、GitHub、Vite官方文档核对，README中附来源链接。仅文档变更，未重复运行游戏回归。
+- **没做完 / 已知问题**：C2无。未初始化Git、推送、实际运行远程工作流或手机系统安装，均已在README明确。D1–D3继续，D2按施工单需要用户确认目标。
+
+## 2026-10-26 · Codex · C1 GitHub Pages 自动构建发布工作流准备完成
+
+- **做了什么**：main推送自动安装锁定依赖、回归测试、类型检查和构建离线站点，仅上传dist后发布Pages；支持手动触发，非main手动运行只构建。构建与部署权限分离，同一Pages部署串行。
+- **改了哪些文件**：`.github/workflows/deploy.yml`、AGENTS/CLAUDE。
+- **数值变化**：无。
+- **验证**：Ruby标准YAML解析及main触发/构建依赖/dist产物检查通过；最近一次本地构建和340项测试通过。Actions引用按Vite官方部署示例固定提交，Pages权限和环境按GitHub官方文档核对。项目保留相对base，适用于Pages子目录。
+- **没做完 / 已知问题**：工作流准备完成；本机没有Git仓库，未执行git init、推送或远程Actions，远程运行待用户初始化仓库后验证。仓库根目录须为game，C2将提供步骤。
+
+## 2026-10-26 · Codex · B14 负转让报价解释与交付后估算完成
+
+- **做了什么**：项目转让区解释未交付预收房款仍为负债，并区分报价为负与偿还项目融资后需补现金。显示固定销量、完成工程并结清土地款后的预计报价；同时结转已售成本，保留合作权益与收购成本基础，单列交付前支出和监管款，说明当前债务本金比较口径。
+- **改了哪些文件**：`src/estimates/transfer.ts`、`src/ui/transfer.ts`、`src/ui/panels.ts`、`tests/transfer-estimate.test.ts`、B14夹具/审计脚本和`tests/acceptance/B14-REPORT.md`，同步AGENTS/CLAUDE。
+- **数值变化**：无；未改模拟规则和存档版本，仍为v15。
+- **验证**：`npm run typecheck`、全部340项测试、`npm run build`通过。固定销量真实推进至交付与预计报价吻合；旧v14迁移和v15日志的估算只读核对通过。IAB桌面、390和320像素视口通过；真实第420日负报价项目转让扣款45659.201718万元与显示/流水/重载一致。无规则或配置改动，无需重复平衡模拟。
+- **没做完 / 已知问题**：B14无；预计报价是固定销量情景，不保证未来售价、销量、融资或经营结果。未做物理手机测试。C–D继续施工，未初始化Git或发布。
+
+## 2026-10-26 · Codex · B13三种模式、三档难度和三个挑战完成
+
+- **做了什么**：开局和重新开始可选生涯/挑战/沙盒及从容/标准/严峻，取消保留原进度。三个挑战分别使用实际新增销售、真实橙档下行经营、承接违约公司的停工项目/债务/预售义务，判定成功或失败并保存。沙盒真实注资记资本、保留成本和债务、不以注资冒充利润。v15将开局选择写入指令日志，旧v14历史冻结保留，失败导入/重开不覆盖原档。
+- **改了哪些文件**：`src/sim/sessions.ts`、sessionConfig、types/engine/reporting/bots/index；save/game；`src/ui/session.ts`、panels/reports/reportController；main、index.html、style.css；data/config.json；模式测试、冻结迁移检查、B13场景/审计脚本、浏览器夹具与`tests/acceptance/B13-REPORT.md`；README、AGENTS、CLAUDE。
+- **数值变化**：仅新增sessions的场景初值，原标准参数不改。千亿关资金×20、每季12–16宗、面积6–12万㎡、5年目标1000亿元。橙档关资金×0.2、3项目账面库存合计18亿元、14亿元长期债48月/5.5%。保交楼关原缺口1亿元、两项目40%/65%工程且停工4月、原预收6.282亿元、信托3亿元6月/12%、商票1亿元3月/0%、开发贷2亿元18月/5.5%，36月期限；按难度投入救助资本。沙盒资金×20、手动注资50亿元、负现金时自动补至1亿元；挑战/沙盒地图首日开放。
+- **验证**：typecheck、40文件334项Vitest、build通过；22文件哈希和5旧v14全状态原字段一致。9条真实挑战策略均成功且完整回放；18份脚本/实际浏览器导出核对全公司现金、月报、资本和归因恒等式。IAB：旧档取消完全同态，真实开局/难度、手机续档、沙盒160→210亿元且重载保留；千亿第1230日1040.83亿元、下行第540日成功、保交楼第570日两项目交付，提前转让实际失败；1440/390/320视口通过。200局×30年标准输出与B12逐字节相同，保守0%、64.9/84.3/104.3亿元；激进53.5%、−6.7/43.6/328.6亿元。新场景初值未进行D组风险目标调参。
+- **没做完 / 已知问题**：B14及C–D继续施工。主包1041.86kB仍有Vite体积提示；未做实体手机、系统PWA安装或断网重测。未初始化Git、未建PR、未发布。
+
+## 2026-10-26 · Codex · B13a旧历史冻结与难度配置基础完成
+
+- **做了什么**：完成B13第一子项，当前正式游戏行为与存档版本保持v14；模式入口尚未开放。冻结B12完整历史，增加生涯/挑战/沙盒选择校验及独立难度规则派生，标准档逐值保留原配置，避免各局互相污染配置。
+- **改了哪些文件**：`src/legacy-v14/`、`src/sim/sessionConfig.ts`、`data/config.json`；`scripts/b13-legacy-fixtures.ts`、两份专项测试及旧配置比较辅助；`tests/acceptance/b13-v14-golden.json`、`B13a-REPORT.md`、批量结果；README、AGENTS、CLAUDE。
+- **数值变化**：只新增sessions，旧键值不改。从容/标准/严峻初始资金系数1.6/1/0.6（现基础8/5/3亿元），周期幅度0.75/1/1.25，预警提前量系数1.5/1/0.5（现基础9/6/3月），AI激进系数0.8/1/1.2；中性情绪50、去化下限0.1。函数尚未由正式开局调用，完整应用口径见B13a报告。
+- **验证**：typecheck、39文件319项Vitest、build通过。22冻结文件哈希、5份B12真实浏览器导出的全状态哈希与历史记录一致；三档真实预警日期、标准5年完整结果、从容/严峻5年种子日志重放通过。200局×30年标准输出与B12逐字节相同：保守0%、64.9/84.3/104.3亿元、拿地45.1；激进53.5%、−6.7/43.6/328.6亿元、拿地188.5、破产中位1.2年。没有界面改动，未重做浏览器/离线验收。
+- **没做完 / 已知问题**：B13b的开局界面/指令日志/迁移、三个挑战和沙盒继续施工，B13总项未完成；B14、C、D未完成。主包956.69kB仍有体积提示；未做实体手机或PWA安装测试。未初始化Git、未建PR、未发布。
+
+## 2026-10-26 · Codex · B12战投增资与股权换债务展期完成
+
+- **做了什么**：财务页可查看并确认战投／重组方案，取消不落日志且保留选择。真实增资进入公司现金、原股东同比稀释，显示创始人权益账面份额；股东投入不计利润、不混入项目收益。重组用较大股权稀释换近期普通借款延期，本金/利率/评级条款不变，无现金到账；旧档历史和原合同保留。
+- **改了哪些文件**：`src/sim/capital.ts`、engine/types/reporting/features/index；`src/ui/capital.ts`、capitalController、panels/reports；main、index.html；`src/legacy-v13/`、save、game；`data/config.json`；专项测试、场景与审计脚本、`tests/acceptance/B12-REPORT.md`；README、AGENTS、CLAUDE。
+- **数值变化**：仅新增capitalRescue，旧值不改。战投持股10/20/30/40%，投前估值净资产80%且最低5000万元，间隔12月，创始人最低10%；重组债权人增发后持股40%，窗口6月、延后12月、每家公司1次。商票、提前到期部分及已重组债务不参与。
+- **验证**：typecheck、37文件299项Vitest、build通过；21冻结文件哈希与5完整状态基线，15局10年全状态／股权合计／现金和利润资本恒等式审计。IAB实际40%战投＋40%重组后创始人36%、战投24%、债权人40%；4亿元信托原日不还本，新到期后月末第930日实际偿还，41条浏览器日志完整回放一致。现金缺口案例第1710日恢复经营，旧档和同日新融资／报表通过，三视口确认框可用。200局×30年输出与B11逐字节相同：保守0%、64.9/84.3/104.3亿、拿地45.1；激进53.5%、−6.7/43.6/328.6亿、拿地188.5、破产中位1.2年。原标准机器人尚未主动使用本项工具，另有主动自救策略审计。
+- **没做完 / 已知问题**：B13–B14、C、D待施工；未做D组调参。主包956.33kB仍有Vite体积提示；未做实体手机／PWA安装／断网重测。未初始化Git、未建PR、未发布。
+
+## 2026-10-26 · Codex · B11片区购房政策与实际销售联动完成
+
+- **做了什么**：片区根据三个月房价和真实库存去化独立收紧／放松，限购、首付、按揭共同影响普通销售；全部公司收月后统一调整，下月生效。片区、拍卖、项目和测算同步展示。v13保留v12完整历史，旧档从迁移日开始观察；开发测试旧档仅缺空历史边界时可确定地补齐，原JSON保留。
+- **改了哪些文件**：`src/sim/housingPolicy.ts`、engine/types/index；`src/ui/housingPolicy.ts`、panels/regions；`src/estimates/land.ts`；`src/legacy-v12/`、save、game；`data/config.json`；专项测试、审计脚本及`tests/acceptance/B11-REPORT.md`；README、AGENTS及CLAUDE。
+- **数值变化**：仅新增housingPolicy，原值未改。宽松／常态／收紧首付20/30/50%，按揭3.2/4.2/5.2%，收紧限购1套、合资格比例70%；观察及保持期3月，过热涨幅2.5%、下行−1.5%、去化快8月/慢30月、库存低迷房价阈值0.5%。需求基准首付30%/利率4.2%，敏感系数0.6/8，范围0.25–1.6，初始常态。
+- **验证**：typecheck、35文件282项Vitest（4 workers）、build通过；20冻结文件哈希及5完整历史基线、15局10年全状态/现金/归因核对。IAB真实片区先后调节、续月销售、导出重载、旧档不改历史及正式手机入口通过，桌面/390/320视口验收。200局×30年保守破产0→0%，净资产P10/中位/P90（亿）63.9/82.2/103.5→64.9/84.3/104.3，平均拿地45.1不变；激进52.5→53.5%，−7.3/61.9/336.8→−6.7/43.6/328.6，平均拿地206.7→188.5，破产年份中位数1.0→1.2。默认并发曾有2个5秒超时，限制4 workers后全套通过，断言/超时未改。
+- **没做完 / 已知问题**：B12–B14、C、D待施工；未做D组调参。限购采用客群比例模拟，无逐户购房数据库。主包882.26kB仍有Vite体积提示；未做实体手机、PWA安装/断网重测。未初始化Git、未建PR、未发布。
+
+## 2026-10-26 · Codex · B10借款拿地禁拍与捂盘撤证、整改复审完成
+
+- **做了什么**：按真实现金流识别调控期借款拿地，抽查罚款并禁拍对应片区一年，未结拍报名撤回退押；连续高价低成交项目被抽查后撤销预售证并罚款，界面显示整改期限，降价、等待及复审完成后才恢复预售。玩家和AI共用监管规则，旧现金和项目不补造历史违规。
+- **改了哪些文件**：`src/sim/fundingTrace.ts`、`compliance.ts`、`reporting.ts`、`engine.ts`、`features.ts`、`rivals.ts`、`acquisition.ts`、types/index；`src/ui/compliance.ts`、panels/regions；`src/legacy-v11/`、save、game；`data/config.json`；专项测试、脚本和`tests/acceptance/B10-REPORT.md`；README及两份约定。
+- **数值变化**：只新增`compliance`配置，已有值不改：借款拿地在tightening/downturn期适用，罚款10%、禁拍12月；捂盘报价115%、连续6月且月成交不足1%、罚款剩余市场货值权益份额1%、整改3月、复审报价105%以内。沿用原抽查概率和1月备案审批期。
+- **验证**：typecheck、265项Vitest、build通过；18冻结文件哈希及5完整历史基线、15局10年全状态/现金/资金归因核对。IAB默认真实案例提前复审拒绝、降价后仍停销、审批后成交恢复、片区禁拍/其他片区可拍、重载和旧档通过；桌面及390/320视口无横向溢出。浏览器复审7条日志与脚本全状态一致。200局×30年保守破产0→0%，净资产P10/中位/P90（亿）63.9/82.4/103.5→63.9/82.2/103.5；激进破产54→52.5%，−7.3/66.6/326.1→−7.3/61.9/336.8，平均拿地207.0→206.7。
+- **没做完 / 已知问题**：B11–B14、C、D待施工；风险目标待D组确认。主包816.95kB仍有Vite体积提示；未做实体手机/PWA安装重测。未初始化Git、未建PR、未发布。
+
+## 2026-10-26 · Codex · B9外围主城、地块坡度景观和片区市场完成
+
+- **做了什么**：新增首日起可选的外围主城地图；挂牌地块的坡度影响建安和工期，江景/山景影响售价，报价测算和项目/同行卡同步展示。片区显示模拟人口净流入与全公司真实库存/近三月销量计算的去化周期。旧地块和项目条件原样保留，v11通过冻结v10历史与同日日志边界迁移。
+- **改了哪些文件**：`src/sim/regions.ts`、`engine.ts`、`types.ts`、`map.ts`、`features.ts`、`rivals.ts`、`acquisition.ts`；`src/estimates/land.ts`、`src/ui/regions.ts`、`panels.ts`、`rivals.ts`；地图渲染、main、index、style；`src/legacy-v10/`、save、game；`data/config.json`；测试、B9验收脚本和报告；README及两份约定。
+- **数值变化**：无已有参数改值。新增outer片区：房价0.9万元/㎡、地价占比0.25、容积率2.3、建安1.05。新增坡度权重0.45/0.40/0.15、成本1/1.10/1.25、工期1/1.10/1.20；普通/江景/山景/双景售价1/1.08/1.05/1.12，距离1/2格。新增区域统计窗口3月、流入波动0.15、周期敏感度0.6；六片区模拟人口30/60/45/20/25/80万人、基准月净流入200/900/400/500/−80/600人。
+- **验证**：typecheck、250项Vitest、build通过；17冻结文件哈希和5完整历史基线，15局10年全状态重放/现金审计、实际收购销量不重复。IAB实际出价/开工/推进330日/导出/重载全状态与脚本相同；旧v10条件保留；正式页面及1440/390/320视口检查通过。200局×30年保守破产0→0%，净资产P10/中位/P90（亿）63.8/83.9/105.1→63.9/82.4/103.5；激进破产41.5→54%，−3.4/189.6/302.1→−7.3/66.6/326.1，平均拿地234.9→207.0。完整证据见`tests/acceptance/B9-REPORT.md`。
+- **没做完 / 已知问题**：B10–B14、C、D待施工；激进策略风险留D组调参。正式文件选择器导入在浏览器控制中超时，本次旧档验收使用独立页的生产Game导入/导出；未做实体手机/PWA安装重测。主包754.32kB仍有Vite体积提示。未初始化Git、未建PR、未发布。
+
+## 2026-10-26 · Codex · B8 公司债、评级降级与部分本金提前到期
+
+- **做了什么**：AA及以上可发行3/4/5年公司债，评级决定4–8%发行利率，现金/有息负债/月息/还本真实入账；额度受既有红线、冻结和行业收紧约束。持续资金困境2个月降C，新融资合同25%尚未进入通知期本金改为通知后1个月到期，余款保留原日期，每笔仅触发一次，提前部分不普通展期；触发日不虚扣现金。财务页显示评级门槛、条款和提前到期，期限与金额通过正式指令提交。新v10冻结v9全历史，旧无条款合同不追补。
+- **改了哪些文件**：src/legacy-v9/、data/config.json、src/sim/{bonds,types,engine,finance,features,reporting,index}.ts、src/save.ts、src/game.ts、src/ui/{bondController,panels}.ts、src/main.ts、tests/{bonds,legacy-v9-freeze}.test.ts及旧版保护/控制场景、scripts/b8-{legacy-fixtures,acceptance,audit}.ts、tests/acceptance/B8-REPORT.md和截图/导出/审计、README.md、AGENTS.md/CLAUDE.md。
+- **数值变化**：仅新增finance.channels.bond（rate=.06、termMonths=48、maxOfEquity=.6）；finance.bond（maxIssueRating=1、rates=[.04,.06,.065,.07,.075,.08,.08]、minRate=.04、maxRate=.08、termsMonths=[36,48,60]）；finance.covenants（belowRating=5、fraction=.25、noticeMonths=1、distressMonthsForC=2）。所有旧参数逐项保留，未调D目标。
+- **验证**：typecheck、235项Vitest、构建通过；v9冻结16文件及4完整状态，旧v1–v8基线保留；15局10年全状态重放/所有公司现金/月报核对。IAB三视口真实发行1亿5年债、6%利率、净资产不变、降C/禁发/拆分/还本/旧合同迁移及导出重载通过。默认样例114640万元本金拆出28660，触发时本金不变，下月实际还款后剩85980。200局×30年：保守0%不变，P10/中位/P90 63.8/84.9/106.1→63.8/83.9/105.1亿、拿地46.6不变；激进23%→41.5%，1.2/227.1/318.2→−3.4/189.6/302.1亿，拿地303.8→234.9，破产年份中位2.0不变。
+- **没做完 / 已知问题**：B8无遗留；B9–B14、C、D未完成。未发布、未做实体手机/PWA系统安装或重复断网。主JS696.98kB有Vite分块提示但构建成功；通用机器人主动使用新融资工具仍留D1。
+
+## 2026-10-26 · Codex · B7 限价摇号、竞配建与可售面积扣减
+
+- **做了什么**：新增限地价后摇号、限地价后竞配建，两家以上真实有效报价触顶才转第二阶段，竞配建同额再摇号；玩家与AI实际缴押、成交、退押。学校/保障房及额外配建扣可售面积，全额建面仍计建安成本；报价输入、测算、待开工/在建/对手项目显示条件。精确上限按钮与四位亿舍入保护；正式页面和验收页共用报价控制器。新v9通过冻结v8保护旧完整历史与旧已生成条件，不保存可变快照。
+- **改了哪些文件**：data/config.json、src/sim/{auctions,types,engine,rivals,bots,reporting}.ts、src/save.ts、src/game.ts、src/estimates/land.ts、src/ui/{auctionController,auctionTerms,panels,rivals}.ts、src/main.ts、tests/auctions.test.ts及既有控制场景/版本保护、scripts/b7-audit.ts、tests/acceptance/B7-REPORT.md和截图/导出/审计、README.md、AGENTS.md/CLAUDE.md。
+- **数值变化**：仅新增auctions：形式权重公开.4/摇号.3/竞配建.3，capPremium=.2，maxAdditionalAmenityRate=.15；无配建/学校/保障房权重.4/.3/.3、比例0/.05/.1；三家额外承诺.03/.06/.10。此前所有配置键保留，未做D组调参。
+- **验证**：typecheck、221项Vitest、构建通过；v8冻结15文件及4完整状态基线，15局×10年完整重放/所有公司现金/逐月报表/项目面积审计通过。IAB1440×900/390×844/320×740通过真实中标、摇号退押、超限拒绝、旧地块、导出重载；学校1800㎡+额外4320㎡场景实际可售26280㎡。200局×30年：保守破产0%不变，P10/中位/P90 83.1/103.8/131.6→63.8/84.9/106.1亿，拿地46.8→46.6；激进10%→23%，159.5/308.3/405.2→1.2/227.1/318.2亿，拿地373.8→303.8，破产年份中位4.8→2.0。
+- **没做完 / 已知问题**：B7无遗留；B8–B14、C、D未完成。未发布，未做实体手机/PWA系统安装或重复断网验收。主JS643.70kB有Vite分块提示但构建成功；通用机器人主动竞配建等策略留D组。
+
+## 2026-10-26 · Codex · B7a 冻结v8完整行业、收购与年度排名历史
+
+- **做了什么**：在新拍卖形式施工前冻结B5/B6全部完工的v8内核、行业/收购规则、统计和排名，建立原生违约/收购、旧v7历史、正式旧试玩4个完整状态基线。当前正式版本仍8，新拍卖和配建规则尚未接入。
+- **改了哪些文件**：src/legacy-v8/（15个源码/配置文件及SHA256清单）、tests/legacy-v8-freeze.test.ts、tests/acceptance/b7-v8-golden.json、tests/acceptance/B7a-REPORT.md、AGENTS.md/CLAUDE.md。
+- **数值变化**：无。生产可达代码、配置和经济规则不变。
+- **验证**：typecheck、210项Vitest、构建通过；15文件哈希、原配置、4档完整玩家/对手/行业/报表/排名状态一致。生产JS/离线缓存哈希与B6d最终构建相同，沿用B6d的200局×30年前后输出逐字节一致结果。
+- **没做完 / 已知问题**：B7b限价摇号/竞配建、B7c学校/保障房配建与完整验收仍未完成，B7总项未勾选；B8–B14、C、D未完成，未发布。
+
+## 2026-10-26 · Codex · B6d/B5d 年报真实历史排名，B5与B6全项完成
+
+- **做了什么**：年报按所选年末实际净资产排列本公司与三家开发商，显示当时经营/困境/破产状态，同值并列，进行中年份使用明确标注的当前快照。旧v7从原版公司月末报表补建历史；跨年同日费用、破产后卖出项目不回改旧年度；加入前不补造同行，无法核实则不冒充完整名次。统计随种子日志重建，不写存档快照。B5a–e、B6a–d全部对应实现与验收完成。
+- **改了哪些文件**：src/sim/{rankings,types,reporting,engine,index}.ts、src/ui/reports.ts、tests/rankings.test.ts、scripts/rankings-audit.ts、tests/acceptance/B6d-REPORT.md及历史基线/页面/截图/审计结果、README.md、AGENTS.md/CLAUDE.md。
+- **数值变化**：无。存档版本仍8，新增派生统计，不改经济规则、已有参数或D目标。
+- **验证**：typecheck、205项Vitest、构建通过；4个改动前完整经济/原报表/对手哈希一致。15原生v8+5冻结v7样本共200个实际年末余额逐项匹配，后续旧年度稳定且完整重放一致。IAB1440×900/390×844/320×740完成年度切换、旧v7、破产清算、加入前后、进行中/并列；320表宽230px、弹窗282px，无横向溢出。200局×30年balance前后输出逐字节相同：保守0%、P10/中位/P90 83.1/103.8/131.6亿、拿地46.8；激进10.0%、159.5/308.3/405.2亿、拿地373.8、破产年中位4.8。
+- **没做完 / 已知问题**：B7–B14、C、D仍待完成；未调平衡目标、未发布，未做实体手机/PWA系统安装或本项重复断网。主JS约591kB有Vite分块提示但构建成功。通用机器人新工具策略仍待D1，审计专用策略不算D1完成。
+
+## 2026-10-26 · Codex · B6c 真实同行违约冲击、项目收购及保交楼成本核对
+
+- **做了什么**：真实月末现金违约触发同行暴雷，情绪−10、6个月全行业新融资利差/额度及商票收紧，同一困境不重复触发。项目页新增正/零对价收购及页面内确认，承接监管账户、预收交付、土地尾款、工程/质量/停工计时，原金融借款留在卖方；按购买成本基础结转和转让，收购当日无虚构利润、不能用历史成本合作套现。真实零对价样例从收购推进20个月至清盘，自动结算利润4.2271649亿；无正负现金流时IRR不虚算。新v8冻结v7完整玩家/对手历史，旧已违约公司迁移不补发冲击。
+- **改了哪些文件**：data/config.json、src/legacy-v7/、src/sim/{types,engine,finance,features,rivals,reporting,acquisition,index}.ts、src/save.ts、src/game.ts、src/ui/{rivals,panels,reports,acquisitionController}.ts、src/main.ts、src/style.css、index.html、tests/{acquisition,legacy-v7-freeze}.test.ts及旧版保护、scripts/{b6c-audit,b6c-export-audit}.ts及历史审计、tests/acceptance/B6c-REPORT.md和页面/截图/实际导出、README.md、AGENTS.md/CLAUDE.md。
+- **数值变化**：仅新增rivals.default：sentimentDrop=10、tighteningMonths=6、rateSpread=0.02、capacityFactor=0.5、projectDiscount=0.6。此前全部配置键（含B6b对手参数）逐项不变，未调D组目标。
+- **验证**：typecheck、192项Vitest、构建通过；13个v7冻结文件哈希和4个全状态基线，15组种子/策略×10年全部公司现金/逐月账目与完整重放通过。IAB1440×900/390×844/320×740确认取消/执行、正价/零价收购、实际清盘、下行违约及v7迁移通过；原生确认框阻塞时已在同一IAB新标签恢复并改用页面内确认，无Chrome降级。正式5180旧试玩day750、现金59215.56733594119、rng=-1877023606及全部旧玩家/对手字段相等。200局×30年：保守0%不变、P10/中位/P90 84.3/103.7/131.1→83.1/103.8/131.6亿、拿地46.4→46.8；激进11.5%→10.0%、46.1/306.6/401.5→159.5/308.3/405.2亿、拿地369.4→373.8、破产年中位4.8不变。
+- **没做完 / 已知问题**：B6d及B5d历史年度排名仍待接入，B6总项未勾选；B7–B14、C、D未完成。未发布、未做实体手机/PWA系统安装或本项重复断网；主JS588.49kB有Vite分块提示但构建成功。通用机器人策略尚未主动收购，审计专用策略不等于D1完工。
+
+## 2026-10-26 · Codex · B6b 三家开发商真实账本竞拍、经营与v7迁移
+
+- **做了什么**：青岚置业/江舟地产/跃峰发展各自持有现金、借款、项目和流水，按稳健/均衡/激进偏好实际报名付押、竞拍、开工、销售和还债。有效报价按次高加一档成交，单一报价底价成交、无人报价流拍；隐藏aiMax不再决定竞拍。项目页显示对手财务和只读项目，地图显示具名持有项目并合并占地。新v7通过冻结v6保留旧全部经济/统计历史，从迁移日起启用对手，不存状态快照。
+- **改了哪些文件**：data/config.json、src/sim/{types,engine,rivals,index,reporting}.ts、src/save.ts、src/game.ts、src/ui/{rivals,panels}.ts、src/render/isoMap.ts、src/main.ts、tests/rivals.test.ts及旧版回归、scripts/{rivals-audit,history-audit,acceptance-fixtures,b5-acceptance}.ts、tests/acceptance/B6b-REPORT.md及页面/证据、README.md、AGENTS.md/CLAUDE.md。
+- **数值变化**：仅新增rivals初值：bidStepRate=0.02、minimumLoan=1000；三家现金60000/60000/50000，现金缓冲30%/15%/5%，地价资金比例1/0.75/0.5，建安预留50%/30%/10%，信托使用0/40%/100%，开发贷50%/80%/100%，最低收入利润率15%/10%/3%，溢价系数0.5/0.85/1.2，最多在营3/5/8；总包品牌/标准/低价、正常/正常/加速，平时价格1/1/1.03、下行0.9/0.9/0.85、营销3%/4%/6%，seedOffset101/211/307。旧配置键逐项未变，详见B6b报告。
+- **验证**：typecheck、176项Vitest、构建通过；10组种子/策略×10年完整对手状态重放哈希及全部公司现金/逐月账目对平，15组v1–v5历史回溯再验通过。IAB1440×900/390×844报名、真实开工、十年经营与v6原地迁移通过；正式5180导出day750现金59215.56733594119、rng=-1877023606及全部旧字段相等。200局×30年：保守破产0%不变，P10/中位/P90 56.7/73.2/91.7→84.3/103.7/131.1亿、拿地42.4→46.4；激进27.5%→11.5%，6.3/204.0/295.0→46.1/306.6/401.5亿、拿地282.8→369.4、破产年中位6.3→4.8。
+- **没做完 / 已知问题**：B6c行业冲击/违约收购、B6d及B5d真实历史排名仍未完成，B6总项未勾选；B7–B14、C、D未完成。未调既有参数/目标，未发布；未做实体手机/PWA系统安装或本项重复断网。主JS539.55kB触发Vite分块提示，构建成功。
+
+## 2026-10-26 · Codex · B6a 冻结v6全量经济与报表历史基线
+
+- **做了什么**：在真实开发商规则施工前冻结B5e完工v6内核、配置、统计回溯和纯restore；旧历史无需依赖未来可变内核。增加清盘/破产/v5回溯/旧边界后v6续玩4个完整状态哈希基线。当前正式版本仍6，B6竞争功能尚未接入。
+- **改了哪些文件**：src/legacy-v6/（13个源码/配置文件及SHA256清单）、scripts/b6-legacy-fixtures.ts、tests/legacy-v6-freeze.test.ts、tests/acceptance/b6-v6-golden.json、tests/acceptance/B6a-REPORT.md、AGENTS.md/CLAUDE.md。
+- **数值变化**：无。生产可达内核/配置/规则均未变化。
+- **验证**：typecheck、167项Vitest、构建通过；13个冻结文件哈希、已有配置逐键相等、4档全部状态与当前restore相等。未改变经营规则，沿用B5e的200局×30年前后输出逐字节相同结果。
+- **没做完 / 已知问题**：B6b真实账本/竞拍、B6c违约/收购、B6d年度排名/v7迁移仍未完成，B5d及B6总项未勾选；B7–B14、C、D未完成，未发布。
+
+## 2026-10-26 · Codex · B5e 冻结旧版历史回溯，旧项目可完整结算
+
+- **做了什么**：旧v1–v5档从开局重建历史流水、月/年报、项目利润/净利率/IRR/持续回正和决策。以冻结原内核观察真实读写，逐字段核对原经济末态及现金，保留同日版本/指令边界。统计异常时原档仍可读取并明确缺失。大型项目结算增加选择器和流水索引，避免同时生成数百张卡；同批新清盘仍可分列。
+- **改了哪些文件**：src/history/legacy-reports.ts、src/save.ts、src/sim/{types,engine,reporting}.ts、src/ui/{reports,reportController}.ts、tests/{history-reporting,reporting,save-v6}.test.ts、scripts/history-audit.ts、tests/acceptance/B5e-REPORT.md及夹具/截图、README.md、AGENTS.md/CLAUDE.md。冻结旧内核未改。
+- **数值变化**：无；未改data/config.json与既有经济规则。存档仍为种子日志，不保存统计快照。
+- **验证**：typecheck、162项Vitest、生产构建通过；15个8/30年跨版本样本全部完整回溯且经济末态/随机数不变，v5全部项目利润与原生统计最大差4.9932e-9万元。IAB桌面1440×900、390×844与320×740通过旧项目结算/完整年度/大型档切换；正式5180旧试玩25个月报恢复、日期现金保持。200局×30年balance前后逐字节相同：保守0%，P10/中位/P90 56.7/73.2/91.7亿；激进27.5%，6.3/204.0/295.0亿，破产年中位6.3年。
+- **没做完 / 已知问题**：B5总项仍余B5d真实开发商年报排名，待B6接入；B6–B14、C、D未完成。未做实体手机/PWA系统安装测试，未发布；D组目标仍待确认。
+
+## 2026-10-26 · Codex · B5a–c 项目结算、三张表与破产复盘，排名继续施工
+
+- **做了什么**：清盘自动暂停并弹出权益利润/净利率/年化IRR/持续资金回正，同月多个项目可分列查看；新增月报年报三张表、期间切换和破产自动复盘（规模/杠杆曲线、数值、关键决策及首次现金转负支出）。实际现金流水区分监管回款、交付确认、商票、借还、合作及费用，报表恒等式对账；多IRR不任意选根。修复已清盘项目后来到期的地价尾款漏付。新档v6仍为种子日志，冻结v5经济历史；旧档从续玩起记录，缺历史完整收益明确不计算。B5d真实AI排名未接入，B5总项保持未勾选。
+- **改了哪些文件**：src/sim/{types,engine,features,finance,index,reporting}.ts、src/ui/{reports,reportController}.ts、src/main.ts、src/save.ts、src/game.ts、src/legacy-v5/、index.html、src/style.css、tests/{reporting,save-v6}.test.ts及旧版回归、scripts/b5-acceptance.ts、tests/acceptance/B5-REPORT.md、README.md、AGENTS.md/CLAUDE.md。
+- **数值变化**：无data/config.json变化；未调既有参数。报表统计不改变经营结果，只有清盘后仍欠土地款的支付遗漏得到修复。
+- **验证**：typecheck、149项Vitest、生产构建通过；冻结11文件哈希、4种v5经济历史逐字段一致、同日迁移与种子日志重建通过。IAB桌面1440×900、手机390×844与320×740验收清盘/破产自动弹窗、三表、年度、曲线、历史缺失提示；正式5180旧试玩页查看报表及弹窗按空格仍保持暂停。seed7结算利润1.5000847亿、净利率28.1835%、年化IRR78.7093%、回正16个月。200局×30年模拟前后输出逐字节相同：保守破产0%，净资产P10/中位/P90 56.7/73.2/91.7亿、平均拿地42.4；激进27.5%、6.3/204.0/295.0亿、平均282.8、破产年份中位6.3年。
+- **没做完 / 已知问题**：B5d年报真实对手排名待B6账本接入，B5e旧档统计回溯仍待实现；B6–B14、C、D仍未完成。旧档迁移前流水未追溯，旧项目不保证完整结算指标；界面明确缺失。未做实体手机/PWA系统安装或本项重复断网验收；未发布，未调D组目标。
+
+## 2026-10-25 · Codex · B4 品牌和项目营销共同影响去化、费用随回款计提
+
+- **做了什么**：在售项目可设置0–12%营销投入，默认沿用3%，品牌与投入共同影响月去化；按真实回款及本公司权益计营销费。达标交付品牌+2且100封顶，维权沿用B3扣分。项目显示比例/去化预测，财务显示品牌增减口径，B1估算固定当前品牌与默认营销。修复25%工程浮点边界延迟预售，内核、命令与界面统一资格。新档v5，冻结B3完工v4，旧历史和已有品牌不重算。
+- **改了哪些文件**：data/config.json、src/sim/{types,engine,features}.ts、src/save.ts、src/game.ts、src/legacy-v4/、src/ui/panels.ts、src/main.ts、src/estimates/land.ts、tests/{marketing,save-v5}.test.ts及既有回归、scripts/b4-acceptance.ts、tests/acceptance/B4-REPORT.md、README.md、AGENTS.md/CLAUDE.md。
+- **数值变化**：新增marketing.maxRate=0.12、neutralBrand=50、brandSensitivity=0.006、spendSensitivity=4；quality.deliveryBrandGain=2。既有参数未调整（含默认营销3%），配置深度相等回归通过。
+- **验证**：typecheck、126项Vitest、生产构建通过；v4冻结11文件哈希、3种改动前历史逐字段匹配、同日营销边界与v1–v4兼容通过。IAB桌面1440×900、手机390×844验收13%拒绝/12%设置/0%设置、真实销售与达标交付；正式页面3%→6%保存重载成功，导出日志只追加同日指令，状态仅营销比例改变。200局×30年：保守破产0%→0%，净资产P10/中位/P90 55.2/73.6/91.4→56.7/73.2/91.7亿，平均拿地42.5→42.4；激进17.5%→27.5%，4.3/228.8/327.2→6.3/204.0/295.0亿，平均拿地316.8→282.8，破产年中位4.6→6.3。
+- **没做完 / 已知问题**：B5–B14、C、D仍未完成，机器人营销策略留D1；风险目标尚未确认，未调既有参数，未发布；未做实体手机/PWA安装或本次重复断网流程。当前批量结果不代表D目标全部满足。
+
+## 2026-10-25 · Codex · B3 三档总包开工选择与交付质量维权
+
+- **做了什么**：拿地后先显示围挡并自动暂停，项目卡选择低价/标准/品牌总包，选定后按对应建安预算、工期与事故风险施工。事故降低质量，交付低于阈值时一次性维权、扣品牌、加关注度；项目和财务显示分数。B1测算同步标准总包、开工后下一月末首笔工程款；机器人仅适配标准开工流程。修正接管项目未付地价在到期柱图漏列。新档version=4，冻结B2完工v3历史，旧v1/v2链与同日边界保留。
+- **改了哪些文件**：data/config.json、src/sim/{types,engine,features,bots}.ts、src/save.ts、src/game.ts、src/legacy-v3/、src/ui/panels.ts、src/main.ts、src/estimates/land.ts、tests/{contractor,save-v4}.test.ts及既有回归、scripts/b3-acceptance.ts、tests/acceptance/B3-REPORT.md、README.md、AGENTS.md/CLAUDE.md。
+- **数值变化**：新增construction.contractors：budget成本0.9/工期1.15/事故1.5/质量55，standard 1/1/1/75，brand 1.12/0.9/0.6/90；新增quality：initialBrand=50、complaintThreshold=60、accidentPenalty=10、complaintBrandPenalty=10、complaintAttentionIncrease=15。既有参数未调整，深度相等回归通过。
+- **验证**：typecheck、110项Vitest、生产构建通过；冻结v3的11文件哈希、改动前4种历史逐字段匹配、v1/v2/v3迁移链、同日边界及导入导出保护通过。IAB桌面1440×900、手机390×844验收三档数据、真实开工、首月进度与低价交付维权；正式旧试玩档财务续玩正常。200局×30年：保守破产0%→0%，净资产P10/中位/P90 57.2/72.6/92.6→55.2/73.6/91.4亿，平均拿地42.2→42.5；激进9.5%→17.5%，139.3/235.9/327.5→4.3/228.8/327.2亿，平均拿地348.4→316.8，破产年中位4.8→4.6。
+- **没做完 / 已知问题**：B4–B14、C与D仍未完成；品牌去化/营销联动留B4，机器人总包策略留D1；目标未确认、未调平衡、未发布，未做实体手机或重复断网全流程。B3新流程浏览器验收使用独立合法日志页，未覆盖玩家存档。
+
+## 2026-10-25 · Codex · B2 工程资金停工、六个月政府接管与旧档历史保护
+
+- **做了什么**：当月工程现金不足时停止付款和施工，商票仅随实际工程签发；补资后月末实际复工清零连续计时，满6个月未复工则政府接管。监管款、剩余货值和交付义务退出公司报表，原借款、商票及欠付地价仍需偿还。地图显示烂尾图，项目显示只读接管卡。新存档version=3，旧v2历史冻结回放，含v1迁移链及同日指令边界。
+- **改了哪些文件**：src/sim/{engine,types,features,finance}.ts、src/save.ts、src/game.ts、src/legacy-v2/、src/ui/panels.ts、src/main.ts、src/render/cityArt.ts、data/config.json、tests/{funding-stop,save-v3}.test.ts、scripts/b2-acceptance.ts、tests/acceptance/B2-REPORT.md、README.md、AGENTS.md与CLAUDE.md。
+- **数值变化**：新增construction.fundingStopMonthsToTakeover：无→6；regulation.takeoverAttentionIncrease：无→20。其余参数与冻结v2深度相等，无既有参数调平衡。
+- **验证**：typecheck、91项Vitest、生产构建通过；IAB桌面1440×900和手机视口390×844验证停工5个月、月末补资复工和第6个月接管/烂尾图，截图见B2报告。冻结11文件哈希、旧正/负现金历史逐字段一致、迁移链/同日边界/坏档保护通过。200局×30年：保守破产率0%→0%，净资产P10/中位/P90 57.2/72.6/92.6亿不变；激进1.5%→9.5%，173.7/251.8/331.2→139.3/235.9/327.5亿，平均拿地376.3→348.4，破产年中位6.5→4.8。
+- **没做完 / 已知问题**：B3–B14、C与D仍未完成；未调风险目标，未发布，未做实体手机测试。B2浏览器验收使用默认参数真实日志独立页，不覆盖玩家存档；本次未重复A8断网流程。
+
+# 完工记录
+
+新记录写在最上面。格式见 AGENTS.md / CLAUDE.md 的“完工记录”一节。
+
+## 2026-10-25 · Codex · B1 拍地报价即时测算
+
+- **做了什么**：拍卖卡片随报价即时显示“估算”的利润率、资金峰值和自有资金回正月数，并展开说明口径；报价过高导致亏损时显示“无法回正”，空值/低于起拍价显示输入提示。未提交报价保留在页面草稿，重绘/切换面板不丢失；只在点击出价时写入游戏指令。旧地块退出拍卖时即使输入仍聚焦也移除，避免显示过期测算。
+- **改了哪些文件**：`src/estimates/land.ts`、`src/ui/panels.ts`、`src/main.ts`、`src/style.css`；`src/sim/engine.ts`仅导出现有salesRate供估算复用；`tests/land-estimate.test.ts`、`tests/acceptance/b1-*`、`tests/acceptance/B1-REPORT.md`；`README.md`、`AGENTS.md`/`CLAUDE.md`。
+- **数值变化**：无。估算读取当前配置和市场；按报价成交、独资正常施工、当前房价/去化/监管不变且不新增借款，含土地分期/工程/营销税费与监管释放，尾货清盘折价；未计利息/事故/其他项目。保证金抵首付；中标当月计第1月，回正取此后不再转负的月末。没有新增调参键或改变经济规则/RNG/存档格式。
+- **验证**：typecheck、72项Vitest、build通过；新增9项覆盖手算现金流、报价/去化敏感性、营销税费和释放顺序、严格监管、晚付尾款后再次转负、非法输入、限价、只读不变性和卡片文案。200局×30年balance前后文本字节一致：保守0%、P10/中位/P90为57.2/72.6/92.6亿；激进1.5%、173.7/251.8/331.2亿。IAB在独立localhost:5180来源实际输入4.50/6.50亿，利润率15.1%/−7.7%、峰值4.76/6.76亿，后者无法回正；报价测算前后导出除revision8→9外一致；正式出价日志为45000万元。1440×900、390×844、320×740和假设展开通过，窄屏无横向溢出；旧L1到期后输入移除，新季L5/L6/L7正常显示；控制台无警告/错误。
+- **没做完 / 已知问题**：B1无遗留。固定情景估算不是未来周期预测，不使用隐藏AI心理价；B2及后续继续。未做实体手机测试、未初始化Git、未发布。
+
+## 2026-10-25 · Codex · A8 密度加载、完整程序回退与图集离线验收
+
+- **做了什么**：按屏幕像素密度加载单一@1x/@2x档位；图集根路径规范化，单页失败保留健康页。补齐装饰程序回退、缺图地形道路/高差、草地底瓦缺失时的程序基础及持地围挡回退；围挡缺图不再误画成品楼，标签按空地高度定位。新增真实404验收夹具与正式地图测试页，图集均已纳入既有离线清单。
+- **改了哪些文件**：`src/render/art.ts`、`src/render/isoMap.ts`；`tests/art-loading.test.ts`；`scripts/art-acceptance.ts`、`package.json`；`tests/acceptance/a8-*`、`tests/acceptance/A8-REPORT.md`；`art/README.md`、`AGENTS.md`/`CLAUDE.md`。
+- **数值变化**：无模拟/经济参数变化。美术大小上限仍8MiB；81素材的@2x三PNG合计3288512字节（3.14MiB），两档总共4PNG、4JSON与1清单。未改存档键、格式或旧内核。
+- **验证**：typecheck、63项Vitest、build通过。新增7项覆盖屏幕密度默认分支、只下载一档、单页失败隔离、清单HTTP/网络/JSON失败、完整图集双档与8MiB门槛。IAB实际DPR2自动请求@2x，视口覆盖后DPR1自动请求@1x，各81贴图；逐一真实JSON/PNG页0/1/2失败保留72/67/23贴图，清单404返回0，地图不中断；主城/远郊、两产品线施工、地形/装饰/地标程序回退及手机390×844通过。生产构建29文件含全部9个图集文件；隔离端口5181停服并确认无监听后离线重载，出价/种子/日期日志相同（仅revision3→7正常变化），离线推进至第2日、保存并再次手机重载通过，完整贴图仍显示，控制台无JS警告/错误。81正式素材均有最终提示词。
+- **没做完 / 已知问题**：A8及A组无遗留；B–D仍待施工。离线为IAB本机停服验收，未做实体手机/系统PWA安装测试；land阶段围挡程序路径已补齐，当前自动开工下该阶段由B3实际开工选择流程验收。未初始化Git、未发布。
+
+## 2026-10-25 · Codex · A7 远郊草木暖土地表与素材复用
+
+- **做了什么**：璧山/江津地图沿用同一套图集，把非道路地表从灰色铺装改为草地和暖土，草木/土壤/道路使用远郊色调，主城保留原色。保留河水及桥体原色以维持连接，缺图程序地表也用远郊草土配色。地块、施工、成品、装饰和拱桥均复用现有素材。
+- **改了哪些文件**：`src/render/terrain.ts`、`src/render/isoMap.ts`；`tests/acceptance/a7-map.html`、两个合法远郊项目回放存档和`a7-*.png`、`A7-REPORT.md`；`art/README.md`、`AGENTS.md`/`CLAUDE.md`。
+- **数值变化**：无模拟/经济参数变化。纯视觉：远郊非道路地面哈希模4为0使用泥地，其余草地；草木色0xc6d5aa、土0xeac59d、铺装0xd8cbb5、道路0xf0e4d2。主城和水面原色，不新增图集或改原图。
+- **验证**：typecheck、56项Vitest、build通过；图集仍81素材、@2x3288512字节。用seed7合法指令在day720竞得江津L35/璧山L38，day840两项目16.7%进度、day1500江津已交付/璧山竣工，均正常运行；IAB正式IsoMap检查施工/成品复用、主城与远郊对照、手机项目地图和完整游戏1440×900/390×844，控制台无警告/错误。截图在tests/acceptance。
+- **没做完 / 已知问题**：A7无遗留；A8全素材加载失败/像素密度/离线验收和B–D继续。未做实体手机测试、未初始化Git、未发布。
+
+## 2026-10-25 · Codex · A6 六处山城特色与完整跨江桥
+
+- **做了什么**：新增两组木廊吊脚楼、斜拉桥、拱桥、过江索道和石阶步道6张独立素材。主城两处桥梁用完整2×2跨江桥替换原桥梁格，按实际方向和首行/列对接道路；索道置于河道，吊脚楼/步道置于江岸山地。远郊复用拱桥。地标只读状态，不占用既有可开发地块；缺图时桥梁回到原瓦片/程序地形，其他地标有程序回退。
+- **改了哪些文件**：`art/catalog-a6.json`、`art/reviews-a6.json`、`art/a6-progress.json`、`art/manifest.json`、`art/raw/landmark_*`、对应`art/prompts/`、`art/reference/guide_building_2x2-crop.png`及参考说明、`public/art/`；`src/render/landmarks.ts`、`src/render/isoMap.ts`；`tests/landmark-art.test.ts`、`scripts/art-gallery.ts`、`tests/acceptance/a6-*`、`tests/acceptance/A6-REPORT.md`、`art/README.md`、`AGENTS.md`/`CLAUDE.md`。
+- **数值变化**：无模拟参数变化。纯视觉山地地标平台为2/3层，每层仍8世界像素；不改地图可开发区域、价格、成本、速度或随机数。指南裁剪副本仅去留白，不改原图和几何。
+- **验证**：6/6素材通过5%底座门槛、对称性、高度和SHA-256绑定视觉检查；不合格版本留在raw/rejected，斜拉桥最终比例1.9922794:1。正式图集81唯一素材，@2x合计3288512字节（约3.14MB）。art:check/art/art:gallery/typecheck、56项Vitest、build通过；构建29本地文件纳入离线清单。新增测试覆盖六素材接入、非开发区域、地图边界、不重叠和所有桥梁格唯一同方向覆盖。IAB检查@1x/@2x、主城六处实景、远郊桥道路接续及完整游戏1440×900/390×844；控制台无警告/错误。截图和报告在tests/acceptance。
+- **没做完 / 已知问题**：A6无遗留；A7远郊色调区分、A8全素材失败回退/离线验证及后续清单继续。未做实体手机测试、未初始化Git、未发布。
+
+## 2026-10-25 · Codex · A5 十二种成品、十种城市背景与地块状态
+
+- **做了什么**：高层/洋房/别墅/商业裙楼各3种成品，10个城市背景建筑取代原程序方块，待拍与围挡各提供2×2/3×3尺寸。项目面板可选产品线与A/B/C外观，建成后按选择显示并随指令日志保存；未指定外观的旧项目保留片区默认。背景、装饰、项目按深度排序，历史清盘楼被新地块覆盖时隐藏；按实际地块大小缩放并把选中边框放在建筑下方。
+- **改了哪些文件**：`art/catalog-a5.json`、`art/reviews-a5.json`、`art/a5-progress.json`、`art/manifest.json`、24张新增原图及最终提示词、`public/art/`；`src/appearance.ts`、`src/sim/{types,engine}.ts`、`src/save.ts`、`src/main.ts`、`src/ui/panels.ts`、`src/render/{cityArt,projectArt,isoMap}.ts`；`tests/appearance.test.ts`、`scripts/art-gallery.ts`、`tests/acceptance/a5-*`、`tests/acceptance/A5-REPORT.md`、`art/README.md`、`AGENTS.md`/`CLAUDE.md`。
+- **数值变化**：无。新增setAppearance仅写可选外观字段，不改变经济状态、RNG、旧内核、存档键或格式版本。背景沿用24个单格位置；别墅/商业施工期复用洋房阶段。
+- **验证**：A5素材26/26通过5%底座门槛、高度限制与哈希绑定视觉审核（含原有2张成品，新增24张）。正式图集75个唯一素材、@2x PNG合计2929465字节，低于8MB；`npm run art:check`、`npm run art`、`npm run art:gallery`、`npm run typecheck`、53项Vitest、`npm run build`通过。200局×30年balance前后文本完全一致：保守破产0%、P10/中位/P90=57.2/72.6/92.6亿；激进1.5%、173.7/251.8/331.2亿。IAB检查@1x/@2x画廊、12种成品实际地图、1440×900/390×844主界面；手机实点应用商业裙楼C，刷新后恢复，现金/净资产不变；控制台无警告/错误。截图与报告在tests/acceptance，构建29文件纳入离线清单。
+- **没做完 / 已知问题**：A5无遗留；围挡对应land阶段，当前自动开工直接进入施工，开工选择在B3实现。A6及后续清单继续；完整密度/失败回退/离线验收在A8。未做实体手机测试、未初始化Git、未创建PR、未发布。
+
+## 2026-10-25 · Codex · A4 两条住宅线五阶段图与进度切换
+
+- **做了什么**：高层与洋房各完成基坑、正负零、主体施工、封顶、烂尾5张图；先完成成品参考再倒推各阶段，另新增洋房成品参考。地图按工程进度切图，竣工改成品；有贴图时替换原程序楼体/塔吊，缺图保留程序回退。项目名称按实际贴图顶部定位，选择轮廓放在贴图上层。当前按片区选住宅外观，渝中/江北高层、南岸/远郊洋房，不改经济规则。
+- **改了哪些文件**：`art/catalog-a4.json`、`art/reviews-a4.json`、`art/a4-progress.json`、`art/manifest.json`、`art/raw/stage_*`、`art/raw/building_garden_2x2_a.png`、对应`art/prompts/`、`public/art/`；`src/render/projectArt.ts`、`src/render/isoMap.ts`、`tests/project-art.test.ts`；`scripts/art-status.ts`扩展分组检查、`scripts/art-gallery.ts`加入统一缩放阶段对照；`tests/acceptance/a4-*`、`art/README.md`、`AGENTS.md`、`CLAUDE.md`。
+- **数值变化**：无模拟/经济参数变化；纯视觉切图界线为8%/25%/80%，不影响模拟施工速度、成本和销售。未修改存档格式、存档键或旧内核。
+- **验证**：A4的11/11素材（10施工+1洋房成品）通过底座5%门槛、高度限制与哈希绑定人工视觉审核；当前图集51个素材，@2x PNG合计1518482字节。`npm run art:check`、`npm run art`、`npm run art:gallery`、`npm run typecheck`、49项Vitest、`npm run build`通过，27个本地文件纳入离线缓存。Codex In-app Browser检查@1x/@2x对照、两条产品线各5个合法回放存档的实际地图（4.2%/12.5%/41.7%/87.5%/100%），底座位置稳定，标签随高度调整。桌面1440×900和手机390×844截图为`a4-desktop-1440.jpg`、`a4-mobile-390.jpg`；实际地图局部对照`a4-map-contact.png`、全游戏成品`a4-game-completed-desktop.jpg`。控制台无警告/错误。
+- **没做完 / 已知问题**：A4无遗留；烂尾贴图已具备，实际停工/政府接管在B2接入。背景程序楼和其余成品变体待A5。原生文件导入自动化在确认环节超时，新建IAB标签后使用隔离验收页加载同样合法存档；本次未复验实际导入按钮流程。未做实体手机测试、未发布、未初始化Git。
+
+## 2026-10-25 · Codex · A3 地形与装饰素材全套接入
+
+- **做了什么**：完成31张地形瓦片、8个装饰物；主城/远郊使用贴图，道路按邻接连接、江岸按水陆边界选择直线/转角，山地用侧面堆叠。装饰避开待拍地块、项目及背景楼占地。新增一个反向丁字路口以满足实际道路布局。逐张检查方向和连接，错接顶点的十字路口、短江岸及超5%底座均重生成。人工视觉记录绑定原图SHA-256，换图必须重审。
+- **改了哪些文件**：`art/catalog-a3.json`、`art/reviews-a3.json`、`art/a3-progress.json`、`art/manifest.json`、`art/raw/`、`art/prompts/`、`public/art/`；`scripts/art-status.ts`、`scripts/art-gallery.ts`；`src/render/terrain.ts`、`src/render/isoMap.ts`；`tests/terrain-art.test.ts`、`tests/art.test.ts`、`tests/acceptance/a3-*`；`package.json`、`art/README.md`、`AGENTS.md`、`CLAUDE.md`。
+- **数值变化**：无模拟/经济参数变化；纯视觉地形层高8个世界像素（@2x侧面32px）。
+- **验证**：39/39地形与装饰同时通过5%几何门槛和人工视觉检查；图集共40个素材（含A2住宅），@2x PNG合计635024字节，小于8MB。`npm run art`、`npm run art:gallery`、`npm run typecheck`、46项Vitest、`npm run build`通过。管线集成测试改用固定3张真实原图，避免随素材总数增加而超时；生产全清单另由`npm run art`验证。Codex In-app Browser检查@1x/@2x画廊、锚点、道路/江岸/堆叠，以及实际地图桌面1440×900和手机390×844，控制台无警告/错误。截图存`tests/acceptance/a3-desktop-1440.jpg`、`a3-mobile-390.jpg`。
+- **没做完 / 已知问题**：A3无遗留；A4施工阶段及后续任务继续施工。背景程序楼待A5替换；远郊色调区分待A7；全素材失败回退及离线验收待A8。未做实体手机测试，未改平衡参数、未发布、未初始化Git。
+
+## 2026-10-25 · Codex · A3施工进度：基础地形与侧面堆叠接入
+
+- **做了什么**：建立完整30张地形+8个装饰物的制作清单；已通过5%几何门槛的草地、江面纳入正式图集并用于地图渲染；山地暂用草地底瓦侧面逐层堆叠表现高差。处理管线新增按轮廓实际识别地形侧面厚度，再归一化到@2x32px，避免错误顶面锚点。新增素材状态审核脚本，只把完整准备流程通过的素材加入清单。
+- **改了哪些文件**：`art/catalog-a3.json`、`art/a3-progress.json`、`art/manifest.json`、`art/raw/terrain_*`及`art/raw/rejected/`、`art/prompts/terrain_*`；`scripts/art-status.ts`、`scripts/art-core.ts`、`tests/art.test.ts`、`src/render/isoMap.ts`、`public/art/atlas*`；`AGENTS.md`/`CLAUDE.md`记录施工状态，A3保持未勾选。
+- **数值变化**：无模拟/经济参数变化。地形视觉侧面厚度按规范@2x32像素，映射每层8个世界像素，仅影响渲染。
+- **验证**：`node scripts/art-status.ts`：通过2/38、几何不合格3、未生成33。草地底座1.9701:1、江面1.9940:1；泥地1.874:1、铺装1.820:1、缓坡1.829:1均拒绝，未放宽5%门槛。`npm run art`通过，正式图集含住宅和2张底瓦，共3个素材，@2x总计160744字节；`npm run typecheck`、42项单测、`npm run build`通过。Codex In-app Browser桌面1440×900、手机390×844已检查草地/水面拼接及侧面堆叠，进度截图`tests/acceptance/a3-progress-desktop-1440.jpg`和`a3-progress-mobile-390.jpg`。
+- **没做完 / 已知问题**：A3整体未完成，仍需完成其余28张地形与8个装饰物并做全套拼接验收。最近一批4次生图调用有3次连接失败，成功的缓坡图仍未通过几何门槛；下一步重试泥地/铺装/缓坡并继续其余清单。未通过的原图和提示词是草稿，不代表正式素材验收通过。未改平衡参数、未发布、未初始化Git。
+
+## 2026-10-25 · Codex · A2 素材处理、几何门槛与双分辨率图集
+
+- **做了什么**：加入`npm run art`：原图去透明/洋红背景与边缘溢色、从底座前边检测菱形、超5%偏差报错、归一化通过门槛的小偏差、按下顶点对齐并缩放@1x/@2x、分页生成Pixi PNG/JSON图集；生成前完整验证，失败不覆盖已有图集。旧住宅约1.79:1不合格，保留拒绝样本并用内置imagegen按规范重生成正式住宅，检测1.9721:1（偏差1.39%），总高符合1.3倍限制。渲染已实际使用图集默认锚点，按像素密度选分辨率，加载失败保留程序回退。
+- **改了哪些文件**：`scripts/art-core.ts`、`scripts/art-pipeline.ts`、`tests/art.test.ts`、`art/manifest.json`、`art/raw/`、`art/prompts/building_tower_2x2_a.txt`、`art/README.md`、`public/art/atlas*`、`src/render/art.ts`、`src/render/isoMap.ts`、`package*.json`；同步`AGENTS.md`/`CLAUDE.md`。
+- **数值变化**：无游戏参数变化；图集规范1格@1x128×64、@2x256×128，菱形偏差门槛5%，单页2048×2048，@2x图集合计上限8MB。新增开发依赖`sharp`用于素材处理。
+- **验证**：`npm run art`通过，1个正式素材，@2x 133600字节（130.5KB），@1x/@2x共2张PNG和对应JSON；`npm run typecheck`、`npm test`41项、`npm run build`通过（25个文件纳入离线缓存）。新增8项管线测试覆盖去底/溢色、非法背景、菱形与锚点、>5%拒绝、旧图拒绝、双倍率缩放、分页无重叠及失败保护。Codex In-app Browser实际读取图集，桌面1440×900、手机390×844截图：`tests/acceptance/a2-desktop-1440.jpg`、`tests/acceptance/a2-mobile-390.jpg`；控制台无警告/错误。
+- **没做完 / 已知问题**：A2无遗留；A3–A8素材批量制作和全素材回退/离线验收尚未完成；旧PNG仅保留以便追溯，不再作为渲染主素材；未改模拟数值、未发布、未初始化Git。
+
+## 2026-10-25 · Codex · A1 统一生图参考图入库
+
+- **做了什么**：将风格锚定图及地形/建筑 1×1、2×2、3×3 共 5 张参考图原样复制到 `art/reference/`；新增来源、用途、图像尺寸及 SHA-256 清单，明确后续生图从此目录取图，保留上级原文件。
+- **改了哪些文件**：`art/reference/style_anchor.png`、`art/reference/guide_terrain_1x1.png`、`art/reference/guide_building_1x1.png`、`art/reference/guide_building_2x2.png`、`art/reference/guide_building_3x3.png`、`art/reference/README.md`；`AGENTS.md` / `CLAUDE.md` 同步勾选 A1；`CHANGELOG.md`。
+- **数值变化**：无。
+- **验证**：5 张 PNG 均逐文件核对与来源字节一致；风格图 1536×1024、建筑指南各 1024×1536、地形指南 1024×1024；`npm run typecheck` 通过，`npm test` 33 项通过；两份项目约定一致。本项不修改页面、渲染、规则或构建配置，无需新增浏览器验收或平衡测试。
+- **没做完 / 已知问题**：A1 无遗留；下一项 A2 素材处理管线尚未施工。未初始化 Git、未创建 PR、未发布。
+
+## 2026-10-25 · Claude · v0.3 施工单与美术规范入库
+
+- **做了什么**：对照设计规范核对 v0.2 代码，把剩余工作写成施工单（A 美术 8 项、B 规范缺口 14 项、C 发布 2 项、D 平衡 3 项）放进 AGENTS.md / CLAUDE.md；新建 `docs/art-spec.md`，收录规范第 11 节的美术规格、素材清单、流程和提示词，供没有规范原文的 Codex 使用。
+- **改了哪些文件**：`AGENTS.md`、`CLAUDE.md`、`docs/art-spec.md`（新建）、`CHANGELOG.md`。
+- **数值变化**：无。
+- **验证**：在干净环境重装依赖复验 v0.2：`npm run typecheck` 通过，`npm test` 33 项通过，`npm run build` 通过；`RUNS=200 npm run balance` 结果与 v0.2 记录一致（保守 0% / 72.6 亿，激进 1.5% / 251.8 亿）。确认 `src/sim/` 无 DOM、系统时间、系统随机数引用。AGENTS.md 与 CLAUDE.md 除首行外一致。
+- **没做完 / 已知问题**：平衡目标待用户确认，按用户要求排在最后；Git 初始化需用户在本机执行。
+
+## 2026-10-25 · Codex · v0.2 补齐融资、监管、自救、远郊与离线功能
+
+- **做了什么**：加入工程商票、明股实债、合作开发、挪用监管款与抽查处罚、限价备案、三类随机事件、债务展期和项目转让；第3年开放璧山/江津地图；竣工项目接入生成式透明住宅贴图；加入IndexedDB主存、同步本地备份、旧规则回放迁移、导入导出与PWA离线。修复手机窄屏日期折行、工具栏重绘收起、合作尾款显示、备案实际售价去化及离线缓存混代/Vary匹配问题。
+- **改了哪些文件**：`data/config.json`；`src/sim/{types,engine,finance,features,map,bots,index}.ts`；`src/legacy-v1/`；`src/{game,save,main}.ts`；`src/ui/panels.ts`；`src/render/isoMap.ts`；`src/style.css`；`index.html`；`public/`；`scripts/offline*.ts`、`scripts/acceptance-fixtures.ts`；`tests/{expansion,save,offline}.test.ts`；`package*.json`；`README.md`、`AGENTS.md`、`CLAUDE.md`及`tests/acceptance/`。
+- **数值变化**：原有参数保留；以下配置项新增（旧值均为“无”，districts为追加字段/片区）：
+  - `finance.channels.paper`：无 → `{"name":"商票","rate":0,"termMonths":12,"maxOfBuildCost":0.5}`
+  - `finance.channels.hidden`：无 → `{"name":"明股实债","rate":0.15,"termMonths":24,"maxOfEquity":0.5}`
+  - `finance.extension`：无 → `{"months":6,"feeRate":0.02,"rateBump":0.02,"maxTimes":1,"windowMonths":6}`
+  - `districts`：[{"id":"yuzhong","name":"渝中半岛","basePrice":2.0,"landShare":0.55,"far":4.0,"buildCostFactor":1.3},{"id":"jiangbei","name":"两江新区","basePrice":1.5,"landShare":0.45,"far":3.0,"buildCostFactor":1.0},{"id":"nanan","name":"南岸","basePrice":1.1,"landShare":0.3,"far":2.5,"buildCostFactor":1.1}] → `[{"id":"yuzhong","name":"渝中半岛","basePrice":2.0,"landShare":0.55,"far":4.0,"buildCostFactor":1.3,"mapId":"city"},{"id":"jiangbei","name":"两江新区","basePrice":1.5,"landShare":0.45,"far":3.0,"buildCostFactor":1.0,"mapId":"city"},{"id":"nanan","name":"南岸","basePrice":1.1,"landShare":0.3,"far":2.5,"buildCostFactor":1.1,"mapId":"city"},{"id":"bishan","name":"璧山","basePrice":0.8,"landShare":0.23,"far":2.2,"buildCostFactor":0.9,"mapId":"suburb"},{"id":"jiangjin","name":"江津","basePrice":0.7,"landShare":0.2,"far":2.0,"buildCostFactor":0.85,"mapId":"suburb"}]`
+  - `cooperation`：无 → `{"partnerShare":0.3}`
+  - `risk`：无 → `{"inspectionBase":0.04,"inspectionAttentionFactor":0.003,"diversionLimit":0.25,"diversionAttention":25,"fineRate":0.1,"hiddenAttention":15,"hiddenFineRate":0.03,"freezeMonths":3,"materialChance":0.04,"materialCostFactor":1.15,"accidentChance":0.015,"fastAccidentMultiplier":3,"accidentCostOfBuild":0.02,"accidentStopMonths":2,"demandChance":0.04,"demandBoost":1.25}`
+  - `filing`：无 → `{"restrictedPhases":["tightening","downturn"],"maxMarketFactor":0.95,"approvalMonths":1}`
+  - `rescue`：无 → `{"saleBookDiscount":0.8}`
+  - `maps`：无 → `{"suburbUnlockYear":3}`
+- **验证**：`npm run typecheck`通过；`npm test`33项通过；`npm run build`通过（20个文件预缓存）。`npm run balance`各200局×30年：保守破产率0%→0%、净资产中位81.7→72.6亿；激进破产率3.5%→1.5%、中位182.1→251.8亿。Codex In-app Browser桌面1440×900、手机视口390×844/320×740、旧档回放/导入与断开本地服务后的完整离线启动/续档通过，详见`tests/acceptance/REPORT.md`。
+- **没做完 / 已知问题**：未做实体手机与系统PWA安装测试；新增数值为可配置初值，未逐条核验仓库外完整设计规范；激进策略风险仍偏低，新策略组合未单独平衡；美术范围是一栋可复用住宅，地形与背景建筑仍为程序绘制；目录没有Git元数据/远程地址，未建分支或PR，未发布。
+
+## 2026-10-25 · Claude · v0.1 项目骨架与第一个可玩版本
+
+- **做了什么**：搭建 TypeScript + Vite + PixiJS + Vitest 项目；实现模拟内核（拍地与 AI 对手心理价、开发贷与信托、施工节奏、预售与监管账户、交付清盘、六阶段宏观周期、三道红线第 5 年生效并提前半年放风、评级、违约 6 个月后破产）；等距占位地图（平移、缩放、点选地块）；DOM 面板（财务、项目看板、土地拍卖、新闻条）；可暂停实时制（1× = 60 秒/月，关键事件自动暂停）；本地存档（种子 + 指令日志回放）；手机竖屏底部标签布局。
+- **改了哪些文件**：新建全部文件；核心在 `src/sim/engine.ts`、`src/sim/finance.ts`、`src/render/isoMap.ts`、`src/ui/panels.ts`、`data/config.json`。
+- **数值变化**：初版。地块占地范围定为 1–3 万㎡（`land.siteAreaRange: [10000, 30000]`），让 5 亿开局资金能拿得起第一块地。
+- **验证**：`npm run typecheck` 通过；`npm test` 9 项通过（含样例项目测算 1.46 亿 / 16%、确定性回放、红线生效时间）；`npm run build` 通过；浏览器实测桌面 1440×900 与手机 390×844。`RUNS=200 npm run balance`：保守策略破产率 0%、30 年净资产中位数 81.7 亿；激进策略破产率 3.5%、中位数 182.1 亿。
+- **没做完 / 已知问题**：激进策略收益翻倍而破产率仅 3.5%，不符合“杠杆反噬”的设计意图，待定目标破产率后调参；商票、明股实债、违规与抽查、随机事件、自救手段（展期、出售项目）、远郊区县地图、美术素材、PWA 均未实现；存档用 localStorage，规范要求 IndexedDB。

@@ -1,0 +1,26 @@
+{
+  "version": 12,
+  "seed": 10,
+  "day": 330,
+  "log": [
+    {
+      "day": 0,
+      "command": {
+        "type": "bid",
+        "parcelId": "L2",
+        "amount": 15000
+      }
+    },
+    {
+      "day": 30,
+      "command": {
+        "type": "startProject",
+        "projectId": "P6",
+        "contractor": "standard"
+      }
+    }
+  ],
+  "legacyV11Until": 330,
+  "legacyV11LogCount": 2,
+  "revision": 4
+}

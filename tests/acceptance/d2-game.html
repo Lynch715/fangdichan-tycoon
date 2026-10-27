@@ -1,0 +1,16 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>D2 旧档迁移与新转让报价</title><link rel="stylesheet" href="/src/style.css"><style>body{height:auto;min-height:100dvh;overflow:auto;padding:16px;box-sizing:border-box}header{display:flex;gap:8px;flex-wrap:wrap}main{max-width:560px;margin:16px auto}h1{font-size:20px}#evidence{white-space:pre-wrap;overflow-wrap:anywhere}#notice{margin:12px 0}</style><body><header><h1>D2 旧档迁移与新转让报价</h1><button id="reload">重载测试档</button><button id="export">导出测试档</button></header><main><p id="notice" role="status"></p><section id="projects"></section><details><summary>只读核对数据</summary><pre id="evidence"></pre></details></main><script type="module">
+import{Game}from'/src/game.ts';import{projectsPanel}from'/src/ui/panels.ts';import{estimateTransfer}from'/src/estimates/transfer.ts';
+if(location.hostname!=='127.0.0.1'||location.port!=='5182')throw Error('仅供5182独立测试源使用');
+const $=s=>document.querySelector(s),game=new Game(),meta=await fetch('./b14-fixture.json').then(r=>r.json());
+const imported=game.importSave(await fetch('./b14-negative-save.json').then(r=>r.text()));if(!imported.ok)throw Error(imported.error);
+function show(){const s=game.state,c=game.config,p=s.projects.find(p=>p.id===meta.projectId);$('#projects').innerHTML=projectsPanel(c,s,p.id);
+ for(const card of $('#projects').querySelectorAll('article'))if(card.dataset.select!==p.id)card.remove();
+ const tools=$(`#projects details[data-key="${p.id}"]`);if(tools)tools.open=true;
+ // 本验收页仅接线转让，其他真实面板控件禁用，避免误以为已覆盖其它操作。
+ for(const button of $('#projects').querySelectorAll('button'))if(button.dataset.act!=='sell')button.disabled=true;
+ $('#evidence').textContent=JSON.stringify({version:s.version,day:s.day,cash:s.cash,log:game.log.length,stage:p.stage,quote:estimateTransfer(c,s,p)},null,2);
+}
+$('#projects').onclick=e=>{const button=e.target.closest('button[data-act="sell"]');if(!button)return;const r=game.issue({type:'sellProject',projectId:button.dataset.id});$('#notice').textContent=r.ok?'项目转让完成':r.error;show();};
+$('#reload').onclick=()=>{const r=game.importSave(game.exportSave());$('#notice').textContent=r.ok?'重载完成，报价已按原日志恢复':r.error;show();};
+$('#export').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([game.exportSave()],{type:'application/json'}));a.download='d2-migration-browser.json';a.click();URL.revokeObjectURL(a.href);};show();
+</script></body></html>

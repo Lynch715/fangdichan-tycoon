@@ -1,0 +1,181 @@
+{
+  "runs": [
+    {
+      "seed": 1,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 58,
+      "cash": 114469.78613205648,
+      "equity": 164059.72063897282,
+      "sha256": "c7d1e2f668a786c9bcdf9447b2ff52d73497d50b8908b79b331ebe6a708fd752"
+    },
+    {
+      "seed": 1,
+      "strategy": "aggressive",
+      "day": 3600,
+      "commands": 475,
+      "cash": 187383.97206091016,
+      "equity": 736629.1297007904,
+      "sha256": "30f25ed211b0de6157d1cc34684d95d41d200900281c469d937254994d444195"
+    },
+    {
+      "seed": 1,
+      "strategy": "bond",
+      "day": 360,
+      "commands": 14,
+      "cash": -19855.023851104543,
+      "equity": -52066.53729733593,
+      "sha256": "6f2f5bf7497c4ce57d1d05452263a513a2e0744821a8fd976b86ec9324c016cb"
+    },
+    {
+      "seed": 2,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 59,
+      "cash": 71291.38309340087,
+      "equity": 141991.78699205743,
+      "sha256": "a46d61edbdceb08f7486dbad190d495847fa3762e8f43cdc528d5a39b4d9190e"
+    },
+    {
+      "seed": 2,
+      "strategy": "aggressive",
+      "day": 3600,
+      "commands": 448,
+      "cash": 67612.17747232075,
+      "equity": 396846.57235933177,
+      "sha256": "6210bb192726245f71b9b8d5aaf898c5221af9ea47e590df8ec5274a73efff94"
+    },
+    {
+      "seed": 2,
+      "strategy": "bond",
+      "day": 3600,
+      "commands": 474,
+      "cash": 199433.4564972014,
+      "equity": 796202.621051804,
+      "sha256": "09bcf2efd20569b79b93d0764d260cd1d6c5f19655810db186b17698fca75945"
+    },
+    {
+      "seed": 7,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 60,
+      "cash": 128716.30339066539,
+      "equity": 143829.39833577676,
+      "sha256": "6ef953b064cbb10c4bacdbef23d8b110c476be381e68922204245dbd6e05903f"
+    },
+    {
+      "seed": 7,
+      "strategy": "aggressive",
+      "day": 360,
+      "commands": 13,
+      "cash": -25789.72875000001,
+      "equity": -27563.750000000015,
+      "sha256": "9efae4c68ad3101875613ee926c0595b90759df51842969a739dee2484eb54b7"
+    },
+    {
+      "seed": 7,
+      "strategy": "bond",
+      "day": 1800,
+      "commands": 177,
+      "cash": -127278.94261715093,
+      "equity": -116374.40434185741,
+      "sha256": "55ecef0a4c85b91a49642ab81b4390fcee5ef0ede45e302640b4a6981420dcb0"
+    },
+    {
+      "seed": 13,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 54,
+      "cash": 143810.71506788844,
+      "equity": 212211.91043948845,
+      "sha256": "33390da97326a6af4a56ae89ecacb193fa74e3aae9c803b22b9503a75e43e26a"
+    },
+    {
+      "seed": 13,
+      "strategy": "aggressive",
+      "day": 3600,
+      "commands": 432,
+      "cash": 166022.3774614841,
+      "equity": 392107.0422370158,
+      "sha256": "997ca294fcc7e61129d3fc054f015e1f897176cf9381070f594abe303d783dfb"
+    },
+    {
+      "seed": 13,
+      "strategy": "bond",
+      "day": 3600,
+      "commands": 437,
+      "cash": 272843.51811867976,
+      "equity": 573175.7051486024,
+      "sha256": "a119b5a081c154d4d88e83a8cd11ea23cdf6280fc8f1c4e691595a963f06f125"
+    },
+    {
+      "seed": 32,
+      "strategy": "conservative",
+      "day": 3600,
+      "commands": 50,
+      "cash": 136507.75323855842,
+      "equity": 174507.00775651776,
+      "sha256": "5fbd842bfcc2858dc4ec077b60e1720795627ea6d927d4cdb4a57f6246c57bb2"
+    },
+    {
+      "seed": 32,
+      "strategy": "aggressive",
+      "day": 720,
+      "commands": 23,
+      "cash": -8099.480234739044,
+      "equity": 15134.62766946212,
+      "sha256": "30fb0267565ea5f91b761c73c28b0101cef71011fe6d49d35c9c820a78a94a35"
+    },
+    {
+      "seed": 32,
+      "strategy": "bond",
+      "day": 3600,
+      "commands": 473,
+      "cash": 258460.7445943989,
+      "equity": 531329.1422747076,
+      "sha256": "4ba00b4fb460de02171175baea50f0a5f526196403dca0907f3f15bbff205664"
+    }
+  ],
+  "scenarios": [
+    {
+      "day": 239,
+      "rating": 5,
+      "cash": -19371.070635537893,
+      "principal": 114640,
+      "called": 0,
+      "repaid": 0,
+      "sha256": "c7aa14590a190da9578cae3d10e96012afa37a2ec759fdc60cf2a582edaa1c74"
+    },
+    {
+      "day": 240,
+      "rating": 6,
+      "cash": -11688.526829524164,
+      "principal": 114640,
+      "called": 28660,
+      "repaid": 0,
+      "sha256": "67001b7572f71e7b81f27f1e1c2dc604e6f86607766a3dd78b1f252f77cfdaa5"
+    },
+    {
+      "day": 270,
+      "rating": 6,
+      "cash": -34283.31574775426,
+      "principal": 85980,
+      "called": 0,
+      "repaid": 28660,
+      "sha256": "a1f1f234339a45c5c612dc8739132d58f3d69bc205c98147954b38cb6a6be98a"
+    }
+  ],
+  "browser": {
+    "issue": {
+      "day": 0,
+      "cash": 60000,
+      "sha256": "92af231254f71b31a6bee0d088e94854d3c930701a125e947639867704822a1f"
+    },
+    "paid": {
+      "day": 270,
+      "cash": -34283.31574775426,
+      "sha256": "a1f1f234339a45c5c612dc8739132d58f3d69bc205c98147954b38cb6a6be98a",
+      "fullStateEqual": true
+    }
+  }
+}

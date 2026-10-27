@@ -1,0 +1,200 @@
+{
+  "runs": 15,
+  "initial": {
+    "day": 390,
+    "cash": 28109.335514300557,
+    "principal": 40000,
+    "debts": [
+      {
+        "id": "D4",
+        "channel": "trust",
+        "principal": 40000,
+        "rate": 0.12,
+        "oldDay": 541,
+        "newDay": 901
+      }
+    ]
+  },
+  "rescued": {
+    "day": 390,
+    "cash": 43966.40970515318,
+    "capital": {
+      "sinceDay": 0,
+      "founderShare": 0.36,
+      "strategicShare": 0.24,
+      "creditorShare": 0.4,
+      "lastInvestmentDay": 390,
+      "restructurings": 1,
+      "events": [
+        {
+          "day": 390,
+          "kind": "strategic",
+          "newShare": 0.4,
+          "founderBefore": 1,
+          "founderAfter": 0.6,
+          "cash": 15857.074190852622,
+          "principal": 0,
+          "debtIds": []
+        },
+        {
+          "day": 390,
+          "kind": "restructuring",
+          "newShare": 0.4,
+          "founderBefore": 0.6,
+          "founderAfter": 0.36,
+          "cash": 0,
+          "principal": 40000,
+          "debtIds": [
+            "D4"
+          ]
+        }
+      ]
+    },
+    "sha256": "53cac34f71a229ca9e927cfdfe615b0a9426017fcd0748c9d519b1ef921e1f7e"
+  },
+  "repayment": {
+    "day": 930,
+    "cash": 51189.18812382898,
+    "sha256": "4dfdc19b8314c0e7baaf5f66511d66945972073fac6d67fb91909dd61620ea79",
+    "payments": [
+      {
+        "day": 930,
+        "amount": 40000
+      }
+    ]
+  },
+  "recovered": {
+    "before": -147.71266003323035,
+    "day": 1710,
+    "cash": 83720.51783770225,
+    "status": "playing",
+    "sha256": "afe121e9a03ff4b20a6a633ff5ea1c83aec594567817c80872bf9dde36db50c7"
+  },
+  "browser": [
+    {
+      "name": "b12-pressure-browser-save.json",
+      "day": 930,
+      "cash": 51189.18812382898,
+      "commands": 41,
+      "capital": {
+        "sinceDay": 0,
+        "founderShare": 0.36,
+        "strategicShare": 0.24,
+        "creditorShare": 0.4,
+        "lastInvestmentDay": 390,
+        "restructurings": 1,
+        "events": [
+          {
+            "day": 390,
+            "kind": "strategic",
+            "newShare": 0.4,
+            "founderBefore": 1,
+            "founderAfter": 0.6,
+            "cash": 15857.074190852622,
+            "principal": 0,
+            "debtIds": []
+          },
+          {
+            "day": 390,
+            "kind": "restructuring",
+            "newShare": 0.4,
+            "founderBefore": 0.6,
+            "founderAfter": 0.36,
+            "cash": 0,
+            "principal": 40000,
+            "debtIds": [
+              "D4"
+            ]
+          }
+        ]
+      },
+      "sha256": "4dfdc19b8314c0e7baaf5f66511d66945972073fac6d67fb91909dd61620ea79"
+    },
+    {
+      "name": "b12-deficit-browser-save.json",
+      "day": 1710,
+      "cash": 83720.51783770225,
+      "commands": 178,
+      "capital": {
+        "sinceDay": 0,
+        "founderShare": 0.6,
+        "strategicShare": 0.4,
+        "creditorShare": 0,
+        "lastInvestmentDay": 1680,
+        "restructurings": 0,
+        "events": [
+          {
+            "day": 1680,
+            "kind": "strategic",
+            "newShare": 0.4,
+            "founderBefore": 1,
+            "founderAfter": 0.6,
+            "cash": 78772.70013565161,
+            "principal": 0,
+            "debtIds": []
+          }
+        ]
+      },
+      "sha256": "afe121e9a03ff4b20a6a633ff5ea1c83aec594567817c80872bf9dde36db50c7"
+    },
+    {
+      "name": "b12-old-browser-save.json",
+      "day": 450,
+      "cash": 69030.49853208702,
+      "commands": 12,
+      "capital": {
+        "sinceDay": 450,
+        "founderShare": 1,
+        "strategicShare": 0,
+        "creditorShare": 0,
+        "lastInvestmentDay": null,
+        "restructurings": 0,
+        "events": []
+      },
+      "sha256": "9b75ff4b43370ec40d5ffaf3ff0cb243ddf3e062347327a1c69515d5c7ff23a7"
+    },
+    {
+      "name": "b12-old-continued-browser-save.json",
+      "day": 450,
+      "cash": 77429.23392611092,
+      "commands": 13,
+      "capital": {
+        "sinceDay": 450,
+        "founderShare": 0.8,
+        "strategicShare": 0.2,
+        "creditorShare": 0,
+        "lastInvestmentDay": 450,
+        "restructurings": 0,
+        "events": [
+          {
+            "day": 450,
+            "kind": "strategic",
+            "newShare": 0.2,
+            "founderBefore": 1,
+            "founderAfter": 0.8,
+            "cash": 8398.7353940239,
+            "principal": 0,
+            "debtIds": []
+          }
+        ]
+      },
+      "sha256": "bb8983c363ba29c0ba51e6561ba84cc91efd93205fdd1093202bb3200a8a10b8"
+    },
+    {
+      "name": "b12-main-old-save.json",
+      "day": 750,
+      "cash": 59215.56733594119,
+      "commands": 4,
+      "capital": {
+        "sinceDay": 750,
+        "founderShare": 1,
+        "strategicShare": 0,
+        "creditorShare": 0,
+        "lastInvestmentDay": null,
+        "restructurings": 0,
+        "events": []
+      },
+      "sha256": "f8d4a49c8759a4d45b1ea38ec2a876eefe12ad51e93047321dbbb7bd55c1b3a4"
+    }
+  ]
+}
