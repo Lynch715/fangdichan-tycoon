@@ -5,5 +5,7 @@ export default defineConfig({
   base: './',
   test: {
     include: ['tests/**/*.test.ts'],
+    // CI 机器比本机慢一倍以上：30年长局等测试本机约2–3秒，默认5秒上限在 Actions 上会超时
+    testTimeout: 30000,
   },
 });

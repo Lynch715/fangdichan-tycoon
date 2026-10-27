@@ -1,3 +1,11 @@
+## 2026-10-26 · Claude · 放宽测试超时，修复 Actions 上的长局测试超时
+
+- **做了什么**：Pages 工作流第二次失败于回归测试：`tests/expansion.test.ts` “30年两策略多个种子保持有限财务指标”本机约2.3秒，在 GitHub Actions 上超过 Vitest 默认5秒。全局 `testTimeout` 调为30秒，测试逻辑不变。
+- **改了哪些文件**：`vite.config.ts`、`CHANGELOG.md`。
+- **数值变化**：无。
+- **验证**：干净克隆 `npm ci && npm test` 374项通过（32秒）；本机最慢单项为 bots 2.8秒、expansion 2.3秒、art 1.3秒。远程 Actions 结果见推送后的运行。
+- **没做完 / 已知问题**：实体手机测试未做。
+
 ## 2026-10-26 · Claude · 首次推送 GitHub 并修复 Pages 构建
 
 - **做了什么**：仓库已推送到 `Lynch715/fangdichan-tycoon`。首次 Pages 工作流在测试阶段失败：`.gitignore` 排除了整个 `art/raw/`，而 `tests/art.test.ts` 用其中4张原图作样本，5项素材测试因缺文件失败（其余369项通过）。改为排除原始素材但放行这4张样本。
