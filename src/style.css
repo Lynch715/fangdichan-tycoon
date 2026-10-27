@@ -340,3 +340,8 @@ input[type=number] { -moz-appearance: textfield; }
 .ach-entry { align-self: stretch; }
 @media (max-width: 520px) { .ach-grid { grid-template-columns: minmax(0, 1fr); } }
 .save-card.new-game button { align-self: flex-start; }
+
+/* 制作人署名 */
+.credits { margin: 14px 0 0; padding-top: 12px; border-top: 1px solid var(--line); text-align: center; font-size: 12px; color: var(--muted); line-height: 1.6; }
+.credits-sep { margin: 0 8px; color: var(--line2); }
+.credits-id { color: var(--orange-text); font-weight: 600; user-select: all; }

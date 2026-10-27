@@ -1,5 +1,6 @@
 import {defaultConfig,buildSessionConfig,DIFFICULTIES,validateSessionOptions,type SessionOptions,type GameState,type Config} from '../sim/index.ts';
 import {COMPANY_NAME_MAX} from '../sim/sessionConfig.ts';
+import {creditsMarkup} from './credits.ts';
 import {esc,yi} from './format.ts';
 import type {Game} from '../game.ts';
 
@@ -46,7 +47,7 @@ export function setupMarkup(options:SessionOptions,replace:boolean,companyName='
    :`<label for="setup-name">公司名称</label><div class="row"><input id="setup-name" name="companyName" maxlength="${COMPANY_NAME_MAX}" autocomplete="off" placeholder="${esc(defaultConfig.start.companyName)}" value="${esc(companyName)}"><button type="button" class="ghost" data-setup-random>随机</button></div>`}
  <label for="setup-difficulty">难度</label><select id="setup-difficulty" name="difficulty">${DIFFICULTIES.map(id=>`<option value="${id}" ${options.difficulty===id?'selected':''}>${esc(c.sessions.difficulties[id].name)}</option>`).join('')}</select>
  <p class="setup-brief">${brief}</p><dl class="setup-facts"><div><dt>开局可用现金</dt><dd>${yi(actualCash)}</dd></div><div><dt>周期幅度</dt><dd>${preset.cycleStrength} 倍</dd></div><div><dt>监管预警</dt><dd>${c.regulation.startYear===1?'已生效':`提前 ${c.regulation.announceMonthsBefore} 个月`}</dd></div><div><dt>AI 激进程度</dt><dd>${preset.aiAggression} 倍</dd></div></dl>
- ${replace?'<p class="warn-text small">确认后替换当前进度。建议先在“存档”里保存到空槽或导出存档；本机另保留一份重开前备份。</p>':''}<p data-setup-error class="danger-text" role="status"></p><div class="row"><button type="button" class="ghost" data-setup-cancel>${replace?'取消，继续当前游戏':'稍后选择'}</button><button type="submit">${replace?'确认重开':'开始经营'}</button></div></form>`;
+ ${replace?'<p class="warn-text small">确认后替换当前进度。建议先在“存档”里保存到空槽或导出存档；本机另保留一份重开前备份。</p>':''}<p data-setup-error class="danger-text" role="status"></p><div class="row"><button type="button" class="ghost" data-setup-cancel>${replace?'取消，继续当前游戏':'稍后选择'}</button><button type="submit">${replace?'确认重开':'开始经营'}</button></div></form>${creditsMarkup()}`;
 }
 
 const NAME_KEY='fdc-company-name';

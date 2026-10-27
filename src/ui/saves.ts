@@ -2,6 +2,7 @@
 // 槽位只存在本机浏览器（localStorage），内容就是导出存档同一份 JSON（种子 + 指令日志）。
 import { calendar, computeMetrics, type Config, type GameState } from '../sim/index.ts';
 import { esc, yi } from './format.ts';
+import { creditsMarkup } from './credits.ts';
 
 export const SLOT_COUNT = 3;
 const slotKey = (n: number) => `fdc-slot-${n}`;
@@ -49,5 +50,6 @@ export function savesMarkup(config: Config, s: GameState, storageStatus: string,
   <div class="row"><button class="ghost" data-act="export">导出存档文件</button><button class="ghost" data-act="import">从文件导入</button></div>
   <h3 class="saves-sub">开始新游戏</h3>
   <section class="save-card new-game"><p class="small muted">重新选择模式、难度和公司名称，从头经营。当前进度会被替换，建议先保存到上面的空槽。</p>
-    <button data-saves-new>开始新游戏</button></section>`;
+    <button data-saves-new>开始新游戏</button></section>
+  ${creditsMarkup()}`;
 }
