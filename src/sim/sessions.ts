@@ -25,6 +25,8 @@ export function defaultSession(s:GameState,origin:'implicit'|'legacy'):SessionSt
 }
 export function buildSessionConfig(base:Config,options:SessionOptions):Config {
  const c=buildDifficultyConfig(base,options.difficulty);
+ // 玩家自定公司名（接管违约公司的挑战沿用剧情公司名）
+ if(options.companyName)c.start.companyName=options.companyName;
  if(options.mode==='sandbox'){
   c.start.cash*=c.sessions.sandbox.initialCashFactor;c.maps.suburbUnlockYear=1;
  }else if(options.mode==='challenge'){

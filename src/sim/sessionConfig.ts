@@ -7,8 +7,17 @@ export type GameMode=typeof GAME_MODES[number];
 export type Difficulty=typeof DIFFICULTIES[number];
 export type ChallengeId=typeof CHALLENGES[number];
 export type SessionOptions=
- | {mode:'career'|'sandbox';difficulty:Difficulty}
- | {mode:'challenge';difficulty:Difficulty;challenge:ChallengeId};
+ | {mode:'career'|'sandbox';difficulty:Difficulty;companyName?:string}
+ | {mode:'challenge';difficulty:Difficulty;challenge:ChallengeId;companyName?:string};
+
+/** 公司名：去首尾空白、合并连续空白，2–12 个字，禁止控制字符与尖括号。不合法返回 null。 */
+export const COMPANY_NAME_MIN=2,COMPANY_NAME_MAX=12;
+export function normalizeCompanyName(value:unknown):string|null {
+ if(typeof value!=='string')return null;
+ const name=value.replace(/\s+/g,' ').trim(),len=[...name].length;
+ if(len<COMPANY_NAME_MIN||len>COMPANY_NAME_MAX||/[\u0000-\u001f\u007f<>]/.test(name))return null;
+ return name;
+}
 
 /** 校验开局选择，返回独立的规范化值；不读取或修改当前游戏。 */
 export function validateSessionOptions(value:unknown):SessionOptions|null {
@@ -16,12 +25,15 @@ export function validateSessionOptions(value:unknown):SessionOptions|null {
  const options=value as Record<string,unknown>;
  if(!GAME_MODES.includes(options.mode as GameMode)||!DIFFICULTIES.includes(options.difficulty as Difficulty))return null;
  const difficulty=options.difficulty as Difficulty;
+ let companyName:string|undefined;
+ if(options.companyName!==undefined){const name=normalizeCompanyName(options.companyName);if(name===null)return null;companyName=name;}
+ const named=companyName===undefined?{}:{companyName};
  if(options.mode==='challenge'){
   if(!CHALLENGES.includes(options.challenge as ChallengeId))return null;
-  return {mode:'challenge',difficulty,challenge:options.challenge as ChallengeId};
+  return {mode:'challenge',difficulty,challenge:options.challenge as ChallengeId,...named};
  }
  if(options.challenge!==undefined)return null;
- return {mode:options.mode as 'career'|'sandbox',difficulty};
+ return {mode:options.mode as 'career'|'sandbox',difficulty,...named};
 }
 
 /**

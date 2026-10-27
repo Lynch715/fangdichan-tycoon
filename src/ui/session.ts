@@ -1,4 +1,5 @@
 import {defaultConfig,buildSessionConfig,DIFFICULTIES,validateSessionOptions,type SessionOptions,type GameState,type Config} from '../sim/index.ts';
+import {COMPANY_NAME_MAX} from '../sim/sessionConfig.ts';
 import {esc,yi} from './format.ts';
 import type {Game} from '../game.ts';
 
@@ -16,7 +17,16 @@ export function sessionPanel(c:Config,s:GameState):string {
  return `<section class="session-card"><div class="row between"><b>${esc(mode)}</b><span class="pill">${esc(c.sessions.difficulties[o.difficulty].name)}</span></div>${content}</section>`;
 }
 
-export function setupMarkup(options:SessionOptions,replace:boolean):string {
+const NAME_HEADS=['渝江','嘉陵','朝天','两江','南山','鹅岭','歌乐','磁器口','解放','龙湖湾','长滨','云岭','金沙','白鹭'];
+const NAME_TAILS=['置业','地产','发展','城建','实业','控股','集团','建设'];
+/** 随机公司名（避开同行与默认名）。界面草稿用，不进模拟。 */
+export function randomCompanyName(rand=Math.random):string {
+ const taken=new Set([defaultConfig.start.companyName,...defaultConfig.rivals.companies.map(r=>r.name)]);
+ for(let i=0;i<20;i++){const n=NAME_HEADS[Math.floor(rand()*NAME_HEADS.length)]+NAME_TAILS[Math.floor(rand()*NAME_TAILS.length)];if(!taken.has(n))return n;}
+ return '渝江置业';
+}
+
+export function setupMarkup(options:SessionOptions,replace:boolean,companyName=''):string {
  const c=buildSessionConfig(defaultConfig,options),challenge=options.mode==='challenge'?options.challenge:'sales';
  const choices=Object.entries(defaultConfig.sessions.challenges).map(([id,terms])=>`<option value="${id}" ${challenge===id?'selected':''}>${esc(terms.name)}</option>`).join('');
  let brief='从一家新公司起步，在30年生涯中开发项目、融资和应对市场周期。';
@@ -31,32 +41,45 @@ export function setupMarkup(options:SessionOptions,replace:boolean):string {
  return `<h2 id="setup-title">${replace?'重新开始':'选择你的开局'}</h2><p class="small muted">模式与难度在开局后固定，随存档保留。</p><form id="setup-form" class="setup-form">
  <label for="setup-mode">游戏模式</label><select id="setup-mode" name="mode"><option value="career" ${options.mode==='career'?'selected':''}>生涯</option><option value="challenge" ${options.mode==='challenge'?'selected':''}>挑战</option><option value="sandbox" ${options.mode==='sandbox'?'selected':''}>沙盒</option></select>
  <div ${options.mode==='challenge'?'':'hidden'}><label for="setup-challenge">挑战关卡</label><select id="setup-challenge" name="challenge">${choices}</select></div>
+ ${options.mode==='challenge'&&challenge==='delivery'
+   ?`<p class="small muted">公司名称：${esc(c.start.companyName)}（本关为接管剧情，沿用原公司名）</p>`
+   :`<label for="setup-name">公司名称</label><div class="row"><input id="setup-name" name="companyName" maxlength="${COMPANY_NAME_MAX}" autocomplete="off" placeholder="${esc(defaultConfig.start.companyName)}" value="${esc(companyName)}"><button type="button" class="ghost" data-setup-random>随机</button></div>`}
  <label for="setup-difficulty">难度</label><select id="setup-difficulty" name="difficulty">${DIFFICULTIES.map(id=>`<option value="${id}" ${options.difficulty===id?'selected':''}>${esc(c.sessions.difficulties[id].name)}</option>`).join('')}</select>
  <p class="setup-brief">${brief}</p><dl class="setup-facts"><div><dt>开局可用现金</dt><dd>${yi(actualCash)}</dd></div><div><dt>周期幅度</dt><dd>${preset.cycleStrength} 倍</dd></div><div><dt>监管预警</dt><dd>${c.regulation.startYear===1?'已生效':`提前 ${c.regulation.announceMonthsBefore} 个月`}</dd></div><div><dt>AI 激进程度</dt><dd>${preset.aiAggression} 倍</dd></div></dl>
  ${replace?'<p class="warn-text small">确认后替换当前进度。建议先导出存档；本机另保留一份重开前备份。</p>':''}<p data-setup-error class="danger-text" role="status"></p><div class="row"><button type="button" class="ghost" data-setup-cancel>${replace?'取消，继续当前游戏':'稍后选择'}</button><button type="submit">${replace?'确认重开':'开始经营'}</button></div></form>`;
 }
 
+const NAME_KEY='fdc-company-name';
 /** 草稿只在控制器中；确认才调用Game.restart，取消没有经营指令或存档写入。 */
 export class SessionController {
  private game:Game;private dialog:HTMLDialogElement;private afterStart:()=>void;
  private options:SessionOptions={mode:'career',difficulty:'standard'};private replace=false;
+ /** 公司名草稿：默认上次用过的名字（只存本机）。 */
+ private companyName=(()=>{try{return localStorage.getItem(NAME_KEY)??'';}catch{return '';}})();
  constructor(game:Game,dialog:HTMLDialogElement,afterStart:()=>void){
   this.game=game;this.dialog=dialog;this.afterStart=afterStart;
-  dialog.addEventListener('change',()=>{
+  dialog.addEventListener('input',e=>{if((e.target as HTMLElement).id==='setup-name')this.companyName=(e.target as HTMLInputElement).value;});
+  dialog.addEventListener('change',e=>{
+   if((e.target as HTMLElement).id==='setup-name')return; // 改名不重绘表单
    const mode=(dialog.querySelector('#setup-mode') as HTMLSelectElement).value;
    const difficulty=(dialog.querySelector('#setup-difficulty') as HTMLSelectElement).value;
    const challenge=(dialog.querySelector('#setup-challenge') as HTMLSelectElement).value;
    const next=validateSessionOptions({mode,difficulty,...(mode==='challenge'?{challenge}:{})});
    if(next){const focused=(document.activeElement as HTMLElement)?.id;this.options=next;this.paint();if(focused)dialog.querySelector<HTMLElement>(`#${focused}`)?.focus();}
   });
-  dialog.addEventListener('click',e=>{if((e.target as HTMLElement).closest('[data-setup-cancel]'))dialog.close();});
+  dialog.addEventListener('click',e=>{
+   const t=e.target as HTMLElement;
+   if(t.closest('[data-setup-cancel]'))dialog.close();
+   if(t.closest('[data-setup-random]')){this.companyName=randomCompanyName();const input=dialog.querySelector<HTMLInputElement>('#setup-name');if(input)input.value=this.companyName;}
+  });
   dialog.addEventListener('submit',e=>{
    e.preventDefault();
-   const result=game.restart(this.options);
-   if(result.ok){dialog.close();this.afterStart();}
+   const name=this.companyName.trim(),delivery=this.options.mode==='challenge'&&this.options.challenge==='delivery';
+   const result=game.restart(name&&!delivery?{...this.options,companyName:name}:this.options);
+   if(result.ok){if(name&&!delivery)try{localStorage.setItem(NAME_KEY,name);}catch{/* 只是不记住 */}dialog.close();this.afterStart();}
    else dialog.querySelector('[data-setup-error]')!.textContent=result.error??'开局失败，原进度已保留';
   });
  }
  open(){this.replace=!this.game.needsSetup;this.game.setSpeed(0);this.paint();if(!this.dialog.open)this.dialog.showModal();}
- private paint(){this.dialog.innerHTML=setupMarkup(this.options,this.replace);}
+ private paint(){this.dialog.innerHTML=setupMarkup(this.options,this.replace,this.companyName);}
 }

@@ -1,5 +1,5 @@
 import{initCapital,capitalCommand,founderBookValue}from'./capital.ts';
-import {validateSessionOptions,type SessionOptions} from './sessionConfig.ts';
+import {validateSessionOptions,normalizeCompanyName,COMPANY_NAME_MIN,COMPANY_NAME_MAX,type SessionOptions} from './sessionConfig.ts';
 import {buildSessionConfig,defaultSession,initSessionOpening,sandboxFunding,protectSandbox,updateSession} from './sessions.ts';
 import{initHousingPolicies,reviewHousingPolicies,housingDemandFactor}from'./housingPolicy.ts';
 import{initCompliance,recordLandFunding,landBanUntil,updateHoarding,presaleBlocked,completeRectification}from'./compliance.ts';
@@ -114,8 +114,11 @@ function performCommand(state: GameState, cmd: Command|UpgradeRules, config: Con
   }
   if (state.status === 'bankrupt') return { ok: false, error: '公司已破产清算' };
   if(cmd.type==='startGame'){
+    const rawName=(cmd.options as {companyName?:unknown}|undefined)?.companyName;
+    if(rawName!==undefined&&normalizeCompanyName(rawName)===null)return {ok:false,error:`公司名需为 ${COMPANY_NAME_MIN}–${COMPANY_NAME_MAX} 个字，不能含 < > 等特殊符号`};
     const options=validateSessionOptions(cmd.options);
     if(!options)return {ok:false,error:'开局选项无效'};
+    if(options.companyName&&config.rivals.companies.some(r=>r.name===options.companyName))return {ok:false,error:'公司名与同行开发商重名，请换一个'};
     if(state.opponentId||state.day!==0||state.session)return {ok:false,error:'只能在全新开局选择模式；经营后请使用重新开始'};
     // 全部构造成功后才替换，错误不破坏当前公司或消耗其随机数。
     const fresh=newGame(state.seed,buildSessionConfig(config,options),undefined,options);
