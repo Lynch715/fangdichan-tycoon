@@ -104,8 +104,17 @@ function cheer(text:string,kind:'big'|'sales'='big'){
 
 type Snap={sold:boolean;out:boolean;del:boolean};
 let prevProjects:Map<string,Snap>|null=null,prevMonth=-1,prevTitle=-1,silentGoals=false;
+const MAP_NAMES:Record<string,string>={city:'重庆主城',outer:'外围主城',suburb:'远郊区县'};
+let cityDecile:Record<string,number>={};
+/** 城市化每突破 10% 庆祝一次（只看当前地图；切图/导入后静默记录）。 */
+function celebrateCity(){
+  const u=map.urbanization,d=Math.floor(u*10);
+  $('#urban').textContent=`城市化 ${Math.round(u*100)}%`;
+  const prev=cityDecile[mapId];cityDecile[mapId]=d;
+  if(prev!==undefined&&d>prev&&d>=2)cheer(`🏙 ${MAP_NAMES[mapId]??''}城市化突破 ${d*10}%，${d>=6?'高楼林立':d>=4?'新区崛起':'街区渐成'}`);
+}
 /** 新开局/导入存档后：已达成的目标静默记录，不补放庆祝。 */
-function resetCelebrations(){prevProjects=null;prevMonth=-1;prevTitle=-1;silentGoals=true;}
+function resetCelebrations(){prevProjects=null;prevMonth=-1;prevTitle=-1;silentGoals=true;cityDecile={};}
 function celebrate(){
   const s=game.state,dpm=config.time.daysPerMonth;
   const snap=new Map(s.projects.map(p=>[p.id,{sold:p.soldArea>0,out:p.saleableArea>0&&p.soldArea>=p.saleableArea*0.999,del:p.deliveredDay!==null} as Snap]));
@@ -174,6 +183,7 @@ function render() {
   $('#news').innerHTML = `<b class="news-label">新闻</b>${newsLine(config, s)}`;
   $('#auction-count').textContent = `${s.auctions.filter(a=>district(config,a.districtId).mapId===mapId).length} 宗`;
   map.update(s, selectedId, mapId);
+  celebrateCity();
   paintInbox();
   celebrate();
   const g=guideStep(s),guide=$<HTMLButtonElement>('#guide');
