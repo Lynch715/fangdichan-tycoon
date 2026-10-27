@@ -360,3 +360,8 @@ input[type=number] { -moz-appearance: textfield; }
 .grade-A { color: var(--green); border-color: var(--green); }
 .grade-D { color: var(--red); border-color: var(--red); }
 .career-facts { margin: 8px 0; }
+
+/* 品牌分阶段 */
+.brand-meter { position: relative; height: 6px; border-radius: 3px; background: var(--line); margin: 4px 0; overflow: hidden; }
+.brand-meter span { position: absolute; inset: 0 auto 0 0; background: var(--orange); }
+.brand-meter i { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--bg, #111); }

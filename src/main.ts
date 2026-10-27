@@ -18,6 +18,7 @@ import{yi}from'./ui/format.ts';
 import{guideStep}from'./ui/guide.ts';
 import{SLOT_COUNT,readSlot,savesMarkup,slotMeta,writeSlot}from'./ui/saves.ts';
 import{careerDialogMarkup}from'./ui/career.ts';
+import{brandTier}from'./ui/brand.ts';
 import{ACHIEVEMENTS,achievementName,achievementsMarkup,earnedAchievements,loadUnlocks,mergeUnlocks,saveUnlocks}from'./ui/achievements.ts';
 
 const PAUSE_TEXT: Record<string, string> = {
@@ -106,7 +107,7 @@ function cheer(text:string,kind:'big'|'sales'='big'){
 }
 
 type Snap={sold:boolean;out:boolean;del:boolean};
-let prevProjects:Map<string,Snap>|null=null,prevMonth=-1,prevTitle=-1,silentGoals=false;
+let prevProjects:Map<string,Snap>|null=null,prevMonth=-1,prevTitle=-1,prevBrandTier=-1,silentGoals=false;
 const MAP_NAMES:Record<string,string>={city:'重庆主城',outer:'外围主城',suburb:'远郊区县'};
 let cityDecile:Record<string,number>={};
 /** 城市化每突破 10% 庆祝一次（只看当前地图；切图/导入后静默记录）。 */
@@ -117,7 +118,7 @@ function celebrateCity(){
   if(prev!==undefined&&d>prev&&d>=2)cheer(`🏙 ${MAP_NAMES[mapId]??''}城市化突破 ${d*10}%，${d>=6?'高楼林立':d>=4?'新区崛起':'街区渐成'}`);
 }
 /** 新开局/导入存档后：已达成的目标静默记录，不补放庆祝。 */
-function resetCelebrations(){prevProjects=null;prevMonth=-1;prevTitle=-1;silentGoals=true;cityDecile={};silentAch=true;achKey='';careerSilent=true;}
+function resetCelebrations(){prevProjects=null;prevMonth=-1;prevTitle=-1;prevBrandTier=-1;silentGoals=true;cityDecile={};silentAch=true;achKey='';careerSilent=true;}
 function celebrate(){
   const s=game.state,dpm=config.time.daysPerMonth;
   const snap=new Map(s.projects.map(p=>[p.id,{sold:p.soldArea>0,out:p.saleableArea>0&&p.soldArea>=p.saleableArea*0.999,del:p.deliveredDay!==null} as Snap]));
@@ -137,6 +138,9 @@ function celebrate(){
   const title=companyTitle(totalSales(s));
   if(prevTitle>0&&title.level>prevTitle)cheer(`⭐ 公司晋级「${title.name}」`);
   prevTitle=title.level;
+  const tier=brandTier(config,s.brand).level;
+  if(prevBrandTier>=0&&tier>prevBrandTier)cheer(`🏅 品牌升级「${brandTier(config,s.brand).name}」，去化更快`);
+  prevBrandTier=tier;
   // 里程碑：首次见到这局时只记录，不补放庆祝
   const key=`fdc-goals-${s.seed}`,done=goals(s).achieved;
   let seen:string[]|null=null;try{seen=JSON.parse(localStorage.getItem(key)??'null');}catch{seen=null;}

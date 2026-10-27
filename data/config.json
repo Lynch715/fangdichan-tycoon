@@ -398,13 +398,22 @@
     "complaintBrandPenalty": 10,
     "complaintAttentionIncrease": 15,
     "initialBrand": 50,
-    "deliveryBrandGain": 2
+    "deliveryBrandGain": 2,
+    "excellentThreshold": 90,
+    "excellentBrandGain": 3
   },
   "marketing": {
     "maxRate": 0.12,
     "neutralBrand": 50,
     "brandSensitivity": 0.006,
-    "spendSensitivity": 6
+    "spendSensitivity": 6,
+    "brandTiers": [
+      { "min": 0, "name": "口碑受损" },
+      { "min": 40, "name": "普通开发商" },
+      { "min": 60, "name": "区域品牌" },
+      { "min": 75, "name": "知名品牌" },
+      { "min": 90, "name": "标杆房企" }
+    ]
   },
   "rivals": {
     "bidStepRate": 0.02,

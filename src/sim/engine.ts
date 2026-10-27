@@ -491,8 +491,9 @@ function settleProject(state: GameState, config: Config, p: Project) {
       state.brand=Math.max(0,state.brand-config.quality.complaintBrandPenalty);state.attention=Math.min(100,state.attention+config.quality.complaintAttentionIncrease);
       addNews(state,'warning',`${p.name} 交付质量 ${p.quality} 分，低于 ${config.quality.complaintThreshold} 分，业主维权；公司品牌下降、监管关注度上升`);state.pauses.push('risk');
     }else{
-      state.brand=Math.min(100,state.brand+config.quality.deliveryBrandGain);
-      addNews(state,'company',`${p.name} 交付质量达标，公司品牌提升至 ${state.brand} 分`);
+      const excellent=config.quality.excellentThreshold!==undefined&&p.quality!==null&&p.quality>=config.quality.excellentThreshold;
+      state.brand=Math.min(100,state.brand+(excellent?config.quality.excellentBrandGain??config.quality.deliveryBrandGain:config.quality.deliveryBrandGain));
+      addNews(state,'company',`${p.name} ${excellent?'交付质量优秀':'交付质量达标'}，公司品牌提升至 ${state.brand} 分`);
     }
   }
   if(p.stage==='construction'&&p.fundingStoppedMonths>=c.fundingStopMonthsToTakeover){takeOverProject(state,config,p);return;}

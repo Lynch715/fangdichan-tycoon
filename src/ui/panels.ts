@@ -11,6 +11,7 @@ import{appearanceOf,PRODUCT_NAMES}from'../appearance.ts';
 import{BUILDING_PRODUCTS,BUILDING_VARIANTS,CONTRACTORS}from'../sim/types.ts';
 import {estimateLand} from '../estimates/land.ts';
 import {estimateRunway} from '../estimates/runway.ts';
+import {brandTileMarkup} from './brand.ts';
 import {bidAffordability} from './affordability.ts';
 import {outlookMarkup} from './outlook.ts';
 // 界面面板：根据模拟状态生成 HTML。按钮通过 data-act 属性交给 main.ts 统一处理。
@@ -103,7 +104,7 @@ export function financePanel(config: Config, s: GameState,capitalShare?:number):
   <section class="grid2">
     <div class="tile"><span class="muted small">信用评级</span><b class="mid">${config.finance.ratings[s.rating]}</b></div>
     <div class="tile"><span class="muted small">监管关注度</span><b class="mid">${s.attention < 30 ? '低' : s.attention < 60 ? '中' : '高'}</b></div>
-    <div class="tile"><span class="muted small">公司品牌</span><b class="mid">${s.brand} <small>/ 100</small></b><span class="small muted">达标交付 +${config.quality.deliveryBrandGain} · 维权 −${config.quality.complaintBrandPenalty}</span></div>
+    ${brandTileMarkup(config,s.brand)}
   </section>
   <section class="stack">
     <b>融资与自救</b>${capitalPanel(config,s,capitalShare)}
