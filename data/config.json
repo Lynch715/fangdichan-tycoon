@@ -86,7 +86,7 @@
     "starterMaxCashShare": 0.35,
     "scale": {
       "exponent": 0.5,
-      "max": 2,
+      "max": 1.8,
       "regularParcels": 2
     }
   },
@@ -820,7 +820,7 @@
       "cashReserve": 0.05,
       "maxActive": 20,
       "landFundingRate": 0.25,
-      "buildReserveRate": 0,
+      "buildReserveRate": 0.015,
       "devLoanUsage": 1,
       "trustUsage": 1,
       "hiddenUsage": 0.25,
