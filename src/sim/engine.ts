@@ -416,7 +416,9 @@ function updateMarket(state: GameState, config: Config, month: number) {
 export function salesRate(config: Config, state: GameState, priceFactor: number,marketingRate=config.sales.marketingRate,districtId?:string): number {
   const phase = config.cycle.phases[state.market.phaseIndex];
   const sentimentFactor = 0.5 + state.market.sentiment / 100;
-  const priceEffect = Math.max(0, 1 - config.sales.priceElasticity * (priceFactor - 1));
+  // 高于市场价的溢价对去化更敏感（premiumElasticity），低于市场价沿用 priceElasticity
+  const elasticity = priceFactor > 1 ? (config.sales.premiumElasticity ?? config.sales.priceElasticity) : config.sales.priceElasticity;
+  const priceEffect = Math.max(0, 1 - elasticity * (priceFactor - 1));
   const brandFactor=Math.max(0,1+(state.brand-config.marketing.neutralBrand)*config.marketing.brandSensitivity);
   const marketingFactor=Math.max(0,1+(marketingRate-config.sales.marketingRate)*config.marketing.spendSensitivity);
   const rate = config.sales.baseMonthlyAbsorption * phase.absorption * sentimentFactor * priceEffect*brandFactor*marketingFactor*housingDemandFactor(state,config,districtId);

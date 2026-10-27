@@ -64,6 +64,7 @@
     "baseMonthlyAbsorption": 0.08,
     "maxMonthlyAbsorption": 0.35,
     "priceElasticity": 3,
+    "premiumElasticity": 3,
     "minPriceFactor": 0.8,
     "maxPriceFactor": 1.2
   },
