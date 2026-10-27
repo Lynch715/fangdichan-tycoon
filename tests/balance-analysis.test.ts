@@ -70,7 +70,7 @@ describe('D3 只读平衡统计', () => {
     expect(positiveInteger('200', 'RUNS')).toBe(200);
   });
   it('真实破产样本可从完整流水核对且统计不改变状态、日志或随机数', () => {
-    const { state } = runGame(7, aggressive, 30); // 2026-10-27 地图放大与激进机器人工程储备调整后，改用破产样本种子7
+    const { state } = runGame(9, aggressive, 30); // 2026-10-27 定价曲线调整后（G01 后续），改用破产样本种子9
     const before = JSON.stringify(state);
     const trigger = bankruptcyTrigger(state);
     const d = downturnDrawdown(state.reports.months, defaultConfig.cycle.phases.find(p => p.id === 'downturn')!.name);

@@ -20,7 +20,7 @@ describe('B4 品牌、营销投入与去化',()=>{
   const low=selling(),high=selling();low.issue({type:'setMarketing',projectId:low.p.id,rate:0});high.issue({type:'setMarketing',projectId:high.p.id,rate:.12});
   const amounts=[];
   for(const item of [low,high]){const {s,p,c}=item,before={cash:s.cash,spent:p.buildSpent,sales:p.salesIn,released:p.escrowReleased};for(let i=0;i<30;i++)stepDay(s,c);const revenue=p.salesIn-before.sales;amounts.push(revenue);expect(s.cash-before.cash+p.buildSpent-before.spent).toBeCloseTo(p.escrowReleased-before.released-revenue*(p.marketingRate+c.sales.taxRate),6);}
-  expect(amounts[1]/amounts[0]).toBeCloseTo(1.36/.88);expect(low.s.market).toEqual(high.s.market);expect(low.s.rng).toBe(high.s.rng);
+  const k=low.c.marketing.spendSensitivity,m=low.c.sales.marketingRate;expect(amounts[1]/amounts[0]).toBeCloseTo((1+(.12-m)*k)/(1+(0-m)*k));expect(low.s.market).toEqual(high.s.market);expect(low.s.rng).toBe(high.s.rng);
  });
  it('各项目设置保留，默认3%，0与上限可用且不额外取随机数',()=>{
   const {s,p,c,issue}=selling();expect(p.marketingRate).toBe(.03);const rng=s.rng;
