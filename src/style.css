@@ -339,3 +339,4 @@ input[type=number] { -moz-appearance: textfield; }
 .ach.got b { color: var(--orange-text); }
 .ach-entry { align-self: stretch; }
 @media (max-width: 520px) { .ach-grid { grid-template-columns: minmax(0, 1fr); } }
+.save-card.new-game button { align-self: flex-start; }

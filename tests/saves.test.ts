@@ -30,5 +30,6 @@ describe('手动存档槽', () => {
     expect(html.match(/data-slot-save=/g)).toHaveLength(3);
     expect(html.match(/data-slot-load=/g)).toHaveLength(1);
     expect(html).toContain('导出存档文件');
+    expect(html).toContain('data-saves-new');
   });
 });

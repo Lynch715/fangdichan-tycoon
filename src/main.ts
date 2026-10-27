@@ -397,6 +397,7 @@ function openSaves(){game.setSpeed(0);paintSaves();if(!savesDialog.open)savesDia
 savesDialog.addEventListener('click',e=>{
   const t=e.target as HTMLElement;
   if(t.closest('[data-saves-close]')){savesDialog.close();return;}
+  if(t.closest('[data-saves-new]')){savesDialog.close();sessionController.open();return;}
   const save=t.closest<HTMLElement>('[data-slot-save]'),load=t.closest<HTMLElement>('[data-slot-load]');
   if(save){
     const n=Number(save.dataset.slotSave),old=readSlot(n);

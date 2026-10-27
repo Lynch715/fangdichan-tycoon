@@ -46,5 +46,8 @@ export function savesMarkup(config: Config, s: GameState, storageStatus: string,
   </section>`).join('')}
   <h3 class="saves-sub">存档文件</h3>
   <p class="small muted">导出为文件可在别的设备或浏览器里继续玩。</p>
-  <div class="row"><button class="ghost" data-act="export">导出存档文件</button><button class="ghost" data-act="import">从文件导入</button></div>`;
+  <div class="row"><button class="ghost" data-act="export">导出存档文件</button><button class="ghost" data-act="import">从文件导入</button></div>
+  <h3 class="saves-sub">开始新游戏</h3>
+  <section class="save-card new-game"><p class="small muted">重新选择模式、难度和公司名称，从头经营。当前进度会被替换，建议先保存到上面的空槽。</p>
+    <button data-saves-new>开始新游戏</button></section>`;
 }
