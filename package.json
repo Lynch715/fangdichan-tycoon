@@ -12,6 +12,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "balance": "node scripts/balance.ts",
+    "pacing": "node scripts/pacing-audit.ts",
     "art": "node scripts/art-pipeline.ts",
     "art:check": "node scripts/art-status.ts",
     "art:gallery": "node scripts/art-gallery.ts",

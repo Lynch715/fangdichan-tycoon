@@ -86,8 +86,8 @@
     "starterMaxCashShare": 0.35,
     "scale": {
       "exponent": 0.5,
-      "max": 3,
-      "regularParcels": 1
+      "max": 2,
+      "regularParcels": 2
     }
   },
   "finance": {

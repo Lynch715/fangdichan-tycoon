@@ -65,6 +65,7 @@ npm run dev        # 本地开发（--host，手机可用局域网 IP 访问）
 npm test           # 单测
 npm run typecheck
 npm run balance    # 平衡/破产归因/回撤，可设RUNS、YEARS、START_SEED；OUTPUT可保存逐局JSON
+npm run pacing     # 游戏节奏审计：首次回报、自动暂停频率、空档月份、净资产曲线；可设RUNS、YEARS、STRATEGY
 npm run build      # 类型检查、Vite 构建、生成带哈希的 Service Worker
 ```
 
