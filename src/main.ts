@@ -16,6 +16,7 @@ import{badgeText,inboxList,newsKey,unreadCount}from'./ui/inbox.ts';
 import{goalTitle,goals,milestonesPanel,companyTitle,totalSales}from'./ui/milestones.ts';
 import{yi}from'./ui/format.ts';
 import{guideStep}from'./ui/guide.ts';
+import{SLOT_COUNT,readSlot,savesMarkup,slotMeta,writeSlot}from'./ui/saves.ts';
 
 const PAUSE_TEXT: Record<string, string> = {
   startProject:'已暂停：拿地完成，请选择总包开工',
@@ -246,6 +247,7 @@ document.addEventListener('click', (e) => {
         break;
       }
       case 'import': $('#import-save').click();break;
+      case 'saves':openSaves();break;
       case 'export': {
         const url=URL.createObjectURL(new Blob([game.exportSave()],{type:'application/json'}));
         const a=document.createElement('a');a.href=url;a.download='房地产大亨-存档.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);break;
@@ -356,12 +358,37 @@ async function start() {
   requestAnimationFrame(loop);
 }
 
+/** 读入一份存档文本（文件导入或存档槽），替换当前进度。 */
+function loadSaveText(text:string,okText:string):boolean{
+  selectedId=null;mapId='city';bidDrafts.clear();amenityDrafts.clear();resetCelebrations();reportController.suspended=true;
+  const r=game.importSave(text);report(r,okText);reportController.reset();reportController.suspended=false;
+  if(r.ok){setTab('map');render();map.fit();}
+  return r.ok;
+}
 $('#import-save').addEventListener('change',async(e)=>{
   const input=e.target as HTMLInputElement,file=input.files?.[0];if(!file)return;
-  if(confirm('导入存档会替换当前进度，建议先导出备份。确定继续？')) {
-    selectedId=null;mapId='city';bidDrafts.clear();amenityDrafts.clear();resetCelebrations();reportController.suspended=true;report(game.importSave(await file.text()),'存档已导入');reportController.reset();reportController.suspended=false;
-  }
+  if(confirm('导入存档会替换当前进度，可先在“存档”里保存到空槽。确定继续？')&&loadSaveText(await file.text(),'存档已导入'))savesDialog.close();
   input.value='';
+});
+
+// 存档弹窗：自动存档状态、手动存档槽、文件导入导出
+const savesDialog=$<HTMLDialogElement>('#saves-dialog');
+function paintSaves(){savesDialog.innerHTML=savesMarkup(config,game.state,game.storageStatus,Array.from({length:SLOT_COUNT},(_,i)=>readSlot(i+1)));}
+function openSaves(){game.setSpeed(0);paintSaves();if(!savesDialog.open)savesDialog.showModal();}
+savesDialog.addEventListener('click',e=>{
+  const t=e.target as HTMLElement;
+  if(t.closest('[data-saves-close]')){savesDialog.close();return;}
+  const save=t.closest<HTMLElement>('[data-slot-save]'),load=t.closest<HTMLElement>('[data-slot-load]');
+  if(save){
+    const n=Number(save.dataset.slotSave),old=readSlot(n);
+    if(old&&!confirm(`覆盖存档 ${n}（${old.company} · ${old.date}）？`))return;
+    game.save();
+    if(writeSlot(n,slotMeta(config,game.state,game.exportSave())))toast(`已保存到存档 ${n}`);else toast('保存失败：浏览器存储不可用或已满，可改用导出存档文件','error');
+    paintSaves();
+  }else if(load){
+    const n=Number(load.dataset.slotLoad),m=readSlot(n);if(!m)return;
+    if(confirm(`读取存档 ${n}（${m.company} · ${m.date}）会替换当前进度。确定读取？`)&&loadSaveText(m.data,`已读取存档 ${n}`))savesDialog.close();
+  }
 });
 window.addEventListener('pagehide' ,()=>game.save());
 document.addEventListener('visibilitychange',()=>{if(document.hidden){game.setSpeed(0);game.save();}});
