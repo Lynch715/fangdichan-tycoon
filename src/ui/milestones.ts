@@ -63,7 +63,7 @@ export function goalTitle(id: string): string {
 
 const fmt = (g: Goal, v: number) => (g.unit === '亿' ? `${(v / YI).toFixed(v >= 10 * YI ? 0 : 1)}` : `${v}`);
 
-export function milestonesPanel(_config: Config, s: GameState): string {
+export function milestonesPanel(_config: Config, s: GameState, achievements = ''): string {
   const sales = totalSales(s), t = companyTitle(sales), { next, achieved } = goals(s);
   const toNext = t.next ? Math.min(1, (sales - TITLES[t.level - 1].at) / (t.next.at - TITLES[t.level - 1].at)) : 1;
   return `<section class="milestones">
@@ -73,5 +73,6 @@ export function milestonesPanel(_config: Config, s: GameState): string {
       <span class="small muted">${t.next ? `累计销售 ${(sales / YI).toFixed(1)} / ${t.next.at / YI} 亿 → 晋级「${esc(t.next.name)}」` : `累计销售 ${(sales / YI).toFixed(0)} 亿，已登顶`}</span></div></div>
     ${next.map(g => `<div class="goal"><div class="row between small"><span>${esc(g.title)}</span><span class="muted">${fmt(g, Math.max(0, g.value))} / ${fmt(g, g.target)} ${g.unit}</span></div>
       <div class="progress thin"><div style="width:${(Math.max(0, Math.min(1, g.value / g.target)) * 100).toFixed(1)}%"></div></div></div>`).join('')}
+    ${achievements ? `<button class="ghost ach-entry" data-act="achievements">${achievements}</button>` : ''}
   </section>`;
 }

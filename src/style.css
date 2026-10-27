@@ -327,3 +327,15 @@ input[type=number] { -moz-appearance: textfield; }
 .save-card p { margin: 0; line-height: 1.5; }
 .save-btn { display: inline-flex; align-items: center; gap: 4px; height: 32px; padding: 0 10px; background: transparent; border: 1px solid var(--line2); color: var(--muted2); font-weight: 400; font-size: 13px; }
 @media (min-width: 821px) { .save-btn { display: none; } }
+
+/* 成就 */
+.achievements-dialog { width: min(640px, calc(100vw - 24px)); }
+.ach-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.ach { display: flex; gap: 10px; align-items: flex-start; padding: 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); opacity: .55; }
+.ach.got { opacity: 1; border-color: rgba(245, 154, 60, 0.6); background: linear-gradient(135deg, rgba(245, 154, 60, 0.14), transparent 70%); }
+.ach-icon { flex: none; width: 34px; height: 34px; display: grid; place-items: center; font-size: 20px; border-radius: 8px; background: var(--panel); }
+.ach div { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.ach b { font-size: 14px; }
+.ach.got b { color: var(--orange-text); }
+.ach-entry { align-self: stretch; }
+@media (max-width: 520px) { .ach-grid { grid-template-columns: minmax(0, 1fr); } }

@@ -17,6 +17,7 @@ import{goalTitle,goals,milestonesPanel,companyTitle,totalSales}from'./ui/milesto
 import{yi}from'./ui/format.ts';
 import{guideStep}from'./ui/guide.ts';
 import{SLOT_COUNT,readSlot,savesMarkup,slotMeta,writeSlot}from'./ui/saves.ts';
+import{ACHIEVEMENTS,achievementName,achievementsMarkup,earnedAchievements,loadUnlocks,mergeUnlocks,saveUnlocks}from'./ui/achievements.ts';
 
 const PAUSE_TEXT: Record<string, string> = {
   startProject:'已暂停：拿地完成，请选择总包开工',
@@ -115,7 +116,7 @@ function celebrateCity(){
   if(prev!==undefined&&d>prev&&d>=2)cheer(`🏙 ${MAP_NAMES[mapId]??''}城市化突破 ${d*10}%，${d>=6?'高楼林立':d>=4?'新区崛起':'街区渐成'}`);
 }
 /** 新开局/导入存档后：已达成的目标静默记录，不补放庆祝。 */
-function resetCelebrations(){prevProjects=null;prevMonth=-1;prevTitle=-1;silentGoals=true;cityDecile={};}
+function resetCelebrations(){prevProjects=null;prevMonth=-1;prevTitle=-1;silentGoals=true;cityDecile={};silentAch=true;achKey='';}
 function celebrate(){
   const s=game.state,dpm=config.time.daysPerMonth;
   const snap=new Map(s.projects.map(p=>[p.id,{sold:p.soldArea>0,out:p.saleableArea>0&&p.soldArea>=p.saleableArea*0.999,del:p.deliveredDay!==null} as Snap]));
@@ -141,7 +142,24 @@ function celebrate(){
   if(seen&&!silentGoals){for(const id of done)if(!seen.includes(id))cheer(`✅ 达成目标：${goalTitle(id)}`);}
   if(!seen||silentGoals||done.length!==seen.length){try{localStorage.setItem(key,JSON.stringify(done));}catch{/* 只是不记住 */}}
   silentGoals=false;
+  checkAchievements();
 }
+
+// 成就：跨局永久记录；每个游戏月、项目数或状态变化时检查一次
+let unlocks=loadUnlocks(),achKey='',silentAch=false;
+function checkAchievements(){
+  const s=game.state,key=`${s.seed}|${Math.floor(s.day/config.time.daysPerMonth)}|${s.projects.length}|${s.status}|${s.session?.result??''}`;
+  if(key===achKey)return;achKey=key;
+  const fresh=mergeUnlocks(unlocks,earnedAchievements(s,config),config.start.companyName);
+  if(!fresh.length){silentAch=false;return;}
+  saveUnlocks(unlocks);
+  if(!silentAch)for(const id of fresh){const a=achievementName(id);if(a)cheer(`${a.icon} 成就解锁：${a.name}`);}
+  silentAch=false;
+  if(achievementsDialog.open)paintAchievements();
+}
+const achievementsDialog=$<HTMLDialogElement>('#achievements-dialog');
+function paintAchievements(){achievementsDialog.innerHTML=achievementsMarkup(unlocks,game.state.session?.options.mode==='sandbox');}
+achievementsDialog.addEventListener('click',e=>{if((e.target as HTMLElement).closest('[data-achievements-close]'))achievementsDialog.close();});
 
 /** 输入框获得焦点时不重绘该面板，避免打字被打断。 */
 function paint(el: HTMLElement, html: string,force=false) {
@@ -156,7 +174,7 @@ function render() {
   const s = game.state;
   $('.company').textContent=config.start.companyName;
   paint($('#session'),sessionPanel(config,s));
-  paint($('#milestones'),milestonesPanel(config,s));
+  paint($('#milestones'),milestonesPanel(config,s,`🏅 成就 ${Object.keys(unlocks).filter(id=>achievementName(id)).length} / ${ACHIEVEMENTS.length} ›`));
   $('#storage-status').textContent = game.storageStatus;
   const suburb = document.querySelector<HTMLButtonElement>('[data-map="suburb"]')!;
   suburb.disabled = !mapUnlocked(s,config,'suburb');
@@ -248,6 +266,7 @@ document.addEventListener('click', (e) => {
       }
       case 'import': $('#import-save').click();break;
       case 'saves':openSaves();break;
+      case 'achievements':game.setSpeed(0);paintAchievements();if(!achievementsDialog.open)achievementsDialog.showModal();break;
       case 'export': {
         const url=URL.createObjectURL(new Blob([game.exportSave()],{type:'application/json'}));
         const a=document.createElement('a');a.href=url;a.download='房地产大亨-存档.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);break;
