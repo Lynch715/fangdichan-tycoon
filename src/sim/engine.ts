@@ -17,7 +17,8 @@ import { backgroundOccupied, footprint, freeSites, tileKey } from './map.ts';
 import{createRivals,actRivals,resolveCompetitiveAuction,updateIndustryDefaults}from'./rivals.ts';
 import { nextRandom, randomInt, randomRange } from './rng.ts';
 import type { Command, CommandResult, GameState, NewsItem, Parcel, Project,ReportState,SiteAttributes } from './types.ts';
-import {BUILDING_PRODUCTS,BUILDING_VARIANTS,CONTRACTORS} from './types.ts';
+import {BUILDING_PRODUCTS,BUILDING_VARIANTS,CONTRACTORS,type BuildingProduct} from './types.ts';
+import {productTerms,productDemandFactor} from './products.ts';
 import{createReports,upgradeReports,ledger,allocateFinance,linkParcel,recordDecision,closeReportMonth}from'./reporting.ts';
 
 export const monthIndex = (config: Config, day: number) => Math.floor(day / config.time.daysPerMonth);
@@ -27,8 +28,8 @@ export function calendar(config: Config, day: number) {
   return { year: Math.floor(m / 12) + 1, month: (m % 12) + 1, day: (day % config.time.daysPerMonth) + 1 };
 }
 
-export function marketPrice(config: Config, state: GameState, districtId: string,attributes?:SiteAttributes): number {
-  return district(config, districtId).basePrice * state.market.priceIndex[districtId]*sitePriceFactor(attributes);
+export function marketPrice(config: Config, state: GameState, districtId: string,attributes?:SiteAttributes,product?:BuildingProduct): number {
+  return district(config, districtId).basePrice * state.market.priceIndex[districtId]*sitePriceFactor(attributes)*productTerms(config,product).priceFactor;
 }
 
 function newId(state: GameState, prefix: string): string {
@@ -149,15 +150,19 @@ function performCommand(state: GameState, cmd: Command|UpgradeRules, config: Con
       const p=state.projects.find(p=>p.id===cmd.projectId);
       if(!p||p.stage!=='land')return {ok:false,error:'仅已拿地待开工项目可选择总包'};
       if(!CONTRACTORS.includes(cmd.contractor))return {ok:false,error:'总包档位无效'};
+      if(cmd.product!==undefined&&!BUILDING_PRODUCTS.includes(cmd.product))return {ok:false,error:'产品线无效'};
       const terms=config.construction.contractors[cmd.contractor];
-      p.contractor=cmd.contractor;p.quality=terms.quality;p.buildCost*=terms.costFactor;p.stage='construction';
-      addNews(state,'company',`${p.name} 选择${terms.name}开工，预计正常工期 ${Math.ceil(config.construction.months*terms.durationFactor*siteDurationFactor(p.attributes))} 个月，初始质量 ${p.quality} 分`);
+      if(cmd.product!==undefined){p.product=cmd.product;p.appearance={product:cmd.product,variant:p.appearance?.variant??'a'};}
+      const product=productTerms(config,p.product);
+      p.contractor=cmd.contractor;p.quality=terms.quality;p.buildCost*=terms.costFactor*product.costFactor;p.stage='construction';
+      addNews(state,'company',`${p.name} 选择${terms.name}开工${p.product?`（${product.name}）`:''}，预计正常工期 ${Math.ceil(config.construction.months*terms.durationFactor*siteDurationFactor(p.attributes)*product.durationFactor)} 个月，初始质量 ${p.quality} 分`);
       return {ok:true};
     }
     case 'setAppearance': {
       if(!BUILDING_PRODUCTS.includes(cmd.product)||!BUILDING_VARIANTS.includes(cmd.variant))return {ok:false,error:'建筑外观无效'};
       const p=state.projects.find(p=>p.id===cmd.projectId);
       if(!p||!activeProject(p))return {ok:false,error:'项目不可调整外观'};
+      if(p.product&&cmd.product!==p.product)return {ok:false,error:'产品线开工后已锁定，只能更换外观变体'};
       p.appearance={product:cmd.product,variant:cmd.variant};
       return {ok:true};
     }
@@ -221,7 +226,7 @@ function performCommand(state: GameState, cmd: Command|UpgradeRules, config: Con
       const p = state.projects.find((x) => x.id === cmd.projectId);
       if (!p || !activeProject(p)) return { ok: false, error: '项目不可调价' };
       if(presaleBlocked(p)&&p.filingDueDay!==null&&cmd.priceFactor>config.compliance.hoarding.rectifiedPriceFactor)return {ok:false,error:'整改审批期间不能再次提高到整改上限以上'};
-      if(priceRestricted(state,config) && p.filedPrice !== null && marketPrice(config,state,p.districtId,p.attributes) * cmd.priceFactor > p.filedPrice) return {ok:false,error:'售价超过备案上限'};
+      if(priceRestricted(state,config) && p.filedPrice !== null && marketPrice(config,state,p.districtId,p.attributes,p.product) * cmd.priceFactor > p.filedPrice) return {ok:false,error:'售价超过备案上限'};
       p.priceFactor = Math.min(config.sales.maxPriceFactor, Math.max(config.sales.minPriceFactor, cmd.priceFactor));
       return { ok: true };
     }
@@ -413,7 +418,7 @@ function updateMarket(state: GameState, config: Config, month: number) {
   state.market.sentiment = Math.max(0, Math.min(100, s + (phase.sentiment - s) * 0.15 + randomRange(state, -2, 2)));
 }
 
-export function salesRate(config: Config, state: GameState, priceFactor: number,marketingRate=config.sales.marketingRate,districtId?:string): number {
+export function salesRate(config: Config, state: GameState, priceFactor: number,marketingRate=config.sales.marketingRate,districtId?:string,product?:BuildingProduct): number {
   const phase = config.cycle.phases[state.market.phaseIndex];
   const sentimentFactor = 0.5 + state.market.sentiment / 100;
   // 高于市场价的溢价对去化更敏感（premiumElasticity），低于市场价沿用 priceElasticity
@@ -421,12 +426,12 @@ export function salesRate(config: Config, state: GameState, priceFactor: number,
   const priceEffect = Math.max(0, 1 - elasticity * (priceFactor - 1));
   const brandFactor=Math.max(0,1+(state.brand-config.marketing.neutralBrand)*config.marketing.brandSensitivity);
   const marketingFactor=Math.max(0,1+(marketingRate-config.sales.marketingRate)*config.marketing.spendSensitivity);
-  const rate = config.sales.baseMonthlyAbsorption * phase.absorption * sentimentFactor * priceEffect*brandFactor*marketingFactor*housingDemandFactor(state,config,districtId);
+  const rate = config.sales.baseMonthlyAbsorption * phase.absorption * sentimentFactor * priceEffect*brandFactor*marketingFactor*productDemandFactor(config,product,housingDemandFactor(state,config,districtId));
   return Math.min(config.sales.maxMonthlyAbsorption, rate);
 }
 
 function takeOverProject(state:GameState,config:Config,p:Project){
-  const owned=1-p.partnerShare,market=marketPrice(config,state,p.districtId,p.attributes),requested=market*p.priceFactor;
+  const owned=1-p.partnerShare,market=marketPrice(config,state,p.districtId,p.attributes,p.product),requested=market*p.priceFactor;
   const price=priceRestricted(state,config)?Math.min(requested,p.filedPrice??market*config.filing.maxMarketFactor):requested;
   p.takeover={day:state.day,escrow:Math.max(0,p.salesIn-p.escrowReleased)*owned,
     remainingValue:Math.max(0,p.saleableArea-p.soldArea)*price*owned,bookValue:projectInventory(p)};
@@ -456,7 +461,7 @@ function settleProject(state: GameState, config: Config, p: Project) {
   // 施工
   if (p.stage === 'construction' && state.day >= p.stoppedUntil) {
     const pace = c.paces[p.pace];
-    const inc = Math.min(pace.speed / (c.months*c.contractors[p.contractor??'standard'].durationFactor*siteDurationFactor(p.attributes)), 1 - p.progress);
+    const inc = Math.min(pace.speed / (c.months*c.contractors[p.contractor??'standard'].durationFactor*siteDurationFactor(p.attributes)*productTerms(config,p.product).durationFactor), 1 - p.progress);
     const spend = p.buildCost * inc * pace.costFactor * event.cost;
     const paper = state.rating < 5 && state.day >= state.financeFrozenUntil ? spend * owned * p.paperRatio*(industryTight(state)?config.rivals.default.capacityFactor:1) : 0;
     const needed=spend*owned-paper;
@@ -501,11 +506,11 @@ function settleProject(state: GameState, config: Config, p: Project) {
   const canSell = salesEligible(p,config);
   if (canSell && !presaleBlocked(p) && (!priceRestricted(state,config) || p.filedPrice !== null)) {
     const remaining = p.saleableArea - p.soldArea;
-    const requestedPrice = marketPrice(config, state, p.districtId,p.attributes) * p.priceFactor;
+    const requestedPrice = marketPrice(config, state, p.districtId,p.attributes,p.product) * p.priceFactor;
     const price = priceRestricted(state,config) ? Math.min(requestedPrice,p.filedPrice!) : requestedPrice;
     const clearance = p.stage === 'delivered' && p.deliveredDay !== null && state.day - p.deliveredDay >= c.clearanceMonthsAfterDelivery * dpm;
-    const market = marketPrice(config,state,p.districtId,p.attributes);
-    const sold = clearance ? remaining : Math.min(remaining, remaining * salesRate(config, state, price / market,p.marketingRate,p.districtId) * event.demand);
+    const market = marketPrice(config,state,p.districtId,p.attributes,p.product);
+    const sold = clearance ? remaining : Math.min(remaining, remaining * salesRate(config, state, price / market,p.marketingRate,p.districtId,p.product) * event.demand);
     // 尾货清盘是批量处置：按“市场价与挂牌价取低”再打折，临时提价不能抬高整批成交价（审计 G01）
     const unitPrice = clearance ? Math.min(price, market) * (1 - c.clearanceDiscount) : price;
     const revenue = sold * unitPrice;

@@ -31,6 +31,8 @@ export interface Project {
   marketingRate:number;
   contractor:ContractorId|null;
   quality:number|null;
+  /** 开工时选定的产品线（经济系数）；缺省按高层住宅基准。 */
+  product?: BuildingProduct;
   appearance?: BuildingAppearance; // 仅建筑外观；缺省时沿用片区默认，不改变旧档回放。
   fundingStoppedMonths:number;
   fundingGap:number;
@@ -196,7 +198,7 @@ export type Command =
   | {type:'restructureDebt'}
   | {type:'acquireProject';rivalId:string;projectId:string}
   | {type:'setMarketing';projectId:string;rate:number}
-  | {type:'startProject';projectId:string;contractor:ContractorId}
+  | {type:'startProject';projectId:string;contractor:ContractorId;product?:BuildingProduct}
   | { type:'setAppearance';projectId:string;product:BuildingProduct;variant:BuildingVariant }
   | { type: 'bid'; parcelId: string; amount: number; amenityRate?:number }
   | { type: 'borrow'; channel: ChannelId; amount: number; projectId?: string; termMonths?:number }

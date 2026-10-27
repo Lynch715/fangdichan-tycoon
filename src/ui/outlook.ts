@@ -2,7 +2,7 @@ import { marketPrice, priceRestricted, salesRate, type Config, type GameState, t
 import { pct, yi } from './format.ts';
 
 function prices(config: Config, s: GameState, p: Project) {
-  const market = marketPrice(config, s, p.districtId, p.attributes);
+  const market = marketPrice(config, s, p.districtId, p.attributes, p.product);
   const requested = market * p.priceFactor;
   const price = priceRestricted(s, config) && p.filedPrice !== null ? Math.min(requested, p.filedPrice) : requested;
   return { market, price };
@@ -27,7 +27,7 @@ export function projectOutlook(config: Config, s: GameState, p: Project) {
 export function premiumHint(config: Config, s: GameState, p: Project): string {
   const { market, price } = prices(config, s, p), factor = price / market;
   if (factor <= 1.001) return '';
-  const base = salesRate(config, s, 1, p.marketingRate, p.districtId), now = salesRate(config, s, factor, p.marketingRate, p.districtId);
+  const base = salesRate(config, s, 1, p.marketingRate, p.districtId, p.product), now = salesRate(config, s, factor, p.marketingRate, p.districtId, p.product);
   const ratio = base > 0 ? now / base : 0, months = config.construction.clearanceMonthsAfterDelivery, cut = pct(config.construction.clearanceDiscount);
   if (ratio <= 0.001) return `<span class="small danger-text">高于市场价 ${pct(factor - 1)}：几乎无人购买；交付满 ${months} 个月后尾货按市场价减 ${cut} 清盘</span>`;
   return `<span class="small warn-text">高于市场价 ${pct(factor - 1)}：去化约为按市场价时的 ${pct(ratio)}；尾货清盘按市场价（不按挂牌价）减 ${cut}</span>`;

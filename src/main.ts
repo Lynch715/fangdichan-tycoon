@@ -19,6 +19,7 @@ import{guideStep}from'./ui/guide.ts';
 import{SLOT_COUNT,readSlot,savesMarkup,slotMeta,writeSlot}from'./ui/saves.ts';
 import{careerDialogMarkup}from'./ui/career.ts';
 import{brandTier}from'./ui/brand.ts';
+import{pickProduct,pickedProduct}from'./ui/productChoice.ts';
 import{ACHIEVEMENTS,achievementName,achievementsMarkup,earnedAchievements,loadUnlocks,mergeUnlocks,saveUnlocks}from'./ui/achievements.ts';
 
 const PAUSE_TEXT: Record<string, string> = {
@@ -299,7 +300,8 @@ document.addEventListener('click', (e) => {
         const a=document.createElement('a');a.href=url;a.download='房地产大亨-存档.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);break;
       }
       case 'marketing':report(game.issue({type:'setMarketing',projectId:id,rate:(document.getElementById(`marketing-${id}`) as HTMLInputElement).valueAsNumber/100}),'营销投入已更新');break;
-      case 'start-project':report(game.issue({type:'startProject',projectId:id,contractor:act.dataset.contractor as ContractorId}),'总包已选定，项目开工');break;
+      case 'pick-product':pickProduct(id,act.dataset.product as BuildingProduct);render();break;
+      case 'start-project':{const p=game.state.projects.find(p=>p.id===id);report(game.issue({type:'startProject',projectId:id,contractor:act.dataset.contractor as ContractorId,...(p?{product:pickedProduct(p)}:{})}),'产品线与总包已选定，项目开工');break;}
       case 'borrow-hidden': report(game.issue({type:'borrow',channel:'hidden',amount:amountFrom('hidden-amt')}),'明股实债资金已到账');break;
       case 'extend': report(game.issue({type:'extend',debtId:id}),'展期完成');break;
       case 'paper': {const p=game.state.projects.find(p=>p.id===id);if(p)report(game.issue({type:'setPaper',projectId:id,enabled:p.paperRatio===0}),'商票支付方式已更新');break;}

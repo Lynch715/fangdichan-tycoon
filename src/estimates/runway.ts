@@ -4,6 +4,7 @@ import type {Config} from '../sim/config.ts';
 import type {GameState} from '../sim/types.ts';
 import {activeProject} from '../sim/features.ts';
 import {siteDurationFactor} from '../sim/regions.ts';
+import {productTerms} from '../sim/products.ts';
 
 export interface RunwayMonth {land:number;principal:number;interest:number;construction:number;total:number;cashAfter:number}
 export interface Runway {
@@ -24,7 +25,7 @@ export function estimateRunway(c:Config,s:GameState,horizon=36):Runway{
   .map(p=>({due:p.landDueDay,amount:(p.landCost-p.landPaid)*(1-p.partnerShare)}));
  const builds=s.projects.filter(p=>p.stage==='construction').map(p=>{
   const pace=c.construction.paces[p.pace],terms=c.construction.contractors[p.contractor??'standard'];
-  const inc=pace.speed/(c.construction.months*terms.durationFactor*siteDurationFactor(p.attributes));
+  const inc=pace.speed/(c.construction.months*terms.durationFactor*siteDurationFactor(p.attributes)*productTerms(c,p.product).durationFactor);
   return {progress:p.progress,inc,monthly:p.buildCost*pace.costFactor*(1-p.partnerShare),stoppedUntil:p.stoppedUntil};
  });
  let cash=s.cash,months:number|null=null;const schedule:RunwayMonth[]=[];

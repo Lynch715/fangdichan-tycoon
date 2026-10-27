@@ -1,5 +1,6 @@
 // 违规证据与处罚只由指令、收月及现有随机抽查入口调用。
-import type{Config}from'./config.ts';import type{GameState,Project}from'./types.ts';import{ledger}from'./reporting.ts';import{sitePriceFactor}from'./regions.ts';
+import {projectPriceFactor} from './products.ts';
+import type{Config}from'./config.ts';import type{GameState,Project}from'./types.ts';import{ledger}from'./reporting.ts';
 export function initCompliance(s:GameState,c:Config){if(c.compliance.enabled)s.compliance??={sinceDay:s.day,cash:s.cash,borrowedCash:0,deposits:{},landCases:[],landBans:{}};}
 export const landBanUntil=(s:GameState,districtId:string)=>s.compliance?.landBans[districtId]??0;
 export const presaleBlocked=(p:Project)=>p.presale?.revokedDay!=null&&!['delivered','closed','sold','abandoned'].includes(p.stage);
@@ -11,7 +12,7 @@ export function updateHoarding(s:GameState,c:Config,p:Project,beforeSold:number)
  if(!s.compliance)return;
  const h=c.compliance.hoarding,remaining=p.saleableArea-beforeSold;
  const eligible=['construction','completed'].includes(p.stage)&&p.progress+1e-9>=c.construction.presaleProgress&&p.fundingStoppedMonths===0&&p.stoppedUntil<=s.day&&remaining>1e-7&&!presaleBlocked(p)&&p.filingDueDay===null;
- const market=c.districts.find(d=>d.id===p.districtId)!.basePrice*s.market.priceIndex[p.districtId]*sitePriceFactor(p.attributes);
+ const market=c.districts.find(d=>d.id===p.districtId)!.basePrice*s.market.priceIndex[p.districtId]*projectPriceFactor(c,p);
  const factor=c.filing.restrictedPhases.includes(c.cycle.phases[s.market.phaseIndex].id)&&p.filedPrice!==null?Math.min(p.priceFactor,p.filedPrice/market):p.priceFactor;
  const hoarding=eligible&&factor+1e-9>=h.priceFactor&&(p.soldArea-beforeSold)/remaining<h.maxMonthlySoldRatio;
  if(hoarding){p.presale??={hoardingMonths:0,revokedDay:null,reapplyDay:null};p.presale.hoardingMonths++;}else if(p.presale)p.presale.hoardingMonths=0;
@@ -33,7 +34,7 @@ export function inspectCompliance(s:GameState,c:Config):boolean{
   notice(s,`监管抽查：${district} 项目 ${evidence.projectId} 调控期使用借款拿地 ${(evidence.amount/10000).toFixed(2)}亿，罚款 ${(fine/10000).toFixed(2)}亿；该片区暂停拿地 ${c.compliance.borrowedLand.banMonths}个月`);found=true;
  }
  for(const p of s.projects){if(!['construction','completed'].includes(p.stage)||presaleBlocked(p)||(p.presale?.hoardingMonths??0)<c.compliance.hoarding.months)continue;
-  const market=c.districts.find(d=>d.id===p.districtId)!.basePrice*s.market.priceIndex[p.districtId]*sitePriceFactor(p.attributes);
+  const market=c.districts.find(d=>d.id===p.districtId)!.basePrice*s.market.priceIndex[p.districtId]*projectPriceFactor(c,p);
   const fine=Math.max(0,p.saleableArea-p.soldArea)*market*(1-p.partnerShare)*c.compliance.hoarding.fineRate;
   s.cash-=fine;ledger(s,'fine',-fine,p.id);p.presale!.revokedDay=s.day;p.presale!.reapplyDay=s.day+c.compliance.hoarding.reapplyMonths*c.time.daysPerMonth;p.presale!.hoardingMonths=0;
   p.filedPrice=null;p.filingPrice=null;p.filingDueDay=null;

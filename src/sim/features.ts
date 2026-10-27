@@ -1,6 +1,6 @@
+import {projectPriceFactor} from './products.ts';
 import{inspectCompliance,rectificationError}from'./compliance.ts';
 // 扩展规则只由 applyCommand / stepDay 调用；所有经济参数来自配置。
-import{sitePriceFactor}from'./regions.ts';
 import type { Config } from './config.ts';
 import type { Command, CommandResult, GameState, Project } from './types.ts';
 import{projectInventory}from'./finance.ts';
@@ -71,7 +71,7 @@ export function featureCommand(s: GameState, cmd: Command, c: Config): CommandRe
     case 'filePrice':
       {const error=rectificationError(s,c,p);if(error)return fail(error);}
       if (p.filingDueDay !== null) return fail('备案正在审批中');
-      p.filingPrice = c.districts.find(d => d.id === p.districtId)!.basePrice * s.market.priceIndex[p.districtId] * sitePriceFactor(p.attributes) * c.filing.maxMarketFactor;
+      p.filingPrice = c.districts.find(d => d.id === p.districtId)!.basePrice * s.market.priceIndex[p.districtId] * projectPriceFactor(c,p) * c.filing.maxMarketFactor;
       p.filingDueDay = s.day + c.filing.approvalMonths * c.time.daysPerMonth;
       news(s, `${p.name} 已申请限价备案，审批需 ${c.filing.approvalMonths} 个月`);
       return {ok:true};

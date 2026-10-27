@@ -14,6 +14,8 @@ export function preB9Config<T>(value:T):T {
  // 2026-10-27 审计 G06：品牌分阶段展示与优质交付加分。
  if(copy.quality){delete copy.quality.excellentThreshold;delete copy.quality.excellentBrandGain;}
  if(copy.marketing)delete copy.marketing.brandTiers;
+ // 审计 G05：产品线经济系数（缺省按高层基准，机器人不选择）。
+ delete (copy as {products?:unknown}).products;
  return copy;
 }
 export function preB9State<T>(value:T):T {

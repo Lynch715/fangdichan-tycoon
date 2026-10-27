@@ -12,6 +12,8 @@ import{BUILDING_PRODUCTS,BUILDING_VARIANTS,CONTRACTORS}from'../sim/types.ts';
 import {estimateLand} from '../estimates/land.ts';
 import {estimateRunway} from '../estimates/runway.ts';
 import {brandTileMarkup} from './brand.ts';
+import {pickedProduct,productPickerMarkup} from './productChoice.ts';
+import {productTerms} from '../sim/products.ts';
 import {bidAffordability} from './affordability.ts';
 import {outlookMarkup} from './outlook.ts';
 // 界面面板：根据模拟状态生成 HTML。按钮通过 data-act 属性交给 main.ts 统一处理。
@@ -136,8 +138,9 @@ export function projectsPanel(config: Config, s: GameState, selectedId: string |
     .map((p) => {
       if(p.stage==='land')return `<article class="card ${p.id===selectedId?'selected':''}" data-select="${p.id}">
         <div class="row between"><b>${esc(p.name)}${p.acquisition?' · 收购项目':''}</b><span class="pill gray">待开工</span></div>
-        ${projectAmenityMarkup(p)}${siteAttributesMarkup(p.attributes)}${housingPolicyMarkup(config,s,p.districtId)}${presaleMarkup(s,config,p)}<span class="small muted">选择总包后开工，选定后不可更换。地价尾款仍按原期支付。</span>
-        ${CONTRACTORS.map(id=>{const t=config.construction.contractors[id];return `<div class="tile stack"><div class="row between"><b>${t.name}</b><span class="small ${t.quality<config.quality.complaintThreshold?'danger-text':'ok-text'}">质量 ${t.quality} 分</span></div><span class="small muted">预计建安 ${yi(p.buildCost*t.costFactor)} · 正常工期 ${Math.ceil(config.construction.months*t.durationFactor*siteDurationFactor(p.attributes))} 个月<br>月事故率 ${(config.risk.accidentChance*t.accidentFactor*100).toFixed(2)}%（加速施工另增风险）</span><button data-act="start-project" data-id="${p.id}" data-contractor="${id}">${t.name}开工</button></div>`}).join('')}
+        ${projectAmenityMarkup(p)}${siteAttributesMarkup(p.attributes)}${housingPolicyMarkup(config,s,p.districtId)}${presaleMarkup(s,config,p)}<span class="small muted">选择产品线与总包后开工，选定后不可更换。地价尾款仍按原期支付。</span>
+        ${productPickerMarkup(config,p)}
+        ${CONTRACTORS.map(id=>{const t=config.construction.contractors[id],pt=productTerms(config,pickedProduct(p));return `<div class="tile stack"><div class="row between"><b>${t.name}</b><span class="small ${t.quality<config.quality.complaintThreshold?'danger-text':'ok-text'}">质量 ${t.quality} 分</span></div><span class="small muted">预计建安 ${yi(p.buildCost*t.costFactor*pt.costFactor)} · 正常工期 ${Math.ceil(config.construction.months*t.durationFactor*siteDurationFactor(p.attributes)*pt.durationFactor)} 个月<br>月事故率 ${(config.risk.accidentChance*t.accidentFactor*100).toFixed(2)}%（加速施工另增风险）</span><button data-act="start-project" data-id="${p.id}" data-contractor="${id}">${t.name}开工</button></div>`}).join('')}
         <span class="small warn-text">交付质量低于 ${config.quality.complaintThreshold} 分触发业主维权：品牌 −${config.quality.complaintBrandPenalty}，关注度 +${config.quality.complaintAttentionIncrease}。事故使质量下降 ${config.quality.accidentPenalty} 分。</span>
         ${p.landPaid<p.landCost?`<span class="small warn-text">本公司土地尾款 ${yi((p.landCost-p.landPaid)*(1-p.partnerShare))}，${calendar(config,p.landDueDay).month} 月到期</span>`:''}
         <button class="ghost" data-act="sell" data-id="${p.id}">转让项目 · ${transferQuote(s,p,config).net>=0?'净回笼':'需补付'} ${yi(Math.abs(transferQuote(s,p,config).net))}</button>
@@ -152,7 +155,7 @@ export function projectsPanel(config: Config, s: GameState, selectedId: string |
       const appearance=appearanceOf(p);
       const [label, color] = p.stage==='construction'&&p.fundingStoppedMonths>0?['资金停工','red']:STAGE[p.stage];
       const sold = p.soldArea / p.saleableArea;
-      const requested = marketPrice(config, s, p.districtId,p.attributes) * p.priceFactor;
+      const requested = marketPrice(config, s, p.districtId,p.attributes,p.product) * p.priceFactor;
       const price = priceRestricted(s,config) && p.filedPrice !== null ? Math.min(requested,p.filedPrice) : requested;
       const quote = transferQuote(s,p,config);
       const canSell = salesEligible(p,config);
@@ -172,12 +175,12 @@ export function projectsPanel(config: Config, s: GameState, selectedId: string |
         ${p.fundingStoppedMonths>0?`<span class="danger-text small">停工 ${p.fundingStoppedMonths}/${config.construction.fundingStopMonthsToTakeover} 个月 · ${p.fundingGap>0?`上次月末工程款缺口 ${Math.ceil(p.fundingGap)} 万元；补足工程款后可在月末复工。`:'历史停工，资金补入后将在下次月末核验复工。'}</span>`:''}
         ${p.stage === 'construction' ? `<div class="segs">${paces}</div>` : ''}
         <details class="project-tools" data-key="appearance-${p.id}"><summary>建筑外观 · ${PRODUCT_NAMES[appearance.product]} / ${appearance.variant.toUpperCase()}</summary><div class="stack">
-          <label class="small">建筑类型 <select id="appearance-product-${p.id}">${BUILDING_PRODUCTS.map(k=>`<option value="${k}" ${k===appearance.product?'selected':''}>${PRODUCT_NAMES[k]}</option>`).join('')}</select></label>
+          <label class="small">建筑类型 <select id="appearance-product-${p.id}">${BUILDING_PRODUCTS.map(k=>`<option value="${k}" ${k===appearance.product?'selected':''} ${p.product&&k!==p.product?'disabled':''}>${PRODUCT_NAMES[k]}</option>`).join('')}</select></label>${p.product?'<span class="small muted">产品线开工时已锁定，可更换外观变体。</span>':''}
           <label class="small">外观变体 <select id="appearance-variant-${p.id}">${BUILDING_VARIANTS.map(k=>`<option value="${k}" ${k===appearance.variant?'selected':''}>${k.toUpperCase()}</option>`).join('')}</select></label>
           <button class="ghost" data-act="appearance" data-id="${p.id}">应用外观</button>
         </div></details>
-        ${canSell ? `<div class="row between small"><span class="muted">售价 ${(price * 10000).toFixed(0)} 元/㎡（市场价 ${pct(price/marketPrice(config,s,p.districtId,p.attributes))}）</span><span class="row"><button class="mini" data-act="price" data-id="${p.id}" data-delta="-0.05">降价</button><button class="mini" data-act="price" data-id="${p.id}" data-delta="0.05">提价</button></span></div>` : ''}
-        ${canSell?`<div class="stack"><label class="small">营销投入（销售回款比例，%）<div class="row"><input id="marketing-${p.id}" aria-label="营销投入比例（%）" type="number" min="0" max="${config.marketing.maxRate*100}" step="0.5" value="${p.marketingRate*100}"><button data-act="marketing" data-id="${p.id}">设置</button></div></label><span class="small muted">当前 ${pct(p.marketingRate,1)} · ${presaleBlocked(p)?'预售暂停；恢复后预计月去化':'预计月去化'} ${pct(salesRate(config,s,price/marketPrice(config,s,p.districtId,p.attributes),p.marketingRate,p.districtId),1)}。品牌、营销和片区购房政策共同影响去化；仅对实际回款计营销费，未计配套利好。</span></div>`:''}
+        ${canSell ? `<div class="row between small"><span class="muted">售价 ${(price * 10000).toFixed(0)} 元/㎡（市场价 ${pct(price/marketPrice(config,s,p.districtId,p.attributes,p.product))}）</span><span class="row"><button class="mini" data-act="price" data-id="${p.id}" data-delta="-0.05">降价</button><button class="mini" data-act="price" data-id="${p.id}" data-delta="0.05">提价</button></span></div>` : ''}
+        ${canSell?`<div class="stack"><label class="small">营销投入（销售回款比例，%）<div class="row"><input id="marketing-${p.id}" aria-label="营销投入比例（%）" type="number" min="0" max="${config.marketing.maxRate*100}" step="0.5" value="${p.marketingRate*100}"><button data-act="marketing" data-id="${p.id}">设置</button></div></label><span class="small muted">当前 ${pct(p.marketingRate,1)} · ${presaleBlocked(p)?'预售暂停；恢复后预计月去化':'预计月去化'} ${pct(salesRate(config,s,price/marketPrice(config,s,p.districtId,p.attributes,p.product),p.marketingRate,p.districtId,p.product),1)}。品牌、营销和片区购房政策共同影响去化；仅对实际回款计营销费，未计配套利好。</span></div>`:''}
         <details class="project-tools" data-key="${p.id}"><summary>项目融资、备案与自救</summary><div class="stack">
           <span class="small muted">${p.partnerShare > 0 ? `合作方权益 ${pct(p.partnerShare)}，成本与回款按比例分摊` : '独资项目'} · 商票支付比例 ${pct(p.paperRatio*(industryTight(s)?config.rivals.default.capacityFactor:1))}</span>
           ${p.stage === 'construction' ? `<button class="ghost" data-act="paper" data-id="${p.id}">${p.paperRatio > 0 ? '关闭商票支付' : `开启商票（工程款 ${pct(config.finance.channels.paper.maxOfBuildCost*(industryTight(s)?config.rivals.default.capacityFactor:1))}，${config.finance.channels.paper.termMonths} 个月兑付）`}</button>` : ''}

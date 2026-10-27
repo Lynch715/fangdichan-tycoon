@@ -392,6 +392,12 @@
   "maps": {
     "suburbUnlockYear": 3
   },
+  "products": {
+    "tower": { "name": "高层住宅", "costFactor": 1, "durationFactor": 1, "priceFactor": 1, "absorptionFactor": 1, "policySensitivity": 1, "note": "基准：去化快、单价适中，受限购与按揭政策影响完整" },
+    "garden": { "name": "洋房", "costFactor": 1.15, "durationFactor": 0.85, "priceFactor": 1.12, "absorptionFactor": 0.9, "policySensitivity": 1, "note": "改善型：单价更高、低层工期短，建安更贵、去化略慢" },
+    "villa": { "name": "别墅", "costFactor": 1.4, "durationFactor": 0.9, "priceFactor": 1.45, "absorptionFactor": 0.55, "policySensitivity": 0.5, "note": "高端：单价最高、客户少用按揭，政策影响减半，但去化慢、压资金" },
+    "commercial": { "name": "商业裙楼", "costFactor": 0.9, "durationFactor": 1.1, "priceFactor": 0.85, "absorptionFactor": 0.75, "policySensitivity": 0, "note": "商办：不受住宅限购与首付政策影响，单价与去化都偏低" }
+  },
   "quality": {
     "complaintThreshold": 60,
     "accidentPenalty": 10,

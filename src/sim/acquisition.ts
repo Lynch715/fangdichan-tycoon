@@ -1,5 +1,6 @@
 // 违约项目资产收购：原金融借款留在卖方，买方接监管款、土地余款和交付义务。
-import{sitePriceFactor}from'./regions.ts';
+import {projectPriceFactor} from './products.ts';
+
 import{computeMetrics,isDelivered}from'./finance.ts';import{activeProject,priceRestricted}from'./features.ts';import{ledger}from'./reporting.ts';
 import type{Config}from'./config.ts';import type{CommandResult,GameState,Project}from'./types.ts';
 export interface AcquisitionQuote {rivalId:string;projectId:string;price:number;bookEquity:number;inventory:number;escrow:number;contracts:number;landPayable:number;remainingBuild:number;remainingValue:number;fundingStoppedMonths:number}
@@ -9,7 +10,7 @@ export function acquisitionQuote(root:GameState,rivalId:string,projectId:string,
  const owned=1-p.partnerShare,m=computeMetrics({day:root.day,cash:0,projects:[p],auctions:[],debts:[]});
  // 监管现金不作为无条件折价赠与；负净资产项目不要求已违约卖方虚构现金补贴。
  const price=Math.max(0,m.equity*c.rivals.default.projectDiscount,m.escrow-m.contractLiabilities-m.landPayable);
- const market=c.districts.find(d=>d.id===p.districtId)!.basePrice*root.market.priceIndex[p.districtId]*sitePriceFactor(p.attributes);
+ const market=c.districts.find(d=>d.id===p.districtId)!.basePrice*root.market.priceIndex[p.districtId]*projectPriceFactor(c,p);
  const salePrice=priceRestricted(root,c)?Math.min(market*p.priceFactor,p.filedPrice??market*c.filing.maxMarketFactor):market*p.priceFactor;
  return{rivalId,projectId,price,bookEquity:m.equity,inventory:m.inventory,escrow:m.escrow,contracts:m.contractLiabilities,landPayable:m.landPayable,remainingBuild:Math.max(0,p.buildCost-p.buildSpent)*owned,remainingValue:Math.max(0,p.saleableArea-p.soldArea)*salePrice*owned,fundingStoppedMonths:p.fundingStoppedMonths};
 }

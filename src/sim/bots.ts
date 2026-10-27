@@ -1,3 +1,4 @@
+import {productTerms} from './products.ts';
 // 平衡测试的玩家机器人；具名同行仍由 rivals.ts 驱动，不改变已有玩家日志。
 import {priceRestricted,activeProject,salesEligible,transferQuote} from './features.ts';
 import {defaultConfig,type Config} from './config.ts';
@@ -21,7 +22,7 @@ export function botCashNeed(s:GameState,c:Config,months=c.bots.liquidityMonths):
   if(p.landDueDay<=end)need+=Math.max(0,p.landCost-p.landPaid)*owned;
   if(p.stage!=='construction')continue;
   const pace=c.construction.paces[p.pace],terms=c.construction.contractors[p.contractor??'standard'];
-  const inc=Math.min(1-p.progress,months*pace.speed/(c.construction.months*terms.durationFactor*siteDurationFactor(p.attributes)));
+  const inc=Math.min(1-p.progress,months*pace.speed/(c.construction.months*terms.durationFactor*siteDurationFactor(p.attributes)*productTerms(c,p.product).durationFactor));
   const paper=s.rating<5&&s.day>=s.financeFrozenUntil?p.paperRatio*(industryTight(s)?c.rivals.default.capacityFactor:1):0;
   need+=p.buildCost*inc*pace.costFactor*owned*(1-paper);
  }
