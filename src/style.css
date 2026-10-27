@@ -358,5 +358,5 @@ input[type=number] { -moz-appearance: textfield; }
 .grade { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 10px; font-size: 30px; font-weight: 800; background: var(--panel); border: 2px solid var(--line); }
 .grade-S { color: var(--orange); border-color: var(--orange); }
 .grade-A { color: var(--green); border-color: var(--green); }
-.grade-D { color: var(--danger, #e05555); border-color: var(--danger, #e05555); }
+.grade-D { color: var(--red); border-color: var(--red); }
 .career-facts { margin: 8px 0; }
