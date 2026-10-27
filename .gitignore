@@ -2,4 +2,11 @@ node_modules
 dist
 .DS_Store
 *.log
-art/raw/
+# 原始生图素材不入库；仅保留 tests/art.test.ts 用到的4张样本
+art/raw/*
+!art/raw/building_tower_2x2_a.png
+!art/raw/terrain_grass_1x1_a.png
+!art/raw/decor_lamp_1x1_a.png
+!art/raw/rejected/
+art/raw/rejected/*
+!art/raw/rejected/residential-tower-v2.png
