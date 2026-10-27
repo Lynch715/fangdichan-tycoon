@@ -1,6 +1,28 @@
 import { describe, expect, it } from 'vitest';
 import { applyCommand, stepDay, defaultConfig as c, marketPrice, type GameState } from '../src/sim/index.ts';
 import { runGame, conservative } from '../src/sim/bots.ts';
+import { salesRate, newGame } from '../src/sim/index.ts';
+import { premiumHint } from '../src/ui/outlook.ts';
+
+describe('定价与营销取舍（G01 后续）', () => {
+  const s = newGame(1, c), rate = (pf: number, mk = c.sales.marketingRate) => salesRate(c, s, pf, mk);
+  it('高于市场价去化下降更陡：110% 约为一半，120% 几乎无人购买；降价沿用原弹性', () => {
+    expect(rate(1.1) / rate(1)).toBeCloseTo(1 - c.sales.premiumElasticity * 0.1, 5);
+    expect(rate(1.2)).toBeLessThan(1e-9);
+    expect(rate(0.9) / rate(1)).toBeCloseTo(1 + c.sales.priceElasticity * 0.1, 5);
+  });
+  it('营销投入对去化有明显作用：0 营销比默认慢、加倍营销比默认快', () => {
+    expect(rate(1, 0) / rate(1)).toBeCloseTo(1 - c.marketing.spendSensitivity * c.sales.marketingRate, 5);
+    expect(rate(1, 0.06)).toBeGreaterThan(rate(1));
+  });
+  it('项目卡在溢价时提示去化代价与清盘规则，按市场价时不提示', () => {
+    const { state } = runGame(2, conservative, 4);
+    const p = state.projects.find(p => p.stage === 'construction' || p.stage === 'completed' || p.stage === 'delivered')!;
+    expect(premiumHint(c, state, { ...p, priceFactor: 1 })).toBe('');
+    expect(premiumHint(c, state, { ...p, priceFactor: 1.1, filedPrice: null })).toContain('去化约为');
+    expect(premiumHint(c, state, { ...p, priceFactor: 1.2, filedPrice: null })).toContain('几乎无人购买');
+  });
+});
 
 /** 找一局里已交付、仍有尾货的项目，把它拨到清盘前一天（测试夹具）。 */
 function eveOfClearance(seed: number): { s: GameState; id: string } | null {

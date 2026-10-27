@@ -64,7 +64,7 @@
     "baseMonthlyAbsorption": 0.08,
     "maxMonthlyAbsorption": 0.35,
     "priceElasticity": 3,
-    "premiumElasticity": 3,
+    "premiumElasticity": 5,
     "minPriceFactor": 0.8,
     "maxPriceFactor": 1.2
   },
@@ -404,7 +404,7 @@
     "maxRate": 0.12,
     "neutralBrand": 50,
     "brandSensitivity": 0.006,
-    "spendSensitivity": 4
+    "spendSensitivity": 6
   },
   "rivals": {
     "bidStepRate": 0.02,

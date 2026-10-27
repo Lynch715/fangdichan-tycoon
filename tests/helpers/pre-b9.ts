@@ -1,15 +1,16 @@
 import beforeBalance from '../../src/legacy-v15/config.json' with {type:'json'};
 /** Project B9 and later additions out of historical comparisons; all older fields remain exact. */
 export function preB9Config<T>(value:T):T {
- const copy=structuredClone(value) as T & {land?:Record<string,unknown>;rescue?:{saleBookDiscount:number};bots?:unknown;sessions?:unknown;capitalRescue?:unknown;housingPolicy?:unknown;compliance?:unknown;siteAttributes?:unknown;regions?:unknown;districts?:{id:string}[]};
+ const copy=structuredClone(value) as T & {land?:Record<string,unknown>;sales?:Record<string,unknown>;marketing?:Record<string,unknown>;rescue?:{saleBookDiscount:number};bots?:unknown;sessions?:unknown;capitalRescue?:unknown;housingPolicy?:unknown;compliance?:unknown;siteAttributes?:unknown;regions?:unknown;districts?:{id:string}[]};
  // D2已明确调整转让折价；这些旧功能测试按调参前该值比较，D2另核对唯一经济差异。
  if(copy.rescue)copy.rescue.saleBookDiscount=beforeBalance.rescue.saleBookDiscount;
  delete copy.bots;delete copy.sessions;delete copy.capitalRescue;delete copy.housingPolicy;delete copy.compliance;delete copy.siteAttributes;delete copy.regions;
  if(copy.districts)copy.districts=copy.districts.filter(d=>d.id!=='outer');
  // 2026-10-27 游戏性审计新增：开局新手地块与地块规模成长。
  if(copy.land){delete copy.land.starterParcels;delete copy.land.starterMaxCashShare;delete copy.land.scale;}
- // 2026-10-27 审计 G01 后新增：溢价单独弹性。
- if((copy as {sales?:Record<string,unknown>}).sales)delete (copy as {sales:Record<string,unknown>}).sales.premiumElasticity;
+ // 2026-10-27 审计 G01 后：新增溢价单独弹性；营销敏感度 4→6 按调参前值比较（另由 balance-migration 核对）。
+ if(copy.sales)delete copy.sales.premiumElasticity;
+ if(copy.marketing&&'spendSensitivity' in copy.marketing)copy.marketing.spendSensitivity=4;
  return copy;
 }
 export function preB9State<T>(value:T):T {
