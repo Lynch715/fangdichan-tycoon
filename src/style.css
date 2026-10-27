@@ -345,3 +345,18 @@ input[type=number] { -moz-appearance: textfield; }
 .credits { margin: 14px 0 0; padding-top: 12px; border-top: 1px solid var(--line); text-align: center; font-size: 12px; color: var(--muted); line-height: 1.6; }
 .credits-sep { margin: 0 8px; color: var(--line2); }
 .credits-id { color: var(--orange-text); font-weight: 600; user-select: all; }
+
+/* 公司履历 */
+.entry-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.entry-row .ach-entry { flex: 1 1 140px; }
+.career-nav { padding: 8px 0; border-bottom: 0; }
+.works { display: grid; gap: 8px; max-height: 60dvh; overflow: auto; }
+.work { display: grid; gap: 4px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+.work.best { border-color: var(--orange); }
+.career-grade { display: flex; gap: 12px; align-items: center; margin: 8px 0; }
+.career-grade > div { display: grid; gap: 2px; }
+.grade { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 10px; font-size: 30px; font-weight: 800; background: var(--panel); border: 2px solid var(--line); }
+.grade-S { color: var(--orange); border-color: var(--orange); }
+.grade-A { color: var(--green); border-color: var(--green); }
+.grade-D { color: var(--danger, #e05555); border-color: var(--danger, #e05555); }
+.career-facts { margin: 8px 0; }

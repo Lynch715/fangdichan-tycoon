@@ -17,6 +17,7 @@ import{goalTitle,goals,milestonesPanel,companyTitle,totalSales}from'./ui/milesto
 import{yi}from'./ui/format.ts';
 import{guideStep}from'./ui/guide.ts';
 import{SLOT_COUNT,readSlot,savesMarkup,slotMeta,writeSlot}from'./ui/saves.ts';
+import{careerDialogMarkup}from'./ui/career.ts';
 import{ACHIEVEMENTS,achievementName,achievementsMarkup,earnedAchievements,loadUnlocks,mergeUnlocks,saveUnlocks}from'./ui/achievements.ts';
 
 const PAUSE_TEXT: Record<string, string> = {
@@ -116,7 +117,7 @@ function celebrateCity(){
   if(prev!==undefined&&d>prev&&d>=2)cheer(`🏙 ${MAP_NAMES[mapId]??''}城市化突破 ${d*10}%，${d>=6?'高楼林立':d>=4?'新区崛起':'街区渐成'}`);
 }
 /** 新开局/导入存档后：已达成的目标静默记录，不补放庆祝。 */
-function resetCelebrations(){prevProjects=null;prevMonth=-1;prevTitle=-1;silentGoals=true;cityDecile={};silentAch=true;achKey='';}
+function resetCelebrations(){prevProjects=null;prevMonth=-1;prevTitle=-1;silentGoals=true;cityDecile={};silentAch=true;achKey='';careerSilent=true;}
 function celebrate(){
   const s=game.state,dpm=config.time.daysPerMonth;
   const snap=new Map(s.projects.map(p=>[p.id,{sold:p.soldArea>0,out:p.saleableArea>0&&p.soldArea>=p.saleableArea*0.999,del:p.deliveredDay!==null} as Snap]));
@@ -143,6 +144,7 @@ function celebrate(){
   if(!seen||silentGoals||done.length!==seen.length){try{localStorage.setItem(key,JSON.stringify(done));}catch{/* 只是不记住 */}}
   silentGoals=false;
   checkAchievements();
+  checkCareerEnd();careerSilent=false;
 }
 
 // 成就：跨局永久记录；每个游戏月、项目数或状态变化时检查一次
@@ -158,6 +160,26 @@ function checkAchievements(){
   if(achievementsDialog.open)paintAchievements();
 }
 const achievementsDialog=$<HTMLDialogElement>('#achievements-dialog');
+
+// 公司履历：作品集 + 生涯成绩；生涯模式第 N 年自动弹出一次（导入/读档后静默）
+const careerDialog=$<HTMLDialogElement>('#career-dialog');
+let careerTab:'works'|'career'='career',careerEnding=false,careerSilent=true;
+const achText=()=>`已解锁成就 ${Object.keys(unlocks).filter(id=>achievementName(id)).length} / ${ACHIEVEMENTS.length}（跨局累计）`;
+function paintCareer(){careerDialog.innerHTML=careerDialogMarkup(config,game.state,careerTab,achText(),careerEnding);}
+function openCareer(tab:'works'|'career'='career',ending=false){careerTab=tab;careerEnding=ending;game.setSpeed(0);paintCareer();if(!careerDialog.open)careerDialog.showModal();}
+careerDialog.addEventListener('click',e=>{
+  const t=e.target as HTMLElement,tab=t.closest<HTMLElement>('[data-career-tab]');
+  if(t.closest('[data-career-close]'))careerDialog.close();
+  else if(tab){careerTab=tab.dataset.careerTab as 'works'|'career';paintCareer();}
+});
+function checkCareerEnd(){
+  const s=game.state,target=config.time.careerYears*12*config.time.daysPerMonth,key=`fdc-career-${s.seed}`;
+  if(s.session?.options.mode!=='career'||s.day<target)return;
+  let shown=false;try{shown=localStorage.getItem(key)==='1';}catch{/* 无本地存储 */}
+  if(shown)return;
+  try{localStorage.setItem(key,'1');}catch{/* 只是不记住 */}
+  if(!careerSilent)openCareer('career',true);
+}
 function paintAchievements(){achievementsDialog.innerHTML=achievementsMarkup(unlocks,game.state.session?.options.mode==='sandbox');}
 achievementsDialog.addEventListener('click',e=>{if((e.target as HTMLElement).closest('[data-achievements-close]'))achievementsDialog.close();});
 
@@ -266,6 +288,7 @@ document.addEventListener('click', (e) => {
       }
       case 'import': $('#import-save').click();break;
       case 'saves':openSaves();break;
+      case 'career':openCareer();break;
       case 'achievements':game.setSpeed(0);paintAchievements();if(!achievementsDialog.open)achievementsDialog.showModal();break;
       case 'export': {
         const url=URL.createObjectURL(new Blob([game.exportSave()],{type:'application/json'}));

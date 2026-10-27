@@ -73,6 +73,6 @@ export function milestonesPanel(_config: Config, s: GameState, achievements = ''
       <span class="small muted">${t.next ? `累计销售 ${(sales / YI).toFixed(1)} / ${t.next.at / YI} 亿 → 晋级「${esc(t.next.name)}」` : `累计销售 ${(sales / YI).toFixed(0)} 亿，已登顶`}</span></div></div>
     ${next.map(g => `<div class="goal"><div class="row between small"><span>${esc(g.title)}</span><span class="muted">${fmt(g, Math.max(0, g.value))} / ${fmt(g, g.target)} ${g.unit}</span></div>
       <div class="progress thin"><div style="width:${(Math.max(0, Math.min(1, g.value / g.target)) * 100).toFixed(1)}%"></div></div></div>`).join('')}
-    ${achievements ? `<button class="ghost ach-entry" data-act="achievements">${achievements}</button>` : ''}
+    <div class="row entry-row">${achievements ? `<button class="ghost ach-entry" data-act="achievements">${achievements}</button>` : ''}<button class="ghost ach-entry" data-act="career">📜 公司履历 ›</button></div>
   </section>`;
 }
