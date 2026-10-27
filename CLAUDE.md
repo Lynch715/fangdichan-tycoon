@@ -177,7 +177,7 @@ D1/D2：机器人实际使用商票、明股实债、合作、展期、转让、
 
 D3：balance打印破产触发支出分布及下行最大净资产回撤，使用真实流水/月报，不改变模拟。归因取最终连续危机首月最后一次现金转负；回撤用下行月末对全生涯历史峰值，每局求最大，未到下行不计零，负净资产比例可超过100%。OUTPUT可保存种子、触发流水、峰值和端点供核验。
 
-当前验证：52文件407项Vitest通过（2026-10-27审计G01后），类型检查与生产构建通过；统计专项10项复验通过，正式两策略各200局30年与D2逐种子破产名单及收益分位一致。81素材art:check通过。B13模式/挑战及B14转让在IAB桌面1440×900、390×844和320×740验收；D2另完成390视口旧档迁移/实际新价转让/导出重载。A8曾停止本地生产预览后验证离线重载与续档；本次D组未重复离线实测。生产缓存包含29个本地文件及全部图集，开发模式不启用Service Worker。
+当前验证：56文件418项Vitest通过（2026-10-27审计G03–G08后），类型检查与生产构建通过；统计专项10项复验通过，正式两策略各200局30年与D2逐种子破产名单及收益分位一致。81素材art:check通过。B13模式/挑战及B14转让在IAB桌面1440×900、390×844和320×740验收；D2另完成390视口旧档迁移/实际新价转让/导出重载。A8曾停止本地生产预览后验证离线重载与续档；本次D组未重复离线实测。生产缓存包含29个本地文件及全部图集，开发模式不启用Service Worker。
 
 发布准备：工作流以game为仓库根，main推送后先测试/构建，再最小权限发布GitHub Pages；README有用户建仓、部署和iPhone/Android安装步骤。2026-10-26已推送至 GitHub `Lynch715/fangdichan-tycoon`，Pages 在 https://lynch715.github.io/fangdichan-tycoon/ 上线；main 推送即自动部署。vite 测试超时设为30秒（Actions 机器较慢）；`.gitignore` 排除 `art/raw/`，仅保留素材测试用的4张样本。
 
@@ -188,5 +188,7 @@ D3：balance打印破产触发支出分布及下行最大净资产回撤，使�
 存档与成就（2026-10-27）：开局选项可带 `companyName`（`normalizeCompanyName` 校验 2–12 字，与同行重名拒绝；接管挑战沿用剧情名）。顶栏“存档”弹窗：自动存档状态、3 个手动槽（localStorage `fdc-slot-N`，内容即导出存档 JSON）、文件导入导出（`src/ui/saves.ts`）。成就 24 个（`src/ui/achievements.ts`），只读推导，跨局记录在 localStorage `fdc-achievements`，沙盒不计。底部导航点击只认 `.tabs button[data-tab]`（body 自身带 data-tab）。
 
 审计G01（2026-10-27）：尾货清盘按“市场价与挂牌价取低×(1−clearanceDiscount)”整批成交；去化高于市场价用 `sales.premiumElasticity`=5、低于用 `priceElasticity`=3；`marketing.spendSensitivity`=6。两组200局×30年激进破产24.5%/25.5%（第一组低于25%下限0.5点，样本噪声内）、倍数1.89/1.92，P10均低于保守。外部审计报告 G02–G08 未完成部分见CHANGELOG。
+
+审计G03–G08（2026-10-27）：公司履历（`src/ui/career.ts`，作品集+第30年生涯结算评级，localStorage `fdc-career-<种子>` 只弹一次）；现金续航只读估算（`src/estimates/runway.ts`，不计销售回款）；品牌五档（`marketing.brandTiers`，质量≥`quality.excellentThreshold`交付+`excellentBrandGain`）；产品线（`products`，`src/sim/products.ts`）开工时随 startProject 选择并锁定，缺省按高层系数1，机器人不选。52文件407项→56文件418项。
 
 已知边界：未做实体手机或系统级PWA安装验收；保留Vite主包超过500kB提示。仓库外完整Claude设计规范不在目录，本次按已写入的施工单逐项完成，不声称核对未提供的全文。
