@@ -70,7 +70,7 @@ describe('D3 只读平衡统计', () => {
     expect(positiveInteger('200', 'RUNS')).toBe(200);
   });
   it('真实破产样本可从完整流水核对且统计不改变状态、日志或随机数', () => {
-    const { state } = runGame(2, aggressive, 30);
+    const { state } = runGame(3, aggressive, 30); // 24×24地图后种子2不再破产，改用破产样本种子3
     const before = JSON.stringify(state);
     const trigger = bankruptcyTrigger(state);
     const d = downturnDrawdown(state.reports.months, defaultConfig.cycle.phases.find(p => p.id === 'downturn')!.name);

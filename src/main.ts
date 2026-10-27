@@ -103,8 +103,9 @@ function cheer(text:string,kind:'big'|'sales'='big'){
 }
 
 type Snap={sold:boolean;out:boolean;del:boolean};
-let prevProjects:Map<string,Snap>|null=null,prevMonth=-1,prevTitle=-1;
-function resetCelebrations(){prevProjects=null;prevMonth=-1;prevTitle=-1;}
+let prevProjects:Map<string,Snap>|null=null,prevMonth=-1,prevTitle=-1,silentGoals=false;
+/** 新开局/导入存档后：已达成的目标静默记录，不补放庆祝。 */
+function resetCelebrations(){prevProjects=null;prevMonth=-1;prevTitle=-1;silentGoals=true;}
 function celebrate(){
   const s=game.state,dpm=config.time.daysPerMonth;
   const snap=new Map(s.projects.map(p=>[p.id,{sold:p.soldArea>0,out:p.saleableArea>0&&p.soldArea>=p.saleableArea*0.999,del:p.deliveredDay!==null} as Snap]));
@@ -127,8 +128,9 @@ function celebrate(){
   // 里程碑：首次见到这局时只记录，不补放庆祝
   const key=`fdc-goals-${s.seed}`,done=goals(s).achieved;
   let seen:string[]|null=null;try{seen=JSON.parse(localStorage.getItem(key)??'null');}catch{seen=null;}
-  if(seen){for(const id of done)if(!seen.includes(id))cheer(`✅ 达成目标：${goalTitle(id)}`);}
-  if(!seen||done.length!==seen.length){try{localStorage.setItem(key,JSON.stringify(done));}catch{/* 只是不记住 */}}
+  if(seen&&!silentGoals){for(const id of done)if(!seen.includes(id))cheer(`✅ 达成目标：${goalTitle(id)}`);}
+  if(!seen||silentGoals||done.length!==seen.length){try{localStorage.setItem(key,JSON.stringify(done));}catch{/* 只是不记住 */}}
+  silentGoals=false;
 }
 
 /** 输入框获得焦点时不重绘该面板，避免打字被打断。 */

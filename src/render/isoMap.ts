@@ -5,13 +5,15 @@ import {projectArtKey} from './projectArt.ts';
 import {landmarksForMap,landmarkContains,type Landmark} from './landmarks.ts';
 import{backgroundArtKey,parcelArtKey,plotGeometry,spriteScale,visibleMapProjects}from'./cityArt.ts';
 import {loadArt} from './art.ts';
+import {builtArea,growthTiles,urbanization} from './growth.ts';
 import { Application, Container, Graphics, Sprite, Text, Texture } from 'pixi.js';
 import { defaultConfig, district, activeProject, MAP_SIZE, backgroundBuildings, terrainAt, districtAt, type GameState, type Tile } from '../sim/index.ts';
 
-const OX = 512;
+// 世界尺寸随网格大小推导（24×24 时为 1536×956）
+const OX = 32 * MAP_SIZE;
 const OY = 150;
-const WORLD_W = 1024;
-const WORLD_H = 700;
+const WORLD_W = 64 * MAP_SIZE;
+const WORLD_H = OY + 32 * MAP_SIZE + 38;
 
 const P = (i: number, j: number): [number, number] => [OX + (i - j) * 32, OY + (i + j) * 16];
 
@@ -73,6 +75,8 @@ export class IsoMap {
   private terrain = new Container();
   private textures: Record<string,Texture> = {};
   private terrainSignature = '';
+  /** 当前地图城市化程度 0–1（供界面显示）。 */
+  urbanization = 0;
   private occupied = new Set<string>();
   private terrainDecor:{i:number;j:number;elevation:number;key:string}[]=[];
   private region = 'city';
@@ -114,7 +118,8 @@ export class IsoMap {
     const h = this.app.screen.height;
     // 竖屏时放大到约 1.8 倍宽度，两侧可拖动查看
     const portrait = window.innerWidth <= 820 && h > w;
-    const scale = portrait ? Math.min((w / WORLD_W) * 1.8, h / WORLD_H) : Math.min(w / WORLD_W, h / WORLD_H) * 1.05;
+    // 地图放大后竖屏默认放大到约 2.4 倍宽度，格子大小与旧版接近，可拖动/双指缩放查看全城
+    const scale = portrait ? Math.min((w / WORLD_W) * 2.4, h / WORLD_H * 1.6) : Math.min(w / WORLD_W, h / WORLD_H) * 1.05;
     this.world.scale.set(scale);
     this.world.position.set((w - WORLD_W * scale) / 2, (h - WORLD_H * scale) / 2);
   }
@@ -162,6 +167,12 @@ export class IsoMap {
     for(const l of landmarksForMap(mapId))for(let i=l.i;i<l.i+l.cells;i++)for(let j=l.j;j<l.j+l.cells;j++)occupied.add(`${i},${j}`);
     for(const p of visible)for(const[i,j]of p.tiles)occupied.add(`${i},${j}`);
     for(const a of auctions)for(const[i,j]of a.tiles)occupied.add(`${i},${j}`);
+    // 城市自然生长：随年份与本图已交付面积扩张，不占用模拟地块
+    const years=state.day/(defaultConfig.time.daysPerMonth*12);
+    const built=builtArea(allMapProjects(state),id=>district(defaultConfig,id).mapId===mapId);
+    const growth=growthTiles(mapId,urbanization(years,built),occupied,(i,j)=>roadAt(i,j,mapId));
+    this.urbanization=urbanization(years,built);
+    for(const g of growth)occupied.add(`${g.i},${g.j}`);
     const signature=mapId+'|'+[...occupied].sort().join(';');
     if(this.terrainSignature!==signature){
       this.region=mapId;this.occupied=occupied;this.terrainSignature=signature;
@@ -177,6 +188,12 @@ export class IsoMap {
         else blockAt(b.i,b.j,1,b.h,COLORS.city)(gg);
       },
     }));
+    const growthHeight={0:0,1:46,2:78,3:120};
+    for(const g of growth)blocks.push({order:g.i+g.j+1,draw:gg=>{
+      const texture=this.textures[g.key];
+      if(texture){const sprite=new Sprite(texture);sprite.scale.set(spriteScale(g.key,1));sprite.position.set(...P(g.i+1,g.j+1));this.dynamic.addChild(sprite);}
+      else if(g.tier>0)blockAt(g.i,g.j,1,growthHeight[g.tier],COLORS.city)(gg);
+    }});
     for(const decor of this.terrainDecor)blocks.push({order:decor.i+decor.j+1,draw:gg=>{
       const texture=this.textures[decor.key];
       if(texture){const sprite=new Sprite(texture);sprite.scale.set(.5);const[x,y]=P(decor.i+1,decor.j+1);sprite.position.set(x,y-decor.elevation*TILE_SIDE_HEIGHT);this.dynamic.addChild(sprite);}
@@ -206,6 +223,8 @@ export class IsoMap {
         blocks.push({order,draw:()=>{
           // 选中边框属于地面，先画以免穿过楼体立面。
           if(sel){const outline=new Graphics();outline.poly(footprintPoly(p.tiles)).stroke({width:3,color:0xffffff});this.dynamic.addChild(outline);}
+          // 本公司建成的楼：地面淡橙描边，满城高楼里也能认出自己的作品
+          else if(!owners.has(p.id)){const mine=new Graphics();mine.poly(footprintPoly(p.tiles)).fill({color:COLORS.orange,alpha:.14}).stroke({width:2,color:COLORS.orange,alpha:.75});this.dynamic.addChild(mine);}
           const sprite=new Sprite(art);sprite.scale.set(scale);
           const [x,y]=P(i0+cells,j0+cells);sprite.position.set(x,y);this.dynamic.addChild(sprite);
         }});

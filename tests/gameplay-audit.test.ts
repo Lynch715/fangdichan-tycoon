@@ -81,3 +81,43 @@ describe('新手指引与成长目标（只读）', () => {
     expect(JSON.stringify(s)).toBe(before);
   });
 });
+
+import { growthTiles, urbanization, GROWTH } from '../src/render/growth.ts';
+import { roadAt } from '../src/render/terrain.ts';
+import { MAP_SIZE, terrainAt, backgroundOccupied, freeSites } from '../src/sim/map.ts';
+
+describe('24×24 地图与城市自然生长（纯渲染）', () => {
+  it('地图为 24×24，三张图都有大量可开发 2×2 地块', () => {
+    expect(MAP_SIZE).toBe(24);
+    const s = newGame(1, c);
+    for (const d of c.districts) {
+      const occ = backgroundOccupied(d.mapId);
+      // 每个片区至少能放下 20 宗地块的位置
+      const sites = freeSites(d.id, occ, d.mapId).length;
+      expect(sites).toBeGreaterThan(20);
+    }
+    expect(s.auctions.length).toBeGreaterThan(0);
+  });
+  it('城市化随年份与已交付面积上升并有上限', () => {
+    expect(urbanization(0, 0)).toBeCloseTo(GROWTH.base);
+    expect(urbanization(10, 0)).toBeGreaterThan(urbanization(1, 0));
+    expect(urbanization(10, 1_000_000)).toBeGreaterThan(urbanization(10, 0));
+    expect(urbanization(100, 1e9)).toBe(GROWTH.max);
+  });
+  it('生长建筑只落在空闲陆地，不压道路/河流/山地/已占用格；城市化越高越密、越高', () => {
+    const occupied = new Set(['9,15', '10,15']);
+    const road = (i: number, j: number) => roadAt(i, j, 'city');
+    const early = growthTiles('city', urbanization(0, 0), occupied, road);
+    const late = growthTiles('city', urbanization(25, 3_000_000), occupied, road);
+    expect(late.length).toBeGreaterThan(early.length * 3);
+    for (const g of late) {
+      expect(terrainAt(g.i, g.j, 'city')).toBe('land');
+      expect(road(g.i, g.j)).toBe(false);
+      expect(occupied.has(`${g.i},${g.j}`)).toBe(false);
+    }
+    expect(late.filter(g => g.tier === 3).length).toBeGreaterThan(early.filter(g => g.tier === 3).length);
+    // 确定性：同样输入同样结果
+    expect(growthTiles('city', 0.5, occupied, road)).toEqual(growthTiles('city', 0.5, occupied, road));
+  });
+});
+

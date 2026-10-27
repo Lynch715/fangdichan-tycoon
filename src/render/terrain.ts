@@ -17,15 +17,16 @@ export function roadAt(i:number,j:number,mapId:string):boolean {
  if(!valid(i,j))return false;
  const t=terrainAt(i,j,mapId);if(t==='river'||t==='hill')return false;
  if(t==='bridge')return true;
- if(mapId==='outer')return i===5||j===4||(j===12&&i<11);
- if(mapId==='suburb')return i===5||j===3||(j===11&&i<12);
- return i===4||j===5||(i===11&&j<10)||(j===14&&i<10)||(i===2&&j>=2&&j<=5)||(j===2&&i>=2&&i<=4);
+ // 24×24 路网：主干道连通大桥，外加次干道把大片土地切成街区
+ if(mapId==='outer')return i===8||j===6||(j===18&&i<17)||(i===16&&j<12)||(j===21&&i<17);
+ if(mapId==='suburb')return i===8||j===5||(j===17&&i<18)||(i===16&&j<11)||(j===21&&i<18);
+ return i===6||j===8||(i===16&&j<17)||(j===13&&i<11)||(i===17&&j<16)||(j===21&&i<15)||(i===3&&j>=3&&j<=8)||(j===3&&i>=3&&i<=6)||(i===20&&j<17)||(j===4&&i>=13);
 }
 export function tileArtAt(i:number,j:number,mapId='city'):TileArt {
  const t=terrainAt(i,j,mapId),h=hash(i,j),road=roadAt(i,j,mapId);
  let key:string,fallback='terrain_grass_1x1_a',elevation=0;
  if(t==='bridge'){
-  key=(mapId!=='city'||j>=11)?'terrain_bridge_nw_se_1x1_a':'terrain_bridge_ne_sw_1x1_a';fallback='terrain_paved_1x1_a';
+  key=(mapId!=='city'||j>=17)?'terrain_bridge_nw_se_1x1_a':'terrain_bridge_ne_sw_1x1_a';fallback='terrain_paved_1x1_a';
  }else if(t==='river'){
   fallback='terrain_water_calm_1x1_a';
   const land=(a:number,b:number)=>valid(a,b)&&terrainAt(a,b,mapId)==='land';
@@ -34,7 +35,7 @@ export function tileArtAt(i:number,j:number,mapId='city'):TileArt {
   const edge=sides.n?'n':sides.e?'e':sides.s?'s':sides.w?'w':null;
   key=corner?`terrain_shore_corner_${corner}_1x1_a`:edge?`terrain_shore_${edge}_1x1_a`:h%3===0?'terrain_water_ripple_1x1_a':fallback;
  }else if(t==='hill'){
-  elevation=1+Math.min(2,Math.floor((i+j-(mapId==='city'?23:22))/2));
+  elevation=1+Math.min(2,Math.floor((i+j-(mapId==='city'?35:mapId==='outer'?34:33))/2));
   elevation=Math.max(1,elevation);
   const direction=['ne','nw','se','sw'][h%4],grade=Math.floor(h/4)%2?'gentle':'steep';
   key=h%5===0?'terrain_mountain_rock_1x1_a':h%5===1?'terrain_mountain_grass_1x1_a':`terrain_slope_${direction}_${grade}_1x1_a`;
