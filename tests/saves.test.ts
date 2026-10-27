@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { applyCommand, newGame, defaultConfig as c, validateSave } from '../src/sim/index.ts';
+import { applyCommand, newGame, defaultConfig as c } from '../src/sim/index.ts';
+import { validateSave } from '../src/save.ts';
 import { readSlot, slotMeta, writeSlot, savesMarkup, SLOT_COUNT } from '../src/ui/saves.ts';
 
 class MemStore { m = new Map<string, string>(); getItem(k: string) { return this.m.get(k) ?? null; } setItem(k: string, v: string) { this.m.set(k, v); } }
