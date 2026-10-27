@@ -8,6 +8,8 @@ export function preB9Config<T>(value:T):T {
  if(copy.districts)copy.districts=copy.districts.filter(d=>d.id!=='outer');
  // 2026-10-27 游戏性审计新增：开局新手地块与地块规模成长。
  if(copy.land){delete copy.land.starterParcels;delete copy.land.starterMaxCashShare;delete copy.land.scale;}
+ // 2026-10-27 审计 G01 后新增：溢价单独弹性。
+ if((copy as {sales?:Record<string,unknown>}).sales)delete (copy as {sales:Record<string,unknown>}).sales.premiumElasticity;
  return copy;
 }
 export function preB9State<T>(value:T):T {
