@@ -11,8 +11,8 @@
   - 城市自然生长（纯渲染）：城市化随年份与本图已交付面积（本公司+同行）上升，空地从核心向外长出低层→写字楼/学校/轻轨站→高层塔楼，约 12% 留作公园；新地挂牌时覆盖处让位；本公司建成楼地面淡橙描边；图例显示城市化百分比。
   - 降噪：消息角标只计与本公司相关的消息（风险/公司/政策/挂牌/本公司拿地），同行成交淡显；小额安全事故不再自动暂停；财务页可关闭“新地挂牌时自动暂停”；资金预警提示写明可做的操作。
 - **改了哪些文件**：`src/sim/map.ts`、`src/sim/engine.ts`、`src/sim/rivals.ts`、`src/sim/features.ts`、`src/sim/types.ts`、`src/render/growth.ts`（新）、`src/render/isoMap.ts`、`src/render/terrain.ts`、`src/render/landmarks.ts`、`src/ui/affordability.ts`/`outlook.ts`/`milestones.ts`/`guide.ts`（新）、`src/ui/inbox.ts`、`src/ui/panels.ts`、`src/ui/regions.ts`、`src/ui/auctionController.ts`、`src/game.ts`、`src/main.ts`、`src/style.css`、`index.html`、`data/config.json`、`scripts/pacing-audit.ts`（新）、`package.json`；测试 `tests/gameplay-audit.test.ts`（新）及地图坐标/种子相关的 `terrain-art`、`regions`、`acquisition`、`balance-analysis`、配置白名单 `balance-migration`、`helpers/pre-b9`。
-- **数值变化**：新增 `land.starterParcels`=2、`land.starterMaxCashShare`=0.35、`land.scale`={exponent 0.5, max <<SCALEMAX>>, regularParcels 2}；<<BOTCHANGE>>。按用户要求不考虑旧存档：存档版本仍为 16，旧存档按新地图/新规则回放会与原进度不同。
-- **验证**：<<VERIFY>>
+- **数值变化**：新增 `land.starterParcels`=2、`land.starterMaxCashShare`=0.35、`land.scale`={exponent 0.5, max 1.8, regularParcels 2}；`bots.aggressive.buildReserveRate` 0 → 0.015（地图放大后中后期不再因缺地自然限速，激进破产率升至 36%，按 D2 方法以激进机器人参数回调）。按用户要求不考虑旧存档：存档版本仍为 16，旧存档按新地图/新规则回放会与原进度不同。
+- **验证**：typecheck、47 文件 386 项测试、生产构建通过。`npm run balance` 两组独立 200 局×30 年（种子 1–200 / 201–400）：激进破产 29.5% / 31.5%（改前 31.0%），收益中位倍数 1.86 / 1.71（改前 1.80），P10 均低于保守，D2 三项达标；保守净资产中位 51.45 / 50.45 亿（改前 43.19），激进 91.47 / 82.81 亿（改前 73.72）。新手：100 局按引导拍新手地 3 年内 0 破产（无视红色警告硬拍首块地仍为 24%）。`npm run pacing`：风险自动暂停每年 保守 0.3→0.1、激进 7.8→3.7。Playwright 390×844/1440×900 实测资金判断、红色确认、指引四步、成长面板、预计利润、开盘/月销/目标庆祝；导入第 1/10/25 年存档对比城市从零星老楼到中密度再到高楼林立。
 - **没做完 / 已知问题**：城市生长、庆祝与指引未在实体手机上验收；收益中位倍数在激进策略双峰分布下对样本很敏感（同参数 100 局与 200 局可差一倍），需以两组 200 局为准；生长建筑为 1×1 复用素材，没有专门的城市背景高楼。
 
 ## 2026-10-26 · Claude · 界面修整：面板可收起、控件尺寸统一、经营消息入口
