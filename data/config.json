@@ -869,6 +869,8 @@
     }
   },
   "bots": {
+    "staffMinSkill": 50,
+    "staffReserveMonths": 6,
     "minimumLoan": 1000,
     "liquidityMonths": 3,
     "contractorReserveMonths": 6,

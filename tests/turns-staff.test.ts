@@ -3,6 +3,8 @@ import { Game } from '../src/game.ts';
 import { turnBriefingMarkup, lastTurnIncome } from '../src/ui/turn.ts';
 import { staffDialogMarkup, parsePost, postValue } from '../src/ui/staff.ts';
 import { projectsPanel } from '../src/ui/panels.ts';
+import { conservative, aggressive, staffed, runGame, botCashNeed } from '../src/sim/index.ts';
+import { bankruptcyTrigger } from '../src/analysis/balance.ts';
 import { newGame, applyCommand, stepDay, defaultConfig, replay, channelRate, seasonOf, rollSeason, postHolder, payroll, type GameState, type Config, type LoggedCommand } from '../src/sim/index.ts';
 
 const dpm = defaultConfig.time.daysPerMonth;
@@ -166,5 +168,29 @@ describe('回合制循环与回合简报', () => {
     expect(staffDialogMarkup(g.config, g.state)).toContain(cand.name);
     expect(projectsPanel(g.config, g.state, null)).toContain(cand.name);
     for (const post of [null, { slot: 'cfo' as const }, { slot: 'pr' as const }, { slot: 'salesLead' as const, projectId: p.id }]) expect(parsePost(postValue(post))).toEqual(post);
+  });
+});
+
+describe('机器人招聘（批量平衡 STAFF=1）', () => {
+  it('默认机器人不雇人，批量基线不变；包装后按空缺招聘并派驻，日志可完整重放', () => {
+    expect(runGame(5, conservative, 4).state.staff!.members).toHaveLength(0);
+    const { state, log } = runGame(5, staffed(conservative, 'conservative'), 4);
+    expect(state.staff!.members.length).toBeGreaterThan(0);
+    expect(state.staff!.members.some(m => m.post !== null)).toBe(true);
+    expect(log.some(l => l.command.type === 'hireStaff')).toBe(true);
+    expect(replay(5, log, state.day)).toEqual({ ...state, pauses: [] });
+  });
+  it('只招主能力达门槛的候选人；现金需求计入月薪', () => {
+    const { state } = runGame(9, staffed(aggressive, 'aggressive'), 3);
+    for (const m of state.staff!.members) expect(m.skills[m.specialty]).toBeGreaterThanOrEqual(defaultConfig.bots.staffMinSkill);
+    const s = structuredClone(state), base = botCashNeed(s, defaultConfig);
+    s.staff!.members.push({ ...s.staff!.members[0] ?? s.staff!.pool[0], id: 'X', post: null, salary: 100 });
+    expect(botCashNeed(s, defaultConfig) - base).toBeCloseTo(100 * defaultConfig.bots.liquidityMonths, 6);
+  });
+  it('破产归因把员工薪酬单列', () => {
+    const s = newGame(1), from = s.reports.journal.length; s.status = 'bankrupt';
+    s.reports.months.push({ period: 1, startDay: 0, endDay: 30, opening: { ...s.reports.opening, cash: 10 }, closing: { ...s.reports.opening, cash: -10 }, fromEntry: from, toEntry: from + 1, phase: '', status: 'bankrupt' });
+    s.reports.journal.push({ day: 30, period: 1, kind: 'salary', cash: -20, projectCash: 0, amount: 20, projectId: null });
+    expect(bankruptcyTrigger(s)?.reason).toBe('staff');
   });
 });

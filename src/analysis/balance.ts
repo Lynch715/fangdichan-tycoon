@@ -4,7 +4,7 @@ import type { GameState, LedgerKind, MonthlyReport } from '../sim/types.ts';
 export const reasonLabels = {
   principal: '债务本金兑付', finance: '利息/展期费', land: '土地款/保证金',
   construction: '工程付款', risk: '罚款/事故', transfer: '转让补付',
-  operations: '营销/税费', other: '其他现金支出', unknown: '记录不足/未能归因',
+  operations: '营销/税费', staff: '员工薪酬', other: '其他现金支出', unknown: '记录不足/未能归因',
 } as const;
 export type BankruptcyReason = keyof typeof reasonLabels;
 export interface BankruptcyTrigger {
@@ -19,6 +19,7 @@ function category(kind: LedgerKind): BankruptcyReason {
   if (kind === 'fine' || kind === 'accident') return 'risk';
   if (kind === 'transfer') return 'transfer';
   if (kind === 'marketing' || kind === 'tax') return 'operations';
+  if (kind === 'salary') return 'staff';
   return 'other';
 }
 /** 最终连续危机的首月，最后一次由非负转负的流水；不是多因素经营成因推断。 */

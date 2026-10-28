@@ -8,6 +8,8 @@ import {createReports} from './reporting.ts';
 import {landBanUntil,presaleBlocked,rectificationError} from './compliance.ts';
 import {siteDurationFactor,siteCostFactor} from './regions.ts';
 import {initSeasons} from './seasons.ts';
+import {postDef,postHolder,payroll,pmSpeedFactor} from './staff.ts';
+import type {Employee,StaffPost,StaffSkill,StaffSlot} from './types.ts';
 import type {Command,GameState,LoggedCommand,ContractorId,Pace} from './types.ts';
 
 export type Strategy=(state:GameState,config:Config)=>Command[];
@@ -16,14 +18,15 @@ type Profile=Config['bots']['conservative'];
 /** 不计未来销售的现金压力：到期借款、土地尾款、利息及按当前节奏的工程现金。 */
 export function botCashNeed(s:GameState,c:Config,months=c.bots.liquidityMonths):number{
  const end=s.day+months*c.time.daysPerMonth;
- let need=s.debts.reduce((n,d)=>n+(d.maturityDay<=end?d.principal:0)+d.principal*d.rate*months/12,0);
+ // 员工月薪与项目经理加速施工一并计入（未雇人时均为中性）。
+ let need=s.debts.reduce((n,d)=>n+(d.maturityDay<=end?d.principal:0)+d.principal*d.rate*months/12,0)+payroll(s)*months;
  for(const p of s.projects){
   if(p.stage==='sold')continue;
   const owned=1-p.partnerShare;
   if(p.landDueDay<=end)need+=Math.max(0,p.landCost-p.landPaid)*owned;
   if(p.stage!=='construction')continue;
   const pace=c.construction.paces[p.pace],terms=c.construction.contractors[p.contractor??'standard'];
-  const inc=Math.min(1-p.progress,months*pace.speed/(c.construction.months*terms.durationFactor*siteDurationFactor(p.attributes)*productTerms(c,p.product).durationFactor));
+  const inc=Math.min(1-p.progress,months*pace.speed*pmSpeedFactor(s,c,p)/(c.construction.months*terms.durationFactor*siteDurationFactor(p.attributes)*productTerms(c,p.product).durationFactor));
   const paper=s.rating<5&&s.day>=s.financeFrozenUntil?p.paperRatio*(industryTight(s)?c.rivals.default.capacityFactor:1):0;
   need+=p.buildCost*inc*pace.costFactor*owned*(1-paper);
  }
@@ -112,6 +115,42 @@ function strategy(profileKey:'conservative'|'aggressive'):Strategy{return(state,
 export const conservative:Strategy=strategy('conservative');
 /** 激进：较高溢价和杠杆、低首付扩张，可用明股实债；压力期降速、合作和转让。 */
 export const aggressive:Strategy=strategy('aggressive');
+
+/**
+ * 招聘包装：在原策略之后，按月填补空缺岗位（项目经理→在建、销售经理→在售、财务总监→有负债、公关总监→关注度≥30）。
+ * 先调用待命员工，再从人才市场签主能力最高且≥门槛的候选人；签约费与月薪须在现金压力和储备之外。
+ * 现金紧张时解雇待命员工。批量平衡 STAFF=1 使用，默认策略不雇人。
+ */
+export function staffed(base:Strategy,profileKey:'conservative'|'aggressive'):Strategy{return(state,c)=>{
+ const cmds=base(state,c);
+ const st=state.staff;
+ if(!st||state.status==='bankrupt'||state.day%c.time.daysPerMonth!==1)return cmds;
+ const reserve=c.start.cash*c.bots[profileKey].cashReserve,need=botCashNeed(state,c)+reserve;
+ let spare=state.cash-need-payroll(state)*c.bots.staffReserveMonths;
+ const idle=st.members.filter(m=>!m.post);
+ if(spare<0){for(const m of idle)cmds.push({type:'fireStaff',staffId:m.id});return cmds;}
+ const vacancies:StaffPost[]=[];
+ for(const p of state.projects){
+  if(p.stage==='construction'&&!postHolder(state,'pm',p.id))vacancies.push({slot:'pm',projectId:p.id});
+  if(salesEligible(p,c)&&!postHolder(state,'salesLead',p.id))vacancies.push({slot:'salesLead',projectId:p.id});
+ }
+ if(state.debts.length&&!postHolder(state,'cfo'))vacancies.push({slot:'cfo'});
+ if(state.attention>=30&&!postHolder(state,'pr'))vacancies.push({slot:'pr'});
+ const pool=[...st.pool],free=[...idle];
+ const skillFor=(slot:StaffSlot)=>postDef(c,slot).skill as StaffSkill;
+ const pick=(list:Employee[],k:StaffSkill)=>list.filter(e=>e.skills[k]>=c.bots.staffMinSkill).sort((a,b)=>b.skills[k]-a.skills[k])[0];
+ for(const post of vacancies){
+  const k=skillFor(post.slot);
+  const own=pick(free,k);
+  if(own){free.splice(free.indexOf(own),1);cmds.push({type:'assignStaff',staffId:own.id,post});continue;}
+  const cand=pick(pool,k);if(!cand)continue;
+  const cost=cand.salary*(c.staff.signingMonths+c.bots.staffReserveMonths);
+  if(cost>spare)continue;
+  spare-=cost;pool.splice(pool.indexOf(cand),1);
+  cmds.push({type:'hireStaff',candidateId:cand.id},{type:'assignStaff',staffId:cand.id,post});
+ }
+ return cmds;
+};}
 
 /** seasons=true 时按真实开局开启季节事件（批量平衡 SEASONS=1）。 */
 export function runGame(seed:number,strategy:Strategy,years:number,config:Config=defaultConfig,seasons=false){
