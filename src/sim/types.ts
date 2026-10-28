@@ -130,7 +130,7 @@ export interface Metrics {
 
 export type PauseReason = 'auction' | 'cashWarning' | 'regulation' | 'gameOver' | 'risk'|'startProject'|'settlement'|'challenge';
 
-export type LedgerKind='equityInvestment'|'acquisition'|'acquiredContracts'|'deposit'|'depositRefund'|'land'|'construction'|'saleBooked'|'escrowRelease'|'marketing'|'tax'|'loan'|'repay'|'interest'|'extensionFee'|'financeAllocation'|'partnerInvestment'|'transfer'|'diversion'|'escrowReturn'|'fine'|'accident'|'paperIssue'|'revenueRecognized'|'costRecognized';
+export type LedgerKind='equityInvestment'|'acquisition'|'acquiredContracts'|'deposit'|'depositRefund'|'land'|'construction'|'saleBooked'|'escrowRelease'|'marketing'|'tax'|'loan'|'repay'|'interest'|'extensionFee'|'financeAllocation'|'partnerInvestment'|'transfer'|'diversion'|'escrowReturn'|'fine'|'accident'|'paperIssue'|'revenueRecognized'|'costRecognized'|'salary';
 export interface LedgerEntry {day:number;period:number;kind:LedgerKind;cash:number;projectCash:number;amount:number;projectId:string|null;parcelId?:string}
 export interface DecisionPoint {day:number;text:string;kind:'command'|'risk'|'bankruptcy'}
 export interface MonthlyReport {period:number;startDay:number;endDay:number;opening:Metrics;closing:Metrics;fromEntry:number;toEntry:number;phase:string;status:GameState['status']}
@@ -145,8 +145,22 @@ export interface ReportState {
 export interface CapitalEvent {day:number;kind:'strategic'|'restructuring';newShare:number;founderBefore:number;founderAfter:number;cash:number;principal:number;debtIds:string[]}
 export interface CapitalState {sinceDay:number;founderShare:number;strategicShare:number;creditorShare:number;lastInvestmentDay:number|null;restructurings:number;events:CapitalEvent[]}
 
+export interface ActiveSeason {month:number;seasonId:string;seasonName:string;eventId:string|null;name:string|null;kind:'season'|'policy';text:string|null;sales:number;build:number;cost:number;rate:number}
+
+export const STAFF_SKILLS=['engineering','sales','finance','relations'] as const;
+export type StaffSkill=typeof STAFF_SKILLS[number];
+export const STAFF_POSTS=['pm','salesLead','cfo','pr'] as const;
+export type StaffSlot=typeof STAFF_POSTS[number];
+export type StaffPost={slot:'pm'|'salesLead';projectId:string}|{slot:'cfo'|'pr'};
+export interface Employee {id:string;name:string;specialty:StaffSkill;skills:Record<StaffSkill,number>;salary:number;post:StaffPost|null;hiredDay:number;monthsInPost:number}
+export interface StaffState {rng:number;nextId:number;pool:Employee[];members:Employee[];poolDay:number}
+
 export interface GameState {
   version: 16;
+  /** 季节事件独立随机流（仅玩家公司）。 */
+  seasons?:{rng:number};
+  /** 员工与人才市场（仅玩家公司）。 */
+  staff?:StaffState;
   session?:import('./sessions.ts').SessionState;
   rules?:import('./config.ts').Config; // 开局指令派生的只读运行配置，SaveData不保存状态快照。
   capital?:CapitalState;
@@ -174,6 +188,8 @@ export interface GameState {
     phaseEndMonth: number;
     sentiment: number;
     priceIndex: Record<string, number>;
+    /** 本月生效的季节/政策事件，月末抽取下月事件。 */
+    season?: ActiveSeason;
   };
   regulation: {
     active: boolean;
@@ -210,7 +226,10 @@ export type Command =
   | { type: 'extend'; debtId: string }
   | { type: 'sellProject'; projectId: string }
   | { type: 'setPace'; projectId: string; pace: Pace }
-  | { type: 'setPrice'; projectId: string; priceFactor: number };
+  | { type: 'setPrice'; projectId: string; priceFactor: number }
+  | { type: 'hireStaff'; candidateId: string }
+  | { type: 'fireStaff'; staffId: string }
+  | { type: 'assignStaff'; staffId: string; post: StaffPost | null };
 
 export interface CommandResult {
   ok: boolean;

@@ -7,6 +7,7 @@ import { bankruptcyTrigger, downturnDrawdown, positiveInteger, quantile, reasonL
 const RUNS = positiveInteger(process.env.RUNS ?? '200', 'RUNS');
 const YEARS = positiveInteger(process.env.YEARS ?? String(defaultConfig.time.careerYears), 'YEARS');
 const START_SEED = positiveInteger(process.env.START_SEED ?? '1', 'START_SEED');
+const SEASONS = process.env.SEASONS === '1'; // 1：按真实开局开启季节/政策事件
 if (START_SEED + RUNS - 1 > 0xffffffff) throw new Error('种子范围必须在1–4294967295内，避免32位随机种子重复');
 const downturnName = defaultConfig.cycle.phases.find(p => p.id === 'downturn')?.name;
 if (!downturnName) throw new Error('配置缺少downturn周期');
@@ -16,7 +17,7 @@ const distribution = (xs: number[]) => `P10 ${fmt(quantile(xs, .1))}  中位 ${f
 function report(name: string, strategy: Strategy) {
   const runs = [];
   for (let seed = START_SEED; seed < START_SEED + RUNS; seed++) {
-    const { state } = runGame(seed, strategy, YEARS);
+    const { state } = runGame(seed, strategy, YEARS, defaultConfig, SEASONS);
     const equity = computeMetrics(state).equity;
     runs.push({ seed, day: state.day, status: state.status, cash: state.cash, equity,
       profit: equity - defaultConfig.start.cash, landWon: state.stats.landWon,
@@ -28,7 +29,7 @@ function report(name: string, strategy: Strategy) {
   for (const r of failed) reasons[r.trigger!.reason]++;
   const drawdowns = runs.flatMap(r => r.drawdown ? [r.drawdown] : []);
   const rates = drawdowns.flatMap(d => d.rate ? [d.rate.value * 100] : []);
-  console.log(`\n${name}（${RUNS} 局 × ${YEARS} 年，种子${START_SEED}–${START_SEED + RUNS - 1}）`);
+  console.log(`\n${name}（${RUNS} 局 × ${YEARS} 年，种子${START_SEED}–${START_SEED + RUNS - 1}${SEASONS ? '，含季节事件' : ''}）`);
   console.log(`  破产率        ${(failed.length / RUNS * 100).toFixed(1)}%`);
   if (failed.length) console.log(`  破产年份中位数 第 ${fmt(quantile(failed.map(r => r.day / (12 * defaultConfig.time.daysPerMonth)), .5))} 年`);
   console.log(`  净资产（亿）  ${distribution(runs.map(r => r.equity / 10000))}`);

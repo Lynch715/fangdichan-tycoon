@@ -7,6 +7,7 @@ import {borrowCapacity,industryTight} from './finance.ts';
 import {createReports} from './reporting.ts';
 import {landBanUntil,presaleBlocked,rectificationError} from './compliance.ts';
 import {siteDurationFactor,siteCostFactor} from './regions.ts';
+import {initSeasons} from './seasons.ts';
 import type {Command,GameState,LoggedCommand,ContractorId,Pace} from './types.ts';
 
 export type Strategy=(state:GameState,config:Config)=>Command[];
@@ -112,8 +113,10 @@ export const conservative:Strategy=strategy('conservative');
 /** 激进：较高溢价和杠杆、低首付扩张，可用明股实债；压力期降速、合作和转让。 */
 export const aggressive:Strategy=strategy('aggressive');
 
-export function runGame(seed:number,strategy:Strategy,years:number,config:Config=defaultConfig){
+/** seasons=true 时按真实开局开启季节事件（批量平衡 SEASONS=1）。 */
+export function runGame(seed:number,strategy:Strategy,years:number,config:Config=defaultConfig,seasons=false){
  const state=newGame(seed,config),log:LoggedCommand[]=[];
+ if(seasons)initSeasons(state,config);
  const endDay=years*12*config.time.daysPerMonth;
  while(state.day<endDay&&state.status!=='bankrupt'){
   for(const command of strategy(state,state.rules??config))if(applyCommand(state,command,config).ok)log.push({day:state.day,command});

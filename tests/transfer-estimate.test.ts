@@ -12,6 +12,8 @@ describe('B14 交付后转让估算',()=>{
   const c=structuredClone(defaultConfig);c.start.cash=1e7;
   Object.assign(c.risk,{materialChance:0,accidentChance:0,demandChance:0,inspectionBase:0,inspectionAttentionFactor:0});
   c.sales.baseMonthlyAbsorption=0;c.compliance.enabled=false;
+  // 固定情景不含季节/政策事件：清空事件、季节系数取中性。
+  c.seasons.events=[];for(const x of c.seasons.list){x.sales=1;x.build=1;}
   const s=newGame(7,c);applyCommand(s,{type:'startGame',options:{mode:'challenge',difficulty:'standard',challenge:'delivery'}},c);
   const estimates=s.projects.map(p=>({id:p.id,sold:p.soldArea,spent:p.buildSpent,e:estimateTransfer(s.rules!,s,p).afterDelivery!}));
   const checked=new Set<string>();

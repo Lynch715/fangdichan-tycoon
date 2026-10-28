@@ -9,6 +9,8 @@ import{accelerateDebts}from'./bonds.ts';
 import{generateAuctionTerms,saleableArea,bidError}from'./auctions.ts';
 import{backfillComparisons}from'./rankings.ts';
 import{acquireProject}from'./acquisition.ts';
+import{initSeasons,rollSeason,seasonSales,seasonBuild,seasonCost}from'./seasons.ts';
+import{initStaff,staffCommand,staffMonthEnd,pmSpeedFactor,pmQualityGain,staffSalesFactor}from'./staff.ts';
 // 模拟内核：只接收指令、按游戏日推进、月末结算。不碰 DOM，不读系统时间，不用 Math.random。
 import { featureCommand, activeProject, inspect, mapUnlocked, priceRestricted, projectEvent,salesEligible } from './features.ts';
 import { defaultConfig, district, type Config } from './config.ts';
@@ -87,8 +89,8 @@ export function newGame(seed: number, config: Config = defaultConfig,opponentId?
   if(opening&&!opponentId)initSessionOpening(state,config,opening);
   initDistrictMarkets(state,config);initHousingPolicies(state,config);
   if(!opponentId)initCompliance(state,config);
-  // 新手保底地块只给从开局设置进入的生涯模式；裸 newGame（测试、批量平衡）不受影响。
-  if(!opponentId){spawnAuctions(state, config,opening?.mode==='career');state.rivals=createRivals(state,config);}
+  // 新手保底地块只给从开局设置进入的生涯模式；季节事件只给从开局设置进入的对局；裸 newGame（测试、批量平衡）不受影响。
+  if(!opponentId){spawnAuctions(state, config,opening?.mode==='career');state.rivals=createRivals(state,config);initStaff(state,config);if(opening)initSeasons(state,config);}
   return state;
 }
 
@@ -137,6 +139,7 @@ function performCommand(state: GameState, cmd: Command|UpgradeRules, config: Con
   if (cmd.type === 'setPace' && !Object.hasOwn(config.construction.paces, cmd.pace)) return {ok:false,error:'施工节奏无效'};
   if(cmd.type==='acquireProject')return acquireProject(state,cmd,config);
   const capitalResult=capitalCommand(state,cmd,config);if(capitalResult)return capitalResult;
+  const staffResult=staffCommand(state,cmd,config);if(staffResult)return staffResult;
   const extra = featureCommand(state,cmd,config);
   if (extra) return extra;
   switch (cmd.type) {
@@ -461,8 +464,8 @@ function settleProject(state: GameState, config: Config, p: Project) {
   // 施工
   if (p.stage === 'construction' && state.day >= p.stoppedUntil) {
     const pace = c.paces[p.pace];
-    const inc = Math.min(pace.speed / (c.months*c.contractors[p.contractor??'standard'].durationFactor*siteDurationFactor(p.attributes)*productTerms(config,p.product).durationFactor), 1 - p.progress);
-    const spend = p.buildCost * inc * pace.costFactor * event.cost;
+    const inc = Math.min(pace.speed*seasonBuild(state)*pmSpeedFactor(state,config,p) / (c.months*c.contractors[p.contractor??'standard'].durationFactor*siteDurationFactor(p.attributes)*productTerms(config,p.product).durationFactor), 1 - p.progress);
+    const spend = p.buildCost * inc * pace.costFactor * event.cost*seasonCost(state);
     const paper = state.rating < 5 && state.day >= state.financeFrozenUntil ? spend * owned * p.paperRatio*(industryTight(state)?config.rivals.default.capacityFactor:1) : 0;
     const needed=spend*owned-paper;
     if(state.cash>=needed){
@@ -471,6 +474,7 @@ function settleProject(state: GameState, config: Config, p: Project) {
       ledger(state,'paperIssue',0,p.id,paper);
       if(paper > 0) state.debts.push({id:newId(state,'D'),channel:'paper',principal:paper,rate:config.finance.channels.paper.rate,startDay:state.day,maturityDay:state.day+config.finance.channels.paper.termMonths*dpm,projectId:p.id});
       p.buildSpent+=spend;p.progress+=inc;
+      const gain=pmQualityGain(state,config,p);if(gain>0&&p.quality!==null)p.quality=Math.min(100,Math.round((p.quality+gain)*10)/10);
       if(p.fundingStoppedMonths>0)addNews(state,'company',`${p.name} 工程款已补足，恢复施工`);
       p.fundingStoppedMonths=0;p.fundingGap=0;
     }else{
@@ -510,7 +514,7 @@ function settleProject(state: GameState, config: Config, p: Project) {
     const price = priceRestricted(state,config) ? Math.min(requestedPrice,p.filedPrice!) : requestedPrice;
     const clearance = p.stage === 'delivered' && p.deliveredDay !== null && state.day - p.deliveredDay >= c.clearanceMonthsAfterDelivery * dpm;
     const market = marketPrice(config,state,p.districtId,p.attributes,p.product);
-    const sold = clearance ? remaining : Math.min(remaining, remaining * salesRate(config, state, price / market,p.marketingRate,p.districtId,p.product) * event.demand);
+    const sold = clearance ? remaining : Math.min(remaining, remaining * salesRate(config, state, price / market,p.marketingRate,p.districtId,p.product) * event.demand*seasonSales(state)*staffSalesFactor(state,config,p));
     // 尾货清盘是批量处置：按“市场价与挂牌价取低”再打折，临时提价不能抬高整批成交价（审计 G01）
     const unitPrice = clearance ? Math.min(price, market) * (1 - c.clearanceDiscount) : price;
     const revenue = sold * unitPrice;
@@ -556,6 +560,7 @@ export function monthEnd(state: GameState, config: Config,companyOnly=false) {
   const due = state.debts.filter((d) => d.maturityDay <= state.day);
   for (const d of due){state.cash-=d.principal;ledger(state,'repay',-d.principal,d.projectId,d.principal,undefined,d.projectId?-d.principal:0,d.channel);}
   state.debts = state.debts.filter((d) => d.maturityDay > state.day);
+  if(!companyOnly)staffMonthEnd(state,config,month);
 
   // 监管：提前放风、生效
   const startMonth = (config.regulation.startYear - 1) * 12;
@@ -624,7 +629,7 @@ export function monthEnd(state: GameState, config: Config,companyOnly=false) {
     if(company.status!=='bankrupt')monthEnd(company,config,true);
     company.pauses=[];
   }
-  if(!companyOnly){updateIndustryDefaults(state,config);closeDistrictMarkets(state,config,salesStart);reviewHousingPolicies(state,config);}
+  if(!companyOnly){updateIndustryDefaults(state,config);closeDistrictMarkets(state,config,salesStart);reviewHousingPolicies(state,config);if(state.seasons&&state.status!=='bankrupt')rollSeason(state,config,month);}
   closeReportMonth(state,config);
 }
 

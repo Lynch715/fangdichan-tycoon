@@ -14,10 +14,10 @@ function fixture(contractor?:ContractorId,seed=7,c=quiet()){
  if(contractor)issue({type:'startProject',projectId:p.id,contractor});return {s,p,c,issue,log,baseCost};
 }
 describe('B3 开工总包与交付质量',()=>{
- it('实际游戏循环在拿地后自动暂停等待选择，开工指令可导出重放',()=>{
+ it('结束回合推进一整月，拿地后作为本回合提醒等待选择总包，开工指令可导出重放',()=>{
   vi.stubGlobal('localStorage',undefined);vi.stubGlobal('indexedDB',undefined);
   const g=new Game();expect(g.importSave(JSON.stringify({version:4,seed:7,day:0,log:[{day:0,command:{type:'bid',parcelId:'L1',amount:31146}}],revision:0})).ok).toBe(true);
-  g.setSpeed(4);for(let i=0;i<100;i++)g.frame(250);expect(g.state.day).toBe(30);expect(g.speed).toBe(0);expect(g.lastPause).toBe('startProject');expect(g.state.projects[0].stage).toBe('land');
+  expect(g.endTurn().ok).toBe(true);expect(g.state.day).toBe(30);expect(g.turn).toBe(2);expect(g.lastTurn?.alerts).toContain('startProject');expect(g.state.projects[0].stage).toBe('land');
   expect(g.issue({type:'startProject',projectId:g.state.projects[0].id,contractor:'brand'}).ok).toBe(true);const again=new Game();expect(again.importSave(g.exportSave()).ok).toBe(true);expect(again.state).toEqual({...g.state,pauses:[]});expect(again.state.projects[0].contractor).toBe('brand');
  });
  it('拿地后待开工，先展示围挡；未选择时不计工程支出和进度',()=>{

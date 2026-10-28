@@ -1,6 +1,8 @@
 // 财务计算：样例项目测算、三张表简化指标、评级、可借额度。
 import type { Config } from './config.ts';
 import type { ChannelId, GameState, Metrics, Project } from './types.ts';
+import { seasonRate } from './seasons.ts';
+import { cfoRateCut } from './staff.ts';
 
 export interface StaticProjectInput {
   siteArea: number;
@@ -102,8 +104,11 @@ export function computeRating(config: Config, state: GameState, m: Metrics): num
 }
 
 export function channelRate(config: Config, state: GameState, channel: ChannelId): number {
-  if(channel==='bond')return Math.max(config.finance.bond.minRate,Math.min(config.finance.bond.maxRate,config.finance.bond.rates[state.rating]+(industryTight(state)?config.rivals.default.rateSpread:0)));
-  return config.finance.channels[channel].rate + config.finance.ratingSpread[state.rating]+(industryTight(state)?config.rivals.default.rateSpread:0);
+  // 季节/政策事件影响当月新增融资利率；财务总监按能力压降（商票零息不受影响）。
+  const adjust=seasonRate(state)-cfoRateCut(state,config);
+  if(channel==='bond')return Math.max(config.finance.bond.minRate,Math.min(config.finance.bond.maxRate,config.finance.bond.rates[state.rating]+(industryTight(state)?config.rivals.default.rateSpread:0)+adjust));
+  const r=config.finance.channels[channel].rate + config.finance.ratingSpread[state.rating]+(industryTight(state)?config.rivals.default.rateSpread:0);
+  return adjust===0?r:Math.max(Math.min(r,0.01),r+adjust);
 }
 
 /** 当前某渠道最多还能借多少（含监管增速上限）。 */

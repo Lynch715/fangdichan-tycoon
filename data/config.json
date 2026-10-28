@@ -392,6 +392,67 @@
   "maps": {
     "suburbUnlockYear": 3
   },
+  "turns": {
+    "briefingDefault": true
+  },
+  "seasons": {
+    "list": [
+      { "id": "spring", "name": "春", "months": [3, 4, 5], "sales": 0.95, "build": 1.08 },
+      { "id": "summer", "name": "夏", "months": [6, 7, 8], "sales": 0.9, "build": 1.0 },
+      { "id": "autumn", "name": "秋", "months": [9, 10, 11], "sales": 1.0, "build": 1.1 },
+      { "id": "winter", "name": "冬", "months": [12, 1, 2], "sales": 0.95, "build": 1.0 }
+    ],
+    "events": [
+      { "id": "springFair", "season": "spring", "kind": "season", "name": "春季房交会", "chance": 0.3, "sales": 1.2, "build": 1, "cost": 1, "rate": 0, "attention": 0, "text": "春季房交会开幕，看房人潮回暖" },
+      { "id": "twoSessions", "season": "spring", "kind": "policy", "name": "两会定调稳楼市", "chance": 0.2, "sales": 1.1, "build": 1, "cost": 1, "rate": -0.005, "attention": 0, "text": "两会释放稳楼市信号，新增融资利率下行" },
+      { "id": "plumRain", "season": "spring", "kind": "season", "name": "春雨连绵", "chance": 0.15, "sales": 1, "build": 0.85, "cost": 1, "rate": 0, "attention": 0, "text": "连续阴雨，室外作业受阻" },
+      { "id": "flood", "season": "summer", "kind": "season", "name": "主汛期暴雨", "chance": 0.3, "sales": 0.95, "build": 0.85, "cost": 1.03, "rate": 0, "attention": 0, "text": "主汛期暴雨，基坑排水、工期延误" },
+      { "id": "heatwave", "season": "summer", "kind": "season", "name": "高温限电", "chance": 0.25, "sales": 1, "build": 0.8, "cost": 1, "rate": 0, "attention": 0, "text": "持续高温，工地错峰限电停工" },
+      { "id": "graduates", "season": "summer", "kind": "season", "name": "毕业季安家潮", "chance": 0.2, "sales": 1.12, "build": 1, "cost": 1, "rate": 0, "attention": 0, "text": "毕业季人才落户，刚需入市" },
+      { "id": "goldenAutumn", "season": "autumn", "kind": "season", "name": "金九银十", "chance": 0.4, "sales": 1.25, "build": 1, "cost": 1, "rate": 0, "attention": 0, "text": "金九银十促销季，开发商集中推盘" },
+      { "id": "nationalDay", "season": "autumn", "kind": "season", "name": "国庆看房潮", "chance": 0.25, "sales": 1.15, "build": 0.95, "cost": 1, "rate": 0, "attention": 0, "text": "国庆黄金周看房潮，工地放假几天" },
+      { "id": "quotaTight", "season": "autumn", "kind": "policy", "name": "季末信贷额度紧张", "chance": 0.15, "sales": 0.95, "build": 1, "cost": 1, "rate": 0.01, "attention": 0, "text": "银行季末信贷额度紧张，新增融资利率上行" },
+      { "id": "yearEndPush", "season": "winter", "kind": "season", "name": "年末冲业绩", "chance": 0.3, "sales": 1.15, "build": 1, "cost": 1, "rate": 0, "attention": 0, "text": "年底冲业绩，各盘加推特价房" },
+      { "id": "springFestival", "season": "winter", "kind": "season", "name": "春节返乡", "chance": 0.3, "sales": 0.9, "build": 0.8, "cost": 1, "rate": 0, "attention": 0, "text": "春节前后工人返乡，工地半停" },
+      { "id": "yearEndCredit", "season": "winter", "kind": "policy", "name": "年底资金面收紧", "chance": 0.15, "sales": 1, "build": 1, "cost": 1, "rate": 0.01, "attention": 3, "text": "年底资金面收紧，监管窗口指导加强" }
+    ]
+  },
+  "staff": {
+    "roles": {
+      "engineering": { "name": "工程" },
+      "sales": { "name": "营销" },
+      "finance": { "name": "财务" },
+      "relations": { "name": "公关" }
+    },
+    "posts": {
+      "pm": { "name": "项目经理", "skill": "engineering", "scope": "project" },
+      "salesLead": { "name": "销售经理", "skill": "sales", "scope": "project" },
+      "cfo": { "name": "财务总监", "skill": "finance", "scope": "hq" },
+      "pr": { "name": "公关总监", "skill": "relations", "scope": "hq" }
+    },
+    "effects": {
+      "pmSpeed": 0.25,
+      "pmQualityPerMonth": 0.6,
+      "pmAccidentCut": 0.5,
+      "salesBoost": 0.3,
+      "cfoRateCut": 0.012,
+      "prAttentionPerMonth": 2
+    },
+    "poolSize": 4,
+    "refreshMonths": 3,
+    "mainSkillRange": [40, 85],
+    "otherSkillRange": [10, 45],
+    "starRate": 0.15,
+    "starSkillRange": [80, 95],
+    "salaryBase": 5,
+    "salaryPerPoint": 0.25,
+    "signingMonths": 2,
+    "severanceMonths": 3,
+    "growthChance": 0.5,
+    "skillCap": 100,
+    "surnames": ["张", "王", "李", "刘", "陈", "杨", "黄", "周", "吴", "徐", "孙", "马", "胡", "朱", "郭", "何", "罗", "高", "林", "谭", "冉", "邓", "唐", "蒋"],
+    "givenNames": ["伟", "敏", "静", "磊", "洋", "勇", "艳", "杰", "娟", "涛", "明", "超", "晓燕", "丽", "强", "军", "平", "刚", "建国", "芳", "思远", "雨桐", "子豪", "梓涵", "浩然", "欣怡", "志强", "海峰"]
+  },
   "products": {
     "tower": { "name": "高层住宅", "costFactor": 1, "durationFactor": 1, "priceFactor": 1, "absorptionFactor": 1, "policySensitivity": 1, "note": "基准：去化快、单价适中，受限购与按揭政策影响完整" },
     "garden": { "name": "洋房", "costFactor": 1.15, "durationFactor": 0.85, "priceFactor": 1.12, "absorptionFactor": 0.9, "policySensitivity": 1, "note": "改善型：单价更高、低层工期短，建安更贵、去化略慢" },

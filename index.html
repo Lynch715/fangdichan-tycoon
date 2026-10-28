@@ -15,11 +15,9 @@
       <div class="brand"><span class="logo">房地产大亨</span><span class="muted small company">山城置业</span></div>
       <div class="clock">
         <span id="date"></span>
-        <div class="speed" role="group" aria-label="游戏速度">
-          <button data-speed="0" aria-label="暂停"><svg width="12" height="12" viewBox="0 0 14 14" aria-hidden="true"><rect x="2" y="1" width="3.5" height="12" rx="1" fill="currentColor"/><rect x="8.5" y="1" width="3.5" height="12" rx="1" fill="currentColor"/></svg></button>
-          <button data-speed="1">1×</button>
-          <button data-speed="2">2×</button>
-          <button data-speed="4">4×</button>
+        <div class="turn-ctl" role="group" aria-label="回合">
+          <button class="turn-label" data-act="briefing" id="turn-label" aria-label="查看回合简报">第 1 回合</button>
+          <button class="end-turn" data-act="end-turn" id="end-turn">结束回合<svg width="12" height="12" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 2l6 5-6 5zM10 2h2v10h-2z" fill="currentColor"/></svg></button>
         </div>
       </div>
       <div class="top-right">
@@ -33,6 +31,7 @@
 
     <aside class="panel left" aria-label="财务">
       <div class="sheet-head"><span class="sheet-grip" aria-hidden="true"></span><b class="sheet-title">财务</b><button class="sheet-close" data-act="close-sheet" aria-label="收起面板">收起</button></div>
+      <div id="turn"></div>
       <div id="session"></div>
       <div id="milestones"></div>
       <div id="finance"></div>
@@ -40,7 +39,7 @@
       <span id="offline-status" class="small muted" role="status">离线缓存准备中</span>
       <button class="ghost" data-act="saves">存档与读档</button>
       <button class="ghost" data-act="reports">经营报表与复盘</button>
-      <button class="ghost" data-act="toggle-auction-pause" id="auction-pause-toggle">新地挂牌时自动暂停：开</button>
+      <button class="ghost" data-act="toggle-briefing" id="briefing-toggle">每回合结束弹出简报：开</button>
       <input id="import-save" type="file" accept="application/json,.json" hidden>
       <button class="ghost mobile-only" data-act="restart">重新开始</button>
     </aside>
@@ -93,6 +92,8 @@
   <dialog id="reports-dialog" aria-labelledby="report-title"></dialog>
   <dialog id="saves-dialog" class="acquisition-dialog saves-dialog" aria-labelledby="saves-title"></dialog>
   <dialog id="achievements-dialog" class="acquisition-dialog saves-dialog achievements-dialog" aria-labelledby="achievements-title"></dialog>
+  <dialog id="turn-dialog" class="acquisition-dialog saves-dialog turn-dialog" aria-labelledby="turn-title"></dialog>
+  <dialog id="staff-dialog" class="acquisition-dialog saves-dialog staff-dialog" aria-labelledby="staff-title"></dialog>
   <dialog id="career-dialog" class="acquisition-dialog saves-dialog achievements-dialog" aria-labelledby="career-title"></dialog>
   <script type="module" src="/src/main.ts"></script>
 </body>

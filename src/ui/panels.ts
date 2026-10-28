@@ -16,6 +16,8 @@ import {pickedProduct,productPickerMarkup} from './productChoice.ts';
 import {productTerms} from '../sim/products.ts';
 import {bidAffordability} from './affordability.ts';
 import {outlookMarkup} from './outlook.ts';
+import {projectStaffMarkup} from './staff.ts';
+import {seasonSales,staffSalesFactor} from '../sim/index.ts';
 // 界面面板：根据模拟状态生成 HTML。按钮通过 data-act 属性交给 main.ts 统一处理。
 import { activeProject, priceRestricted, transferQuote, borrowCapacity, calendar, computeMetrics, district, marketPrice,salesRate,salesEligible,industryTight,channelRate, type Config, type GameState, type Project,type Parcel } from '../sim/index.ts';
 import { esc, pct, ratio, yi } from './format.ts';
@@ -32,7 +34,8 @@ const STAGE: Record<Project['stage'], [string, string]> = {
 
 export function headerDate(config: Config, s: GameState): string {
   const c = calendar(config, s.day);
-  return `第 ${c.year} 年 · ${c.month} 月 ${c.day} 日`;
+  // 回合制下每回合都从月初开始，只显示年月；旧档停在月中时保留日。
+  return c.day === 1 ? `第 ${c.year} 年 · ${c.month} 月` : `第 ${c.year} 年 · ${c.month} 月 ${c.day} 日`;
 }
 
 export function statusLine(config: Config, s: GameState) {
@@ -171,6 +174,7 @@ export function projectsPanel(config: Config, s: GameState, selectedId: string |
         <div class="progress"><div style="width:${pct(p.stage === 'construction' ? p.progress : sold)}"></div></div>
         <span class="muted small">${detail}</span>${p.stage!=='closed'?outlookMarkup(config,s,p):''}${projectAmenityMarkup(p)}${siteAttributesMarkup(p.attributes)}${housingPolicyMarkup(config,s,p.districtId)}${presaleMarkup(s,config,p)}
         <span class="small ${p.quality!==null&&p.quality<config.quality.complaintThreshold?'danger-text':'muted'}">${config.construction.contractors[p.contractor??'standard'].name} · 质量 ${p.quality??'—'} 分 · 公司品牌 ${s.brand} 分</span>
+        ${projectStaffMarkup(config,s,p)}
         ${p.deliveredDay!==null&&p.quality!==null&&p.quality<config.quality.complaintThreshold?'<span class="small danger-text">交付质量未达标，已引发业主维权。</span>':''}
         ${p.fundingStoppedMonths>0?`<span class="danger-text small">停工 ${p.fundingStoppedMonths}/${config.construction.fundingStopMonthsToTakeover} 个月 · ${p.fundingGap>0?`上次月末工程款缺口 ${Math.ceil(p.fundingGap)} 万元；补足工程款后可在月末复工。`:'历史停工，资金补入后将在下次月末核验复工。'}</span>`:''}
         ${p.stage === 'construction' ? `<div class="segs">${paces}</div>` : ''}
@@ -180,7 +184,7 @@ export function projectsPanel(config: Config, s: GameState, selectedId: string |
           <button class="ghost" data-act="appearance" data-id="${p.id}">应用外观</button>
         </div></details>
         ${canSell ? `<div class="row between small"><span class="muted">售价 ${(price * 10000).toFixed(0)} 元/㎡（市场价 ${pct(price/marketPrice(config,s,p.districtId,p.attributes,p.product))}）</span><span class="row"><button class="mini" data-act="price" data-id="${p.id}" data-delta="-0.05">降价</button><button class="mini" data-act="price" data-id="${p.id}" data-delta="0.05">提价</button></span></div>` : ''}
-        ${canSell?`<div class="stack"><label class="small">营销投入（销售回款比例，%）<div class="row"><input id="marketing-${p.id}" aria-label="营销投入比例（%）" type="number" min="0" max="${config.marketing.maxRate*100}" step="0.5" value="${p.marketingRate*100}"><button data-act="marketing" data-id="${p.id}">设置</button></div></label><span class="small muted">当前 ${pct(p.marketingRate,1)} · ${presaleBlocked(p)?'预售暂停；恢复后预计月去化':'预计月去化'} ${pct(salesRate(config,s,price/marketPrice(config,s,p.districtId,p.attributes,p.product),p.marketingRate,p.districtId,p.product),1)}。品牌、营销和片区购房政策共同影响去化；仅对实际回款计营销费，未计配套利好。</span></div>`:''}
+        ${canSell?`<div class="stack"><label class="small">营销投入（销售回款比例，%）<div class="row"><input id="marketing-${p.id}" aria-label="营销投入比例（%）" type="number" min="0" max="${config.marketing.maxRate*100}" step="0.5" value="${p.marketingRate*100}"><button data-act="marketing" data-id="${p.id}">设置</button></div></label><span class="small muted">当前 ${pct(p.marketingRate,1)} · ${presaleBlocked(p)?'预售暂停；恢复后预计月去化':'预计月去化'} ${pct(Math.min(1,salesRate(config,s,price/marketPrice(config,s,p.districtId,p.attributes,p.product),p.marketingRate,p.districtId,p.product)*seasonSales(s)*staffSalesFactor(s,config,p)),1)}。品牌、营销、片区购房政策、本回合季节事件和销售经理共同影响去化；仅对实际回款计营销费，未计配套利好。</span></div>`:''}
         <details class="project-tools" data-key="${p.id}"><summary>项目融资、备案与自救</summary><div class="stack">
           <span class="small muted">${p.partnerShare > 0 ? `合作方权益 ${pct(p.partnerShare)}，成本与回款按比例分摊` : '独资项目'} · 商票支付比例 ${pct(p.paperRatio*(industryTight(s)?config.rivals.default.capacityFactor:1))}</span>
           ${p.stage === 'construction' ? `<button class="ghost" data-act="paper" data-id="${p.id}">${p.paperRatio > 0 ? '关闭商票支付' : `开启商票（工程款 ${pct(config.finance.channels.paper.maxOfBuildCost*(industryTight(s)?config.rivals.default.capacityFactor:1))}，${config.finance.channels.paper.termMonths} 个月兑付）`}</button>` : ''}

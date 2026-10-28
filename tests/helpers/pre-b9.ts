@@ -16,6 +16,8 @@ export function preB9Config<T>(value:T):T {
  if(copy.marketing)delete copy.marketing.brandTiers;
  // 审计 G05：产品线经济系数（缺省按高层基准，机器人不选择）。
  delete (copy as {products?:unknown}).products;
+ // 2026-10-28 回合制：季节/政策事件与员工体系（新功能参数）。
+ delete (copy as {turns?:unknown}).turns;delete (copy as {seasons?:unknown}).seasons;delete (copy as {staff?:unknown}).staff;
  return copy;
 }
 export function preB9State<T>(value:T):T {
