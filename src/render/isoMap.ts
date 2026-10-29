@@ -75,6 +75,9 @@ export class IsoMap {
   private terrain = new Container();
   private textures: Record<string,Texture> = {};
   private terrainSignature = '';
+  /** 图集到达前不画地图：否则会先画出无贴图的程序地形，且该帧不会被替换。 */
+  private ready = false;
+  private pending: [GameState, string | null, string] | null = null;
   /** 当前地图城市化程度 0–1（供界面显示）。 */
   urbanization = 0;
   private occupied = new Set<string>();
@@ -96,6 +99,9 @@ export class IsoMap {
   }
 
   async init(loadTextures:()=>Promise<Record<string,Texture>>=loadArt) {
+    // 图集下载与渲染器初始化并行；手机首次打开约 3MB，期间显示加载提示而不是半成品地图。
+    const art=loadTextures().catch(()=>({} as Record<string,Texture>));
+    const loading=this.showLoading();
     await this.app.init({
       resizeTo: this.host,
       background: '#0F1419',
@@ -103,14 +109,25 @@ export class IsoMap {
       resolution: Math.min(window.devicePixelRatio || 1, 2),
       autoDensity: true,
     });
-    this.host.appendChild(this.app.canvas);
+    this.host.insertBefore(this.app.canvas,loading);
     this.app.stage.addChild(this.world);
-    this.textures=await loadTextures();
-    this.terrain = this.drawTerrain();
+    // 三个图层在图集到达前就挂好：期间若有读档/开局触发 update，也不会只剩地形。
     this.world.addChild(this.terrain, this.dynamic, this.labels);
     this.fit();
     this.bindInput();
     window.addEventListener('resize', () => requestAnimationFrame(() => this.fit()));
+    this.textures=await art;
+    this.ready=true;loading.remove();
+    // 图集到达前的 update 只记下参数；现在用贴图补画最新一帧（start() 随后的 render 也会再画）。
+    this.terrainSignature='';
+    if(this.pending)this.update(...this.pending);
+  }
+
+  private showLoading():HTMLElement {
+    const el=document.createElement('div');
+    el.className='map-loading';el.setAttribute('role','status');el.textContent='城市素材加载中…';
+    this.host.appendChild(el);
+    return el;
   }
 
   fit() {
@@ -159,6 +176,12 @@ export class IsoMap {
   }
 
   update(state: GameState, selectedId: string | null, mapId = 'city') {
+    this.pending=[state,selectedId,mapId];
+    if(!this.ready){
+      const years=state.day/(defaultConfig.time.daysPerMonth*12);
+      this.urbanization=urbanization(years,builtArea(allMapProjects(state),id=>district(defaultConfig,id).mapId===mapId));
+      return;
+    }
     const owners=new Map(state.rivals.flatMap(r=>r.company.projects.map(p=>[p.id,r.name] as const)));
     const auctions=state.auctions.filter(a=>district(defaultConfig,a.districtId).mapId===mapId);
     // 旧清盘楼仅在地块未再开发时保留；避免透明施工图后面露出历史楼体。
