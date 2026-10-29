@@ -431,10 +431,10 @@
       "pr": { "name": "公关总监", "skill": "relations", "scope": "hq" }
     },
     "effects": {
-      "pmSpeed": 0.25,
+      "pmSpeed": 0.2,
       "pmQualityPerMonth": 0.6,
       "pmAccidentCut": 0.5,
-      "salesBoost": 0.3,
+      "salesBoost": 0.1,
       "cfoRateCut": 0.012,
       "prAttentionPerMonth": 2
     },
@@ -444,8 +444,8 @@
     "otherSkillRange": [10, 45],
     "starRate": 0.15,
     "starSkillRange": [80, 95],
-    "salaryBase": 5,
-    "salaryPerPoint": 0.25,
+    "salaryBase": 2.5,
+    "salaryPerPoint": 0.125,
     "signingMonths": 2,
     "severanceMonths": 3,
     "growthChance": 0.5,
@@ -869,6 +869,8 @@
     }
   },
   "bots": {
+    "staffMinSkill": 50,
+    "staffReserveMonths": 6,
     "minimumLoan": 1000,
     "liquidityMonths": 3,
     "contractorReserveMonths": 6,

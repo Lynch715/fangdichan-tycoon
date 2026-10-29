@@ -219,7 +219,7 @@ MIT
 
 ## D3 批量风险统计
 
-`npm run balance`默认两种策略各200局×30年，打印净资产、收益、破产触发支出分布和下行期最大回撤。可设`RUNS`、`YEARS`、`START_SEED`（正整数）；`SEASONS=1` 按真实开局开启季节/政策事件（默认关闭，与裸开局一致）；例如：
+`npm run balance`默认两种策略各200局×30年，打印净资产、收益、破产触发支出分布和下行期最大回撤。可设`RUNS`、`YEARS`、`START_SEED`（正整数）；`SEASONS=1` 按真实开局开启季节/政策事件（默认关闭，与裸开局一致）；`STAFF=1` 让两种机器人按空缺招聘并派驻员工（默认不雇人），并打印员工人数、月薪与累计薪酬；例如：
 
 ```bash
 RUNS=200 YEARS=30 START_SEED=201 OUTPUT=tests/acceptance/my-balance.json npm run balance
