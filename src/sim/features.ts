@@ -5,6 +5,7 @@ import type { Config } from './config.ts';
 import type { Command, CommandResult, GameState, Project } from './types.ts';
 import{projectInventory}from'./finance.ts';
 import { nextRandom } from './rng.ts';
+import{pmAccidentFactor}from'./staff.ts';
 import{ledger,allocateFinance}from'./reporting.ts';
 
 export const activeProject = (p: Project) => p.stage !== 'closed' && p.stage !== 'sold'&&p.stage!=='abandoned';
@@ -116,7 +117,7 @@ export function inspect(s: GameState, c: Config) {
 export function projectEvent(s: GameState,p: Project,c: Config): {cost:number; demand:number} {
   let cost = 1, demand = 1;
   if(p.stage === 'construction' && nextRandom(s) < c.risk.materialChance) {cost = c.risk.materialCostFactor; news(s,`${p.name} 遇建材涨价，本月工程支出上浮 ${Math.round((cost-1)*100)}%`,true);}
-  if(p.stage === 'construction' && nextRandom(s) < c.risk.accidentChance * c.construction.contractors[p.contractor??'standard'].accidentFactor * (p.pace === 'fast' ? c.risk.fastAccidentMultiplier : 1)) {
+  if(p.stage === 'construction' && nextRandom(s) < c.risk.accidentChance * c.construction.contractors[p.contractor??'standard'].accidentFactor * pmAccidentFactor(s,c,p) * (p.pace === 'fast' ? c.risk.fastAccidentMultiplier : 1)) {
     const loss = p.buildCost * c.risk.accidentCostOfBuild * (1-p.partnerShare);
     s.cash -= loss; p.stoppedUntil = s.day + c.risk.accidentStopMonths * c.time.daysPerMonth;
     ledger(s,'accident',-loss,p.id);s.reports.decisions.push({day:s.day,kind:'risk',text:`${p.name} 安全事故，损失 ${(loss/10000).toFixed(2)}亿`});

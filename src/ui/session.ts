@@ -81,6 +81,6 @@ export class SessionController {
    else dialog.querySelector('[data-setup-error]')!.textContent=result.error??'开局失败，原进度已保留';
   });
  }
- open(){this.replace=!this.game.needsSetup;this.game.setSpeed(0);this.paint();if(!this.dialog.open)this.dialog.showModal();}
+ open(){this.replace=!this.game.needsSetup;this.paint();if(!this.dialog.open)this.dialog.showModal();}
  private paint(){this.dialog.innerHTML=setupMarkup(this.options,this.replace,this.companyName);}
 }

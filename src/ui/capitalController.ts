@@ -10,7 +10,7 @@ export class CapitalController {
  private quote(cmd:CapitalCommand){return cmd.type==='strategicInvestment'?strategicQuote(this.game.state,this.game.config,cmd.share):restructuringQuote(this.game.state,this.game.config);}
  open(command:CapitalCommand){
   if(command.type==='strategicInvestment')this.selectedShare=command.share;
-  this.game.setSpeed(0);this.command=command;const s=this.game.state,c=this.game.config,q=this.quote(command);this.signature=JSON.stringify(q);
+  this.command=command;const s=this.game.state,c=this.game.config,q=this.quote(command);this.signature=JSON.stringify(q);
   const date=(day:number)=>{const x=calendar(c,day);return`${x.year}年${x.month}月${x.day}日`;};
   const strategic=command.type==='strategicInvestment';let details='';
   if('amount'in q)details=`<p>公司本次到账 <b>${yi(q.amount)}</b>，新投资人持有增发后 ${pct(q.share)} 股权。</p><p class="small muted">投前估值 ${yi(q.preMoney)}；本金不需归还、不计利息，资金进入公司账户。低估值增发会降低原股东的权益价值。</p>`;

@@ -12,7 +12,8 @@ describe('D2 调参与v16历史边界',()=>{
   expect(differences(beforeBalance,defaultConfig).sort()).toEqual(['rescue.saleBookDiscount','bots.aggressive.landFundingRate','bots.aggressive.buildReserveRate','bots.aggressive.hiddenUsage','bots.aggressive.maxActive',
    'land.starterParcels','land.starterMaxCashShare','land.scale',
    'sales.premiumElasticity','marketing.spendSensitivity',
-   'quality.excellentThreshold','quality.excellentBrandGain','marketing.brandTiers','products'].sort());
+   'quality.excellentThreshold','quality.excellentBrandGain','marketing.brandTiers','products',
+   'turns','seasons','staff','bots.staffMinSkill','bots.staffReserveMonths'].sort());
   expect(defaultConfig.rescue.saleBookDiscount).toBe(.6);
  });
  it('v15同日转让沿用新报价，历史和新增指令分界后完整重放一致',()=>{

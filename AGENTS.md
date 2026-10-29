@@ -4,7 +4,7 @@
 
 ## 这是什么
 
-一款 HTML5 房地产开发模拟经营游戏（重庆背景，等距视角，可暂停实时制）。设计规范在 Claude 文档《房地产大亨》游戏设计规范，本仓库实现其 MVP。
+一款 HTML5 房地产开发模拟经营游戏（重庆背景，等距视角，回合制：一回合 = 一个游戏月）。设计规范在 Claude 文档《房地产大亨》游戏设计规范，本仓库实现其 MVP。
 
 ## 技术栈
 
@@ -21,7 +21,7 @@ src/ui/      DOM 面板，只读 GameState，通过 Command 改状态
 src/history/ 观察冻结内核重放，回溯旧版统计，不改变旧经济结果
 src/estimates/ 只读固定情景估算，不推进游戏，不改变状态或随机数
 src/analysis/ 只读批量报表统计，不参与模拟或存档
-src/game.ts  游戏循环：真实时间 → 游戏日，调速、自动暂停、存档
+src/game.ts  回合循环：endTurn 推进到下一个月末结算，收集本回合提醒；存档
 src/save.ts  IndexedDB 主存档、localStorage 备份、导入导出与旧档迁移
 src/legacy-v1/ 冻结的 v0.1 内核和配置，仅用于旧日志回放，禁止调参
 src/legacy-v2/ 冻结的 B1 完成时 v0.2 内核和配置，用于 version=2 历史回放，禁止调参
@@ -64,7 +64,7 @@ npm run art        # 原图去背景、几何校验、缩放与图集打包
 npm run dev        # 本地开发（--host，手机可用局域网 IP 访问）
 npm test           # 单测
 npm run typecheck
-npm run balance    # 平衡/破产归因/回撤，可设RUNS、YEARS、START_SEED；OUTPUT可保存逐局JSON
+npm run balance    # 平衡/破产归因/回撤，可设RUNS、YEARS、START_SEED；SEASONS=1开启季节事件；STAFF=1机器人雇员工；OUTPUT可保存逐局JSON
 npm run pacing     # 游戏节奏审计：首次回报、自动暂停频率、空档月份、净资产曲线；可设RUNS、YEARS、STRATEGY
 npm run build      # 类型检查、Vite 构建、生成带哈希的 Service Worker
 ```
@@ -190,5 +190,7 @@ D3：balance打印破产触发支出分布及下行最大净资产回撤，使�
 审计G01（2026-10-27）：尾货清盘按“市场价与挂牌价取低×(1−clearanceDiscount)”整批成交；去化高于市场价用 `sales.premiumElasticity`=5、低于用 `priceElasticity`=3；`marketing.spendSensitivity`=6。两组200局×30年激进破产24.5%/25.5%（第一组低于25%下限0.5点，样本噪声内）、倍数1.89/1.92，P10均低于保守。外部审计报告 G02–G08 未完成部分见CHANGELOG。
 
 审计G03–G08（2026-10-27）：公司履历（`src/ui/career.ts`，作品集+第30年生涯结算评级，localStorage `fdc-career-<种子>` 只弹一次）；现金续航只读估算（`src/estimates/runway.ts`，不计销售回款）；品牌五档（`marketing.brandTiers`，质量≥`quality.excellentThreshold`交付+`excellentBrandGain`）；产品线（`products`，`src/sim/products.ts`）开工时随 startProject 选择并锁定，缺省按高层系数1，机器人不选。52文件407项→56文件418项。
+
+回合制与员工（2026-10-28）：实时调速与自动暂停改为回合制，`Game.endTurn()` 一次推进到下一个月末（项目本就只在月末结算，经济不变），原暂停原因收集为 `lastTurn.alerts`；回合简报 `src/ui/turn.ts`（只读，读最近月报流水）。季节/政策事件 `src/sim/seasons.ts`：月末用独立随机流 `state.seasons.rng` 抽下月事件，挂在共享的 `market.season` 上，作用于全体公司的去化、施工速度、工程成本和新增融资利率；只在 startGame 开局启用，裸 newGame（测试、批量）保持中性，`npm run balance` 加 `SEASONS=1` 开启。员工 `src/sim/staff.ts`：独立随机流 `state.staff.rng` 生成人才市场，指令 hireStaff/fireStaff/assignStaff 进日志；项目经理/销售经理/财务总监/公关总监按能力等比例加成，月薪记 `salary` 流水；默认机器人不雇人，`staffed()` 包装（balance 的 `STAFF=1`）按空缺招聘，破产归因单列“员工薪酬”。2026-10-29 按批量结果把员工数值调为月薪 2.5+0.125×能力、销售经理 +10%、项目经理施工 +20%（项目岗位按项目数放大，激进打法项目多，加成过高会让激进收益倍数超标）。季节年均系数按配置约中性（去化 +0.7%、施工 −0.3%）。新增配置键 `turns`、`seasons`、`staff` 已登记于 balance-migration 与 pre-b9 白名单。
 
 已知边界：未做实体手机或系统级PWA安装验收；保留Vite主包超过500kB提示。仓库外完整Claude设计规范不在目录，本次按已写入的施工单逐项完成，不声称核对未提供的全文。

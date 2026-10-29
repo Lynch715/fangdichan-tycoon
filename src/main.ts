@@ -5,7 +5,9 @@ import{issueBondFromForm}from'./ui/bondController.ts';
 import{AuctionController}from'./ui/auctionController.ts';
 import{AcquisitionController}from'./ui/acquisitionController.ts';
 import './style.css';
-import { Game, type Speed } from './game.ts';
+import { Game } from './game.ts';
+import{turnBriefingMarkup,turnCardMarkup,seasonNow,turnOf}from'./ui/turn.ts';
+import{staffDialogMarkup,parsePost}from'./ui/staff.ts';
 import { IsoMap } from './render/isoMap.ts';
 import {visibleMapProjects} from './render/cityArt.ts';
 import { auctionsPanel, financePanel, headerDate, newsLine, projectsPanel, statusLine } from './ui/panels.ts';
@@ -15,6 +17,7 @@ import{ReportController}from'./ui/reportController.ts';
 import{badgeText,inboxList,newsKey,unreadCount}from'./ui/inbox.ts';
 import{goalTitle,goals,milestonesPanel,companyTitle,totalSales}from'./ui/milestones.ts';
 import{yi}from'./ui/format.ts';
+import{computeMetrics}from'./sim/index.ts';
 import{guideStep}from'./ui/guide.ts';
 import{SLOT_COUNT,readSlot,savesMarkup,slotMeta,writeSlot}from'./ui/saves.ts';
 import{careerDialogMarkup}from'./ui/career.ts';
@@ -22,22 +25,11 @@ import{brandTier}from'./ui/brand.ts';
 import{pickProduct,pickedProduct}from'./ui/productChoice.ts';
 import{ACHIEVEMENTS,achievementName,achievementsMarkup,earnedAchievements,loadUnlocks,mergeUnlocks,saveUnlocks}from'./ui/achievements.ts';
 
-const PAUSE_TEXT: Record<string, string> = {
-  startProject:'已暂停：拿地完成，请选择总包开工',
-  settlement:'已暂停：项目清盘，查看结算',
-  risk: '已暂停：项目风险事件或监管处罚，点此查看消息',
-  auction: '已暂停：新一批土地挂牌',
-  cashWarning: '已暂停：未来 3 个月到期款超过现金，可去财务页融资，或给项目放缓工程',
-  regulation: '已暂停：监管政策变化',
-  gameOver: '公司已破产清算',
-  challenge:'已暂停：挑战结果已记录，可在财务页查看',
-};
-
 const game = new Game();
-// 自动暂停偏好：只存在浏览器本地
-const PAUSE_PREF='fdc-pause-auction';
-try{if(localStorage.getItem(PAUSE_PREF)==='off')game.ignoredPauses.add('auction');}catch{/* 无本地存储时保持默认 */}
-function syncPauseToggle(){const b=document.getElementById('auction-pause-toggle');if(b)b.textContent=`新地挂牌时自动暂停：${game.ignoredPauses.has('auction')?'关':'开'}`;}
+// 回合简报偏好：每回合结束是否自动弹出（只存在浏览器本地，不进存档）
+const BRIEFING_PREF='fdc-briefing';
+let briefingOn=(()=>{try{return localStorage.getItem(BRIEFING_PREF)!=='off';}catch{return true;}})();
+function syncBriefingToggle(){const b=document.getElementById('briefing-toggle');if(b)b.textContent=`每回合结束弹出简报：${briefingOn?'开':'关'}`;}
 let config = game.config;
 let selectedId: string | null = null;
 let mapId = 'city';
@@ -171,7 +163,7 @@ const careerDialog=$<HTMLDialogElement>('#career-dialog');
 let careerTab:'works'|'career'='career',careerEnding=false,careerSilent=true;
 const achText=()=>`已解锁成就 ${Object.keys(unlocks).filter(id=>achievementName(id)).length} / ${ACHIEVEMENTS.length}（跨局累计）`;
 function paintCareer(){careerDialog.innerHTML=careerDialogMarkup(config,game.state,careerTab,achText(),careerEnding);}
-function openCareer(tab:'works'|'career'='career',ending=false){careerTab=tab;careerEnding=ending;game.setSpeed(0);paintCareer();if(!careerDialog.open)careerDialog.showModal();}
+function openCareer(tab:'works'|'career'='career',ending=false){careerTab=tab;careerEnding=ending;paintCareer();if(!careerDialog.open)careerDialog.showModal();}
 careerDialog.addEventListener('click',e=>{
   const t=e.target as HTMLElement,tab=t.closest<HTMLElement>('[data-career-tab]');
   if(t.closest('[data-career-close]'))careerDialog.close();
@@ -208,7 +200,11 @@ function render() {
   suburb.textContent = suburb.disabled ? `远郊 · 第 ${config.maps.suburbUnlockYear} 年开放` : '远郊区县';
   document.querySelectorAll<HTMLElement>('[data-map]').forEach(b=>b.classList.toggle('on',b.dataset.map===mapId));
   $('#date').textContent = headerDate(config, s);
-  document.querySelectorAll<HTMLButtonElement>('[data-speed]').forEach((b) => b.classList.toggle('on', Number(b.dataset.speed) === game.speed));
+  const ev=seasonNow(config,s);
+  $('#turn-label').textContent=`第 ${turnOf(config,s)} 回合 · ${ev.seasonName}${ev.eventId?' · '+ev.name:''}`;
+  $<HTMLButtonElement>('#end-turn').disabled=s.status==='bankrupt'||game.needsSetup||game.loadError;
+  paint($('#turn'),turnCardMarkup(config,s));
+  if(staffDialog.open)paintStaff();
   $('#sentiment').textContent = s.market.sentiment.toFixed(0);
   const st = statusLine(config, s);
   $('#m-cash').textContent = st.cash;
@@ -235,10 +231,6 @@ function render() {
   const g=guideStep(s),guide=$<HTMLButtonElement>('#guide');
   guide.hidden=!g||game.needsSetup;
   if(g){guide.dataset.tab=g.tab;guide.innerHTML=`<span class="guide-step">${g.step}/${g.total}</span><span>${g.text}</span>${g.tab==='map'?'':'<span class="guide-go">›</span>'}`;}
-  if (game.lastPause) {
-    toast(PAUSE_TEXT[game.lastPause] ?? '已暂停','info',true);
-    game.lastPause = null;
-  }
   reportController.sync();
 }
 
@@ -294,7 +286,7 @@ document.addEventListener('click', (e) => {
       case 'import': $('#import-save').click();break;
       case 'saves':openSaves();break;
       case 'career':openCareer();break;
-      case 'achievements':game.setSpeed(0);paintAchievements();if(!achievementsDialog.open)achievementsDialog.showModal();break;
+      case 'achievements':paintAchievements();if(!achievementsDialog.open)achievementsDialog.showModal();break;
       case 'export': {
         const url=URL.createObjectURL(new Blob([game.exportSave()],{type:'application/json'}));
         const a=document.createElement('a');a.href=url;a.download='房地产大亨-存档.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);break;
@@ -348,19 +340,19 @@ document.addEventListener('click', (e) => {
       case 'close-sheet':closeSheet();break;
       case 'inbox':toggleInbox();break;
       case 'toast':toggleInbox(true);$('#toast').className='toast';break;
-      case 'toggle-auction-pause':{
-        const off=!game.ignoredPauses.has('auction');if(off)game.ignoredPauses.add('auction');else game.ignoredPauses.delete('auction');
-        try{localStorage.setItem(PAUSE_PREF,off?'off':'on');}catch{/* 只是不记住 */}
-        syncPauseToggle();toast(off?'新地挂牌时不再自动暂停，可在消息里查看':'新地挂牌时会自动暂停');break;
+      case 'toggle-briefing':{
+        briefingOn=!briefingOn;try{localStorage.setItem(BRIEFING_PREF,briefingOn?'on':'off');}catch{/* 只是不记住 */}
+        syncBriefingToggle();toast(briefingOn?'每回合结束会弹出回合简报':'不再自动弹出简报，可点顶栏回合号查看');break;
       }
+      case 'end-turn':endTurn();break;
+      case 'briefing':openBriefing();break;
+      case 'staff':openStaff();break;
       case 'guide':if(act.dataset.tab&&act.dataset.tab!=='map')setTab(act.dataset.tab);break;
     }
     return;
   }
   const region=target.closest<HTMLElement>('[data-map]');
   if(region && mapUnlocked(game.state,config,region.dataset.map!)){mapId=region.dataset.map!;selectedId=null;render();map.fit();return;}
-  const speed = target.closest<HTMLElement>('[data-speed]');
-  if (speed) return game.setSpeed(Number(speed.dataset.speed) as Speed);
   // 只认底部导航按钮：<body> 自身也带 data-tab（记录当前标签），不能被当成“再点当前标签”
   const tab = target.closest<HTMLElement>('.tabs button[data-tab]');
   if (tab) return toggleTab(tab.dataset.tab!);
@@ -382,29 +374,49 @@ document.addEventListener('pointerdown',e=>{
 document.addEventListener('keydown', (e) => {
   if(document.querySelector('dialog[open]'))return;
   if(e.key==='Escape'&&(document.body.dataset.tab!=='map'||document.body.dataset.inbox==='open')){closeSheet();return;}
-  if (e.target instanceof HTMLInputElement || e.target instanceof HTMLSelectElement) return;
-  if (e.code === 'Space') {
-    e.preventDefault();
-    game.setSpeed(game.speed === 0 ? 1 : 0);
-  }
 });
 
 async function start() {
   await game.init();
   reportController.reset();
   await map.init();
-  setTab('map');syncPauseToggle();
+  setTab('map');syncBriefingToggle();
   game.onChange(render);
   render();
   if(game.needsSetup)sessionController.open();
-  let last = performance.now();
-  const loop = (now: number) => {
-    game.frame(now - last);
-    last = now;
-    requestAnimationFrame(loop);
-  };
-  requestAnimationFrame(loop);
 }
+
+// ── 回合制：结束回合 → 推进一个月 → 回合简报 ──
+const turnDialog=$<HTMLDialogElement>('#turn-dialog');
+function openBriefing(){turnDialog.innerHTML=turnBriefingMarkup(config,game.state,game.lastTurn);if(!turnDialog.open)turnDialog.showModal();turnDialog.scrollTop=0;}
+turnDialog.addEventListener('click',e=>{if((e.target as HTMLElement).closest('[data-turn-close]'))turnDialog.close();});
+let turning=false;
+function endTurn(){
+  if(turning)return;turning=true;
+  const before=computeMetrics(game.state).equity;
+  const r=game.endTurn();turning=false;
+  if(!r.ok){toast(r.error??'无法结束回合','error');return;}
+  const s=game.state,delta=computeMetrics(s).equity-before;
+  if(s.status==='bankrupt'){toast('公司已破产清算，可在“经营报表”查看复盘','error',true);return;}
+  if(briefingOn)openBriefing();
+  else toast(`第 ${turnOf(config,s)} 回合开始 · 净资产 ${delta>=0?'+':'−'}${yi(Math.abs(delta))}${(game.lastTurn?.alerts.length??0)>0?' · 有待处理事项':''}`,'info',true);
+}
+
+// ── 员工与人才市场 ──
+const staffDialog=$<HTMLDialogElement>('#staff-dialog');
+function paintStaff(){const top=staffDialog.scrollTop;staffDialog.innerHTML=staffDialogMarkup(config,game.state);staffDialog.scrollTop=top;}
+function openStaff(){paintStaff();if(!staffDialog.open)staffDialog.showModal();}
+staffDialog.addEventListener('click',e=>{
+  const t=e.target as HTMLElement;
+  if(t.closest('[data-staff-close]')){staffDialog.close();return;}
+  const hire=t.closest<HTMLElement>('[data-staff-hire]'),fire=t.closest<HTMLElement>('[data-staff-fire]');
+  if(hire)report(game.issue({type:'hireStaff',candidateId:hire.dataset.staffHire!}),'签约成功，可在“岗位”里派驻');
+  else if(fire){const m=game.state.staff?.members.find(x=>x.id===fire.dataset.staffFire);if(m&&confirm(`解雇 ${m.name} 需支付 ${m.salary*config.staff.severanceMonths} 万元补偿金。确定？`))report(game.issue({type:'fireStaff',staffId:m.id}),'已解除劳动合同');}
+});
+staffDialog.addEventListener('change',e=>{
+  const sel=(e.target as HTMLElement).closest<HTMLSelectElement>('select[data-staff-post]');if(!sel)return;
+  report(game.issue({type:'assignStaff',staffId:sel.dataset.staffPost!,post:parsePost(sel.value)}),'岗位已调整');
+});
 
 /** 读入一份存档文本（文件导入或存档槽），替换当前进度。 */
 function loadSaveText(text:string,okText:string):boolean{
@@ -422,7 +434,7 @@ $('#import-save').addEventListener('change',async(e)=>{
 // 存档弹窗：自动存档状态、手动存档槽、文件导入导出
 const savesDialog=$<HTMLDialogElement>('#saves-dialog');
 function paintSaves(){savesDialog.innerHTML=savesMarkup(config,game.state,game.storageStatus,Array.from({length:SLOT_COUNT},(_,i)=>readSlot(i+1)));}
-function openSaves(){game.setSpeed(0);paintSaves();if(!savesDialog.open)savesDialog.showModal();}
+function openSaves(){paintSaves();if(!savesDialog.open)savesDialog.showModal();}
 savesDialog.addEventListener('click',e=>{
   const t=e.target as HTMLElement;
   if(t.closest('[data-saves-close]')){savesDialog.close();return;}
@@ -440,7 +452,7 @@ savesDialog.addEventListener('click',e=>{
   }
 });
 window.addEventListener('pagehide' ,()=>game.save());
-document.addEventListener('visibilitychange',()=>{if(document.hidden){game.setSpeed(0);game.save();}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)game.save();});
 start().catch(e=>{toast(`启动失败：${e.message}`,'error');});
 const offlineStatus=$('#offline-status');
 if('serviceWorker' in navigator && import.meta.env.PROD) {

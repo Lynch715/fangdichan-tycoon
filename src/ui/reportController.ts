@@ -10,7 +10,7 @@ export class ReportController{
   dialog.addEventListener('change',e=>{if(['report-period','report-project'].includes((e.target as HTMLElement).id)){this.selection=(e.target as HTMLSelectElement).value;this.paint();}});
  }
  reset(){this.seenClosed=new Set(this.game.state.reports.closedProjects);this.seenBankruptcy=false;this.dialog.close();}
- open(view:ReportView='month',selection?:string){this.view=view;this.selection=selection;this.game.setSpeed(0);this.paint();if(!this.dialog.open)this.dialog.showModal();}
+ open(view:ReportView='month',selection?:string){this.view=view;this.selection=selection;this.paint();if(!this.dialog.open)this.dialog.showModal();}
  private paint(){this.dialog.innerHTML=reportsPanel(this.game.config,this.game.state,this.view,this.selection);this.dialog.scrollTop=0;}
  sync(){
   if(this.suspended)return;
