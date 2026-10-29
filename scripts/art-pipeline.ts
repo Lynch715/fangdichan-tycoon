@@ -27,9 +27,9 @@ export async function buildArt(options:{manifest?:string;raw?:string;out?:string
     for(const density of [2,1] as const){
       const assets=prepared.get(density)!,{placements,pages}=packAssets(assets);
       for(const [page,size] of pages.entries()){
-        const name=`atlas@${density}x-${page}`,png=`${name}.png`,json=`${name}.json`;
+        const name=`atlas@${density}x-${page}`,png=`${name}.webp`,json=`${name}.json`;
         const items=placements.filter(p=>p.page===page);
-        const image=await sharp({create:{...size,channels:4,background:{r:0,g:0,b:0,alpha:0}}}).composite(items.map(p=>({input:p.asset.png,left:p.x,top:p.y}))).png({compressionLevel:9,palette:true,colours:256,dither:.2}).toBuffer();
+        const image=await sharp({create:{...size,channels:4,background:{r:0,g:0,b:0,alpha:0}}}).composite(items.map(p=>({input:p.asset.png,left:p.x,top:p.y}))).webp({quality:80,alphaQuality:100,effort:6}).toBuffer() /* WebP 比 256 色 PNG 小约 40%，手机首屏更快 */;
         const frames=Object.fromEntries(items.map(({asset:a,x,y})=>[a.spec.id,{frame:{x,y,w:a.width,h:a.height},rotated:false,trimmed:false,spriteSourceSize:{x:0,y:0,w:a.width,h:a.height},sourceSize:{w:a.width,h:a.height},anchor:a.anchor,footprint:{cells:a.spec.cells,width:a.spec.cells*128,height:a.spec.cells*64}}]));
         await writeFile(resolve(stage,png),image);await writeFile(resolve(stage,json),JSON.stringify({frames,meta:{app:'房地产大亨 art-pipeline',version:'1',image:png,format:'RGBA8888',size:{w:size.width,h:size.height},scale:String(density)}},null,2)+'\n');
         summary.push({density,page,png,json,bytes:image.length});
@@ -40,7 +40,7 @@ export async function buildArt(options:{manifest?:string;raw?:string;out?:string
     if(bytes2x>8*1024*1024)throw new Error(`@2x 图集 ${(bytes2x/1024/1024).toFixed(2)} MB 超过 8 MB`);
     await writeFile(resolve(stage,'atlas-manifest.json'),JSON.stringify({assets:manifest.assets.map(a=>a.id),pages:summary,bytes2x,diagnostics},null,2)+'\n');
     const generated=await readdir(stage);
-    for(const name of await readdir(out))if(/^atlas(?:@\dx-\d+\.(png|json)|-manifest\.json)$/.test(name)&&!generated.includes(name))await rm(resolve(out,name));
+    for(const name of await readdir(out))if(/^atlas(?:@\dx-\d+\.(png|webp|json)|-manifest\.json)$/.test(name)&&!generated.includes(name))await rm(resolve(out,name));
     for(const name of generated)await rename(resolve(stage,name),resolve(out,name));
     console.log(`${manifest.assets.length} 个素材；@2x ${(bytes2x/1024).toFixed(1)} KB；${summary.length} 张图集`);
     return {assets:manifest.assets.length,pages:summary,bytes2x,diagnostics};

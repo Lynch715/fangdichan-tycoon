@@ -5,7 +5,7 @@
 - `prompts/`：每个正式素材对应的最终提示词。
 - `manifest.json`：素材 ID、文件名、占地格数与类别；地形侧面厚度可填 `sideHeightRatio`，装饰物可声明其参考地面菱形 `ground`。
 
-运行 `npm run art`，输出 `public/art/atlas@1x-N.png/json`、`atlas@2x-N.png/json` 及诊断清单。每格逻辑尺寸128×64，@2x实图256×128；JSON中`meta.scale`与分辨率对应，Pixi直接解析后尺寸相同，锚点为地面菱形下顶点。
+运行 `npm run art`，输出 `public/art/atlas@1x-N.webp/json`、`atlas@2x-N.webp/json` 及诊断清单。每格逻辑尺寸128×64，@2x实图256×128；JSON中`meta.scale`与分辨率对应，Pixi直接解析后尺寸相同，锚点为地面菱形下顶点。
 
 底座通过alpha轮廓前两条边回归检测。偏离2:1超过5%、两边不对称或边缘不清晰时失败；小于5%的偏差在缩放时归一化。建筑总高超过占地宽1.3倍时拒绝。支持透明alpha和纯洋红底，并清理混色边缘；不接受白底或黑底素材。
 

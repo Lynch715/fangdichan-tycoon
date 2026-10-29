@@ -1,3 +1,15 @@
+## 2026-10-29 · Claude · 修复首次游玩/读档时地图只剩无建筑程序地形；图集改为 WebP
+
+- **做了什么**：
+  - 玩家可感知：手机首次打开或刚打开就读档/开局时，地图不再长时间停在“米色格子+细灰线、没有任何建筑”的画面，而是显示“城市素材加载中…”，图集一到直接出现完整贴图地图；首屏需下载的 @2x 图集从 3.29MB 降到 1.90MB（−42%）。
+  - 原因：`IsoMap.init` 要等图集下载完才把建筑层/标签层挂到舞台，也才绑定拖动；这期间读档或开局会触发 `render → map.update`，用空贴图画出程序地形，而建筑层还没挂上，所以只剩地形。已在 IAB 中把图集清单延迟 20 秒复现出与手机截图相同的画面。
+  - 修复（已推送 141b0e3）：图集下载与渲染器初始化并行开始；三个图层和拖动在 init 一开始就挂好；图集到达前 `update` 只记录最新参数（城市化率照算），到达后用贴图补画；删除未被引用的 `public/art/residential-tower-v2.png`（2.4MB，离线缓存首装会白下载）。
+  - WebP：4 张图集由 256 色 PNG 转为有损 WebP（quality 80、alpha 无损），JSON 只改 `meta.image`，帧坐标不变；`npm run art` 以后直接输出 WebP。
+- **改了哪些文件**：`src/render/isoMap.ts`、`src/style.css`、`public/art/atlas@*.webp/json`、`public/art/atlas-manifest.json`、`scripts/art-pipeline.ts`、`tests/art.test.ts`、`art/README.md`、CLAUDE.md、AGENTS.md。
+- **数值变化**：无（`data/config.json` 未改）。图集字节：@2x-0 978968→555650，@2x-1 1113915→647066，@2x-2 1195629→697562，@1x-0 905196→576208。
+- **验证**：本环境不能安装依赖，未本地跑 typecheck/测试/构建，依赖 GitHub Actions 部署流程中的 `npm test` 与 `npm run build`。WebP 转换在原图集裁切上与 PNG 并排目视对比，2× 尺寸下无可见差异。复现使用线上 141b0e3 之前的版本。
+- **没做完 / 已知问题**：manifest 中字段名仍叫 `png`（值已是 .webp），为不动类型与测试未改名。离线缓存首装仍会同时下载 @1x 与 @2x 两档图集（合计约 2.5MB）；如手机仍慢，可让 Service Worker 只预缓存当前密度那一档。WebP 由 PIL(libwebp) 转换，下次 `npm run art` 用 sharp 重打包，字节数会略有不同。
+
 ## 2026-10-29 · Claude · 机器人可雇员工（STAFF=1）并按批量结果下调员工数值
 
 - **做了什么**：

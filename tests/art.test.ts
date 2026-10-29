@@ -51,7 +51,7 @@ describe('素材处理管线',()=>{
    ]}));
    const result=await buildArt({out,manifest:fixture});expect(result.bytes2x).toBeLessThan(8*1024*1024);
    for(const page of result.pages){const json=JSON.parse(await readFile(join(out,page.json),'utf8'));expect(json.meta.scale).toBe(String(page.density));const frame=json.frames.building_tower_2x2_a;expect(frame.anchor.y).toBeLessThanOrEqual(1.01);const info=await sharp(join(out,page.png)).metadata();expect(info.width).toBe(json.meta.size.w);}
-   const before=await readFile(join(out,'atlas@2x-0.png'));const bad=join(out,'bad.json');await writeFile(bad,JSON.stringify({assets:[{...spec,file:'rejected/residential-tower-v2.png'}]}));await expect(buildArt({out,manifest:bad})).rejects.toThrow();expect(await readFile(join(out,'atlas@2x-0.png'))).toEqual(before);
+   const before=await readFile(join(out,'atlas@2x-0.webp'));const bad=join(out,'bad.json');await writeFile(bad,JSON.stringify({assets:[{...spec,file:'rejected/residential-tower-v2.png'}]}));await expect(buildArt({out,manifest:bad})).rejects.toThrow();expect(await readFile(join(out,'atlas@2x-0.webp'))).toEqual(before);
   }finally{await rm(out,{recursive:true,force:true});}
  });
 });

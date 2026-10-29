@@ -86,33 +86,33 @@
     {
       "density": 2,
       "page": 0,
-      "png": "atlas@2x-0.png",
+      "png": "atlas@2x-0.webp",
       "json": "atlas@2x-0.json",
-      "bytes": 978968
+      "bytes": 555650
     },
     {
       "density": 2,
       "page": 1,
-      "png": "atlas@2x-1.png",
+      "png": "atlas@2x-1.webp",
       "json": "atlas@2x-1.json",
-      "bytes": 1113915
+      "bytes": 647066
     },
     {
       "density": 2,
       "page": 2,
-      "png": "atlas@2x-2.png",
+      "png": "atlas@2x-2.webp",
       "json": "atlas@2x-2.json",
-      "bytes": 1195629
+      "bytes": 697562
     },
     {
       "density": 1,
       "page": 0,
-      "png": "atlas@1x-0.png",
+      "png": "atlas@1x-0.webp",
       "json": "atlas@1x-0.json",
-      "bytes": 905196
+      "bytes": 576208
     }
   ],
-  "bytes2x": 3288512,
+  "bytes2x": 1900278,
   "diagnostics": [
     {
       "id": "terrain_grass_1x1_a",
