@@ -1,3 +1,4 @@
+import { salesBoardMarkup } from './sales.ts';
 import{capitalPanel}from'./capital.ts';
 import{transferMarkup}from'./transfer.ts';
 import{housingPolicyMarkup}from'./housingPolicy.ts';
@@ -172,6 +173,7 @@ export function projectsPanel(config: Config, s: GameState, selectedId: string |
       return `<article class="card ${p.id === selectedId ? 'selected' : ''}" data-select="${p.id}">
         <div class="row between"><b>${esc(p.name)}${p.acquisition?' · 收购项目':''}</b><span class="pill ${color}">${label}</span></div>
         <div class="progress"><div style="width:${pct(p.stage === 'construction' ? p.progress : sold)}"></div></div>
+        ${salesBoardMarkup(config,s,p)}
         <span class="muted small">${detail}</span>${p.stage!=='closed'?outlookMarkup(config,s,p):''}${projectAmenityMarkup(p)}${siteAttributesMarkup(p.attributes)}${housingPolicyMarkup(config,s,p.districtId)}${presaleMarkup(s,config,p)}
         <span class="small ${p.quality!==null&&p.quality<config.quality.complaintThreshold?'danger-text':'muted'}">${config.construction.contractors[p.contractor??'standard'].name} · 质量 ${p.quality??'—'} 分 · 公司品牌 ${s.brand} 分</span>
         ${projectStaffMarkup(config,s,p)}
