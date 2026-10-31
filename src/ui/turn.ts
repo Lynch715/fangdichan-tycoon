@@ -2,7 +2,9 @@
 // 纯只读：只读取 GameState、月报流水与新闻，不推进模拟、不改随机数。
 import { activeProject, calendar, channelRate, computeMetrics, mapUnlocked, payroll, seasonOf, type ChannelId, type Config, type GameState, type LedgerEntry, type PauseReason } from '../sim/index.ts';
 import type { TurnResult } from '../game.ts';
-import { esc, pct, yi } from './format.ts';
+import { esc, pct, yi, money } from './format.ts';
+export { money } from './format.ts';
+import { salesHighlightsMarkup } from './sales.ts';
 
 export const ALERT_TEXT: Record<PauseReason, string> = {
   startProject: '拿地成功，项目待选择产品线与总包开工',
@@ -27,7 +29,6 @@ export function seasonNow(config: Config, s: GameState) {
 }
 
 /** 不足 0.1 亿时按万元显示，避免小额工资/利息显示成 0.00 亿。 */
-export const money = (wan: number) => (Math.abs(wan) < 1000 ? `${Math.round(wan)} 万` : yi(wan));
 const signedYi = (x: number) => `${x >= 0 ? '+' : '−'}${money(Math.abs(x))}`;
 const cls = (x: number) => (x > 1e-6 ? 'ok-text' : x < -1e-6 ? 'danger-text' : 'muted');
 
@@ -129,6 +130,7 @@ export function turnBriefingMarkup(config: Config, s: GameState, last: TurnResul
     if (unstaffed && staff.members.length < 2) todo.push(`${unstaffed} 个项目还没有派驻项目经理/销售经理，可到“员工”招聘`);
   }
   return `${head}
+  ${salesHighlightsMarkup(config,s)}
   <section class="turn-sec"><h3>① 上回合各项目收益${income ? `（第 ${income.period} 回合）` : ''}</h3>${incomeHtml}</section>
   <section class="turn-sec"><h3>② 金融市场行情</h3>${marketMarkup(config, s)}</section>
   <section class="turn-sec"><h3>③ 本回合季节 / 政策事件</h3>${evHtml}<h4 class="small muted">上回合动态</h4>${newsHtml}</section>

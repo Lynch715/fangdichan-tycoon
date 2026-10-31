@@ -1,4 +1,5 @@
 import{allMapProjects}from'../sim/rivals.ts';
+import { salesStatus, soldRatio } from '../ui/sales.ts';
 // 等距地图渲染：只读模拟状态；正常显示图集，资源失败时逐对象程序回退。
 import {tileArtAt,terrainTint,roadAt,TILE_SIDE_HEIGHT,type TileArt} from './terrain.ts';
 import {projectArtKey} from './projectArt.ts';
@@ -86,6 +87,9 @@ export class IsoMap {
   private world = new Container();
   private dynamic = new Container();
   private labels = new Container();
+  private salesEffects = new Container();
+  private salesAnchors = new Map<string, [number, number]>();
+  private salesAnimations = new Set<() => void>();
   private pointers = new Map<number, { x: number; y: number }>();
   private dragDist = 0;
   private pinchStart: { dist: number; scale: number } | null = null;
@@ -112,7 +116,7 @@ export class IsoMap {
     this.host.insertBefore(this.app.canvas,loading);
     this.app.stage.addChild(this.world);
     // 三个图层在图集到达前就挂好：期间若有读档/开局触发 update，也不会只剩地形。
-    this.world.addChild(this.terrain, this.dynamic, this.labels);
+    this.world.addChild(this.terrain, this.dynamic, this.labels, this.salesEffects);
     this.fit();
     this.bindInput();
     window.addEventListener('resize', () => requestAnimationFrame(() => this.fit()));
@@ -176,6 +180,8 @@ export class IsoMap {
   }
 
   update(state: GameState, selectedId: string | null, mapId = 'city') {
+    if(this.pending?.[2]!==mapId)this.clearSalesEffects();
+    this.salesAnchors.clear();
     this.pending=[state,selectedId,mapId];
     if(!this.ready){
       const years=state.day/(defaultConfig.time.daysPerMonth*12);
@@ -275,7 +281,7 @@ export class IsoMap {
           },
         });
       }
-      if (activeProject(p)) {
+      if (activeProject(p) || p.stage==='closed'&&sel&&!owners.has(p.id)) {
         const [lx, ly] = P(i0 + cells/2, j0 + cells/2);
         const t = new Text({
           text: (owners.has(p.id)?owners.get(p.id)+' · ':'')+p.name.replace(/ P?L?\d+$/, ''),
@@ -285,10 +291,32 @@ export class IsoMap {
         const labelY=art?P(i0+cells,j0+cells)[1]-(art.defaultAnchor?.y??1)*art.height*scale-6:ly-(p.stage==='land'?20:p.stage==='construction'?30+p.progress*104:130);
         t.position.set(lx,labelY);
         this.labels.addChild(t);
+        if(!owners.has(p.id)){
+          const status=salesStatus(state.rules??defaultConfig,state,p);
+          if(status){
+            const badge=new Text({text:`${status.text} · ${(soldRatio(p)*100).toFixed(0)}%`,style:{fontFamily:'system-ui, sans-serif',fontSize:12,fontWeight:'700',fill:status.tone==='muted'?0xb4bcc6:status.tone==='gold'?0xffcf6b:0x75e3b1,stroke:{color:0x0f1419,width:4}}});
+            badge.anchor.set(.5,1);badge.position.set(lx,labelY-20);this.labels.addChild(badge);
+            this.salesAnchors.set(p.id,[lx,labelY-42]);
+          }
+        }
       }
     }
     blocks.sort((a, b) => a.order - b.order).forEach((b) => {const layer=new Graphics();this.dynamic.addChild(layer);b.draw(layer);});
   }
+
+  /** 成交飘字独立于静态图层，存档状态变化/重复重绘不会重新播放。 */
+  showSales(projectId:string,text:string){
+    const anchor=this.salesAnchors.get(projectId);if(!anchor)return;
+    const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const effect=new Container(),label=new Text({text,style:{fontFamily:'system-ui, sans-serif',fontSize:16,fontWeight:'800',fill:0xffdc88,stroke:{color:0x13251f,width:5}}});
+    label.anchor.set(.5,1);effect.position.set(...anchor);effect.addChild(label);this.salesEffects.addChild(effect);
+    let elapsed=0;
+    const cleanup=()=>{this.app.ticker.remove(tick);this.salesAnimations.delete(cleanup);effect.destroy({children:true});};
+    const tick=()=>{elapsed+=this.app.ticker.deltaMS;const t=Math.min(1,elapsed/2600);if(!reduced)effect.y=anchor[1]-t*38;effect.alpha=t<.7?1:(1-t)/.3;if(t>=1)cleanup();};
+    this.salesAnimations.add(cleanup);this.app.ticker.add(tick);
+  }
+
+  clearSalesEffects(){for(const cleanup of this.salesAnimations)cleanup();}
 
   private screenToTile(x: number, y: number): Tile {
     const local = this.world.toLocal({ x, y });

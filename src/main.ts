@@ -1,3 +1,5 @@
+import { soldRatio, salesStatus } from './ui/sales.ts';
+import { money } from './ui/format.ts';
 import {recoveryMarkup} from './ui/recovery.ts';
 import {readLocalPreserved,readDatabasePreserved,validateSave,type RecoveryProfile} from './save.ts';
 import{CapitalController}from'./ui/capitalController.ts';
@@ -101,7 +103,7 @@ function cheer(text:string,kind:'big'|'sales'='big'){
   setTimeout(()=>{el.classList.remove('show');setTimeout(()=>el.remove(),300);},kind==='sales'?2600:4500);
 }
 
-type Snap={sold:boolean;out:boolean;del:boolean};
+type Snap={sold:boolean;out:boolean;del:boolean;ratio:number;sales:number;open:boolean};
 let prevProjects:Map<string,Snap>|null=null,prevMonth=-1,prevTitle=-1,prevBrandTier=-1,silentGoals=false;
 const MAP_NAMES:Record<string,string>={city:'重庆主城',outer:'外围主城',suburb:'远郊区县'};
 let cityDecile:Record<string,number>={};
@@ -113,13 +115,17 @@ function celebrateCity(){
   if(prev!==undefined&&d>prev&&d>=2)cheer(`🏙 ${MAP_NAMES[mapId]??''}城市化突破 ${d*10}%，${d>=6?'高楼林立':d>=4?'新区崛起':'街区渐成'}`);
 }
 /** 新开局/导入存档后：已达成的目标静默记录，不补放庆祝。 */
-function resetCelebrations(){prevProjects=null;prevMonth=-1;prevTitle=-1;prevBrandTier=-1;silentGoals=true;cityDecile={};silentAch=true;achKey='';careerSilent=true;}
+function resetCelebrations(){prevProjects=null;prevMonth=-1;prevTitle=-1;prevBrandTier=-1;silentGoals=true;cityDecile={};silentAch=true;achKey='';careerSilent=true;map.clearSalesEffects();$('#cheers').replaceChildren();}
 function celebrate(){
   const s=game.state,dpm=config.time.daysPerMonth;
-  const snap=new Map(s.projects.map(p=>[p.id,{sold:p.soldArea>0,out:p.saleableArea>0&&p.soldArea>=p.saleableArea*0.999,del:p.deliveredDay!==null} as Snap]));
+  const snap=new Map(s.projects.map(p=>[p.id,{sold:p.soldArea>0,out:p.saleableArea>0&&p.saleableArea-p.soldArea<1e-6,del:p.deliveredDay!==null,ratio:soldRatio(p),sales:p.salesIn,open:salesStatus(config,s,p)?.tone==='green'} as Snap]));
   if(prevProjects)for(const p of s.projects){
     const a=prevProjects.get(p.id),b=snap.get(p.id)!;if(!a)continue;
-    if(!a.sold&&b.sold)cheer(`🎉 ${p.name} 开盘热销，首批回款到账`);
+    if(!a.open&&b.open&&!b.sold)cheer(`🎉 ${p.name} 预售开启，等待首批成交`);
+    if(!a.sold&&b.sold)cheer(`🎉 ${p.name} 首批成交！签约 +${money((b.sales-a.sales)*(1-p.partnerShare))}`);
+    else if(!b.out&&b.ratio>=.75&&a.ratio<.75)cheer(`🎊 ${p.name} 去化突破 75%，冲刺售罄！`);
+    else if(!b.out&&b.ratio>=.5&&a.ratio<.5)cheer(`🎊 ${p.name} 去化过半！已售 ${Math.round(p.soldArea).toLocaleString('zh-CN')} ㎡`);
+    if(b.sales>a.sales+1e-6)map.showSales(p.id,`签约 +${money((b.sales-a.sales)*(1-p.partnerShare))}`);
     if(!a.out&&b.out)cheer(`🏆 ${p.name} 全部售罄！累计回款 ${yi(p.salesIn)}`);
     if(!a.del&&b.del)cheer(`🔑 ${p.name} 交付入伙${p.quality!==null&&p.quality>=config.quality.complaintThreshold?'，业主满意，品牌提升':''}`);
   }
