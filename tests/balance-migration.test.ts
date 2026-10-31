@@ -34,7 +34,7 @@ describe('D2 调参与v16历史边界',()=>{
   const g=new Game(),input=fixture('b13-sandbox-browser-save.json');expect(g.importSave(JSON.stringify(input)).ok).toBe(true);
   expect(g.config.rescue.saleBookDiscount).toBe(.6);const before=g.state.cash;expect(g.issue({type:'sandboxGrant'}).ok).toBe(true);
   expect(g.state.cash).toBe(before+g.config.sessions.sandbox.grant);
-  const data=g.data();expect(data.version).toBe(16);expect(data.legacyV15Until).toBe(input.day);expect(data.legacyV15LogCount).toBe(input.log.length);
+  const data=g.data();expect(data.version).toBe(17);expect(data.legacyV15Until).toBe(input.day);expect(data.legacyV15LogCount).toBe(input.log.length);
   expect(data).not.toHaveProperty('rules');expect(data).not.toHaveProperty('state');
   const other=new Game();expect(other.importSave(g.exportSave()).ok).toBe(true);expect(other.state).toEqual(g.state);
   expect(g.restart({mode:'career',difficulty:'standard'}).ok).toBe(true);expect(g.data().legacyV15Until).toBeUndefined();expect(g.data().legacyV15LogCount).toBeUndefined();

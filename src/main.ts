@@ -1,3 +1,5 @@
+import {recoveryMarkup} from './ui/recovery.ts';
+import {readLocalPreserved,readDatabasePreserved,validateSave,type RecoveryProfile} from './save.ts';
 import{CapitalController}from'./ui/capitalController.ts';
 import {SessionController,sessionPanel} from './ui/session.ts';
 import{districtsPanel}from'./ui/regions.ts';
@@ -16,7 +18,7 @@ import type{BuildingProduct,BuildingVariant,ContractorId}from'./sim/types.ts';
 import{ReportController}from'./ui/reportController.ts';
 import{badgeText,inboxList,newsKey,unreadCount}from'./ui/inbox.ts';
 import{goalTitle,goals,milestonesPanel,companyTitle,totalSales}from'./ui/milestones.ts';
-import{yi}from'./ui/format.ts';
+import{yi,esc}from'./ui/format.ts';
 import{computeMetrics}from'./sim/index.ts';
 import{guideStep}from'./ui/guide.ts';
 import{SLOT_COUNT,readSlot,savesMarkup,slotMeta,writeSlot}from'./ui/saves.ts';
@@ -383,7 +385,8 @@ async function start() {
   setTab('map');syncBriefingToggle();
   game.onChange(render);
   render();
-  if(game.needsSetup)sessionController.open();
+  if(game.recovery)openRecovery();
+  else if(game.needsSetup)sessionController.open();
 }
 
 // ── 回合制：结束回合 → 推进一个月 → 回合简报 ──
@@ -423,6 +426,7 @@ function loadSaveText(text:string,okText:string):boolean{
   selectedId=null;mapId='city';bidDrafts.clear();amenityDrafts.clear();resetCelebrations();reportController.suspended=true;
   const r=game.importSave(text);report(r,okText);reportController.reset();reportController.suspended=false;
   if(r.ok){setTab('map');render();map.fit();}
+  else if(game.recovery){savesDialog.close();openRecovery();}
   return r.ok;
 }
 $('#import-save').addEventListener('change',async(e)=>{
@@ -433,14 +437,27 @@ $('#import-save').addEventListener('change',async(e)=>{
 
 // 存档弹窗：自动存档状态、手动存档槽、文件导入导出
 const savesDialog=$<HTMLDialogElement>('#saves-dialog');
-function paintSaves(){savesDialog.innerHTML=savesMarkup(config,game.state,game.storageStatus,Array.from({length:SLOT_COUNT},(_,i)=>readSlot(i+1)));}
-function openSaves(){paintSaves();if(!savesDialog.open)savesDialog.showModal();}
+let originalExports:{source:string;raw:string}[]=[];
+let databaseBackups:{source:string;raw:string}[]=[];
+function canReadOriginal(raw:string){try{return validateSave(JSON.parse(raw))!==null;}catch{return false;}}
+function paintSaves(){
+ originalExports=[...game.exportOriginals(),...readLocalPreserved(),...databaseBackups];
+ savesDialog.innerHTML=savesMarkup(config,game.state,game.storageStatus,Array.from({length:SLOT_COUNT},(_,i)=>readSlot(i+1)))+`<section class="stack save-card"><h3>旧档与原始记录</h3><p class="small muted">升级后的续玩副本使用独立位置保存，旧自动档不覆盖。恢复未确认时，请先导出原档。</p><button class="ghost" data-open-recovery>打开旧档恢复预览</button>${originalExports.map((x,i)=>`<div class="save-card"><b class="small">${esc(x.source)}</b><div class="row"><button class="ghost" data-original-export="${i}">导出${esc(x.source)}</button>${canReadOriginal(x.raw)?`<button class="ghost" data-original-load="${i}">读取这份副本</button>`:''}</div></div>`).join('')}</section>`;
+}
+async function openSaves(){
+ paintSaves();if(!savesDialog.open)savesDialog.showModal();
+ try{databaseBackups=await readDatabasePreserved();if(savesDialog.open)paintSaves();}catch{/* 无数据库时仍可导出本地原件 */}
+}
 savesDialog.addEventListener('click',e=>{
   const t=e.target as HTMLElement;
+  if(t.closest('[data-open-recovery]')){if(game.reopenRecovery()){savesDialog.close();openRecovery();}else toast('没有待核对的旧v16存档；读取失败时请先导出原始记录','error');return;}
+  const readOriginal=t.closest<HTMLElement>('[data-original-load]');if(readOriginal){const x=originalExports[Number(readOriginal.dataset.originalLoad)];if(x&&confirm('读取这份副本会替换当前进度，并保留替换前的原件。确定读取？')&&loadSaveText(x.raw,'已读取副本'))savesDialog.close();return;}
+  const original=t.closest<HTMLElement>('[data-original-export]');if(original){const x=originalExports[Number(original.dataset.originalExport)];if(x)downloadOriginal(x.raw);return;}
   if(t.closest('[data-saves-close]')){savesDialog.close();return;}
   if(t.closest('[data-saves-new]')){savesDialog.close();sessionController.open();return;}
   const save=t.closest<HTMLElement>('[data-slot-save]'),load=t.closest<HTMLElement>('[data-slot-load]');
   if(save){
+    if(game.loadError||game.recovery){toast('请先处理旧档恢复，当前只能导出原档','error');return;}
     const n=Number(save.dataset.slotSave),old=readSlot(n);
     if(old&&!confirm(`覆盖存档 ${n}（${old.company} · ${old.date}）？`))return;
     game.save();
@@ -450,6 +467,31 @@ savesDialog.addEventListener('click',e=>{
     const n=Number(load.dataset.slotLoad),m=readSlot(n);if(!m)return;
     if(confirm(`读取存档 ${n}（${m.company} · ${m.date}）会替换当前进度。确定读取？`)&&loadSaveText(m.data,`已读取存档 ${n}`))savesDialog.close();
   }
+});
+// 恢复选择只影响界面；确认后由Game固定历史规则与同日边界。
+const recoveryDialog=$<HTMLDialogElement>('#recovery-dialog');
+function downloadOriginal(raw:string){
+ const url=URL.createObjectURL(new Blob([raw],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='房地产大亨-原始存档.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function openRecovery(){if(!game.recovery)return;recoveryDialog.innerHTML=recoveryMarkup(game.recovery);if(!recoveryDialog.open)recoveryDialog.showModal();}
+function cancelRecovery(){game.cancelRecovery();recoveryDialog.close();}
+recoveryDialog.addEventListener('cancel',e=>{e.preventDefault();cancelRecovery();});
+recoveryDialog.addEventListener('click',e=>{
+ const t=e.target as HTMLElement;
+ if(t.closest('[data-recovery-cancel]'))cancelRecovery();
+ else if(t.closest('[data-recovery-export]')&&game.recovery)downloadOriginal(game.recovery.raw);
+});
+recoveryDialog.addEventListener('change',()=>{
+ const selected=recoveryDialog.querySelector('input[name="history-profile"]:checked');
+ const checked=recoveryDialog.querySelector<HTMLInputElement>('input[name="confirmed-history"]')?.checked;
+ recoveryDialog.querySelector<HTMLButtonElement>('button[type="submit"]')!.disabled=!selected||!checked;
+});
+recoveryDialog.addEventListener('submit',e=>{
+ e.preventDefault();const selected=recoveryDialog.querySelector<HTMLInputElement>('input[name="history-profile"]:checked');
+ if(!selected||!recoveryDialog.querySelector<HTMLInputElement>('input[name="confirmed-history"]')?.checked)return;
+ const r=game.confirmRecovery(selected.value as RecoveryProfile);
+ if(!r.ok){recoveryDialog.querySelector('[data-recovery-error]')!.textContent=r.error??'恢复未完成，原档已保留';return;}
+ recoveryDialog.close();reportController.reset();resetCelebrations();selectedId=null;mapId='city';bidDrafts.clear();amenityDrafts.clear();setTab('map');render();map.fit();toast('已创建续玩副本，原始存档保留');
 });
 window.addEventListener('pagehide' ,()=>game.save());
 document.addEventListener('visibilitychange',()=>{if(document.hidden)game.save();});

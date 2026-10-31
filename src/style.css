@@ -414,3 +414,5 @@ input[type=number] { -moz-appearance: textfield; }
   .turn-ctl { flex: 1; justify-content: flex-end; }
   .turn-ctl .end-turn { height: 36px; }
 }
+
+.recovery-choice{display:flex;flex-direction:column;gap:10px}.recovery-choice input,.recovery-check input{flex:none;width:20px;height:20px;min-width:20px;padding:0}.recovery-check{align-items:flex-start;line-height:1.6}#recovery-form [data-recovery-error]:empty{display:none}

@@ -262,8 +262,8 @@ export function runwayMarkup(config:Config,s:GameState):string{
   return `<section class="stack runway">
     <div class="row between"><b>现金续航 <span class="pill gray">估算</span></b>${head}</div>
     <span class="small muted">假设从下月起一套房都不卖、监管账户也不释放，账上现金能付清以下支出的月数。</span>
-    ${row('土地尾款',n.land)}${row('债务到期本金（不展期、不续借）',n.principal)}${row('利息',n.interest)}${row('在建工程款（按当前节奏，全额现金）',n.construction)}
+    ${row('土地尾款',n.land)}${row('债务到期本金（不展期、不续借）',n.principal)}${row('利息',n.interest)}${row('在建工程款（含当前项目经理，全额现金）',n.construction)}${row('已签员工薪酬（含待命）',n.salary)}
     <div class="row between small"><b>未来 12 个月刚性支出</b><b>${yi(n.total)}</b></div>
-    <span class="small muted">未计入：销售回款及其营销费、税费；监管账户 ${yi(r.escrow)} 按工程进度释放；商票可延后的工程款；未开工项目的工程款。</span>
+    <span class="small muted">岗位、能力和月薪按当前值保持；首月计已知季节事件，其后按季节基准，不预测随机事件。未计入：销售回款及其营销费、税费；监管账户 ${yi(r.escrow)} 按工程进度释放；商票可延后的工程款；未开工项目的工程款；未来招聘、解雇及意外支出。</span>
   </section>`;
 }

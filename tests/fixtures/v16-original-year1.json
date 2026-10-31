@@ -1,0 +1,58 @@
+{
+  "version": 16,
+  "seed": 1,
+  "day": 360,
+  "log": [
+    {
+      "day": 1,
+      "command": {
+        "type": "bid",
+        "parcelId": "L2",
+        "amount": 10712
+      }
+    },
+    {
+      "day": 30,
+      "command": {
+        "type": "startProject",
+        "projectId": "P4",
+        "contractor": "brand"
+      }
+    },
+    {
+      "day": 31,
+      "command": {
+        "type": "borrow",
+        "channel": "devLoan",
+        "amount": 9737.28,
+        "projectId": "P4"
+      }
+    },
+    {
+      "day": 181,
+      "command": {
+        "type": "bid",
+        "parcelId": "L12",
+        "amount": 9346
+      }
+    },
+    {
+      "day": 210,
+      "command": {
+        "type": "startProject",
+        "projectId": "P16",
+        "contractor": "brand"
+      }
+    },
+    {
+      "day": 211,
+      "command": {
+        "type": "borrow",
+        "channel": "devLoan",
+        "amount": 10345.86,
+        "projectId": "P16"
+      }
+    }
+  ],
+  "revision": 1
+}

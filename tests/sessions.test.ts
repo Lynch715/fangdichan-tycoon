@@ -138,7 +138,7 @@ describe('B13模式指令、真实挑战与存档',()=>{
   options.difficulty='easy';expect(g.state.session!.options.difficulty).toBe('hard');
   expect(g.issue({type:'sandboxGrant'}).ok).toBe(true);
   const raw=g.exportSave(),data=JSON.parse(raw);
-  expect(data.version).toBe(16);expect(data.log).toHaveLength(2);
+  expect(data.version).toBe(17);expect(data.log).toHaveLength(2);
   for(const key of ['state','session','rules','cash','projects'])expect(data).not.toHaveProperty(key);
   expect(g.importSave(raw).ok).toBe(true);expect(g.config.start.cash).toBe(600000);
   expect(g.state).toEqual(restore(validateSave(data)!));

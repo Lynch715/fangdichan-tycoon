@@ -54,7 +54,7 @@ describe('B7 限价拍卖与真实配建',()=>{
  it('旧v8未结拍地块保留普通竞价和原面积；迁移同日指令与导出再导入一致',()=>{
   vi.stubGlobal('localStorage',undefined);vi.stubGlobal('indexedDB',undefined);
   const g=new Game();expect(g.importSave(JSON.stringify({version:8,seed:7,day:0,log:[]})).ok).toBe(true);expect(g.state.auctions.every(a=>!a.auction)).toBe(true);const a=g.state.auctions[0];expect(g.issue({type:'bid',parcelId:a.id,amount:a.startPrice*3}).ok).toBe(true);
-  const saved=g.data();expect(saved.version).toBe(16);expect(saved.legacyV8Until).toBe(0);expect(saved.legacyV8LogCount).toBe(0);expect(saved).not.toHaveProperty('state');expect(restore(validateSave(saved)!)).toEqual({...g.state,pauses:[]});const loaded=new Game();expect(loaded.importSave(JSON.stringify(saved)).ok).toBe(true);expect(loaded.data().legacyV8LogCount).toBe(0);
+  const saved=g.data();expect(saved.version).toBe(17);expect(saved.legacyV8Until).toBe(0);expect(saved.legacyV8LogCount).toBe(0);expect(saved).not.toHaveProperty('state');expect(restore(validateSave(saved)!)).toEqual({...g.state,pauses:[]});const loaded=new Game();expect(loaded.importSave(JSON.stringify(saved)).ok).toBe(true);expect(loaded.data().legacyV8LogCount).toBe(0);
   const s=restore(saved);to(s,a.endDay);const p=s.projects.find(p=>p.name===a.name)!;expect(p.auction).toBeUndefined();expect(p.saleableArea).toBe(p.buildArea*defaultConfig.sales.saleableRatio);
  });
  it('默认地块6013万元的四位亿输入不因二进制舍入误判超限',()=>{

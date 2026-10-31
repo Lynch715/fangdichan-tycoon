@@ -96,8 +96,14 @@ export function newGame(seed: number, config: Config = defaultConfig,opponentId?
 
 // ───────────────────────── 指令 ─────────────────────────
 
-type UpgradeRules={type:'upgradeRules';reports?:ReportState;reportError?:string};
+type UpgradeRules={type:'upgradeRules';reports?:ReportState;reportError?:string}|{type:'upgradeRecoveredV16'};
 function performCommand(state: GameState, cmd: Command|UpgradeRules, config: Config = defaultConfig): CommandResult {
+  if(cmd.type==='upgradeRecoveredV16'){
+    // 历史金额、项目成本、债务和流水已由冻结内核恢复；仅为后续经营接上当前规则。
+    if(state.session&&state.rules)state.rules=buildSessionConfig(config,state.session.options);
+    initStaff(state,state.rules??config);
+    return {ok:true};
+  }
   // 仅存档迁移使用的内部指令，不是玩家指令，不写入玩家日志。
   if(cmd.type==='upgradeRules'){
     const wasV15=(state.version as number)===15;
@@ -238,9 +244,9 @@ function performCommand(state: GameState, cmd: Command|UpgradeRules, config: Con
 }
 
 export function applyCommand(state:GameState,cmd:Command|UpgradeRules,config:Config=defaultConfig):CommandResult{
- if(cmd.type!=='upgradeRules')config=state.rules??config;
+ if(cmd.type!=='upgradeRules'&&cmd.type!=='upgradeRecoveredV16')config=state.rules??config;
  const result=performCommand(state,cmd,config);
- if(result.ok&&cmd.type!=='upgradeRules'){
+ if(result.ok&&cmd.type!=='upgradeRules'&&cmd.type!=='upgradeRecoveredV16'){
   if(!state.opponentId)state.session??=defaultSession(state,'implicit');
   config=state.rules??config;
   recordDecision(state,cmd,config);updateSession(state,config);

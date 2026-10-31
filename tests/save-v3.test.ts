@@ -50,10 +50,10 @@ describe('B2 冻结规则与v3迁移',()=>{
  it('Game导入导出保留边界，重启清除边界；坏旧档不覆盖原文',async()=>{
   const storage=new MemoryStorage();vi.stubGlobal('localStorage',storage);vi.stubGlobal('indexedDB',undefined);
   const raw=JSON.stringify(golden[1].save);storage.setItem(SAVE_KEY,raw);const g=new Game();await g.init();
-  const output=JSON.parse(g.exportSave());expect(output.version).toBe(16);expect(output.legacyV2Until).toBe(30);expect(output.legacyV2LogCount).toBe(golden[1].save.log.length);expect(output.legacyV3Until).toBe(30);expect(output.legacyV3LogCount).toBe(golden[1].save.log.length);expect(g.loadError).toBe(false);
+  const output=JSON.parse(g.exportSave());expect(output.version).toBe(17);expect(output.legacyV2Until).toBe(30);expect(output.legacyV2LogCount).toBe(golden[1].save.log.length);expect(output.legacyV3Until).toBe(30);expect(output.legacyV3LogCount).toBe(golden[1].save.log.length);expect(g.loadError).toBe(false);
   const again=new Game();expect(again.importSave(JSON.stringify(output)).ok).toBe(true);expect(again.state).toEqual(g.state);
   again.restart();expect(JSON.parse(again.exportSave()).legacyV2Until).toBeUndefined();expect(JSON.parse(again.exportSave()).legacyV3Until).toBeUndefined();expect(JSON.parse(again.exportSave()).legacyUntil).toBeUndefined();
-  const bad=JSON.stringify({...golden[0].save,log:[{day:0,command:{type:'repay',debtId:'missing'}}]});storage.setItem(SAVE_KEY,bad);const broken=new Game();await broken.init();expect(broken.loadError).toBe(true);broken.save();expect(storage.getItem(SAVE_KEY)).toBe(bad);
+  const bad=JSON.stringify({...golden[0].save,log:[{day:0,command:{type:'repay',debtId:'missing'}}]});storage.removeItem('fdc-save-v17');storage.setItem(SAVE_KEY,bad);const broken=new Game();await broken.init();expect(broken.loadError).toBe(true);broken.save();expect(storage.getItem(SAVE_KEY)).toBe(bad);
  });
  it('冻结的旧内核仍可独立回放旧负现金历史',()=>{const old=restoreV2(golden[1].save as unknown as V2Save);expect(old).toEqual(golden[1].state);});
 });

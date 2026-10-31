@@ -1,10 +1,12 @@
 # 房地产大亨
 
+存档修复说明：新存档格式为v17，支持员工日志重载与旧v16恢复预览，并保留旧自动档原件。旧v16需要核对历史结果后创建续玩副本；来源不明或混合版本不自动猜测。具体规则与验证见 [存档兼容说明](docs/save-compat-v17.md)。
+
 以现金流为核心的房地产开发模拟经营游戏：拍地、融资、施工、预售、清盘，用杠杆扩张，在周期和监管中活下来。背景映射重庆，等距视角，桌面和手机浏览器都能玩。
 
 开源项目，用于内部交流。
 
-施工单 A–D 已完成本地实现与验收；最新存档v16，374项测试通过。完整证据和未覆盖范围见[最终验收索引](tests/acceptance/FINAL-REPORT.md)。当前尚未发布。
+施工单 A–D 已完成本地实现与验收；2026-10-30存档修复后，文件格式v17，58文件451项测试通过。本次修复尚未推送或发布。早期施工证据见[最终验收索引](tests/acceptance/FINAL-REPORT.md)，本次兼容范围见[存档兼容说明](docs/save-compat-v17.md)。
 
 ## 运行
 
@@ -117,7 +119,7 @@ MIT
 
 事故停工单独计时，不直接启动资金停工计数；已因资金停工且未实际复工时连续计时。土地款、税费、利息、到期债务和事故支出仍可能使现金为负，停工不免除这些义务。停工但已有预售资格的项目仍可销售自救；接管后停止经营。
 
-新档version=16。无版本旧档先按冻结v1、version=2旧档按冻结v2、version=3旧档按冻结v3、version=4旧档按冻结v4、version=5旧档按冻结v5内核回放历史，记录对应日期与同日指令边界，version=6历史由冻结v6完整回放并以legacyV6Until/legacyV6LogCount记录日期和同日边界，version=7历史由冻结v7保留完整玩家与对手状态并以legacyV7Until/legacyV7LogCount划定边界；version=8由冻结v8完整回放，以legacyV8Until/legacyV8LogCount划定边界；version=9由冻结v9完整回放，以legacyV9Until/legacyV9LogCount划定边界；version=10由冻结v10完整回放，以legacyV10Until/legacyV10LogCount划定边界；version=11由冻结v11完整回放，以legacyV11Until/legacyV11LogCount划定边界；version=12由冻结v12完整回放，以legacyV12Until/legacyV12LogCount划定边界；version=13由冻结v13完整回放，以legacyV13Until/legacyV13LogCount划定边界，version=14由冻结v14完整回放，以legacyV14Until/legacyV14LogCount划定边界，version=15由冻结v15完整回放，以legacyV15Until/legacyV15LogCount划定边界，之后才接入新规则；仍仅保存种子与指令日志。冻结v2有11文件哈希和改动前正/负现金历史逐字段回归保护。验收证据见[tests/acceptance/B2-REPORT.md](tests/acceptance/B2-REPORT.md)。
+新档version=17并带rulesRevision。没有规则标识的旧v16先核对历史结果，保留原件并创建续玩副本；新旧自动存档分开保存。无版本旧档先按冻结v1、version=2旧档按冻结v2、version=3旧档按冻结v3、version=4旧档按冻结v4、version=5旧档按冻结v5内核回放历史，记录对应日期与同日指令边界，version=6历史由冻结v6完整回放并以legacyV6Until/legacyV6LogCount记录日期和同日边界，version=7历史由冻结v7保留完整玩家与对手状态并以legacyV7Until/legacyV7LogCount划定边界；version=8由冻结v8完整回放，以legacyV8Until/legacyV8LogCount划定边界；version=9由冻结v9完整回放，以legacyV9Until/legacyV9LogCount划定边界；version=10由冻结v10完整回放，以legacyV10Until/legacyV10LogCount划定边界；version=11由冻结v11完整回放，以legacyV11Until/legacyV11LogCount划定边界；version=12由冻结v12完整回放，以legacyV12Until/legacyV12LogCount划定边界；version=13由冻结v13完整回放，以legacyV13Until/legacyV13LogCount划定边界，version=14由冻结v14完整回放，以legacyV14Until/legacyV14LogCount划定边界，version=15由冻结v15完整回放，以legacyV15Until/legacyV15LogCount划定边界，之后才接入新规则；仍仅保存种子与指令日志。冻结v2有11文件哈希和改动前正/负现金历史逐字段回归保护。验收证据见[tests/acceptance/B2-REPORT.md](tests/acceptance/B2-REPORT.md)。
 
 ### 总包与质量（B3）
 

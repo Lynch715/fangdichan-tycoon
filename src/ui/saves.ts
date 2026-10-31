@@ -3,6 +3,7 @@
 import { calendar, computeMetrics, type Config, type GameState } from '../sim/index.ts';
 import { esc, yi } from './format.ts';
 import { creditsMarkup } from './credits.ts';
+import {preserveRaw} from '../save.ts';
 
 export const SLOT_COUNT = 3;
 const slotKey = (n: number) => `fdc-slot-${n}`;
@@ -24,8 +25,12 @@ export function slotMeta(config: Config, s: GameState, data: string, now = new D
 }
 
 /** 写入失败（如浏览器存储已满或隐私模式）返回 false。 */
-export function writeSlot(n: number, meta: SlotMeta, store: Pick<Storage, 'setItem'> = localStorage): boolean {
-  try { store.setItem(slotKey(n), JSON.stringify(meta)); return true; } catch { return false; }
+export function writeSlot(n: number, meta: SlotMeta, store: Pick<Storage, 'getItem'|'setItem'> = localStorage): boolean {
+  try {
+    const old=store.getItem(slotKey(n));
+    if(old!==null&&!preserveRaw('手动槽'+n,old,store))return false;
+    store.setItem(slotKey(n), JSON.stringify(meta)); return true;
+  } catch { return false; }
 }
 
 const when = (iso: string) => {
@@ -37,7 +42,7 @@ const when = (iso: string) => {
 export function savesMarkup(config: Config, s: GameState, storageStatus: string, slots: (SlotMeta | null)[]): string {
   const c = calendar(config, s.day);
   return `<div class="row between"><h2 id="saves-title">存档与读档</h2><button class="ghost" data-saves-close>关闭</button></div>
-  <section class="save-card auto"><div class="row between"><b>自动存档</b><span class="small ${/失败|不可用/.test(storageStatus) ? 'danger-text' : 'ok-text'}">${esc(storageStatus)}</span></div>
+  <section class="save-card auto"><div class="row between"><b>自动存档</b><span class="small ${/失败|不可用|需核对|尚未/.test(storageStatus) ? 'danger-text' : 'ok-text'}">${esc(storageStatus)}</span></div>
     <p class="small muted">每个游戏月、每次操作后自动保存到本机。当前：${esc(config.start.companyName)} · 第 ${c.year} 年 ${c.month} 月 · 净资产 ${yi(computeMetrics(s).equity)}</p></section>
   <h3 class="saves-sub">手动存档槽</h3>
   ${slots.map((m, i) => `<section class="save-card${m ? '' : ' empty'}">
