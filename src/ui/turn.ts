@@ -4,7 +4,7 @@ import { activeProject, calendar, channelRate, computeMetrics, mapUnlocked, payr
 import type { TurnResult } from '../game.ts';
 import { esc, pct, yi, money } from './format.ts';
 export { money } from './format.ts';
-import { salesHighlightsMarkup } from './sales.ts';
+import { filingSalesBlock, salesHighlightsMarkup } from './sales.ts';
 
 export const ALERT_TEXT: Record<PauseReason, string> = {
   startProject: '拿地成功，项目待选择产品线与总包开工',
@@ -119,6 +119,19 @@ export function turnBriefingMarkup(config: Config, s: GameState, last: TurnResul
   const recent = s.news.filter(n => last ? n.day > last.fromDay : n.day >= s.day - config.time.daysPerMonth).filter(n => !n.text.startsWith('【') && (n.kind !== 'company' || /事故|停工|维权|接管|清盘|竣工|交付|人才/.test(n.text))).slice(0, 8);
   const newsHtml = recent.length ? `<ul class="turn-news">${recent.map(n => `<li class="${n.kind === 'warning' ? 'danger-text' : n.kind === 'policy' ? 'warn-text' : ''}">${esc(n.text)}</li>`).join('')}</ul>` : '<p class="small muted">上回合风平浪静。</p>';
   const todo: string[] = (last?.alerts ?? []).filter(a => a !== 'risk').map(a => ALERT_TEXT[a]);
+  const filingBlocks = s.projects.flatMap(p => {
+    const block = filingSalesBlock(config,s,p);
+    return block ? [{p,block}] : [];
+  });
+  const missing = filingBlocks.filter(x => x.block === 'missing').length;
+  const pending = filingBlocks.length - missing;
+  if (missing) todo.unshift(`${missing} 个项目因未备案暂停销售，请到项目卡申请限价备案，审批需 ${config.filing.approvalMonths} 回合。`);
+  if (pending) todo.push(`${pending} 个项目备案审批中，获批前暂停销售，无需重复申请。`);
+  const filingReminder = filingBlocks.length ? `<section class="sales-alert" aria-label="销售停滞提醒">
+    <b>${filingBlocks.length} 个项目因备案暂停销售</b>
+    <span class="small">当前处于限价期，未获备案无法销售，已交付现房也受影响。${missing ? `请申请限价备案，审批需 ${config.filing.approvalMonths} 回合。` : '已提交申请，请等待审批。'}</span>
+    <ul class="turn-todo">${filingBlocks.map(({p,block}) => `<li><button class="mini" data-act="view-project" data-id="${esc(p.id)}">${esc(p.name)} · ${block === 'missing' ? '去申请备案' : '备案审批中'}</button></li>`).join('')}</ul>
+  </section>` : '';
   const waiting = s.projects.filter(p => p.stage === 'land').length;
   if (waiting && !todo.includes(ALERT_TEXT.startProject)) todo.push(`${waiting} 个项目待选择总包开工`);
   if (s.auctions.length) todo.push(`${s.auctions.length} 宗土地拍卖中${s.auctions.some(a => a.playerBid !== null) ? '（已有出价）' : ''}`);
@@ -130,6 +143,7 @@ export function turnBriefingMarkup(config: Config, s: GameState, last: TurnResul
     if (unstaffed && staff.members.length < 2) todo.push(`${unstaffed} 个项目还没有派驻项目经理/销售经理，可到“员工”招聘`);
   }
   return `${head}
+  ${filingReminder}
   ${salesHighlightsMarkup(config,s)}
   <section class="turn-sec"><h3>① 上回合各项目收益${income ? `（第 ${income.period} 回合）` : ''}</h3>${incomeHtml}</section>
   <section class="turn-sec"><h3>② 金融市场行情</h3>${marketMarkup(config, s)}</section>

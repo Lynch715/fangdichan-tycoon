@@ -3,6 +3,23 @@ import { priceRestricted, presaleBlocked, salesEligible, type Config, type GameS
 import { esc, pct, money } from './format.ts';
 
 export const soldRatio = (p: Project) => p.saleableArea > 0 ? Math.max(0, Math.min(1, p.soldArea / p.saleableArea)) : 0;
+/** 只提醒已达到销售进度且有余房的项目；撤证须走整改，不能误导为普通备案。 */
+export function filingSalesBlock(c: Config, s: GameState, p: Project): 'missing' | 'pending' | null {
+  if (['closed', 'sold', 'abandoned'].includes(p.stage) || !salesEligible(p, c) ||
+      p.saleableArea - p.soldArea < 1e-6 || presaleBlocked(p) || !priceRestricted(s, c) || p.filedPrice !== null) return null;
+  return p.filingDueDay === null ? 'missing' : 'pending';
+}
+
+export function filingReminderMarkup(c: Config, s: GameState, p: Project): string {
+  const block = filingSalesBlock(c, s, p);
+  if (!block) return '';
+  return `<div class="sales-alert" role="note">
+    <b>${block === 'missing' ? '未备案，暂停销售' : '备案审批中，暂停销售'}</b>
+    <span class="small">当前处于限价期，须获批备案后才能销售，已交付的现房也需备案。</span>
+    ${block === 'missing' ? `<button data-act="file" data-id="${esc(p.id)}">申请限价备案（${c.filing.approvalMonths} 回合）</button>` : '<span class="small muted">已提交申请，请等待审批；获批后恢复销售资格。</span>'}
+  </div>`;
+}
+
 export function salesStatus(c: Config, s: GameState, p: Project) {
   if (['land', 'sold', 'abandoned'].includes(p.stage) || p.stage !== 'closed' && !salesEligible(p, c)) return null;
   if (p.saleableArea > 0 && p.saleableArea - p.soldArea < 1e-6) return { text: '全部售罄', tone: 'gold' };
