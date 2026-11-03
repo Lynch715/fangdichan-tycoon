@@ -1,4 +1,4 @@
-import { soldRatio, salesStatus } from './ui/sales.ts';
+import { filingSalesBlock, soldRatio, salesStatus } from './ui/sales.ts';
 import { money } from './ui/format.ts';
 import {recoveryMarkup} from './ui/recovery.ts';
 import {readLocalPreserved,readDatabasePreserved,validateSave,type RecoveryProfile} from './save.ts';
@@ -308,6 +308,12 @@ document.addEventListener('click', (e) => {
       case 'cooperate':
         if(confirm('引入合作方后，未来成本和回款按权益分摊，无法撤销。确定继续？'))report(game.issue({type:'cooperate',projectId:id}),'合作资金已到账');break;
       case 'file': report(game.issue({type:'filePrice',projectId:id}),'备案已申请');break;
+      case 'view-project': {
+        const p=game.state.projects.find(p=>p.id===id);if(!p)break;
+        turnDialog.close();selectedId=id;mapId=district(config,p.districtId).mapId;setTab('projects');render();
+        document.querySelector(`[data-select="${id}"]`)?.scrollIntoView({block:'start',behavior:'smooth'});
+        break;
+      }
       case 'divert':
         if(confirm('挪用监管款属于违规，抽查会要求补缴、罚款并冻结融资。确定执行？'))report(game.issue({type:'divert',projectId:id}),'监管资金已挪用，关注度上升');break;
       case 'sell':
@@ -408,6 +414,7 @@ function endTurn(){
   const s=game.state,delta=computeMetrics(s).equity-before;
   if(s.status==='bankrupt'){toast('公司已破产清算，可在“经营报表”查看复盘','error',true);return;}
   if(briefingOn)openBriefing();
+  else if(s.projects.some(p=>filingSalesBlock(config,s,p)==='missing'))toast('有项目因未备案暂停销售，请查看回合简报并申请备案');
   else toast(`第 ${turnOf(config,s)} 回合开始 · 净资产 ${delta>=0?'+':'−'}${yi(Math.abs(delta))}${(game.lastTurn?.alerts.length??0)>0?' · 有待处理事项':''}`,'info',true);
 }
 

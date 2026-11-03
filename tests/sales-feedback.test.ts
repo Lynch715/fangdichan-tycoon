@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { applyCommand, defaultConfig as c, newGame, stepDay } from '../src/sim/index.ts';
-import { monthlySales, salesBoardMarkup, salesHighlightsMarkup, salesStatus } from '../src/ui/sales.ts';
+import { filingSalesBlock, filingReminderMarkup, monthlySales, salesBoardMarkup, salesHighlightsMarkup, salesStatus } from '../src/ui/sales.ts';
 import { turnBriefingMarkup } from '../src/ui/turn.ts';
+import { projectsPanel } from '../src/ui/panels.ts';
 
 function fixture() {
   const s = newGame(7, c);
@@ -10,6 +11,48 @@ function fixture() {
 }
 
 describe('预售可视化反馈', () => {
+  it('未备案停销在简报顶部和项目卡提醒，真实申请及审批后同步更新', () => {
+    const s = fixture(), p = s.projects[0];
+    s.market.phaseIndex = c.cycle.phases.findIndex(x => x.id === 'downturn');
+    s.market.phaseEndMonth = 24;
+    p.progress = .5; p.filedPrice = null;
+    const before = structuredClone(s);
+    expect(filingSalesBlock(c,s,p)).toBe('missing');
+    const briefing = turnBriefingMarkup(c,s,null), card = projectsPanel(c,s,p.id);
+    expect(briefing.indexOf('销售停滞提醒')).toBeLessThan(briefing.indexOf('① 上回合各项目收益'));
+    expect(briefing).toContain(`data-act="view-project" data-id="${p.id}"`);
+    expect(briefing).toContain('个项目因未备案暂停销售');
+    expect(card.indexOf('未备案，暂停销售')).toBeLessThan(card.indexOf('<details'));
+    expect(filingReminderMarkup(c,s,p)).toContain(`data-act="file" data-id="${p.id}"`);
+    expect(card.slice(0,card.indexOf('</article>'))).not.toMatch(/预计月去化\s+[1-9]/);
+    expect(s).toEqual(before);
+    expect(applyCommand(s,{type:'filePrice',projectId:p.id},c).ok).toBe(true);
+    expect(filingSalesBlock(c,s,p)).toBe('pending');
+    expect(filingReminderMarkup(c,s,p)).toContain('备案审批中');
+    expect(filingReminderMarkup(c,s,p)).not.toContain('data-act="file"');
+    const sold = p.soldArea;
+    for (let i = 0; i < c.time.daysPerMonth * c.filing.approvalMonths; i++) stepDay(s,c);
+    expect(p.filedPrice).not.toBeNull();
+    expect(p.soldArea).toBeGreaterThan(sold);
+    expect(filingSalesBlock(c,s,p)).toBeNull();
+    expect(filingReminderMarkup(c,s,p)).toBe('');
+  });
+
+  it('现房同样提示备案，不向未达进度、售罄、退出经营或撤证项目发普通备案提醒', () => {
+    const s = fixture(), p = s.projects[0];
+    s.market.phaseIndex = c.cycle.phases.findIndex(x => x.id === 'downturn');
+    p.filedPrice = null; p.stage = 'delivered';
+    expect(filingReminderMarkup(c,s,p)).toContain('已交付的现房也需备案');
+    for (const stage of ['land','closed','sold','abandoned'] as const) expect(filingSalesBlock(c,s,{...p,stage})).toBeNull();
+    expect(filingSalesBlock(c,s,{...p,soldArea:p.saleableArea})).toBeNull();
+    expect(filingSalesBlock(c,s,{...p,stage:'construction',progress:c.construction.presaleProgress-.01})).toBeNull();
+    expect(filingSalesBlock(c,s,{...p,stage:'construction',progress:.5,presale:{revokedDay:0,reapplyDay:90,hoardingMonths:0}})).toBeNull();
+    expect(filingSalesBlock(c,s,{...p,filedPrice:1,filingDueDay:30})).toBeNull();
+    s.market.phaseIndex = c.cycle.phases.findIndex(x => x.id === 'recovery');
+    expect(filingSalesBlock(c,s,p)).toBeNull();
+    expect(turnBriefingMarkup(c,s,null)).not.toContain('销售停滞提醒');
+  });
+
   it('按真实预售资格与备案、撤证状态显示，交付后不受预售撤证影响', () => {
     const s = fixture(), p = s.projects[0];
     p.progress = c.construction.presaleProgress - .01; p.soldArea = 0;
@@ -63,6 +106,7 @@ describe('预售可视化反馈', () => {
     const before = structuredClone(s);
     for (let i = 0; i < 3; i++) {
       for (const p of s.projects) salesBoardMarkup(c, s, p);
+      for (const p of s.projects) filingReminderMarkup(c, s, p);
       expect(salesHighlightsMarkup(c, s)).not.toContain('<img src=x>');
       salesHighlightsMarkup(c, s); monthlySales(s);
     }

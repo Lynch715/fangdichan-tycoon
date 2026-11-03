@@ -239,7 +239,7 @@ input[type=number] { -moz-appearance: textfield; }
 .badge:empty { display: none; }
 .badge { display: inline-grid; place-items: center; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--orange); color: var(--ink-on-accent); font-size: 11px; font-weight: 700; line-height: 1; }
 .badge.warn { background: var(--red); color: #fff; }
-.tabs .badge { position: absolute; top: 8px; left: calc(50% + 12px); }
+.tabs .badge { position: absolute; top: 8px; right: 2px; }
 .inbox-btn { display: inline-flex; align-items: center; gap: 6px; background: transparent; border: 1px solid var(--line2); color: var(--muted2); font-weight: 400; }
 .inbox-btn:hover, body[data-inbox='open'] .inbox-btn { color: var(--orange-text); border-color: var(--orange); }
 
@@ -420,6 +420,9 @@ input[type=number] { -moz-appearance: textfield; }
 .recovery-choice{display:flex;flex-direction:column;gap:10px}.recovery-choice input,.recovery-check input{flex:none;width:20px;height:20px;min-width:20px;padding:0}.recovery-check{align-items:flex-start;line-height:1.6}#recovery-form [data-recovery-error]:empty{display:none}
 
 /* 预售看板：面积格、真实回款与售罄目标。 */
+.sales-alert{display:flex;flex-direction:column;gap:8px;min-width:0;padding:12px;border:1px solid var(--orange);border-radius:10px;background:rgba(245,154,60,.1);line-height:1.6;overflow-wrap:anywhere;}
+.sales-alert>b{color:var(--orange);}
+.sales-alert button{max-width:100%;white-space:normal;text-align:left;}
 .sales-board,.sales-highlight{display:flex;flex-direction:column;gap:10px;min-width:0;padding:14px;border:1px solid #32654f;border-radius:12px;background:linear-gradient(135deg,#182d28,#15211f);}
 .sales-board.gold{border-color:var(--amber);background:linear-gradient(135deg,#332c19,#211f19);}
 .sales-board.muted{border-color:var(--line2);background:var(--bg);}
