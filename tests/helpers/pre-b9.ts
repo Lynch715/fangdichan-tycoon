@@ -18,6 +18,9 @@ export function preB9Config<T>(value:T):T {
  delete (copy as {products?:unknown}).products;
  // 2026-10-28 回合制：季节/政策事件与员工体系（新功能参数）。
  delete (copy as {turns?:unknown}).turns;delete (copy as {seasons?:unknown}).seasons;delete (copy as {staff?:unknown}).staff;
+ // 2026-11-09 新开局平衡修订（balance=2）：仅新开局启用，默认值不改旧规则。
+ delete (copy as {friendlyBalance?:unknown}).friendlyBalance;
+ const filing=(copy as {filing?:Record<string,unknown>}).filing;if(filing)delete filing.autoFile;
  return copy;
 }
 export function preB9State<T>(value:T):T {

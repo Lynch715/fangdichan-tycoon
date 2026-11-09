@@ -13,7 +13,10 @@ export function updateHoarding(s:GameState,c:Config,p:Project,beforeSold:number)
  const h=c.compliance.hoarding,remaining=p.saleableArea-beforeSold;
  const eligible=['construction','completed'].includes(p.stage)&&p.progress+1e-9>=c.construction.presaleProgress&&p.fundingStoppedMonths===0&&p.stoppedUntil<=s.day&&remaining>1e-7&&!presaleBlocked(p)&&p.filingDueDay===null;
  const market=c.districts.find(d=>d.id===p.districtId)!.basePrice*s.market.priceIndex[p.districtId]*projectPriceFactor(c,p);
- const factor=c.filing.restrictedPhases.includes(c.cycle.phases[s.market.phaseIndex].id)&&p.filedPrice!==null?Math.min(p.priceFactor,p.filedPrice/market):p.priceFactor;
+ const restricted=c.filing.restrictedPhases.includes(c.cycle.phases[s.market.phaseIndex].id);
+ // 自动限价规则下，未备案项目按上限系数成交，不能因挂牌价被误判为捂盘。
+ const cap=!restricted?null:p.filedPrice!==null?p.filedPrice/market:c.filing.autoFile?c.filing.maxMarketFactor:null;
+ const factor=cap!==null?Math.min(p.priceFactor,cap):p.priceFactor;
  const hoarding=eligible&&factor+1e-9>=h.priceFactor&&(p.soldArea-beforeSold)/remaining<h.maxMonthlySoldRatio;
  if(hoarding){p.presale??={hoardingMonths:0,revokedDay:null,reapplyDay:null};p.presale.hoardingMonths++;}else if(p.presale)p.presale.hoardingMonths=0;
 }

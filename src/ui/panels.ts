@@ -20,7 +20,7 @@ import {outlookMarkup} from './outlook.ts';
 import {projectStaffMarkup} from './staff.ts';
 import {seasonSales,staffSalesFactor} from '../sim/index.ts';
 // 界面面板：根据模拟状态生成 HTML。按钮通过 data-act 属性交给 main.ts 统一处理。
-import { activeProject, priceRestricted, transferQuote, borrowCapacity, calendar, computeMetrics, district, marketPrice,salesRate,salesEligible,industryTight,channelRate, type Config, type GameState, type Project,type Parcel } from '../sim/index.ts';
+import { activeProject, priceRestricted, salesPriceCap, transferQuote, borrowCapacity, calendar, computeMetrics, district, marketPrice,salesRate,salesEligible,industryTight,channelRate, type Config, type GameState, type Project,type Parcel } from '../sim/index.ts';
 import { esc, pct, ratio, yi } from './format.ts';
 
 const STAGE: Record<Project['stage'], [string, string]> = {
@@ -160,7 +160,7 @@ export function projectsPanel(config: Config, s: GameState, selectedId: string |
       const [label, color] = p.stage==='construction'&&p.fundingStoppedMonths>0?['资金停工','red']:STAGE[p.stage];
       const sold = p.soldArea / p.saleableArea;
       const requested = marketPrice(config, s, p.districtId,p.attributes,p.product) * p.priceFactor;
-      const price = priceRestricted(s,config) && p.filedPrice !== null ? Math.min(requested,p.filedPrice) : requested;
+      const price = Math.min(requested, salesPriceCap(s,config,p,marketPrice(config, s, p.districtId,p.attributes,p.product)) ?? requested);
       const quote = transferQuote(s,p,config);
       const canSell = salesEligible(p,config);
       const filingBlock = filingSalesBlock(config,s,p);
@@ -190,13 +190,13 @@ export function projectsPanel(config: Config, s: GameState, selectedId: string |
           <label class="small">外观变体 <select id="appearance-variant-${p.id}">${BUILDING_VARIANTS.map(k=>`<option value="${k}" ${k===appearance.variant?'selected':''}>${k.toUpperCase()}</option>`).join('')}</select></label>
           <button class="ghost" data-act="appearance" data-id="${p.id}">应用外观</button>
         </div></details>
-        ${canSell ? `<div class="row between small"><span class="muted">售价 ${(price * 10000).toFixed(0)} 元/㎡（市场价 ${pct(price/marketPrice(config,s,p.districtId,p.attributes,p.product))}）</span><span class="row"><button class="mini" data-act="price" data-id="${p.id}" data-delta="-0.05">降价</button><button class="mini" data-act="price" data-id="${p.id}" data-delta="0.05">提价</button></span></div>` : ''}
+        ${canSell ? `<div class="row between small"><span class="muted">售价 ${(price * 10000).toFixed(0)} 元/㎡（市场价 ${pct(price/marketPrice(config,s,p.districtId,p.attributes,p.product))}）</span><span class="row"><button class="mini" data-act="price" data-id="${p.id}" data-delta="-0.05" ${p.priceFactor <= config.sales.minPriceFactor + 1e-9 ? 'disabled title="已到最低报价"' : ''}>降价</button><button class="mini" data-act="price" data-id="${p.id}" data-delta="0.05" ${p.priceFactor >= config.sales.maxPriceFactor - 1e-9 ? 'disabled title="已到最高报价"' : ''}>提价</button></span></div>` : ''}
         ${canSell?`<div class="stack"><label class="small">营销投入（销售回款比例，%）<div class="row"><input id="marketing-${p.id}" aria-label="营销投入比例（%）" type="number" min="0" max="${config.marketing.maxRate*100}" step="0.5" value="${p.marketingRate*100}"><button data-act="marketing" data-id="${p.id}">设置</button></div></label><span class="small muted">当前 ${pct(p.marketingRate,1)} · ${salesForecast}品牌、营销、片区购房政策、本回合季节事件和销售经理共同影响去化；仅对实际回款计营销费，未计配套利好。</span></div>`:''}
         <details class="project-tools" data-key="${p.id}"><summary>项目融资、备案与自救</summary><div class="stack">
           <span class="small muted">${p.partnerShare > 0 ? `合作方权益 ${pct(p.partnerShare)}，成本与回款按比例分摊` : '独资项目'} · 商票支付比例 ${pct(p.paperRatio*(industryTight(s)?config.rivals.default.capacityFactor:1))}</span>
           ${p.stage === 'construction' ? `<button class="ghost" data-act="paper" data-id="${p.id}">${p.paperRatio > 0 ? '关闭商票支付' : `开启商票（工程款 ${pct(config.finance.channels.paper.maxOfBuildCost*(industryTight(s)?config.rivals.default.capacityFactor:1))}，${config.finance.channels.paper.termMonths} 个月兑付）`}</button>` : ''}
           ${p.stage === 'construction' && !p.acquisition && p.partnerShare === 0 && p.soldArea === 0 ? `<button class="ghost" data-act="cooperate" data-id="${p.id}">合作开发 · 出让 ${pct(config.cooperation.partnerShare)} 权益</button><span class="muted small">预计到账 ${yi((p.landPaid+p.buildSpent)*config.cooperation.partnerShare)}，须先结清项目融资</span>` : ''}
-          <span class="small ${priceRestricted(s,config) && p.filedPrice === null ? 'warn-text' : 'muted'}">${priceRestricted(s,config) ? '当前处于限价期，未获备案暂停销售' : '当前不限价，可提前备案'} · ${p.filedPrice !== null ? `备案上限 ${(p.filedPrice*10000).toFixed(0)} 元/㎡` : '尚未备案'}</span>
+          <span class="small ${priceRestricted(s,config) && p.filedPrice === null && !config.filing.autoFile ? 'warn-text' : 'muted'}">${priceRestricted(s,config) ? (config.filing.autoFile ? `当前处于限价期，未备案时按市场价 ${pct(config.filing.maxMarketFactor)} 自动限价销售` : '当前处于限价期，未获备案暂停销售') : '当前不限价，可提前备案'} · ${p.filedPrice !== null ? `备案上限 ${(p.filedPrice*10000).toFixed(0)} 元/㎡` : '尚未备案'}</span>
           <button class="ghost" data-act="file" data-id="${p.id}" ${p.filingDueDay !== null ? 'disabled' : ''}>${p.filingDueDay !== null ? '备案审批中' : presaleBlocked(p)?'申请整改复审（恢复预售证）':`申请/更新限价备案（${config.filing.approvalMonths} 个月）`}</button>
           ${p.stoppedUntil > s.day ? `<span class="danger-text small">事故停工至第 ${calendar(config,p.stoppedUntil).year} 年 ${calendar(config,p.stoppedUntil).month} 月</span>` : ''}
           ${p.partnerShare === 0 && p.salesIn > p.escrowReleased && p.diverted === 0 ? `<button class="ghost danger-text" data-act="divert" data-id="${p.id}">挪用监管款 ${yi((p.salesIn-p.escrowReleased)*config.risk.diversionLimit)}</button><span class="warn-text small">违规：抽查将追缴、罚款，冻结新增融资。</span>` : ''}
