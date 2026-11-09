@@ -179,7 +179,7 @@ D1/D2：机器人实际使用商票、明股实债、合作、展期、转让、
 
 D3：balance打印破产触发支出分布及下行最大净资产回撤，使用真实流水/月报，不改变模拟。归因取最终连续危机首月最后一次现金转负；回撤用下行月末对全生涯历史峰值，每局求最大，未到下行不计零，负净资产比例可超过100%。OUTPUT可保存种子、触发流水、峰值和端点供核验。
 
-当前验证：59文件457项Vitest通过（2026-11-02备案停销提醒，包含原455项与新增2项），类型检查与生产构建通过；统计专项10项复验通过，正式两策略各200局30年与D2逐种子破产名单及收益分位一致。81素材art:check通过。B13模式/挑战及B14转让在IAB桌面1440×900、390×844和320×740验收；D2另完成390视口旧档迁移/实际新价转让/导出重载。A8曾停止本地生产预览后验证离线重载与续档；本次D组未重复离线实测。最新生产缓存包含28个本地文件及全部图集，开发模式不启用Service Worker。
+当前验证：60文件461项Vitest通过（2026-11-09新开局平衡修订，包含原457项与新增4项），类型检查与生产构建通过；统计专项10项复验通过，正式两策略各200局30年与D2逐种子破产名单及收益分位一致。81素材art:check通过。B13模式/挑战及B14转让在IAB桌面1440×900、390×844和320×740验收；D2另完成390视口旧档迁移/实际新价转让/导出重载。A8曾停止本地生产预览后验证离线重载与续档；本次D组未重复离线实测。最新生产缓存包含28个本地文件及全部图集，开发模式不启用Service Worker。
 
 发布准备：工作流以game为仓库根，main推送后先测试/构建，再最小权限发布GitHub Pages；README有用户建仓、部署和iPhone/Android安装步骤。2026-10-26已推送至 GitHub `Lynch715/fangdichan-tycoon`，Pages 在 https://lynch715.github.io/fangdichan-tycoon/ 上线；main 推送即自动部署。vite 测试超时设为30秒（Actions 机器较慢）；`.gitignore` 排除 `art/raw/`，仅保留素材测试用的4张样本。
 
@@ -191,7 +191,7 @@ D3：balance打印破产触发支出分布及下行最大净资产回撤，使�
 
 游戏性审计（2026-10-27）：地图三张均为24×24；城市自然生长为纯渲染层（`src/render/growth.ts`，城市化=年份+本图已交付面积，空地由核心向外长出低层→中层→高层，约12%公园，不占模拟地块）。生涯开局额外2宗新手地（`land.starterParcels`/`starterMaxCashShare`，Parcel.starter，同行不报名、不耗随机数；裸newGame不生成）。挂牌地块除2宗常规外按（净资产/开局资金）^0.5放大，上限1.6倍（`land.scale`）。界面：拍地资金判断与红色确认（`src/ui/affordability.ts`）、项目预计利润（`outlook.ts`）、公司成长与目标（`milestones.ts`，目标已达成记录存localStorage）、新手指引（`guide.ts`）、庆祝条、消息角标只计相关消息、新地挂牌暂停可关（`Game.ignoredPauses`）、小额事故不暂停。`npm run pacing` 为节奏审计。激进机器人工程储备0.015。当时按不保留旧存档处理；2026-10-30用户最新要求已覆盖该约定：必须保留玩家原档，不能用新规则静默重算旧v16历史。格式v17恢复与保护规则见上文。
 
-新开局平衡修订（2026-11-09）：`data/config.json` 的 `friendlyBalance` 只在开局选项带 `balance: 2`（`CURRENT_BALANCE`，开局页自动带上）时由 `buildSessionConfig` 套用：`filing.autoFile=true`（限价期未备案按市场价×`maxMarketFactor`自动限价销售，`salesPriceCap` 统一口径）、`sales.maxPriceFactor=1.1`。默认值 `autoFile=false`、上限1.2不变，旧日志逐值按原规则回放，因此未更换 rulesRevision。以后若再做“只影响新开局”的规则修订，沿用该方式递增 `balance`；会改变已有日志结果的经济修改仍须更换 rulesRevision 并冻结旧规则。`npm run balance` 可加 `FRIENDLY=1` 观察新开局规则。
+新开局平衡修订（2026-11-09）：`data/config.json` 的 `friendlyBalance` 只在开局选项带 `balance: 2`（`CURRENT_BALANCE`，开局页默认提交与切换选项均带上，已验证）时由 `buildSessionConfig` 套用：`filing.autoFile=true`（限价期未备案按市场价×`maxMarketFactor`自动限价销售，`salesPriceCap` 统一口径）、`sales.maxPriceFactor=1.1`。默认值 `autoFile=false`、上限1.2不变，旧日志逐值按原规则回放，因此未更换 rulesRevision。以后若再做“只影响新开局”的规则修订，沿用该方式递增 `balance`；会改变已有日志结果的经济修改仍须更换 rulesRevision 并冻结旧规则。`npm run balance` 可加 `FRIENDLY=1` 观察新开局规则。
 
 存档与成就（2026-10-27）：开局选项可带 `companyName`（`normalizeCompanyName` 校验 2–12 字，与同行重名拒绝；接管挑战沿用剧情名）。顶栏“存档”弹窗：自动存档状态、3 个手动槽（localStorage `fdc-slot-N`，内容即导出存档 JSON）、文件导入导出（`src/ui/saves.ts`）。成就 24 个（`src/ui/achievements.ts`），只读推导，跨局记录在 localStorage `fdc-achievements`，沙盒不计。底部导航点击只认 `.tabs button[data-tab]`（body 自身带 data-tab）。
 
