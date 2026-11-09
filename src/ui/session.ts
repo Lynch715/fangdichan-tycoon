@@ -1,5 +1,5 @@
 import {defaultConfig,buildSessionConfig,DIFFICULTIES,validateSessionOptions,type SessionOptions,type GameState,type Config} from '../sim/index.ts';
-import {COMPANY_NAME_MAX} from '../sim/sessionConfig.ts';
+import {COMPANY_NAME_MAX,CURRENT_BALANCE} from '../sim/sessionConfig.ts';
 import {creditsMarkup} from './credits.ts';
 import {esc,yi} from './format.ts';
 import type {Game} from '../game.ts';
@@ -54,7 +54,7 @@ const NAME_KEY='fdc-company-name';
 /** 草稿只在控制器中；确认才调用Game.restart，取消没有经营指令或存档写入。 */
 export class SessionController {
  private game:Game;private dialog:HTMLDialogElement;private afterStart:()=>void;
- private options:SessionOptions={mode:'career',difficulty:'standard'};private replace=false;
+ private options:SessionOptions={mode:'career',difficulty:'standard',balance:CURRENT_BALANCE};private replace=false;
  /** 公司名草稿：默认上次用过的名字（只存本机）。 */
  private companyName=(()=>{try{return localStorage.getItem(NAME_KEY)??'';}catch{return '';}})();
  constructor(game:Game,dialog:HTMLDialogElement,afterStart:()=>void){
@@ -65,7 +65,7 @@ export class SessionController {
    const mode=(dialog.querySelector('#setup-mode') as HTMLSelectElement).value;
    const difficulty=(dialog.querySelector('#setup-difficulty') as HTMLSelectElement).value;
    const challenge=(dialog.querySelector('#setup-challenge') as HTMLSelectElement).value;
-   const next=validateSessionOptions({mode,difficulty,...(mode==='challenge'?{challenge}:{})});
+   const next=validateSessionOptions({mode,difficulty,balance:CURRENT_BALANCE,...(mode==='challenge'?{challenge}:{})});
    if(next){const focused=(document.activeElement as HTMLElement)?.id;this.options=next;this.paint();if(focused)dialog.querySelector<HTMLElement>(`#${focused}`)?.focus();}
   });
   dialog.addEventListener('click',e=>{

@@ -1,9 +1,12 @@
 // 标准生涯真实模拟；统计只观察已有月报，不改变策略、状态或随机数。
 import { writeFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { aggressive, computeMetrics, conservative, defaultConfig, payroll, runGame, staffed, type Strategy } from '../src/sim/index.ts';
+import { aggressive, buildSessionConfig, computeMetrics, conservative, defaultConfig as baseConfig, payroll, runGame, staffed, type Strategy } from '../src/sim/index.ts';
 import { bankruptcyTrigger, downturnDrawdown, positiveInteger, quantile, reasonLabels, type BankruptcyReason } from '../src/analysis/balance.ts';
 
+// FRIENDLY=1：使用新开局的平衡修订（balance=2：限价期自动限价销售、报价上限110%）
+const FRIENDLY = process.env.FRIENDLY === '1';
+const defaultConfig = FRIENDLY ? buildSessionConfig(baseConfig, { mode: 'career', difficulty: 'standard', balance: 2 }) : baseConfig;
 const RUNS = positiveInteger(process.env.RUNS ?? '200', 'RUNS');
 const YEARS = positiveInteger(process.env.YEARS ?? String(defaultConfig.time.careerYears), 'YEARS');
 const START_SEED = positiveInteger(process.env.START_SEED ?? '1', 'START_SEED');
@@ -32,7 +35,7 @@ function report(name: string, strategy: Strategy) {
   for (const r of failed) reasons[r.trigger!.reason]++;
   const drawdowns = runs.flatMap(r => r.drawdown ? [r.drawdown] : []);
   const rates = drawdowns.flatMap(d => d.rate ? [d.rate.value * 100] : []);
-  console.log(`\n${name}（${RUNS} 局 × ${YEARS} 年，种子${START_SEED}–${START_SEED + RUNS - 1}${SEASONS ? '，含季节事件' : ''}${STAFF ? '，机器人雇员工' : ''}）`);
+  console.log(`\n${name}（${RUNS} 局 × ${YEARS} 年，种子${START_SEED}–${START_SEED + RUNS - 1}${SEASONS ? '，含季节事件' : ''}${STAFF ? '，机器人雇员工' : ''}${FRIENDLY ? '，新开局平衡修订' : ''}）`);
   console.log(`  破产率        ${(failed.length / RUNS * 100).toFixed(1)}%`);
   if (failed.length) console.log(`  破产年份中位数 第 ${fmt(quantile(failed.map(r => r.day / (12 * defaultConfig.time.daysPerMonth)), .5))} 年`);
   console.log(`  净资产（亿）  ${distribution(runs.map(r => r.equity / 10000))}`);

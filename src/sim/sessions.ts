@@ -27,6 +27,8 @@ export function buildSessionConfig(base:Config,options:SessionOptions):Config {
  const c=buildDifficultyConfig(base,options.difficulty);
  // 玩家自定公司名（接管违约公司的挑战沿用剧情公司名）
  if(options.companyName)c.start.companyName=options.companyName;
+ // 新手友好修订：只对带 balance=2 的新开局生效，旧存档日志逐值保留原规则。
+ if(options.balance===2){c.filing.autoFile=c.friendlyBalance.autoFile;c.sales.maxPriceFactor=c.friendlyBalance.maxPriceFactor;}
  if(options.mode==='sandbox'){
   c.start.cash*=c.sessions.sandbox.initialCashFactor;c.maps.suburbUnlockYear=1;
  }else if(options.mode==='challenge'){

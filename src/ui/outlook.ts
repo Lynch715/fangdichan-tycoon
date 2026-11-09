@@ -1,10 +1,10 @@
-import { marketPrice, priceRestricted, salesRate, type Config, type GameState, type Project } from '../sim/index.ts';
+import { marketPrice, salesPriceCap, salesRate, type Config, type GameState, type Project } from '../sim/index.ts';
 import { pct, yi } from './format.ts';
 
 function prices(config: Config, s: GameState, p: Project) {
   const market = marketPrice(config, s, p.districtId, p.attributes, p.product);
   const requested = market * p.priceFactor;
-  const price = priceRestricted(s, config) && p.filedPrice !== null ? Math.min(requested, p.filedPrice) : requested;
+  const price = Math.min(requested, salesPriceCap(s, config, p, market) ?? requested);
   return { market, price };
 }
 

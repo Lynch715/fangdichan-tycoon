@@ -12,6 +12,12 @@ export const activeProject = (p: Project) => p.stage !== 'closed' && p.stage !==
 export const salesEligible=(p:Project,c:Config)=>p.stage==='completed'||p.stage==='delivered'||p.stage==='construction'&&p.progress+1e-9>=c.construction.presaleProgress;
 export const mapUnlocked = (s: GameState, c: Config, id: string) => id === 'city' || id==='outer' || s.day >= (c.maps.suburbUnlockYear - 1) * 12 * c.time.daysPerMonth;
 export const priceRestricted = (s: GameState, c: Config) => c.filing.restrictedPhases.includes(c.cycle.phases[s.market.phaseIndex].id);
+/** 本月可用售价上限：不限价为 Infinity；限价期取备案价，未备案时自动限价规则下取市场价×上限系数，否则 null（停售）。 */
+export function salesPriceCap(s: GameState, c: Config, p: Project, market: number): number | null {
+  if (!priceRestricted(s, c)) return Infinity;
+  if (p.filedPrice !== null) return p.filedPrice;
+  return c.filing.autoFile ? market * c.filing.maxMarketFactor : null;
+}
 export function transferQuote(s: GameState, p: Project, c: Config) {
   const book = projectInventory(p)+(p.salesIn-p.escrowReleased-(p.stage==='delivered'?0:p.salesIn)-(p.landCost-p.landPaid))*(1-p.partnerShare);
   const price = book * (book >= 0 ? c.rescue.saleBookDiscount : 1 / c.rescue.saleBookDiscount);

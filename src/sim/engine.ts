@@ -12,7 +12,7 @@ import{acquireProject}from'./acquisition.ts';
 import{initSeasons,rollSeason,seasonSales,seasonBuild,seasonCost}from'./seasons.ts';
 import{initStaff,staffCommand,staffMonthEnd,pmSpeedFactor,pmQualityGain,staffSalesFactor}from'./staff.ts';
 // 模拟内核：只接收指令、按游戏日推进、月末结算。不碰 DOM，不读系统时间，不用 Math.random。
-import { featureCommand, activeProject, inspect, mapUnlocked, priceRestricted, projectEvent,salesEligible } from './features.ts';
+import { featureCommand, activeProject, inspect, mapUnlocked, priceRestricted, projectEvent,salesEligible,salesPriceCap } from './features.ts';
 import { defaultConfig, district, type Config } from './config.ts';
 import { borrowCapacity, breachCount, breaches, channelRate, computeMetrics, computeRating, isDelivered,projectInventory,recognizedProjectCost,industryTight } from './finance.ts';
 import { backgroundOccupied, footprint, freeSites, tileKey } from './map.ts';
@@ -514,12 +514,14 @@ function settleProject(state: GameState, config: Config, p: Project) {
   if(p.stage==='construction'&&p.fundingStoppedMonths>=c.fundingStopMonthsToTakeover){takeOverProject(state,config,p);return;}
   // 销售
   const canSell = salesEligible(p,config);
-  if (canSell && !presaleBlocked(p) && (!priceRestricted(state,config) || p.filedPrice !== null)) {
+  const listMarket = marketPrice(config,state,p.districtId,p.attributes,p.product);
+  const priceCap = salesPriceCap(state,config,p,listMarket);
+  if (canSell && !presaleBlocked(p) && priceCap !== null) {
     const remaining = p.saleableArea - p.soldArea;
-    const requestedPrice = marketPrice(config, state, p.districtId,p.attributes,p.product) * p.priceFactor;
-    const price = priceRestricted(state,config) ? Math.min(requestedPrice,p.filedPrice!) : requestedPrice;
+    const requestedPrice = listMarket * p.priceFactor;
+    const price = Math.min(requestedPrice,priceCap);
     const clearance = p.stage === 'delivered' && p.deliveredDay !== null && state.day - p.deliveredDay >= c.clearanceMonthsAfterDelivery * dpm;
-    const market = marketPrice(config,state,p.districtId,p.attributes,p.product);
+    const market = listMarket;
     const sold = clearance ? remaining : Math.min(remaining, remaining * salesRate(config, state, price / market,p.marketingRate,p.districtId,p.product) * event.demand*seasonSales(state)*staffSalesFactor(state,config,p));
     // 尾货清盘是批量处置：按“市场价与挂牌价取低”再打折，临时提价不能抬高整批成交价（审计 G01）
     const unitPrice = clearance ? Math.min(price, market) * (1 - c.clearanceDiscount) : price;

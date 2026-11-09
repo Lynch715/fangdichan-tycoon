@@ -7,8 +7,10 @@ export type GameMode=typeof GAME_MODES[number];
 export type Difficulty=typeof DIFFICULTIES[number];
 export type ChallengeId=typeof CHALLENGES[number];
 export type SessionOptions=
- | {mode:'career'|'sandbox';difficulty:Difficulty;companyName?:string}
- | {mode:'challenge';difficulty:Difficulty;challenge:ChallengeId;companyName?:string};
+ | {mode:'career'|'sandbox';difficulty:Difficulty;companyName?:string;balance?:2}
+ | {mode:'challenge';difficulty:Difficulty;challenge:ChallengeId;companyName?:string;balance?:2};
+/** 新开局使用的平衡修订；旧日志没有该字段，继续按原规则回放。 */
+export const CURRENT_BALANCE=2 as const;
 
 /** 公司名：去首尾空白、合并连续空白，2–12 个字，禁止控制字符与尖括号。不合法返回 null。 */
 export const COMPANY_NAME_MIN=2,COMPANY_NAME_MAX=12;
@@ -27,7 +29,8 @@ export function validateSessionOptions(value:unknown):SessionOptions|null {
  const difficulty=options.difficulty as Difficulty;
  let companyName:string|undefined;
  if(options.companyName!==undefined){const name=normalizeCompanyName(options.companyName);if(name===null)return null;companyName=name;}
- const named=companyName===undefined?{}:{companyName};
+ if(options.balance!==undefined&&options.balance!==CURRENT_BALANCE)return null;
+ const named={...(companyName===undefined?{}:{companyName}),...(options.balance===CURRENT_BALANCE?{balance:CURRENT_BALANCE}:{})};
  if(options.mode==='challenge'){
   if(!CHALLENGES.includes(options.challenge as ChallengeId))return null;
   return {mode:'challenge',difficulty,challenge:options.challenge as ChallengeId,...named};

@@ -384,7 +384,13 @@
       "downturn"
     ],
     "maxMarketFactor": 0.95,
-    "approvalMonths": 1
+    "approvalMonths": 1,
+    "autoFile": false
+  },
+  "friendlyBalance": {
+    "_note": "新开局（balance=2）启用：限价期未备案项目按市场价×maxMarketFactor自动限价销售、不再停售；报价上限降到市场价110%，低于捂盘认定线（compliance.hoarding.priceFactor），避免多点一次提价就零成交、撤证。旧存档不受影响。",
+    "autoFile": true,
+    "maxPriceFactor": 1.1
   },
   "rescue": {
     "saleBookDiscount": 0.6

@@ -6,7 +6,7 @@ export const soldRatio = (p: Project) => p.saleableArea > 0 ? Math.max(0, Math.m
 /** 只提醒已达到销售进度且有余房的项目；撤证须走整改，不能误导为普通备案。 */
 export function filingSalesBlock(c: Config, s: GameState, p: Project): 'missing' | 'pending' | null {
   if (['closed', 'sold', 'abandoned'].includes(p.stage) || !salesEligible(p, c) ||
-      p.saleableArea - p.soldArea < 1e-6 || presaleBlocked(p) || !priceRestricted(s, c) || p.filedPrice !== null) return null;
+      p.saleableArea - p.soldArea < 1e-6 || presaleBlocked(p) || !priceRestricted(s, c) || p.filedPrice !== null || c.filing.autoFile) return null;
   return p.filingDueDay === null ? 'missing' : 'pending';
 }
 
@@ -25,7 +25,7 @@ export function salesStatus(c: Config, s: GameState, p: Project) {
   if (p.saleableArea > 0 && p.saleableArea - p.soldArea < 1e-6) return { text: '全部售罄', tone: 'gold' };
   if (p.stage === 'closed') return { text: '已清盘', tone: 'gold' };
   if (presaleBlocked(p)) return { text: '预售暂停', tone: 'muted' };
-  if (priceRestricted(s, c) && p.filedPrice === null) return { text: '待备案开盘', tone: 'muted' };
+  if (priceRestricted(s, c) && p.filedPrice === null && !c.filing.autoFile) return { text: '待备案开盘', tone: 'muted' };
   return { text: p.stage === 'delivered' ? '现房销售' : '预售进行中', tone: 'green' };
 }
 
