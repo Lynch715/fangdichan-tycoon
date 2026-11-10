@@ -362,6 +362,54 @@
       "stage": "abandoned"
     },
     {
+      "id": "stage_villa_frame_2x2_a",
+      "file": "stage_villa_frame_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "productLine": "villa",
+      "stage": "frame"
+    },
+    {
+      "id": "stage_villa_topped_2x2_a",
+      "file": "stage_villa_topped_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "productLine": "villa",
+      "stage": "topped"
+    },
+    {
+      "id": "stage_villa_abandoned_2x2_a",
+      "file": "stage_villa_abandoned_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "productLine": "villa",
+      "stage": "abandoned"
+    },
+    {
+      "id": "stage_commercial_frame_2x2_a",
+      "file": "stage_commercial_frame_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "productLine": "commercial",
+      "stage": "frame"
+    },
+    {
+      "id": "stage_commercial_topped_2x2_a",
+      "file": "stage_commercial_topped_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "productLine": "commercial",
+      "stage": "topped"
+    },
+    {
+      "id": "stage_commercial_abandoned_2x2_a",
+      "file": "stage_commercial_abandoned_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "productLine": "commercial",
+      "stage": "abandoned"
+    },
+    {
       "id": "building_tower_2x2_a",
       "file": "building_tower_2x2_a.png",
       "cells": 2,

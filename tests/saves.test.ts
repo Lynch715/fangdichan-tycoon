@@ -22,7 +22,7 @@ describe('手动存档槽', () => {
     const s = newGame(3, c);
     expect(writeSlot(1, slotMeta(c, s, '{}'), new FullStore())).toBe(false);
     const store = new MemStore(); store.setItem('fdc-slot-1', '不是JSON');
-    expect(readSlot(1, store)).toBeNull();
+    expect(readSlot(1, store)).toMatchObject({ damaged: true, data: '不是JSON' });
   });
   it('弹窗列出 3 个槽位：空槽可保存，有档可覆盖和读取', () => {
     const s = newGame(3, c), html = savesMarkup(c, s, '已保存 · IndexedDB', [slotMeta(c, s, '{}'), null, null]);

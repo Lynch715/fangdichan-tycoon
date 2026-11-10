@@ -20,7 +20,12 @@ export function roadAt(i:number,j:number,mapId:string):boolean {
  // 24×24 路网：主干道连通大桥，外加次干道把大片土地切成街区
  if(mapId==='outer')return i===8||j===6||(j===18&&i<17)||(i===16&&j<12)||(j===21&&i<17);
  if(mapId==='suburb')return i===8||j===5||(j===17&&i<18)||(i===16&&j<11)||(j===21&&i<18);
- return i===6||j===8||(i===16&&j<17)||(j===13&&i<11)||(i===17&&j<16)||(j===21&&i<15)||(i===3&&j>=3&&j<=8)||(j===3&&i>=3&&i<=6)||(i===20&&j<17)||(j===4&&i>=13);
+ return i===6||j===8||(i===16&&j<17)||(j===13&&i<11)||(j===21&&i<15)||(i===3&&j>=3&&j<=8)||(j===3&&i>=3&&i<=6)||(i===20&&j<17)||(j===4&&i>=13);
+}
+export const ROAD_DIRECTIONS=[[-1,0],[1,0],[0,-1],[0,1]] as const;
+/** 街道表面由实际相邻格生成，四向连接都使用同一共享边中点。 */
+export function roadConnections(i:number,j:number,mapId:string):ReadonlyArray<readonly[number,number]>{
+ return roadAt(i,j,mapId)?ROAD_DIRECTIONS.filter(([di,dj])=>roadAt(i+di,j+dj,mapId)):[];
 }
 export function tileArtAt(i:number,j:number,mapId='city'):TileArt {
  const t=terrainAt(i,j,mapId),h=hash(i,j),road=roadAt(i,j,mapId);

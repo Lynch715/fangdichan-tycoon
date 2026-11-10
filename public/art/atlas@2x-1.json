@@ -203,10 +203,97 @@
         "height": 128
       }
     },
-    "building_commercial_2x2_a": {
+    "stage_commercial_frame_2x2_a": {
       "frame": {
         "x": 1045,
         "y": 849,
+        "w": 513,
+        "h": 379
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 513,
+        "h": 379
+      },
+      "sourceSize": {
+        "w": 513,
+        "h": 379
+      },
+      "anchor": {
+        "x": 0.5003156183471741,
+        "y": 0.9993204058486892
+      },
+      "footprint": {
+        "cells": 2,
+        "width": 256,
+        "height": 128
+      }
+    },
+    "stage_commercial_abandoned_2x2_a": {
+      "frame": {
+        "x": 2,
+        "y": 1246,
+        "w": 512,
+        "h": 367
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 367
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 367
+      },
+      "anchor": {
+        "x": 0.5043300127172328,
+        "y": 0.9989273730874146
+      },
+      "footprint": {
+        "cells": 2,
+        "width": 256,
+        "height": 128
+      }
+    },
+    "stage_commercial_topped_2x2_a": {
+      "frame": {
+        "x": 518,
+        "y": 1246,
+        "w": 512,
+        "h": 367
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 367
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 367
+      },
+      "anchor": {
+        "x": 0.4999405878399628,
+        "y": 0.9979422339891658
+      },
+      "footprint": {
+        "cells": 2,
+        "width": 256,
+        "height": 128
+      }
+    },
+    "building_commercial_2x2_a": {
+      "frame": {
+        "x": 1034,
+        "y": 1246,
         "w": 512,
         "h": 364
       },
@@ -232,10 +319,39 @@
         "height": 128
       }
     },
-    "landmark_trail_2x2_a": {
+    "stage_villa_frame_2x2_a": {
       "frame": {
         "x": 2,
-        "y": 1246,
+        "y": 1617,
+        "w": 512,
+        "h": 351
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 512,
+        "h": 351
+      },
+      "sourceSize": {
+        "w": 512,
+        "h": 351
+      },
+      "anchor": {
+        "x": 0.5117463664910643,
+        "y": 0.9989730099091746
+      },
+      "footprint": {
+        "cells": 2,
+        "width": 256,
+        "height": 128
+      }
+    },
+    "landmark_trail_2x2_a": {
+      "frame": {
+        "x": 518,
+        "y": 1617,
         "w": 512,
         "h": 350
       },
@@ -261,41 +377,12 @@
         "height": 128
       }
     },
-    "landmark_stilts_2x2_b": {
+    "stage_villa_abandoned_2x2_a": {
       "frame": {
-        "x": 518,
-        "y": 1246,
-        "w": 513,
-        "h": 338
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 513,
-        "h": 338
-      },
-      "sourceSize": {
-        "w": 513,
-        "h": 338
-      },
-      "anchor": {
-        "x": 0.5220421626316615,
-        "y": 0.9992884819600119
-      },
-      "footprint": {
-        "cells": 2,
-        "width": 256,
-        "height": 128
-      }
-    },
-    "landmark_stilts_2x2_a": {
-      "frame": {
-        "x": 1035,
-        "y": 1246,
+        "x": 1034,
+        "y": 1617,
         "w": 512,
-        "h": 329
+        "h": 342
       },
       "rotated": false,
       "trimmed": false,
@@ -303,102 +390,15 @@
         "x": 0,
         "y": 0,
         "w": 512,
-        "h": 329
+        "h": 342
       },
       "sourceSize": {
         "w": 512,
-        "h": 329
+        "h": 342
       },
       "anchor": {
-        "x": 0.5200157845938044,
-        "y": 1.0002873769040848
-      },
-      "footprint": {
-        "cells": 2,
-        "width": 256,
-        "height": 128
-      }
-    },
-    "building_villa_2x2_a": {
-      "frame": {
-        "x": 2,
-        "y": 1600,
-        "w": 513,
-        "h": 326
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 513,
-        "h": 326
-      },
-      "sourceSize": {
-        "w": 513,
-        "h": 326
-      },
-      "anchor": {
-        "x": 0.49306914932343726,
-        "y": 0.9980864555505546
-      },
-      "footprint": {
-        "cells": 2,
-        "width": 256,
-        "height": 128
-      }
-    },
-    "landmark_cableway_2x2_a": {
-      "frame": {
-        "x": 519,
-        "y": 1600,
-        "w": 512,
-        "h": 326
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 512,
-        "h": 326
-      },
-      "sourceSize": {
-        "w": 512,
-        "h": 326
-      },
-      "anchor": {
-        "x": 0.49054408515317816,
-        "y": 0.9960570439464306
-      },
-      "footprint": {
-        "cells": 2,
-        "width": 256,
-        "height": 128
-      }
-    },
-    "building_commercial_2x2_c": {
-      "frame": {
-        "x": 1035,
-        "y": 1600,
-        "w": 512,
-        "h": 321
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 512,
-        "h": 321
-      },
-      "sourceSize": {
-        "w": 512,
-        "h": 321
-      },
-      "anchor": {
-        "x": 0.5093528977149135,
-        "y": 1.0346866604776208
+        "x": 0.5010596167034731,
+        "y": 0.9976346723309726
       },
       "footprint": {
         "cells": 2,
@@ -414,7 +414,7 @@
     "format": "RGBA8888",
     "size": {
       "w": 1825,
-      "h": 1932
+      "h": 1974
     },
     "scale": "2"
   }

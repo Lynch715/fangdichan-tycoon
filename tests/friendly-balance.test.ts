@@ -69,6 +69,6 @@ describe('新开局平衡修订', () => {
     s.market.phaseIndex = c.cycle.phases.findIndex(x => x.id === 'boom');
     expect(applyCommand(s, { type: 'setPrice', projectId: p.id, priceFactor: 1.2 }, c).ok).toBe(true);
     expect(p.priceFactor).toBeCloseTo(1.1);
-    expect(projectsPanel(c, s, p.id)).toContain('已到最高报价');
+    expect(projectsPanel(c, s, p.id)).toMatch(/data-delta="0.05" disabled title="已到报价或备案限价上限"/);
   });
 });

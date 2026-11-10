@@ -5,6 +5,7 @@ import type { TurnResult } from '../game.ts';
 import { esc, pct, yi, money } from './format.ts';
 export { money } from './format.ts';
 import { filingSalesBlock, salesHighlightsMarkup } from './sales.ts';
+import {displayNewsText,displaySeasonEvent} from './eventText.ts';
 
 export const ALERT_TEXT: Record<PauseReason, string> = {
   startProject: '拿地成功，项目待选择产品线与总包开工',
@@ -23,7 +24,7 @@ export const turnOf = (config: Config, s: GameState) => Math.floor(s.day / confi
 export function seasonNow(config: Config, s: GameState) {
   const month = Math.floor(s.day / config.time.daysPerMonth);
   const ev = s.market.season;
-  if (ev && ev.month === month) return ev;
+  if (ev && ev.month === month) return displaySeasonEvent(ev);
   const info = seasonOf(config, month);
   return { month, seasonId: info.id, seasonName: info.name, eventId: null, name: null, kind: 'season' as const, text: null, sales: 1, build: 1, cost: 1, rate: 0 };
 }
@@ -117,7 +118,7 @@ export function turnBriefingMarkup(config: Config, s: GameState, last: TurnResul
     ${ev.text ? `<span class="small">${esc(ev.text)}</span>` : ''}
     <div class="chips">${effectChips(ev) || '<span class="small muted">季节系数中性</span>'}</div></div>`;
   const recent = s.news.filter(n => last ? n.day > last.fromDay : n.day >= s.day - config.time.daysPerMonth).filter(n => !n.text.startsWith('【') && (n.kind !== 'company' || /事故|停工|维权|接管|清盘|竣工|交付|人才/.test(n.text))).slice(0, 8);
-  const newsHtml = recent.length ? `<ul class="turn-news">${recent.map(n => `<li class="${n.kind === 'warning' ? 'danger-text' : n.kind === 'policy' ? 'warn-text' : ''}">${esc(n.text)}</li>`).join('')}</ul>` : '<p class="small muted">上回合风平浪静。</p>';
+  const newsHtml = recent.length ? `<ul class="turn-news">${recent.map(n => `<li class="${n.kind === 'warning' ? 'danger-text' : n.kind === 'policy' ? 'warn-text' : ''}">${esc(displayNewsText(config,n))}</li>`).join('')}</ul>` : '<p class="small muted">上回合风平浪静。</p>';
   const todo: string[] = (last?.alerts ?? []).filter(a => a !== 'risk').map(a => ALERT_TEXT[a]);
   const filingBlocks = s.projects.flatMap(p => {
     const block = filingSalesBlock(config,s,p);

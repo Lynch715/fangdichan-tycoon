@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "tsc --noEmit && vite build && node scripts/offline.ts",
+    "build": "tsc --noEmit && vite build && node scripts/offline.ts && node scripts/verify-bundles.ts",
     "preview": "vite preview --host",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",

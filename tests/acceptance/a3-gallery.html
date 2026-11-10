@@ -31,11 +31,11 @@ function products(){const host=$('#products');host.replaceChildren();if(!locatio
  }
 }
 function progress(){const host=$('#progress');host.replaceChildren();if((location.pathname.includes('a5-')||location.pathname.includes('a6-'))&&$('#filter').value!=='stage_')return;
- for(const line of ['tower','garden']){if(!entries.some(e=>e.id==='stage_'+line+'_pit_2x2_a'))continue;
- const h=document.createElement('h2');h.textContent=(line==='tower'?'高层住宅':'洋房')+' · 相同占地/缩放，五阶段与成品';host.append(h);
+ for(const line of ['tower','garden','villa','commercial']){if(!entries.some(e=>e.id==='stage_'+line+'_frame_2x2_a'))continue;
+ const h=document.createElement('h2');h.textContent=({tower:'高层住宅',garden:'洋房',villa:'别墅',commercial:'商业裙楼'}[line])+' · 相同占地/缩放，五阶段与成品';host.append(h);
  const row=document.createElement('div');row.className='cards';host.append(row);
  for(const [stage,name]of [['pit','基坑'],['ground','正负零'],['frame','主体施工'],['topped','封顶'],['abandoned','烂尾'],['finished','成品']]){
- const key=stage==='finished'?'building_'+line+'_2x2_a':'stage_'+line+'_'+stage+'_2x2_a',e=entries.find(e=>e.id===key),card=document.createElement('article');card.className='card';const c=document.createElement('canvas');c.width=256;c.height=260;const label=document.createElement('p');label.className='label';label.textContent=name+' · '+(e?key:'待通过验收');card.append(c,label);row.append(card);if(e)draw(c.getContext('2d'),e,128,245,.75,$('#guides').checked);
+ const source=['villa','commercial'].includes(line)&&['pit','ground'].includes(stage)?'garden':line;const key=stage==='finished'?'building_'+line+'_2x2_a':'stage_'+source+'_'+stage+'_2x2_a',e=entries.find(e=>e.id===key),card=document.createElement('article');card.className='card';const c=document.createElement('canvas');c.width=256;c.height=260;const label=document.createElement('p');label.className='label';label.textContent=name+' · '+(e?key:'待通过验收');card.append(c,label);row.append(card);if(e)draw(c.getContext('2d'),e,128,245,.75,$('#guides').checked);
  }
  }
 }

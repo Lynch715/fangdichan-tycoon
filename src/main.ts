@@ -1,7 +1,7 @@
 import { filingSalesBlock, soldRatio, salesStatus } from './ui/sales.ts';
 import { money } from './ui/format.ts';
 import {recoveryMarkup} from './ui/recovery.ts';
-import {readLocalPreserved,readDatabasePreserved,validateSave,type RecoveryProfile} from './save.ts';
+import {MAX_SAVE_BYTES,readLocalPreserved,readDatabasePreserved,validateSave,type RecoveryProfile} from './saveData.ts';
 import{CapitalController}from'./ui/capitalController.ts';
 import {SessionController,sessionPanel} from './ui/session.ts';
 import{districtsPanel}from'./ui/regions.ts';
@@ -9,10 +9,10 @@ import{issueBondFromForm}from'./ui/bondController.ts';
 import{AuctionController}from'./ui/auctionController.ts';
 import{AcquisitionController}from'./ui/acquisitionController.ts';
 import './style.css';
-import { Game } from './game.ts';
+import { GameCore as Game } from './gameCore.ts';
 import{turnBriefingMarkup,turnCardMarkup,seasonNow,turnOf}from'./ui/turn.ts';
 import{staffDialogMarkup,parsePost}from'./ui/staff.ts';
-import { IsoMap } from './render/isoMap.ts';
+import type { IsoMap } from './render/isoMap.ts';
 import {visibleMapProjects} from './render/cityArt.ts';
 import { auctionsPanel, financePanel, headerDate, newsLine, projectsPanel, statusLine } from './ui/panels.ts';
 import { allMapProjects,activeProject, district, mapUnlocked, type Pace, type Tile } from './sim/index.ts';
@@ -26,7 +26,8 @@ import{guideStep}from'./ui/guide.ts';
 import{SLOT_COUNT,readSlot,savesMarkup,slotMeta,writeSlot}from'./ui/saves.ts';
 import{careerDialogMarkup}from'./ui/career.ts';
 import{brandTier}from'./ui/brand.ts';
-import{pickProduct,pickedProduct}from'./ui/productChoice.ts';
+import{pickProduct,pickedProduct,resetProductChoices}from'./ui/productChoice.ts';
+import {projectPricing} from './ui/pricing.ts';
 import{ACHIEVEMENTS,achievementName,achievementsMarkup,earnedAchievements,loadUnlocks,mergeUnlocks,saveUnlocks}from'./ui/achievements.ts';
 
 const game = new Game();
@@ -45,7 +46,7 @@ const reportController=new ReportController(game,config,$<HTMLDialogElement>('#r
 const capitalController=new CapitalController(game,$<HTMLDialogElement>('#capital-dialog'),r=>report(r,'股权自救方案已执行'));
 const acquisitionController=new AcquisitionController(game,$<HTMLDialogElement>('#acquisition-dialog'),r=>report(r,'项目已收购，交付义务已承接'));
 const sessionController=new SessionController(game,$<HTMLDialogElement>('#setup-dialog'),()=>{
- selectedId=null;mapId='city';bidDrafts.clear();amenityDrafts.clear();reportController.reset();resetCelebrations();setTab('map');render();map.fit();
+ selectedId=null;mapId='city';bidDrafts.clear();amenityDrafts.clear();reportController.reset();resetCelebrations();setTab('map');render();map?.fit();
 });
 
 // 已读标记只是界面偏好：存在浏览器本地，不进存档、不影响模拟。
@@ -109,13 +110,14 @@ const MAP_NAMES:Record<string,string>={city:'重庆主城',outer:'外围主城',
 let cityDecile:Record<string,number>={};
 /** 城市化每突破 10% 庆祝一次（只看当前地图；切图/导入后静默记录）。 */
 function celebrateCity(){
-  const u=map.urbanization,d=Math.floor(u*10);
+  if(!map)return;
+  const u=map?.urbanization,d=Math.floor(u*10);
   $('#urban').textContent=`城市化 ${Math.round(u*100)}%`;
   const prev=cityDecile[mapId];cityDecile[mapId]=d;
   if(prev!==undefined&&d>prev&&d>=2)cheer(`🏙 ${MAP_NAMES[mapId]??''}城市化突破 ${d*10}%，${d>=6?'高楼林立':d>=4?'新区崛起':'街区渐成'}`);
 }
 /** 新开局/导入存档后：已达成的目标静默记录，不补放庆祝。 */
-function resetCelebrations(){prevProjects=null;prevMonth=-1;prevTitle=-1;prevBrandTier=-1;silentGoals=true;cityDecile={};silentAch=true;achKey='';careerSilent=true;map.clearSalesEffects();$('#cheers').replaceChildren();}
+function resetCelebrations(){prevProjects=null;prevMonth=-1;prevTitle=-1;prevBrandTier=-1;silentGoals=true;cityDecile={};silentAch=true;achKey='';careerSilent=true;resetProductChoices();map?.clearSalesEffects();$('#cheers').replaceChildren();}
 function celebrate(){
   const s=game.state,dpm=config.time.daysPerMonth;
   const snap=new Map(s.projects.map(p=>[p.id,{sold:p.soldArea>0,out:p.saleableArea>0&&p.saleableArea-p.soldArea<1e-6,del:p.deliveredDay!==null,ratio:soldRatio(p),sales:p.salesIn,open:salesStatus(config,s,p)?.tone==='green'} as Snap]));
@@ -125,7 +127,7 @@ function celebrate(){
     if(!a.sold&&b.sold)cheer(`🎉 ${p.name} 首批成交！签约 +${money((b.sales-a.sales)*(1-p.partnerShare))}`);
     else if(!b.out&&b.ratio>=.75&&a.ratio<.75)cheer(`🎊 ${p.name} 去化突破 75%，冲刺售罄！`);
     else if(!b.out&&b.ratio>=.5&&a.ratio<.5)cheer(`🎊 ${p.name} 去化过半！已售 ${Math.round(p.soldArea).toLocaleString('zh-CN')} ㎡`);
-    if(b.sales>a.sales+1e-6)map.showSales(p.id,`签约 +${money((b.sales-a.sales)*(1-p.partnerShare))}`);
+    if(b.sales>a.sales+1e-6)map?.showSales(p.id,`签约 +${money((b.sales-a.sales)*(1-p.partnerShare))}`);
     if(!a.out&&b.out)cheer(`🏆 ${p.name} 全部售罄！累计回款 ${yi(p.salesIn)}`);
     if(!a.del&&b.del)cheer(`🔑 ${p.name} 交付入伙${p.quality!==null&&p.quality>=config.quality.complaintThreshold?'，业主满意，品牌提升':''}`);
   }
@@ -144,7 +146,7 @@ function celebrate(){
   prevBrandTier=tier;
   // 里程碑：首次见到这局时只记录，不补放庆祝
   const key=`fdc-goals-${s.seed}`,done=goals(s).achieved;
-  let seen:string[]|null=null;try{seen=JSON.parse(localStorage.getItem(key)??'null');}catch{seen=null;}
+  let seen:string[]|null=null;try{const v:unknown=JSON.parse(localStorage.getItem(key)??'null');if(Array.isArray(v)&&v.every(x=>typeof x==='string'))seen=v;}catch{seen=null;}
   if(seen&&!silentGoals){for(const id of done)if(!seen.includes(id))cheer(`✅ 达成目标：${goalTitle(id)}`);}
   if(!seen||silentGoals||done.length!==seen.length){try{localStorage.setItem(key,JSON.stringify(done));}catch{/* 只是不记住 */}}
   silentGoals=false;
@@ -210,7 +212,7 @@ function render() {
   $('#date').textContent = headerDate(config, s);
   const ev=seasonNow(config,s);
   $('#turn-label').textContent=`第 ${turnOf(config,s)} 回合 · ${ev.seasonName}${ev.eventId?' · '+ev.name:''}`;
-  $<HTMLButtonElement>('#end-turn').disabled=s.status==='bankrupt'||game.needsSetup||game.loadError;
+  $<HTMLButtonElement>('#end-turn').disabled=s.status==='bankrupt'||game.needsSetup||game.loadError||game.replaying;
   paint($('#turn'),turnCardMarkup(config,s));
   if(staffDialog.open)paintStaff();
   $('#sentiment').textContent = s.market.sentiment.toFixed(0);
@@ -232,7 +234,7 @@ function render() {
   for(const a of s.auctions)auctionController.refresh(a.id);
   $('#news').innerHTML = `<b class="news-label">新闻</b>${newsLine(config, s)}`;
   $('#auction-count').textContent = `${s.auctions.filter(a=>district(config,a.districtId).mapId===mapId).length} 宗`;
-  map.update(s, selectedId, mapId);
+  map?.update(s, selectedId, mapId);
   celebrateCity();
   paintInbox();
   celebrate();
@@ -255,7 +257,7 @@ function onTap(tile: Tile) {
   if (selectedId) document.querySelector(`[data-select="${selectedId}"]`)?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
 }
 
-const map = new IsoMap($('#map-canvas'), onTap);
+let map:IsoMap|null=null;
 
 // 手机底部面板：按住标题栏下拉超过 70px 收起。
 document.querySelectorAll<HTMLElement>('.sheet-head').forEach(head=>{
@@ -336,17 +338,20 @@ document.addEventListener('click', (e) => {
         break;
       case 'price': {
         const p = game.state.projects.find((x) => x.id === id);
-        if (p) report(game.issue({ type: 'setPrice', projectId: id, priceFactor: p.priceFactor + Number(act.dataset.delta) }),'售价已更新');
+        if (p) {
+          const factor=projectPricing(config,game.state,p).change(Number(act.dataset.delta));
+          if(factor!==null)report(game.issue({type:'setPrice',projectId:id,priceFactor:factor}),'售价已更新');
+        }
         break;
       }
       case 'zoom-in':
-        map.zoom(1.25);
+        map?.zoom(1.25);
         break;
       case 'zoom-out':
-        map.zoom(0.8);
+        map?.zoom(0.8);
         break;
       case 'fit':
-        map.fit();
+        map?.fit();
         break;
       case 'restart':
         sessionController.open();
@@ -366,7 +371,7 @@ document.addEventListener('click', (e) => {
     return;
   }
   const region=target.closest<HTMLElement>('[data-map]');
-  if(region && mapUnlocked(game.state,config,region.dataset.map!)){mapId=region.dataset.map!;selectedId=null;render();map.fit();return;}
+  if(region && mapUnlocked(game.state,config,region.dataset.map!)){mapId=region.dataset.map!;selectedId=null;render();map?.fit();return;}
   // 只认底部导航按钮：<body> 自身也带 data-tab（记录当前标签），不能被当成“再点当前标签”
   const tab = target.closest<HTMLElement>('.tabs button[data-tab]');
   if (tab) return toggleTab(tab.dataset.tab!);
@@ -390,15 +395,22 @@ document.addEventListener('keydown', (e) => {
   if(e.key==='Escape'&&(document.body.dataset.tab!=='map'||document.body.dataset.inbox==='open')){closeSheet();return;}
 });
 
+let uiStarted=false;
+function syncReplayDialog(){
+ const dialog=$<HTMLDialogElement>('#replay-dialog');
+ if(game.replaying&&!dialog.open)dialog.showModal();
+ else if(!game.replaying&&dialog.open)dialog.close();
+}
 async function start() {
+  game.onChange(()=>{syncReplayDialog();if(uiStarted)render();});
   await game.init();
-  reportController.reset();
-  await map.init();
-  setTab('map');syncBriefingToggle();
-  game.onChange(render);
-  render();
+  reportController.reset();resetCelebrations();
+  setTab('map');syncBriefingToggle();uiStarted=true;render();
   if(game.recovery)openRecovery();
   else if(game.needsSetup)sessionController.open();
+  const {IsoMap}=await import('./render/isoMap.ts');
+  map=new IsoMap($('#map-canvas'),onTap);
+  await map.init();render();map.fit();
 }
 
 // ── 回合制：结束回合 → 推进一个月 → 回合简报 ──
@@ -435,16 +447,22 @@ staffDialog.addEventListener('change',e=>{
 });
 
 /** 读入一份存档文本（文件导入或存档槽），替换当前进度。 */
-function loadSaveText(text:string,okText:string):boolean{
+async function loadSaveText(text:string,okText:string):Promise<boolean>{
   selectedId=null;mapId='city';bidDrafts.clear();amenityDrafts.clear();resetCelebrations();reportController.suspended=true;
-  const r=game.importSave(text);report(r,okText);reportController.reset();reportController.suspended=false;
-  if(r.ok){setTab('map');render();map.fit();}
+  const r=await game.importSaveAsync(text);report(r,okText);reportController.reset();reportController.suspended=false;
+  if(r.ok){setTab('map');render();map?.fit();}
   else if(game.recovery){savesDialog.close();openRecovery();}
+  else showSaveFeedback(r.error??'读取未完成，当前进度已保留');
   return r.ok;
+}
+function showSaveFeedback(text:string){
+ const feedback=savesDialog.querySelector<HTMLElement>('[data-save-feedback]');
+ if(feedback){feedback.textContent=text;feedback.hidden=false;savesDialog.scrollTop=0;}
 }
 $('#import-save').addEventListener('change',async(e)=>{
   const input=e.target as HTMLInputElement,file=input.files?.[0];if(!file)return;
-  if(confirm('导入存档会替换当前进度，可先在“存档”里保存到空槽。确定继续？')&&loadSaveText(await file.text(),'存档已导入'))savesDialog.close();
+  if(file.size>MAX_SAVE_BYTES){showSaveFeedback('文件超过32MB，原文件和当前进度已保留');input.value='';return;}
+  if(confirm('导入存档会替换当前进度，可先在“存档”里保存到空槽。确定继续？')&&await loadSaveText(await file.text(),'存档已导入'))savesDialog.close();
   input.value='';
 });
 
@@ -461,13 +479,15 @@ async function openSaves(){
  paintSaves();if(!savesDialog.open)savesDialog.showModal();
  try{databaseBackups=await readDatabasePreserved();if(savesDialog.open)paintSaves();}catch{/* 无数据库时仍可导出本地原件 */}
 }
-savesDialog.addEventListener('click',e=>{
+savesDialog.addEventListener('click',async e=>{
   const t=e.target as HTMLElement;
-  if(t.closest('[data-open-recovery]')){if(game.reopenRecovery()){savesDialog.close();openRecovery();}else toast('没有待核对的旧v16存档；读取失败时请先导出原始记录','error');return;}
-  const readOriginal=t.closest<HTMLElement>('[data-original-load]');if(readOriginal){const x=originalExports[Number(readOriginal.dataset.originalLoad)];if(x&&confirm('读取这份副本会替换当前进度，并保留替换前的原件。确定读取？')&&loadSaveText(x.raw,'已读取副本'))savesDialog.close();return;}
+  if(t.closest('[data-open-recovery]')){if(await game.reopenRecoveryAsync()){savesDialog.close();openRecovery();}else toast('没有待核对的旧v16存档；读取失败时请先导出原始记录','error');return;}
+  const readOriginal=t.closest<HTMLElement>('[data-original-load]');if(readOriginal){const x=originalExports[Number(readOriginal.dataset.originalLoad)];if(x&&confirm('读取这份副本会替换当前进度，并保留替换前的原件。确定读取？')&&await loadSaveText(x.raw,'已读取副本'))savesDialog.close();return;}
   const original=t.closest<HTMLElement>('[data-original-export]');if(original){const x=originalExports[Number(original.dataset.originalExport)];if(x)downloadOriginal(x.raw);return;}
   if(t.closest('[data-saves-close]')){savesDialog.close();return;}
   if(t.closest('[data-saves-new]')){savesDialog.close();sessionController.open();return;}
+  const exportSlot=t.closest<HTMLElement>('[data-slot-export]');
+  if(exportSlot){const m=readSlot(Number(exportSlot.dataset.slotExport));if(m)downloadOriginal(m.data);return;}
   const save=t.closest<HTMLElement>('[data-slot-save]'),load=t.closest<HTMLElement>('[data-slot-load]');
   if(save){
     if(game.loadError||game.recovery){toast('请先处理旧档恢复，当前只能导出原档','error');return;}
@@ -478,7 +498,7 @@ savesDialog.addEventListener('click',e=>{
     paintSaves();
   }else if(load){
     const n=Number(load.dataset.slotLoad),m=readSlot(n);if(!m)return;
-    if(confirm(`读取存档 ${n}（${m.company} · ${m.date}）会替换当前进度。确定读取？`)&&loadSaveText(m.data,`已读取存档 ${n}`))savesDialog.close();
+    if(confirm(`读取存档 ${n}（${m.company} · ${m.date}）会替换当前进度。确定读取？`)&&await loadSaveText(m.data,`已读取存档 ${n}`))savesDialog.close();
   }
 });
 // 恢复选择只影响界面；确认后由Game固定历史规则与同日边界。
@@ -499,13 +519,16 @@ recoveryDialog.addEventListener('change',()=>{
  const checked=recoveryDialog.querySelector<HTMLInputElement>('input[name="confirmed-history"]')?.checked;
  recoveryDialog.querySelector<HTMLButtonElement>('button[type="submit"]')!.disabled=!selected||!checked;
 });
-recoveryDialog.addEventListener('submit',e=>{
+recoveryDialog.addEventListener('submit',async e=>{
  e.preventDefault();const selected=recoveryDialog.querySelector<HTMLInputElement>('input[name="history-profile"]:checked');
  if(!selected||!recoveryDialog.querySelector<HTMLInputElement>('input[name="confirmed-history"]')?.checked)return;
- const r=game.confirmRecovery(selected.value as RecoveryProfile);
+ const r=await game.confirmRecoveryAsync(selected.value as RecoveryProfile);
  if(!r.ok){recoveryDialog.querySelector('[data-recovery-error]')!.textContent=r.error??'恢复未完成，原档已保留';return;}
- recoveryDialog.close();reportController.reset();resetCelebrations();selectedId=null;mapId='city';bidDrafts.clear();amenityDrafts.clear();setTab('map');render();map.fit();toast('已创建续玩副本，原始存档保留');
+ recoveryDialog.close();reportController.reset();resetCelebrations();selectedId=null;mapId='city';bidDrafts.clear();amenityDrafts.clear();setTab('map');render();map?.fit();toast('已创建续玩副本，原始存档保留');
 });
+const replayDialog=$<HTMLDialogElement>('#replay-dialog');
+replayDialog.addEventListener('click',e=>{if((e.target as HTMLElement).closest('[data-replay-cancel]'))game.cancelReplay();});
+replayDialog.addEventListener('cancel',e=>{e.preventDefault();game.cancelReplay();});
 window.addEventListener('pagehide' ,()=>game.save());
 document.addEventListener('visibilitychange',()=>{if(document.hidden)game.save();});
 start().catch(e=>{toast(`启动失败：${e.message}`,'error');});

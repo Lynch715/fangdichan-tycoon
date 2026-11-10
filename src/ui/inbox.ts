@@ -1,5 +1,6 @@
 import { calendar, type Config, type GameState } from '../sim/index.ts';
 import { esc } from './format.ts';
+import {displayNewsText} from './eventText.ts';
 
 type News = GameState['news'][number];
 
@@ -40,7 +41,7 @@ export function inboxList(config: Config, s: GameState, seenKey: string | null):
     if (seenKey !== null && newsKey(n) === seenKey) fresh = false;
     return `<article class="msg ${n.kind}${isNew ? ' unread' : ''}${important(n, name) ? '' : ' minor'}">
       <div class="msg-meta"><span class="msg-kind">${KIND_LABEL[n.kind]}</span><span>${c.year}年${c.month}月${c.day}日</span>${isNew ? '<span class="msg-new">新</span>' : ''}</div>
-      <p>${esc(n.text)}</p>
+      <p>${esc(displayNewsText(config,n))}</p>
     </article>`;
   }).join('');
 }
