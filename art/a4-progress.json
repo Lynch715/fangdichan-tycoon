@@ -1,10 +1,10 @@
 {
-  "planned": 11,
-  "plannedStages": 10,
-  "plannedBuildings": 11,
+  "planned": 17,
+  "plannedStages": 16,
+  "plannedBuildings": 17,
   "plannedTerrain": 0,
   "plannedDecorations": 0,
-  "approved": 11,
+  "approved": 17,
   "results": [
     {
       "id": "building_garden_2x2_a",
@@ -82,6 +82,48 @@
       "ratio": 1.919610058508847,
       "sideHeight": 0,
       "sha256": "6d1a1aaa865244a02b6766439a67788a30b6d92bfc5eb2ca3f3d22bdaa97df61"
+    },
+    {
+      "id": "stage_villa_frame_2x2_a",
+      "status": "approved",
+      "ratio": 1.9663298722814047,
+      "sideHeight": 0,
+      "sha256": "0122ae475e0fc733b68290da2d13892b3be152a2ec7d0164bd5e09923dd63168"
+    },
+    {
+      "id": "stage_villa_topped_2x2_a",
+      "status": "approved",
+      "ratio": 1.913243445260473,
+      "sideHeight": 0,
+      "sha256": "1f42a2f4c03fd571e2778af9f885f33b9fafc8f899e7ef4d558ab18d05272d04"
+    },
+    {
+      "id": "stage_villa_abandoned_2x2_a",
+      "status": "approved",
+      "ratio": 2.010569842528606,
+      "sideHeight": 0,
+      "sha256": "0853ffd7cf12b3731b00b9bd2e5beea3a47f7e7e6f3ddb4d9cebe0ead8a01ec5"
+    },
+    {
+      "id": "stage_commercial_frame_2x2_a",
+      "status": "approved",
+      "ratio": 1.9636753191970948,
+      "sideHeight": 0,
+      "sha256": "a9fea6e47750da5275c644df98ca4f1b16a03274edd601f299c49d68793d54b3"
+    },
+    {
+      "id": "stage_commercial_topped_2x2_a",
+      "status": "approved",
+      "ratio": 1.9939344835745954,
+      "sideHeight": 0,
+      "sha256": "07899d28d0fe0be88f800989d63e4f509e49464ddbc686e06f78c25df974c8ae"
+    },
+    {
+      "id": "stage_commercial_abandoned_2x2_a",
+      "status": "approved",
+      "ratio": 2.0090598837519327,
+      "sideHeight": 0,
+      "sha256": "51ffa8da8354bf79c89926a88c421582c1c32965e5ab0d5e6504bf7b6c9f50b1"
     }
   ]
 }

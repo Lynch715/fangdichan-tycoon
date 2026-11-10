@@ -18,4 +18,14 @@ describe('项目施工美术映射',()=>{
    const p={districtId,progress,stage},before=JSON.stringify(p),key=projectArtKey(p);expect(all.has(key!)).toBe(true);expect(JSON.stringify(p)).toBe(before);
   }
  });
+ it('别墅和商业的地上三个阶段各用专用素材，基础土建复用不影响产品外观',async()=>{
+  const ids=new Set(JSON.parse(await readFile('art/manifest.json','utf8')).assets.map((x:{id:string})=>x.id));
+  for(const product of ['villa','commercial'] as const){
+   for(const [stage,progress,suffix]of [['construction',.5,'frame'],['construction',.9,'topped'],['abandoned',.5,'abandoned']]as const){
+    const p={districtId:'nanan',stage,progress,appearance:{product,variant:'a' as const}},before=JSON.stringify(p);
+    const key=projectArtKey(p);expect(key).toBe(`stage_${product}_${suffix}_2x2_a`);expect(ids.has(key)).toBe(true);expect(JSON.stringify(p)).toBe(before);
+   }
+   expect(projectArtKey({districtId:'nanan',stage:'construction',progress:.01,appearance:{product,variant:'a'}})).toBe('stage_garden_pit_2x2_a');
+  }
+ });
 });

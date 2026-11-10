@@ -55,10 +55,19 @@ export function earnedAchievements(s: GameState, c: Config): string[] {
 
 export type Unlocks = Record<string, { at: string; company: string }>;
 const KEY = 'fdc-achievements';
-export function loadUnlocks(store: Pick<Storage, 'getItem'> = localStorage): Unlocks {
-  try { const v = JSON.parse(store.getItem(KEY) ?? '{}'); return v && typeof v === 'object' ? v as Unlocks : {}; } catch { return {}; }
+export function loadUnlocks(store?: Pick<Storage, 'getItem'>): Unlocks {
+  try {
+    const v: unknown = JSON.parse((store ?? localStorage).getItem(KEY) ?? '{}');
+    if (!v || typeof v !== 'object' || Array.isArray(v)) return {};
+    return Object.fromEntries(ACHIEVEMENTS.flatMap(a => {
+      const r = (v as Record<string, unknown>)[a.id];
+      if (!r || typeof r !== 'object') return [];
+      const { at, company } = r as { at?: unknown; company?: unknown };
+      return typeof at === 'string' && Number.isFinite(Date.parse(at)) && typeof company === 'string' ? [[a.id, { at, company }]] : [];
+    }));
+  } catch { return {}; }
 }
-export function saveUnlocks(u: Unlocks, store: Pick<Storage, 'setItem'> = localStorage) { try { store.setItem(KEY, JSON.stringify(u)); } catch { /* 只是不记住 */ } }
+export function saveUnlocks(u: Unlocks, store?: Pick<Storage, 'setItem'>) { try { (store ?? localStorage).setItem(KEY, JSON.stringify(u)); } catch { /* 只是不记住 */ } }
 
 /** 合并本局新满足的成就，返回新解锁列表（不重复解锁）。 */
 export function mergeUnlocks(u: Unlocks, earned: string[], company: string, now = new Date()): string[] {
@@ -75,7 +84,7 @@ export function achievementsMarkup(u: Unlocks, sandbox: boolean): string {
   ${sandbox ? '<p class="small warn-text">沙盒模式资金无限，本局不计成就。</p>' : '<p class="small muted">成就跨局永久保存在本机，换公司重开也保留。</p>'}
   ${groups.map(g => `<h3 class="saves-sub">${g}</h3><div class="ach-grid">${ACHIEVEMENTS.filter(a => a.group === g).map(a => {
     const r = u[a.id];
-    return `<div class="ach ${r ? 'got' : ''}"><span class="ach-icon">${r ? a.icon : '🔒'}</span><div><b>${esc(a.name)}</b><span class="small">${esc(a.desc)}</span>${r ? `<span class="small muted">${esc(r.company)} · ${r.at.slice(0, 10)}</span>` : ''}</div></div>`;
+    return `<div class="ach ${r ? 'got' : ''}"><span class="ach-icon">${r ? a.icon : '🔒'}</span><div><b>${esc(a.name)}</b><span class="small">${esc(a.desc)}</span>${r ? `<span class="small muted">${esc(r.company)} · ${esc(r.at.slice(0, 10))}</span>` : ''}</div></div>`;
   }).join('')}</div>`).join('')}`;
 }
 

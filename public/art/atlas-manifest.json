@@ -49,6 +49,12 @@
     "stage_garden_frame_2x2_a",
     "stage_garden_topped_2x2_a",
     "stage_garden_abandoned_2x2_a",
+    "stage_villa_frame_2x2_a",
+    "stage_villa_topped_2x2_a",
+    "stage_villa_abandoned_2x2_a",
+    "stage_commercial_frame_2x2_a",
+    "stage_commercial_topped_2x2_a",
+    "stage_commercial_abandoned_2x2_a",
     "building_tower_2x2_a",
     "building_garden_2x2_a",
     "building_tower_2x2_b",
@@ -88,31 +94,38 @@
       "page": 0,
       "png": "atlas@2x-0.webp",
       "json": "atlas@2x-0.json",
-      "bytes": 555650
+      "bytes": 604798
     },
     {
       "density": 2,
       "page": 1,
       "png": "atlas@2x-1.webp",
       "json": "atlas@2x-1.json",
-      "bytes": 647066
+      "bytes": 694582
     },
     {
       "density": 2,
       "page": 2,
       "png": "atlas@2x-2.webp",
       "json": "atlas@2x-2.json",
-      "bytes": 697562
+      "bytes": 806096
+    },
+    {
+      "density": 2,
+      "page": 3,
+      "png": "atlas@2x-3.webp",
+      "json": "atlas@2x-3.json",
+      "bytes": 324714
     },
     {
       "density": 1,
       "page": 0,
       "png": "atlas@1x-0.webp",
       "json": "atlas@1x-0.json",
-      "bytes": 576208
+      "bytes": 824184
     }
   ],
-  "bytes2x": 1900278,
+  "bytes2x": 2430190,
   "diagnostics": [
     {
       "id": "terrain_grass_1x1_a",
@@ -2659,6 +2672,318 @@
         "anchor": {
           "x": 0.4996766777181384,
           "y": 0.9986836690830606
+        }
+      }
+    },
+    {
+      "id": "stage_villa_frame_2x2_a",
+      "source": "stage_villa_frame_2x2_a.png",
+      "sourceSize": {
+        "w": 1536,
+        "h": 1024
+      },
+      "bounds": {
+        "left": 155,
+        "top": 81,
+        "width": 1228,
+        "height": 855
+      },
+      "footprint": {
+        "width": 1227,
+        "height": 624.005166832151,
+        "ratio": 1.9663298722814047,
+        "deviation": 0.016835063859297672,
+        "anchor": {
+          "x": 782.9127916845359,
+          "y": 935.690922726273
+        },
+        "corners": [
+          {
+            "x": 782.9127916845359,
+            "y": 311.68575589412205
+          },
+          {
+            "x": 1396.412791684536,
+            "y": 623.6883393101975
+          },
+          {
+            "x": 782.9127916845359,
+            "y": 935.690922726273
+          },
+          {
+            "x": 169.41279168453593,
+            "y": 623.6883393101975
+          }
+        ],
+        "edgeError": 0.00035492912897001796,
+        "sideHeight": 0
+      },
+      "output": {
+        "width": 512,
+        "height": 351,
+        "anchor": {
+          "x": 0.5117463664910643,
+          "y": 0.9989730099091746
+        }
+      }
+    },
+    {
+      "id": "stage_villa_topped_2x2_a",
+      "source": "stage_villa_topped_2x2_a.png",
+      "sourceSize": {
+        "w": 1536,
+        "h": 1024
+      },
+      "bounds": {
+        "left": 162,
+        "top": 93,
+        "width": 1212,
+        "height": 844
+      },
+      "footprint": {
+        "width": 1212,
+        "height": 633.4792380982107,
+        "ratio": 1.913243445260473,
+        "deviation": 0.04337827736976352,
+        "anchor": {
+          "x": 776.4879548767385,
+          "y": 935.7958939704882
+        },
+        "corners": [
+          {
+            "x": 776.4879548767385,
+            "y": 302.3166558722776
+          },
+          {
+            "x": 1382.4879548767385,
+            "y": 619.056274921383
+          },
+          {
+            "x": 776.4879548767385,
+            "y": 935.7958939704882
+          },
+          {
+            "x": 170.4879548767385,
+            "y": 619.056274921383
+          }
+        ],
+        "edgeError": 0.00029670142459592956,
+        "sideHeight": 0
+      },
+      "output": {
+        "width": 512,
+        "height": 341,
+        "anchor": {
+          "x": 0.5070032630996193,
+          "y": 0.9987932799978179
+        }
+      }
+    },
+    {
+      "id": "stage_villa_abandoned_2x2_a",
+      "source": "stage_villa_abandoned_2x2_a.png",
+      "sourceSize": {
+        "w": 1536,
+        "h": 1024
+      },
+      "bounds": {
+        "left": 117,
+        "top": 102,
+        "width": 1299,
+        "height": 862
+      },
+      "footprint": {
+        "width": 1299,
+        "height": 646.0854890603076,
+        "ratio": 2.010569842528606,
+        "deviation": 0.005284921264302911,
+        "anchor": {
+          "x": 767.8764420978116,
+          "y": 963.0882481654487
+        },
+        "corners": [
+          {
+            "x": 767.8764420978116,
+            "y": 317.0027591051411
+          },
+          {
+            "x": 1417.3764420978116,
+            "y": 640.0455036352948
+          },
+          {
+            "x": 767.8764420978116,
+            "y": 963.0882481654487
+          },
+          {
+            "x": 118.3764420978116,
+            "y": 640.0455036352948
+          }
+        ],
+        "edgeError": 0.00032943185049270045,
+        "sideHeight": 0
+      },
+      "output": {
+        "width": 512,
+        "height": 342,
+        "anchor": {
+          "x": 0.5010596167034731,
+          "y": 0.9976346723309726
+        }
+      }
+    },
+    {
+      "id": "stage_commercial_frame_2x2_a",
+      "source": "stage_commercial_frame_2x2_a.png",
+      "sourceSize": {
+        "w": 1536,
+        "h": 1024
+      },
+      "bounds": {
+        "left": 167,
+        "top": 57,
+        "width": 1200,
+        "height": 904
+      },
+      "footprint": {
+        "width": 1198,
+        "height": 610.0804895230016,
+        "ratio": 1.9636753191970948,
+        "deviation": 0.018162340401452592,
+        "anchor": {
+          "x": 767.5487711525316,
+          "y": 959.5912868203001
+        },
+        "corners": [
+          {
+            "x": 767.5487711525316,
+            "y": 349.5107972972985
+          },
+          {
+            "x": 1366.5487711525316,
+            "y": 654.5510420587993
+          },
+          {
+            "x": 767.5487711525316,
+            "y": 959.5912868203001
+          },
+          {
+            "x": 168.54877115253157,
+            "y": 654.5510420587993
+          }
+        ],
+        "edgeError": 0.0003438037107436022,
+        "sideHeight": 0
+      },
+      "output": {
+        "width": 513,
+        "height": 379,
+        "anchor": {
+          "x": 0.5003156183471741,
+          "y": 0.9993204058486892
+        }
+      }
+    },
+    {
+      "id": "stage_commercial_topped_2x2_a",
+      "source": "stage_commercial_topped_2x2_a.png",
+      "sourceSize": {
+        "w": 1536,
+        "h": 1024
+      },
+      "bounds": {
+        "left": 166,
+        "top": 99,
+        "width": 1204,
+        "height": 864
+      },
+      "footprint": {
+        "width": 1203,
+        "height": 603.3297532641797,
+        "ratio": 1.9939344835745954,
+        "deviation": 0.0030327582127023245,
+        "anchor": {
+          "x": 767.4285271714753,
+          "y": 962.1499403995455
+        },
+        "corners": [
+          {
+            "x": 767.4285271714753,
+            "y": 358.8201871353658
+          },
+          {
+            "x": 1368.9285271714753,
+            "y": 660.4850637674556
+          },
+          {
+            "x": 767.4285271714753,
+            "y": 962.1499403995455
+          },
+          {
+            "x": 165.92852717147525,
+            "y": 660.4850637674556
+          }
+        ],
+        "edgeError": 0.00029593355471512606,
+        "sideHeight": 0
+      },
+      "output": {
+        "width": 512,
+        "height": 367,
+        "anchor": {
+          "x": 0.4999405878399628,
+          "y": 0.9979422339891658
+        }
+      }
+    },
+    {
+      "id": "stage_commercial_abandoned_2x2_a",
+      "source": "stage_commercial_abandoned_2x2_a.png",
+      "sourceSize": {
+        "w": 1536,
+        "h": 1024
+      },
+      "bounds": {
+        "left": 136,
+        "top": 77,
+        "width": 1256,
+        "height": 897
+      },
+      "footprint": {
+        "width": 1256,
+        "height": 625.1680251832074,
+        "ratio": 2.0090598837519327,
+        "deviation": 0.004529941875966337,
+        "anchor": {
+          "x": 769.4384959728443,
+          "y": 972.2756457045487
+        },
+        "corners": [
+          {
+            "x": 769.4384959728443,
+            "y": 347.10762052134123
+          },
+          {
+            "x": 1397.4384959728443,
+            "y": 659.6916331129449
+          },
+          {
+            "x": 769.4384959728443,
+            "y": 972.2756457045487
+          },
+          {
+            "x": 141.4384959728443,
+            "y": 659.6916331129449
+          }
+        ],
+        "edgeError": 0.00039845524015082867,
+        "sideHeight": 0
+      },
+      "output": {
+        "width": 512,
+        "height": 367,
+        "anchor": {
+          "x": 0.5043300127172328,
+          "y": 0.9989273730874146
         }
       }
     },

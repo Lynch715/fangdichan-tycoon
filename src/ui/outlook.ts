@@ -1,4 +1,4 @@
-import { marketPrice, salesPriceCap, salesRate, type Config, type GameState, type Project } from '../sim/index.ts';
+import { activeProject, isDelivered, marketPrice, projectInventory, projectResult, salesPriceCap, salesRate, type Config, type GameState, type Project } from '../sim/index.ts';
 import { pct, yi } from './format.ts';
 
 function prices(config: Config, s: GameState, p: Project) {
@@ -9,18 +9,22 @@ function prices(config: Config, s: GameState, p: Project) {
 }
 
 /**
- * 项目预计利润（只读估算）：已售回款 + 剩余可售面积按“挂牌价与市场价取低”估值
- * （溢价卖不掉的部分最终按市场价清盘，不按挂牌价高估），减地价、全部建安、税费与营销；
- * 本公司权益口径，不含融资利息。让玩家在交付确认收入之前，就能看到“这盘在赚钱”。
+ * 以实际项目结算口径为起点，只估算尚未实现的利润。
+ * 已发生的建安、营销、利息及收购成本基础均保留，不能按当前费率重算历史。
  */
 export function projectOutlook(config: Config, s: GameState, p: Project) {
   const { market, price } = prices(config, s, p);
-  const remaining = Math.max(0, p.saleableArea - p.soldArea);
-  const revenue = p.salesIn + remaining * Math.min(price, market);
-  const charges = revenue * (config.sales.taxRate + (p.marketingRate ?? config.sales.marketingRate));
-  const owned = 1 - p.partnerShare;
-  const profit = (revenue - charges - p.landCost - p.buildCost) * owned;
-  return { revenue: revenue * owned, profit, margin: revenue > 0 ? profit / (revenue * owned) : null };
+  const result = projectResult(s, p), owned = 1 - p.partnerShare;
+  if (!activeProject(p)) return { revenue: result.revenue, profit: result.profit, margin: result.margin };
+  const futureRevenue = Math.max(0, p.saleableArea - p.soldArea) * Math.min(price, market) * owned;
+  const futureCharges = futureRevenue * (config.sales.taxRate + p.marketingRate);
+  // 工程按进度计费；不能用“预算减已付款”替代剩余工程量。
+  const futureBuild = p.stage === 'construction' || p.stage === 'land'
+    ? p.buildCost * Math.max(0, 1 - p.progress) * config.construction.paces[p.pace].costFactor * owned : 0;
+  const unrecognizedSales = isDelivered(p) ? 0 : p.salesIn * owned;
+  const revenue = result.revenue + futureRevenue;
+  const profit = result.profit === null ? null : result.profit + unrecognizedSales + futureRevenue - projectInventory(p) - futureBuild - futureCharges;
+  return { revenue, profit, margin: profit !== null && revenue > 0 ? profit / revenue : null };
 }
 
 /** 高于市场价时提示代价：去化相对按市场价的比例，以及尾货按市场价折扣清盘。 */
@@ -35,5 +39,6 @@ export function premiumHint(config: Config, s: GameState, p: Project): string {
 
 export function outlookMarkup(config: Config, s: GameState, p: Project): string {
   const o = projectOutlook(config, s, p);
-  return `<span class="small outlook ${o.profit >= 0 ? 'ok-text' : 'danger-text'}">预计利润 <b>${o.profit >= 0 ? '' : '−'}${yi(Math.abs(o.profit))}</b>${o.margin === null ? '' : ` · 利润率 ${pct(o.margin, 1)}`} · 货值 ${yi(o.revenue)}<span class="muted">（估算，未计利息）</span></span>${premiumHint(config, s, p)}`;
+  if (o.profit === null) return '<span class="small muted">历史流水不完整，暂不估算项目利润。</span>';
+  return `<span class="small outlook ${o.profit >= 0 ? 'ok-text' : 'danger-text'}">预计利润 <b>${o.profit >= 0 ? '' : '−'}${yi(Math.abs(o.profit))}</b>${o.margin === null ? '' : ` · 利润率 ${pct(o.margin, 1)}`} · 权益销售额 ${yi(o.revenue)}<span class="muted">（估算，含已发生费用；未计未来利息、随机事件及尾货折价）</span></span>${premiumHint(config, s, p)}`;
 }

@@ -96,6 +96,11 @@
   <dialog id="staff-dialog" class="acquisition-dialog saves-dialog staff-dialog" aria-labelledby="staff-title"></dialog>
   <dialog id="career-dialog" class="acquisition-dialog saves-dialog achievements-dialog" aria-labelledby="career-title"></dialog>
   <dialog id="recovery-dialog" class="acquisition-dialog saves-dialog" aria-labelledby="recovery-title"></dialog>
+  <dialog id="replay-dialog" class="acquisition-dialog saves-dialog" aria-labelledby="replay-title">
+    <h2 id="replay-title">正在恢复经营进度</h2>
+    <p role="status">正在核对存档并重建项目与报表，请稍候。超过30秒会自动停止，原档与当前进度均会保留。</p>
+    <button class="ghost" data-replay-cancel>取消读档，保留当前进度</button>
+  </dialog>
   <script type="module" src="/src/main.ts"></script>
 </body>
 </html>

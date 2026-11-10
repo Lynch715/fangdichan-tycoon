@@ -18,7 +18,7 @@ export function works(s: GameState): Work[] {
 
 /** 代表作：已完整结算中权益利润最高的项目。 */
 export function masterpiece(ws: Work[]): Work | null {
-  return ws.filter(w => w.profit !== null).sort((a, b) => b.profit! - a.profit!)[0] ?? null;
+  return ws.filter(w => w.profit !== null && (w.p.stage === 'closed' || w.p.stage === 'sold')).sort((a, b) => b.profit! - a.profit!)[0] ?? null;
 }
 
 export function careerSummary(config: Config, s: GameState) {
@@ -30,7 +30,7 @@ export function careerSummary(config: Config, s: GameState) {
   const qualities = ws.map(w => w.p.quality).filter((q): q is number => q !== null);
   return {
     equity: m.equity, founder: founderBookValue(s), founderShare: s.capital?.founderShare ?? 1, sales, title: companyTitle(sales).name,
-    delivered: ws.length, closedProfit: ws.reduce((n, w) => n + (w.profit ?? 0), 0), avgQuality: qualities.length ? qualities.reduce((a, b) => a + b, 0) / qualities.length : null,
+    delivered: ws.length, closedProfit: ws.filter(w => w.p.stage === 'closed' || w.p.stage === 'sold').reduce((n, w) => n + (w.profit ?? 0), 0), avgQuality: qualities.length ? qualities.reduce((a, b) => a + b, 0) / qualities.length : null,
     best: masterpiece(ws), rank, rivals: rivals.length, peak: s.stats.peakEquity, brand: s.brand,
     drawdown: dd ? dd.rate?.value ?? null : null, districts: new Set(ws.map(w => district(config, w.p.districtId).name)).size,
   };

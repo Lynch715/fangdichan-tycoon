@@ -1,3 +1,27 @@
+## 2026-11-10 · Codex · 提交并推送全面审计修复分支
+
+- **做了什么**：将全面审计及两轮修复统一提交到codex/full-audit-20261110，并推送Lynch715/fangdichan-tycoon审计分支、建立面向main的PR。覆盖预计利润与限价调价、存储及偏好容错、指引/履历/节令文案、换局草稿、异常存档Worker恢复、道路方向、地图标签、6张专用施工图和首屏拆包等14类问题。具体实现及修复依据见下面两条记录与docs/审计问题修复验收-2026-11-10.md。
+- **改了哪些文件**：src/gameCore.ts、saveData.ts、saveReplay.ts、replayClient.ts、replayTasks.ts、saveWorker.ts、game.ts、save.ts、main.ts；src/ui/、src/render/相关修复与回归；6份art/prompts及public/art生产图集、素材目录/视觉记录与画廊；scripts/verify-bundles.ts、art-gallery.ts、vite.config.ts、package.json、index.html；审计/验收报告、AGENTS.md、CLAUDE.md与CHANGELOG.md。沿用art/raw忽略策略，仅提交生产图集和提示词，独立测试档与本地output证据不入库。
+- **数值变化**：无。data/config.json、src/sim与冻结历史内核未修改；存档键、格式v17、rulesRevision均保持，取消/超时/拒绝读取保留原件与当前进度。
+- **验证**：推送前确认仓库、分支、远端main为fa0aa31且无同名远端分支/PR；git diff --check、AGENTS/CLAUDE一致性、类型检查及构建预算检查通过。沿用本轮已完成的63文件486项全量回归、生产构建、87素材检查、桌面/390px/320px的IAB及停止服务器后旧档预览/恢复/刷新验收，详情见验收报告。首屏静态JS257396字节，38个生产文件全部进入离线缓存。
+- **没做完 / 已知问题**：本次仅推送审计分支并建立PR，未合并main或部署Pages；原审计14类待办无剩余。未核验玩家真实档、实体手机或系统PWA安装；超过资源上限或慢设备30秒超时的档案会保留原件并拒绝本次恢复。历史报告中“未提交或发布”描述的是当时验收状态。
+
+## 2026-11-10 · Codex · 完成全面审计剩余五项修复与离线旧档验收
+
+- **做了什么**：按R02→R01→R03→R04→R05依次完成剩余5类问题，原审计14类均已本地修复。浏览器读档改用可取消Worker，30秒超时，拒绝不安全日期及超过1000游戏年/25万日志/32MiB导入的档案，失败不覆盖原件或当前进度，取消反馈直接显示于存档弹窗。道路按邻接方向绘制并删除重复平行路段；地图名称/销售状态固定屏幕13/12px，选中与本公司优先避让。新增别墅/商业各3张主体、封顶、烂尾专用透明图，通用基坑地基继续复用；素材81→87，@2x合计2430190字节。历史恢复与地图拆包，首屏静态JS约1379240→257396字节，减少约81.3%，入口gzip419.18→90.74KB；完整游戏仍缓存历史模块，未声称总下载体积减少。续档不补播成就庆祝。
+- **改了哪些文件**：src/gameCore.ts、game.ts、saveData.ts、saveReplay.ts、save.ts、replayClient.ts、replayTasks.ts、saveWorker.ts、main.ts；src/render/terrain.ts、isoMap.ts、labelLayout.ts、projectArt.ts；src/ui/saves.ts；index.html、vite.config.ts、package.json、scripts/verify-bundles.ts、art-gallery.ts；6份art/prompts、A4目录/视觉记录、两档图集与画廊；tests/replay-worker.test.ts、map-readability.test.ts、project-art.test.ts；docs/审计问题修复验收-2026-11-10.md及原审计、AGENTS.md/CLAUDE.md。本地原图位于art/raw/，沿用忽略策略，发布资源在public/art/；生成提示词和证据在上级output/audit-remediation-20261110/。
+- **数值变化**：无经营数值变化，未修改data/config.json、src/sim或冻结内核；存档键、version=17、rulesRevision与历史边界含义不变。新增资源上限只拒绝恢复，不截断或改写日志。
+- **验证**：npm run typecheck、63文件486项npm test、npm run build通过；新增13项覆盖Worker生命周期、保留原档、早期无版本/v2/v5/v10/v15及v16异步迁移与原结果一致、道路方向、标签布局、专用贴图映射。art:check各组39/39、17/17、26/26、6/6通过，去重87；art与art:gallery通过。构建自动检查首屏500000字节预算、独立按需模块和全部38个离线文件。IAB经本地HTTP生产构建验证1440×900、390×844、320×740，正常恢复、异常拒绝、超长档取消、无溢出、真实地图专用施工图；停止服务器后首次v16预览/选规则/恢复/刷新成功，现金54667.16万元、净资产47911.25万元与原规则一致；离线重开及外观修改再刷新成功，错误日志为空。同步兼容接口及冻结哈希回归全部通过。
+- **没做完 / 已知问题**：原审计待办无剩余。超过资源上限或慢设备30秒超时的档案会拒绝读取并保留原件；未覆盖玩家真实档、实体手机、系统PWA安装和线上部署。全部修改仍在本地审计分支，未提交、推送或发布。
+
+## 2026-11-10 · Codex · 全面审计并修复估算口径、限价调价与存储容错
+
+- **做了什么**：本地审计确认14类问题，修复9类。预计利润保留实际成本、历史费用和收购成本基础；限价项目从实际售价调整并正确禁用到顶按钮，补浮点边界保护；浏览器拒绝存储访问不再使成就初始化抛错；损坏手动槽可导出原件或尝试读取，合法槽支持单独导出；坏成就/目标偏好不阻断界面；退出经营后的指引和备案状态正确；换局清除产品线草稿；公司履历只把已清盘/转让作品计入已结算利润及代表作；七类季节事件按显示月份使用合适文案。完整发现、复现及后续事项见docs/全面审计-2026-11-10.md。
+- **改了哪些文件**：src/main.ts、src/ui/outlook.ts、pricing.ts、saves.ts、achievements.ts、guide.ts、productChoice.ts、career.ts、eventText.ts、inbox.ts、panels.ts、turn.ts；tests/audit-ui.test.ts、career.test.ts、saves.test.ts、friendly-balance.test.ts；审计报告、AGENTS.md、CLAUDE.md与CHANGELOG.md。复现脚本和浏览器证据位于上级output/full-audit-20261110/。
+- **数值变化**：无。未修改data/config.json、src/sim、冻结历史内核或存档格式；估算和文案不写GameState，调价入口提交现有合法指令。
+- **验证**：npm run typecheck、61文件473项npm test、npm run build通过；81素材art:check通过。30组开局类型/难度/种子（有员工，运行至5年或破产）、1708份月报现金与资产负债对平，完整状态重放一致。IAB覆盖1440×900、1280×720、390×844、320×740；限价降价、坏槽原件逐字导出、成就容错、保存/推进/读回、重开取消、报表及三地图通过，窄屏无页面横向溢出。停止本地预览服务器后离线重载，地图及第5年10月进度恢复，错误日志为空。浏览器验收后新增的调价浮点边界仅以真实内核提交测试及全量回归复验，未另做浏览器操作。
+- **没做完 / 已知问题**：5类待改造事项为道路方向映射、异常超长存档回放保护、地图标签随缩放过小、别墅/商业复用洋房施工图、约1.38MB首屏JS包；报告列明优先级与依据。未测试玩家真实存档、实体手机、系统PWA安装或线上部署。全部修改在本地审计分支，尚未提交或发布。
+
 ## 2026-11-09 · Codex · 发布新开局平衡修订并完成隔离验收（PR #5）
 
 - **做了什么**：将claude/friendly-balance上的新开局平衡修订提交为2b5561c，经[PR #5](https://github.com/Lynch715/fangdichan-tycoon/pull/5)合并main（55640213），GitHub Pages测试、构建和部署成功。发布前发现并修正开局页默认选项遗漏balance:2的问题：不切换模式/难度，直接开始经营也启用新修订。按清单仅提交18个文件，删除已确认的stale-maintenance-lock，上级output探针未入库。

@@ -1,12 +1,13 @@
 import{allMapProjects}from'../sim/rivals.ts';
 import { salesStatus, soldRatio } from '../ui/sales.ts';
 // 等距地图渲染：只读模拟状态；正常显示图集，资源失败时逐对象程序回退。
-import {tileArtAt,terrainTint,roadAt,TILE_SIDE_HEIGHT,type TileArt} from './terrain.ts';
+import {tileArtAt,terrainTint,roadAt,roadConnections,TILE_SIDE_HEIGHT,type TileArt} from './terrain.ts';
 import {projectArtKey} from './projectArt.ts';
 import {landmarksForMap,landmarkContains,type Landmark} from './landmarks.ts';
 import{backgroundArtKey,parcelArtKey,plotGeometry,spriteScale,visibleMapProjects}from'./cityArt.ts';
 import {loadArt} from './art.ts';
 import {builtArea,growthTiles,urbanization} from './growth.ts';
+import {layoutMapLabels,type LabelCandidate} from './labelLayout.ts';
 import { Application, Container, Graphics, Sprite, Text, Texture } from 'pixi.js';
 import { defaultConfig, district, activeProject, MAP_SIZE, backgroundBuildings, terrainAt, districtAt, type GameState, type Tile } from '../sim/index.ts';
 
@@ -78,6 +79,7 @@ export class IsoMap {
   private terrainSignature = '';
   /** 图集到达前不画地图：否则会先画出无贴图的程序地形，且该帧不会被替换。 */
   private ready = false;
+  private initialized=false;
   private pending: [GameState, string | null, string] | null = null;
   /** 当前地图城市化程度 0–1（供界面显示）。 */
   urbanization = 0;
@@ -87,6 +89,7 @@ export class IsoMap {
   private world = new Container();
   private dynamic = new Container();
   private labels = new Container();
+  private mapLabels:(LabelCandidate&{node:Container;sales:boolean})[]=[];
   private salesEffects = new Container();
   private salesAnchors = new Map<string, [number, number]>();
   private salesAnimations = new Set<() => void>();
@@ -113,6 +116,7 @@ export class IsoMap {
       resolution: Math.min(window.devicePixelRatio || 1, 2),
       autoDensity: true,
     });
+    this.initialized=true;
     this.host.insertBefore(this.app.canvas,loading);
     this.app.stage.addChild(this.world);
     // 三个图层在图集到达前就挂好：期间若有读档/开局触发 update，也不会只剩地形。
@@ -135,6 +139,7 @@ export class IsoMap {
   }
 
   fit() {
+    if(!this.initialized)return;
     const w = this.app.screen.width;
     const h = this.app.screen.height;
     // 竖屏时放大到约 1.8 倍宽度，两侧可拖动查看
@@ -143,14 +148,30 @@ export class IsoMap {
     const scale = portrait ? Math.min((w / WORLD_W) * 2.4, h / WORLD_H * 1.6) : Math.min(w / WORLD_W, h / WORLD_H) * 1.05;
     this.world.scale.set(scale);
     this.world.position.set((w - WORLD_W * scale) / 2, (h - WORLD_H * scale) / 2);
+    this.syncLabels();
   }
 
-  zoom(factor: number, cx = this.app.screen.width / 2, cy = this.app.screen.height / 2) {
+  zoom(factor: number, cx?:number, cy?:number) {
+    if(!this.initialized)return;
+    cx??=this.app.screen.width/2;cy??=this.app.screen.height/2;
     const old = this.world.scale.x;
     const next = Math.max(0.3, Math.min(4, old * factor));
     const k = next / old;
     this.world.position.set(cx - (cx - this.world.position.x) * k, cy - (cy - this.world.position.y) * k);
     this.world.scale.set(next);
+    this.syncLabels();
+  }
+
+  private syncLabels(){
+    if(!this.initialized)return;
+    const scale=this.world.scale.x;
+    const positions=layoutMapLabels(this.mapLabels,{x:this.world.x,y:this.world.y,scale,width:this.app.screen.width,height:this.app.screen.height});
+    this.salesAnchors.clear();
+    for(const label of this.mapLabels){
+      const p=positions.get(label.id);label.node.visible=!!p;
+      label.node.scale.set(1/scale);
+      if(p){label.node.position.set(p.x,p.y);if(label.sales)this.salesAnchors.set(label.id,[p.x,p.y-(label.height+10)/scale]);}
+    }
   }
 
   private drawTerrain(): Container {
@@ -162,18 +183,21 @@ export class IsoMap {
       // 大桥完整素材覆盖原桥梁格；未加载到大桥时仍用原桥梁瓦片/程序回退。
       if(landmark?.kind==='bridge'&&this.textures[landmark.key])art.key='terrain_water_calm_1x1_a';
       if(landmark?.elevation)art.elevation=landmark.elevation;
-      const texture=this.textures[art.key];
+      // 道路素材缺少部分朝向：复用铺地底座，按邻接关系绘制路面，避免错误丁字/转角。
+      const surface=art.road&&terrainAt(i,j,this.region)==='land';
+      const key=surface?'terrain_paved_1x1_a':art.key,texture=this.textures[key];
       if(texture){
         const foundation=this.textures.terrain_grass_1x1_a;
         if(!foundation&&art.elevation>0){const base=new Graphics();this.drawTerrainFallback(base,i,j,art);layer.addChild(base);}
         for(let level=foundation?0:art.elevation;level<=art.elevation;level++){
           const tile=new Sprite(level===art.elevation?texture:foundation);tile.scale.set(.5);
-          tile.tint=terrainTint(art.key,this.region);
+          tile.tint=terrainTint(key,this.region);
           const [x,y]=P(i+1,j+1);tile.position.set(x,y-level*TILE_SIDE_HEIGHT);layer.addChild(tile);
         }
       }else{
         const tile=new Graphics();this.drawTerrainFallback(tile,i,j,art);layer.addChild(tile);
       }
+      if(surface){const street=new Graphics();this.drawRoad(street,i,j,art.elevation);layer.addChild(street);}
       if(art.decor&&!this.occupied.has(`${i},${j}`))this.terrainDecor.push({i,j,elevation:art.elevation,key:art.decor});
     }
     return layer;
@@ -209,7 +233,7 @@ export class IsoMap {
     }
 
     this.dynamic.removeChildren().forEach((c) => c.destroy());
-    this.labels.removeChildren().forEach((c) => c.destroy());
+    this.labels.removeChildren().forEach((c) => c.destroy({children:true}));this.mapLabels=[];
     const blocks:Block[]=(mapId==='city'?backgroundBuildings:[]).map((b,index)=>({
       order:b.i+b.j+1,draw:gg=>{
         const texture=this.textures[backgroundArtKey(index)];
@@ -285,23 +309,25 @@ export class IsoMap {
         const [lx, ly] = P(i0 + cells/2, j0 + cells/2);
         const t = new Text({
           text: (owners.has(p.id)?owners.get(p.id)+' · ':'')+p.name.replace(/ P?L?\d+$/, ''),
-          style: { fontFamily: 'Noto Sans SC, system-ui, sans-serif', fontSize: 13, fontWeight: '700', fill: 0xe8eaed, stroke: { color: 0x0f1419, width: 4 } },
+          style: { fontFamily: 'Noto Sans SC, system-ui, sans-serif', fontSize: 13, lineHeight:16,wordWrap:true,wordWrapWidth:200,breakWords:true,align:'center',fontWeight: '700', fill: 0xe8eaed, stroke: { color: 0x0f1419, width: 4 } },
         });
         t.anchor.set(0.5, 1);
         const labelY=art?P(i0+cells,j0+cells)[1]-(art.defaultAnchor?.y??1)*art.height*scale-6:ly-(p.stage==='land'?20:p.stage==='construction'?30+p.progress*104:130);
-        t.position.set(lx,labelY);
-        this.labels.addChild(t);
+        const group=new Container();group.addChild(t);this.labels.addChild(group);
+        let width=t.width,height=t.height,sales=false;
         if(!owners.has(p.id)){
           const status=salesStatus(state.rules??defaultConfig,state,p);
           if(status){
             const badge=new Text({text:`${status.text} · ${(soldRatio(p)*100).toFixed(0)}%`,style:{fontFamily:'system-ui, sans-serif',fontSize:12,fontWeight:'700',fill:status.tone==='muted'?0xb4bcc6:status.tone==='gold'?0xffcf6b:0x75e3b1,stroke:{color:0x0f1419,width:4}}});
-            badge.anchor.set(.5,1);badge.position.set(lx,labelY-20);this.labels.addChild(badge);
-            this.salesAnchors.set(p.id,[lx,labelY-42]);
+            badge.anchor.set(.5,1);badge.position.set(0,-t.height-4);group.addChild(badge);
+            width=Math.max(width,badge.width);height+=badge.height+4;sales=true;
           }
         }
+        this.mapLabels.push({id:p.id,x:lx,y:labelY,width,height,priority:sel?3:owners.has(p.id)?1:2,node:group,sales});
       }
     }
     blocks.sort((a, b) => a.order - b.order).forEach((b) => {const layer=new Graphics();this.dynamic.addChild(layer);b.draw(layer);});
+    this.syncLabels();
   }
 
   /** 成交飘字独立于静态图层，存档状态变化/重复重绘不会重新播放。 */
@@ -309,10 +335,10 @@ export class IsoMap {
     const anchor=this.salesAnchors.get(projectId);if(!anchor)return;
     const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
     const effect=new Container(),label=new Text({text,style:{fontFamily:'system-ui, sans-serif',fontSize:16,fontWeight:'800',fill:0xffdc88,stroke:{color:0x13251f,width:5}}});
-    label.anchor.set(.5,1);effect.position.set(...anchor);effect.addChild(label);this.salesEffects.addChild(effect);
+    label.anchor.set(.5,1);effect.position.set(...anchor);effect.scale.set(1/this.world.scale.x);effect.addChild(label);this.salesEffects.addChild(effect);
     let elapsed=0;
     const cleanup=()=>{this.app.ticker.remove(tick);this.salesAnimations.delete(cleanup);effect.destroy({children:true});};
-    const tick=()=>{elapsed+=this.app.ticker.deltaMS;const t=Math.min(1,elapsed/2600);if(!reduced)effect.y=anchor[1]-t*38;effect.alpha=t<.7?1:(1-t)/.3;if(t>=1)cleanup();};
+    const tick=()=>{elapsed+=this.app.ticker.deltaMS;const t=Math.min(1,elapsed/2600);effect.scale.set(1/this.world.scale.x);if(!reduced)effect.y=anchor[1]-t*38/this.world.scale.x;effect.alpha=t<.7?1:(1-t)/.3;if(t>=1)cleanup();};
     this.salesAnimations.add(cleanup);this.app.ticker.add(tick);
   }
 
@@ -330,9 +356,18 @@ export class IsoMap {
     g.poly([W[0],W[1]-z,S[0],S[1]-z,S[0],S[1]+TILE_SIDE_HEIGHT,W[0],W[1]+TILE_SIDE_HEIGHT]).fill(0x826646);
     g.poly([S[0],S[1]-z,E[0],E[1]-z,E[0],E[1]+TILE_SIDE_HEIGHT,S[0],S[1]+TILE_SIDE_HEIGHT]).fill(0x715536);
     g.poly([N[0],N[1]-z,E[0],E[1]-z,S[0],S[1]-z,W[0],W[1]-z]).fill(tileColor(i,j,this.region)).stroke({width:1,color:0x0f1419,alpha:.1});
-    if(art.road){
-      const c=P(i+.5,j+.5);for(const[di,dj]of [[-1,0],[1,0],[0,-1],[0,1]])if(roadAt(i+di,j+dj,this.region)){
-        const p=P(i+.5+di*.5,j+.5+dj*.5);g.moveTo(c[0],c[1]-z).lineTo(p[0],p[1]-z).stroke({width:9,color:0x6f7474});
+  }
+
+  private drawRoad(g:Graphics,i:number,j:number,elevation:number){
+    const [cx,cy]=P(i+.5,j+.5),z=elevation*TILE_SIDE_HEIGHT,connections=roadConnections(i,j,this.region);
+    const ends=connections.map(([di,dj])=>P(i+.5+di*.5,j+.5+dj*.5));
+    // 先画全部路面再画中线，使转角和交叉口接合处没有细缝。
+    for(const[x,y]of ends)g.moveTo(cx,cy-z).lineTo(x,y-z).stroke({width:9,color:0x6a6d69,cap:'round',join:'round'});
+    for(const[x,y]of ends){
+      const dx=x-cx,dy=y-cy,length=Math.hypot(dx,dy);
+      for(let start=connections.length>=3?7:2;start<length-2;start+=8){
+        const end=Math.min(start+3,length-2);
+        g.moveTo(cx+dx*start/length,cy-z+dy*start/length).lineTo(cx+dx*end/length,cy-z+dy*end/length).stroke({width:.65,color:0xbcb9a9});
       }
     }
   }
@@ -392,6 +427,7 @@ export class IsoMap {
       const dy = cur.y - prev.y;
       this.dragDist += Math.abs(dx) + Math.abs(dy);
       this.world.position.set(this.world.position.x + dx, this.world.position.y + dy);
+      this.syncLabels();
     });
     const end = (e: { pointerId: number; global: { x: number; y: number } }) => {
       if (!this.pointers.has(e.pointerId)) return;

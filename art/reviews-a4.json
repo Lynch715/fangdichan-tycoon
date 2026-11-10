@@ -53,5 +53,35 @@
     "sha256": "6d1a1aaa865244a02b6766439a67788a30b6d92bfc5eb2ca3f3d22bdaa97df61",
     "visual": "pass",
     "note": "已查看投影修正版：对应施工阶段，半高烂尾与风化围挡可辨，透明背景；精确几何和高度另由管线检查。"
+  },
+  "stage_villa_frame_2x2_a": {
+    "sha256": "0122ae475e0fc733b68290da2d13892b3be152a2ec7d0164bd5e09923dd63168",
+    "visual": "pass",
+    "note": "2026-11-10 Codex逐张查看内置image_gen输出：两层独栋别墅；主体结构未完成、露筋与模板。无成品外立面、文字、人像；透明alpha和2:1底座另经管线检查。"
+  },
+  "stage_villa_topped_2x2_a": {
+    "sha256": "1f42a2f4c03fd571e2778af9f885f33b9fafc8f899e7ef4d558ab18d05272d04",
+    "visual": "pass",
+    "note": "2026-11-10 Codex逐张查看内置image_gen输出：两层独栋别墅；完整毛坯轮廓、脚手架和绿色安全网。无成品外立面、文字、人像；透明alpha和2:1底座另经管线检查。"
+  },
+  "stage_villa_abandoned_2x2_a": {
+    "sha256": "0853ffd7cf12b3731b00b9bd2e5beea3a47f7e7e6f3ddb4d9cebe0ead8a01ec5",
+    "visual": "pass",
+    "note": "2026-11-10 Codex逐张查看内置image_gen输出：两层独栋别墅；风化混凝土、锈筋、褪色围挡及稀疏杂草。无成品外立面、文字、人像；透明alpha和2:1底座另经管线检查。"
+  },
+  "stage_commercial_frame_2x2_a": {
+    "sha256": "a9fea6e47750da5275c644df98ca4f1b16a03274edd601f299c49d68793d54b3",
+    "visual": "pass",
+    "note": "2026-11-10 Codex逐张查看内置image_gen输出：低层大开间商业裙楼；主体结构未完成、露筋与模板。无成品外立面、文字、人像；透明alpha和2:1底座另经管线检查。"
+  },
+  "stage_commercial_topped_2x2_a": {
+    "sha256": "07899d28d0fe0be88f800989d63e4f509e49464ddbc686e06f78c25df974c8ae",
+    "visual": "pass",
+    "note": "2026-11-10 Codex逐张查看内置image_gen输出：低层大开间商业裙楼；完整毛坯轮廓、脚手架和绿色安全网。无成品外立面、文字、人像；透明alpha和2:1底座另经管线检查。"
+  },
+  "stage_commercial_abandoned_2x2_a": {
+    "sha256": "51ffa8da8354bf79c89926a88c421582c1c32965e5ab0d5e6504bf7b6c9f50b1",
+    "visual": "pass",
+    "note": "2026-11-10 Codex逐张查看内置image_gen输出：低层大开间商业裙楼；风化混凝土、锈筋、褪色围挡及稀疏杂草。无成品外立面、文字、人像；透明alpha和2:1底座另经管线检查。"
   }
 }

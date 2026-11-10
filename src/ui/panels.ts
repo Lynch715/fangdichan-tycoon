@@ -17,10 +17,12 @@ import {pickedProduct,productPickerMarkup} from './productChoice.ts';
 import {productTerms} from '../sim/products.ts';
 import {bidAffordability} from './affordability.ts';
 import {outlookMarkup} from './outlook.ts';
+import {projectPricing} from './pricing.ts';
+import {displayNewsText} from './eventText.ts';
 import {projectStaffMarkup} from './staff.ts';
 import {seasonSales,staffSalesFactor} from '../sim/index.ts';
 // 界面面板：根据模拟状态生成 HTML。按钮通过 data-act 属性交给 main.ts 统一处理。
-import { activeProject, priceRestricted, salesPriceCap, transferQuote, borrowCapacity, calendar, computeMetrics, district, marketPrice,salesRate,salesEligible,industryTight,channelRate, type Config, type GameState, type Project,type Parcel } from '../sim/index.ts';
+import { activeProject, priceRestricted, transferQuote, borrowCapacity, calendar, computeMetrics, district, marketPrice,salesRate,salesEligible,industryTight,channelRate, type Config, type GameState, type Project,type Parcel } from '../sim/index.ts';
 import { esc, pct, ratio, yi } from './format.ts';
 
 const STAGE: Record<Project['stage'], [string, string]> = {
@@ -159,8 +161,7 @@ export function projectsPanel(config: Config, s: GameState, selectedId: string |
       const appearance=appearanceOf(p);
       const [label, color] = p.stage==='construction'&&p.fundingStoppedMonths>0?['资金停工','red']:STAGE[p.stage];
       const sold = p.soldArea / p.saleableArea;
-      const requested = marketPrice(config, s, p.districtId,p.attributes,p.product) * p.priceFactor;
-      const price = Math.min(requested, salesPriceCap(s,config,p,marketPrice(config, s, p.districtId,p.attributes,p.product)) ?? requested);
+      const pricing = projectPricing(config,s,p), price = pricing.price;
       const quote = transferQuote(s,p,config);
       const canSell = salesEligible(p,config);
       const filingBlock = filingSalesBlock(config,s,p);
@@ -190,7 +191,7 @@ export function projectsPanel(config: Config, s: GameState, selectedId: string |
           <label class="small">外观变体 <select id="appearance-variant-${p.id}">${BUILDING_VARIANTS.map(k=>`<option value="${k}" ${k===appearance.variant?'selected':''}>${k.toUpperCase()}</option>`).join('')}</select></label>
           <button class="ghost" data-act="appearance" data-id="${p.id}">应用外观</button>
         </div></details>
-        ${canSell ? `<div class="row between small"><span class="muted">售价 ${(price * 10000).toFixed(0)} 元/㎡（市场价 ${pct(price/marketPrice(config,s,p.districtId,p.attributes,p.product))}）</span><span class="row"><button class="mini" data-act="price" data-id="${p.id}" data-delta="-0.05" ${p.priceFactor <= config.sales.minPriceFactor + 1e-9 ? 'disabled title="已到最低报价"' : ''}>降价</button><button class="mini" data-act="price" data-id="${p.id}" data-delta="0.05" ${p.priceFactor >= config.sales.maxPriceFactor - 1e-9 ? 'disabled title="已到最高报价"' : ''}>提价</button></span></div>` : ''}
+        ${canSell ? `<div class="row between small"><span class="muted">售价 ${(price * 10000).toFixed(0)} 元/㎡（市场价 ${pct(pricing.factor)}${pricing.capped?'，已限价':''}）</span><span class="row"><button class="mini" data-act="price" data-id="${p.id}" data-delta="-0.05" ${pricing.change(-.05) === null ? 'disabled title="已到当前最低售价"' : ''}>降价</button><button class="mini" data-act="price" data-id="${p.id}" data-delta="0.05" ${pricing.change(.05) === null ? 'disabled title="已到报价或备案限价上限"' : ''}>提价</button></span></div>` : ''}
         ${canSell?`<div class="stack"><label class="small">营销投入（销售回款比例，%）<div class="row"><input id="marketing-${p.id}" aria-label="营销投入比例（%）" type="number" min="0" max="${config.marketing.maxRate*100}" step="0.5" value="${p.marketingRate*100}"><button data-act="marketing" data-id="${p.id}">设置</button></div></label><span class="small muted">当前 ${pct(p.marketingRate,1)} · ${salesForecast}品牌、营销、片区购房政策、本回合季节事件和销售经理共同影响去化；仅对实际回款计营销费，未计配套利好。</span></div>`:''}
         <details class="project-tools" data-key="${p.id}"><summary>项目融资、备案与自救</summary><div class="stack">
           <span class="small muted">${p.partnerShare > 0 ? `合作方权益 ${pct(p.partnerShare)}，成本与回款按比例分摊` : '独资项目'} · 商票支付比例 ${pct(p.paperRatio*(industryTight(s)?config.rivals.default.capacityFactor:1))}</span>
@@ -256,7 +257,7 @@ export function newsLine(config: Config, s: GameState): string {
     .slice(0, 6)
     .map((n) => {
       const c = calendar(config, n.day);
-      return `<span class="news ${n.kind}">【${c.year}年${c.month}月】${esc(n.text)}</span>`;
+      return `<span class="news ${n.kind}">【${c.year}年${c.month}月】${esc(displayNewsText(config,n))}</span>`;
     })
     .join('<span class="sep">|</span>');
 }

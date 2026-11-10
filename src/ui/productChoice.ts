@@ -7,6 +7,7 @@ import { esc } from './format.ts';
 const picks = new Map<string, BuildingProduct>();
 export const pickedProduct = (p: Project): BuildingProduct => picks.get(p.id) ?? appearanceOf(p).product;
 export function pickProduct(id: string, product: BuildingProduct) { if (BUILDING_PRODUCTS.includes(product)) picks.set(id, product); }
+export function resetProductChoices() { picks.clear(); }
 
 const rel = (x: number) => x === 1 ? '基准' : `${x > 1 ? '+' : '−'}${Math.round(Math.abs(x - 1) * 100)}%`;
 

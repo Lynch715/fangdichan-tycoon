@@ -96,6 +96,60 @@
       "description": "abandoned unfinished HALF-height concrete shell, weather stains, rusted exposed rebar, one idle rusty-orange tower crane, faded orange site fence, some sparse weeds. No completed facade or windows. Total height including crane at most 1.3 times plot width.",
       "productLine": "garden",
       "stage": "abandoned"
+    },
+    {
+      "id": "stage_villa_frame_2x2_a",
+      "file": "stage_villa_frame_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "PARTLY BUILT TWO-STOREY VILLA: lower concrete floor with open rectangular rooms, exposed columns and slabs, timber formwork and rebar for the second storey. Clearly a low detached house with a small courtyard footprint, NEVER a multistorey apartment block. No finished roof, facade, windows, pool, furniture, plants or landscaping.",
+      "productLine": "villa",
+      "stage": "frame"
+    },
+    {
+      "id": "stage_villa_topped_2x2_a",
+      "file": "stage_villa_topped_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "TOPPED OUT TWO-STOREY VILLA SHELL: complete low detached two-storey concrete house frame and unfinished grey pitched roof structure. Exposed concrete walls, open unglazed window openings, modest scaffolding and partial green safety mesh. Clearly low villa silhouette. No finished facade, occupied rooms, pool or landscaping.",
+      "productLine": "villa",
+      "stage": "topped"
+    },
+    {
+      "id": "stage_villa_abandoned_2x2_a",
+      "file": "stage_villa_abandoned_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "ABANDONED TWO-STOREY VILLA CONSTRUCTION SITE: unfinished low detached concrete villa shell, incomplete upper floor and no completed roof, rusty rebar, weather stains, scattered construction materials, faded orange site fence and a few sparse weeds. Low house silhouette, NOT an apartment block. No residents, completed facade or finished landscaping.",
+      "productLine": "villa",
+      "stage": "abandoned"
+    },
+    {
+      "id": "stage_commercial_frame_2x2_a",
+      "file": "stage_commercial_frame_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "PARTLY BUILT COMMERCIAL RETAIL PODIUM: broad low rectangular concrete retail structure, two floors of an eventual three-storey podium, wide open storefront bays and open large-span columns. Incomplete upper-floor slabs, rebar and orange temporary safety rails. Clearly a wide low retail building, NOT residential apartment towers or a detached villa. No finished facade, windows, signage, shops, vegetation or landscaping.",
+      "productLine": "commercial",
+      "stage": "frame"
+    },
+    {
+      "id": "stage_commercial_topped_2x2_a",
+      "file": "stage_commercial_topped_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "TOPPED OUT COMMERCIAL RETAIL PODIUM SHELL: broad three-storey concrete retail building with a flat roof, wide large-span open shopfront bays on the ground floor, unfinished upper storeys, grey concrete shell and partial green safety netting with scaffold poles. Low wide podium silhouette. No completed facade, glass, lettering, signs, roof gardens, residents or landscaping.",
+      "productLine": "commercial",
+      "stage": "topped"
+    },
+    {
+      "id": "stage_commercial_abandoned_2x2_a",
+      "file": "stage_commercial_abandoned_2x2_a.png",
+      "cells": 2,
+      "kind": "building",
+      "description": "ABANDONED COMMERCIAL RETAIL PODIUM SITE: broad low unfinished two-to-three-storey concrete retail skeleton, big open storefront bays, weather stains, rusty rebar, idle materials, faded orange perimeter safety rail and sparse weeds. Wide commercial podium silhouette, not an apartment tower, villa or completed mall. No glazing, completed facades, brands, text, people or finished gardens.",
+      "productLine": "commercial",
+      "stage": "abandoned"
     }
   ]
 }
